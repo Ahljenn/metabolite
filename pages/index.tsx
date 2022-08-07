@@ -1,4 +1,33 @@
 import type { NextPage } from 'next';
+
+interface PageData {
+  heading: string;
+  description: string;
+}
+
+const homePageRoutes: PageData[] = [
+  {
+    heading: 'What can I eat?',
+    description:
+      'After walking around the grocery store and looking at different foods, you may be curious which ones are good for you.',
+  },
+  {
+    heading: 'Nutrients',
+    description:
+      'Eat to be healthy, don’t focus on only losing the weight. Learn how macro and micro nutrients work together.',
+  },
+  {
+    heading: 'Supplements',
+    description:
+      'Supplements can optimize your ketogenic burn. Learn which ones to take, and which ones to avoid.',
+  },
+  {
+    heading: 'Exercise',
+    description:
+      'Do you have to exercise often for this diet? Learn more about exercise interacts with this diet.',
+  },
+];
+
 const Home: NextPage = (): JSX.Element => {
   return (
     <div className="flex items-center mt-5 flex-col">
@@ -17,10 +46,34 @@ const Home: NextPage = (): JSX.Element => {
             Read the Recipes
           </button>
         </div>
+
+        <div className="flex justify-center gap-5 items-center mt-5">
+          <a href="https://github.com/Ahljenn/Metabolite" rel="noopener noreferrer" target="_blank">
+            <picture className="cursor-pointer opacity-[0.5] hover:opacity-[1]">
+              <img className="w-[2rem]" src="./github.png" alt="github" />
+            </picture>
+          </a>
+          <a
+            href="https://github.com/Ahljenn/Metabolite/labels/enhancement"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="cursor-pointer opacity-[0.5] hover:opacity-[1]"
+          >
+            Contribute
+          </a>
+          <a
+            href="https://github.com/Ahljenn/Metabolite/issues"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="cursor-pointer opacity-[0.5] hover:opacity-[1]"
+          >
+            Report a bug
+          </a>
+        </div>
       </section>
 
       <section className="text-center max-w-screen-2xl">
-        <picture className="mt-20 flex justify-center">
+        <picture className="mt-[12rem] flex justify-center">
           <img className="w-[20rem]" src="./beta-hydro.png" alt="beta" />
         </picture>
 
@@ -41,6 +94,23 @@ const Home: NextPage = (): JSX.Element => {
           energy. In ketosis, your body doesn’t just burn the fat you eat, but the fat that’s
           already in your body. This is how you will lose weight.
         </p>
+      </section>
+
+      <section className="max-w-screen-2xl">
+        <div className="grid grid-cols-2 gap-4 m-5 sm:grid-cols-4 ">
+          {homePageRoutes.map((entry: PageData) => {
+            return (
+              <div
+                className="border p-5 rounded-xl hover:shadow-xl transition duration-300 cursor-pointer"
+                key={entry.heading}
+              >
+                <h1 className="sm:text-xl font-bold">{entry.heading}</h1>
+                <p>{entry.description}</p>
+                <p className="text-primary">Read more →</p>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </div>
   );
