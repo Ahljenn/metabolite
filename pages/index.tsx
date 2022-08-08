@@ -24,27 +24,31 @@ const homePageRoutes: PageData[] = [
   {
     heading: 'Exercise',
     description:
-      'Do you have to exercise often for this diet? Learn more about exercise interacts with this diet.',
+      'Do you have to exercise often for this diet? Learn more about how exercise interacts with this diet.',
   },
 ];
 
 const Home: NextPage = (): JSX.Element => {
   return (
-    <div className="flex items-center mt-5 flex-col">
-      <section className="text-center max-w-screen-2xl">
-        <h1 className="text-[3.5rem] font-bold">The Nutrition Guide for Your Best Self</h1>
+    <div className="flex items-center flex-col">
+      <section className="text-center py-10 w-full bg-gradient-to-b from-secondary to-white">
+        <h1 className="text-[3.5rem] font-bold">The Only Nutrition Guide You Need</h1>
         <h1>
-          <b className="text-primary">Metabolite </b>present to you unbiased nutrition. We aim to
-          provide well-researched guides catered to anyone.
+          <b className="text-primary">Metabolite </b>presents to you unbiased nutrition. We aim to
+          provide well-researched dietary knowledge available for everyone.
         </h1>
 
-        <div className="mt-5 flex gap-5 justify-center">
-          <button className="px-8 py-1 bg-tertiary rounded-xl shadow-xl hover:bg-gray-300 transition duration-300">
-            Read the Research
-          </button>
-          <button className="px-8 py-2 bg-secondary rounded-xl shadow-xl hover:bg-gray-300 transition duration-300">
-            Read the Recipes
-          </button>
+        <div className="flex flex-col mt-5 gap-5 sm:flex-row justify-center items-center">
+          <div>
+            <button className="px-8 py-2 bg-tertiary rounded-xl shadow-xl hover:bg-white transition duration-300">
+              Read the Research
+            </button>
+          </div>
+          <div>
+            <button className="px-8 py-2 bg-secondary rounded-xl shadow-xl hover:bg-white transition duration-300">
+              Read the Recipes
+            </button>
+          </div>
         </div>
 
         <div className="flex justify-center gap-5 items-center mt-5">
@@ -73,7 +77,7 @@ const Home: NextPage = (): JSX.Element => {
       </section>
 
       <section className="text-center max-w-screen-2xl">
-        <picture className="mt-[12rem] flex justify-center">
+        <picture className="mt-5 flex justify-center">
           <img className="w-[20rem]" src="./beta-hydro.png" alt="beta" />
         </picture>
 
@@ -87,17 +91,28 @@ const Home: NextPage = (): JSX.Element => {
           even gain weight.
         </p>
 
-        <h1 className="mt-5 font-bold text-[1.5rem]">Why so much fat?</h1>
+        <h1 className="mt-5 font-bold text-[1.5rem]">
+          Why <i>so much</i> fat?
+        </h1>
         <p className="mx-5">
           In the Keto Diet, you have to rely on fats for energy. You will go through a process
-          called ketosis (or ketogenesis) when you have successfully made fat your main source of
-          energy. In ketosis, your body doesn’t just burn the fat you eat, but the fat that’s
-          already in your body. This is how you will lose weight.
+          called{' '}
+          <a
+            className="font-semibold underline text-primary"
+            href="https://www.webmd.com/diabetes/type-1-diabetes-guide/what-is-ketosis#1"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            ketosis
+          </a>{' '}
+          (or ketogenesis) when you have successfully made fat your main source of energy. In
+          ketosis, your body doesn’t just burn the fat you eat, but the fat that’s already in your
+          body. This is how you will lose weight.
         </p>
       </section>
 
       <section className="max-w-screen-2xl">
-        <div className="grid grid-cols-2 gap-4 m-5 sm:grid-cols-4 ">
+        <div className="grid grid-cols-1 gap-4 m-5 sm:grid-cols-2 md:grid-cols-4">
           {homePageRoutes.map((entry: PageData) => {
             return (
               <div
