@@ -1,12 +1,12 @@
 import React from 'react';
-import { guide_cards } from '../static_data/guide_cards';
+import { guide_cards, PageData } from '../static_data/guide_cards';
 
 const MainTop: React.FC = (): JSX.Element => {
   return (
     <div className="flex items-center flex-col shadow-md pb-[5rem]">
       <section className="text-center py-10 w-full bg-gradient-to-b from-secondary to-white">
-        <h1 className="text-[3.5rem] font-bold">The Only Nutrition Guide You Need</h1>
-        <h1>
+        <h1 className="mx-5 text-[3.5rem] font-bold">The Only Nutrition Guide You Need</h1>
+        <h1 className="mx-5">
           <b className="text-primary">Metabolite </b>presents to you unbiased nutrition. We aim to
           provide well-researched dietary knowledge available for everyone.
         </h1>
