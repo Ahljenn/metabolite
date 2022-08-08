@@ -54,7 +54,7 @@ const MainTop: React.FC = (): JSX.Element => {
           <img className="w-[20rem]" src="./beta-hydro.png" alt="beta" />
         </picture>
 
-        <h1 className="mt-5 font-bold text-[1.5rem]">Ketogenic Guide</h1>
+        <h1 className="mt-5 font-bold text-2xl">Ketogenic Guide</h1>
         <p className="mx-5">
           The <b>Keto Diet</b> is a diet in which you consume little to no carbs, a lot of fat, and
           a moderate amount of protein. Following that way of eating is generally how you will reach
@@ -64,17 +64,17 @@ const MainTop: React.FC = (): JSX.Element => {
           even gain weight.
         </p>
 
-        <h1 className="mt-5 font-bold text-[1.5rem]">
+        <h1 className="mt-5 font-bold text-2xl">
           Why <i>so much</i> fat?
         </h1>
         <p className="mx-5">
           In the Keto Diet, you have to rely on fats for energy. You will go through a process
           called{' '}
           <a
-            className="font-semibold underline text-primary"
             href="https://www.webmd.com/diabetes/type-1-diabetes-guide/what-is-ketosis#1"
             rel="noopener noreferrer"
             target="_blank"
+            className="font-semibold underline text-primary"
           >
             ketosis
           </a>{' '}

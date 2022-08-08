@@ -6,4 +6,8 @@
   body {
     @apply bg-white text-metablack;
   }
+
+  img {
+    -webkit-user-drag: none;
+  }
 }
