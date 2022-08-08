@@ -1,36 +1,9 @@
 import React from 'react';
-
-interface PageData {
-  heading: string;
-  description: string;
-}
-
-const homePageRoutes: PageData[] = [
-  {
-    heading: 'What can I eat?',
-    description:
-      'After walking around the grocery store and looking at different foods, you may be curious which ones are good for you.',
-  },
-  {
-    heading: 'Nutrients',
-    description:
-      'Eat to be healthy, don’t focus on only losing the weight. Learn how macro and micro nutrients work together.',
-  },
-  {
-    heading: 'Supplements',
-    description:
-      'Supplements can optimize your ketogenic burn. Learn which ones to take, and which ones to avoid.',
-  },
-  {
-    heading: 'Exercise',
-    description:
-      'Do you have to exercise often for this diet? Learn more about how exercise interacts with this diet.',
-  },
-];
+import { guide_cards } from '../static_data/guide_cards';
 
 const MainTop: React.FC = (): JSX.Element => {
   return (
-    <div className="flex items-center flex-col shadow-md pb-10">
+    <div className="flex items-center flex-col shadow-md pb-[5rem]">
       <section className="text-center py-10 w-full bg-gradient-to-b from-secondary to-white">
         <h1 className="text-[3.5rem] font-bold">The Only Nutrition Guide You Need</h1>
         <h1>
@@ -113,7 +86,7 @@ const MainTop: React.FC = (): JSX.Element => {
 
       <section className="max-w-screen-2xl border-b-black">
         <div className="grid grid-cols-1 gap-4 m-10 sm:grid-cols-2 md:grid-cols-4">
-          {homePageRoutes.map((entry: PageData) => {
+          {guide_cards.map((entry: PageData) => {
             return (
               <div
                 className="border p-5 rounded-xl hover:shadow-xl transition duration-300 cursor-pointer"
