@@ -6,10 +6,10 @@ const BasalMetabolicRate: React.FC = (): JSX.Element => {
     <>
       <Head>
         <title>Metabolite | BMR</title>
-        <link rel="icon" href="/mbe-favicon.png" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <div className="flex flex-col items-center mt-5">
+      <div className="flex flex-col items-center mt-5 max-w-screen-2xl">
         <h1 className="font-bold text-lg sm:text-2xl">What is Basal Metabolic Rate?</h1>
         <p className="text-center w-1/2 sm:w-[50rem]">
           Ultimately, weight loss and weight gain is a matter of calories in vs. calories out. Your
