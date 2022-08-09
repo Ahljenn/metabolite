@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import BmrCalculator from '../../components/features/BmrCalculator';
 
 const BasalMetabolicRate: React.FC = (): JSX.Element => {
   return (
@@ -9,9 +10,9 @@ const BasalMetabolicRate: React.FC = (): JSX.Element => {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <div className="flex flex-col items-center mt-5 max-w-screen-2xl">
-        <h1 className="font-bold text-lg sm:text-2xl">What is Basal Metabolic Rate?</h1>
-        <p className="text-center w-1/2 sm:w-[50rem]">
+      <section className="flex flex-col items-center mt-5 ">
+        <h1 className="font-bold text-md sm:text-2xl">What is Basal Metabolic Rate?</h1>
+        <p className="text-center w-1/2 2xl:w-[50rem]">
           Ultimately, weight loss and weight gain is a matter of calories in vs. calories out. Your
           Basal Metabolic Rate (BMR) is the amount of calories your body will burn for basic (basal)
           life-sustaining function. Each person&apos;s BMR varies as it depends on factors such as
@@ -28,7 +29,9 @@ const BasalMetabolicRate: React.FC = (): JSX.Element => {
             here
           </a>
         </p>
-      </div>
+      </section>
+
+      <BmrCalculator />
     </>
   );
 };
