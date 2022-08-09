@@ -15,12 +15,12 @@ const MainTop: React.FC = (): JSX.Element => {
 
         <div className="flex flex-col mt-5 gap-5 sm:flex-row justify-center items-center">
           <div>
-            <button className="px-8 py-2 bg-tertiary rounded-xl shadow-xl hover:bg-white transition duration-300">
+            <button className="w-[12rem] h-[2.5rem] bg-tertiary rounded-xl shadow-xl hover:bg-white transition duration-300">
               Read the Research
             </button>
           </div>
           <div>
-            <button className="px-8 py-2 bg-secondary rounded-xl shadow-xl hover:bg-white transition duration-300">
+            <button className="w-[12rem] h-[2.5rem] bg-secondary rounded-xl shadow-xl hover:bg-white transition duration-300">
               Read the Recipes
             </button>
           </div>
