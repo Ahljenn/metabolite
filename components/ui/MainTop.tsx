@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { guide_cards, PageData } from '../static_data/guide_cards';
 
 const MainTop: React.FC = (): JSX.Element => {
@@ -28,15 +29,22 @@ const MainTop: React.FC = (): JSX.Element => {
 
         <div className="flex justify-center gap-5 items-center mt-5">
           <a href="https://github.com/Ahljenn/Metabolite" rel="noopener noreferrer" target="_blank">
-            <picture className="cursor-pointer opacity-[0.5] hover:opacity-[1]">
+            <Image
+              className="cursor-pointer opacity-[0.5] hover:opacity-[1] duration-300"
+              src="/github.png"
+              width={30}
+              height={30}
+              alt="github"
+            />
+            {/* <picture className="cursor-pointer opacity-[0.5] hover:opacity-[1]">
               <img className="w-[2rem]" src="./github.png" alt="github" />
-            </picture>
+            </picture> */}
           </a>
           <a
             href="https://github.com/Ahljenn/Metabolite/labels/enhancement"
             rel="noopener noreferrer"
             target="_blank"
-            className="cursor-pointer opacity-[0.5] hover:opacity-[1]"
+            className="cursor-pointer opacity-[0.5] hover:opacity-[1] duration-300"
           >
             Contribute
           </a>
@@ -44,7 +52,7 @@ const MainTop: React.FC = (): JSX.Element => {
             href="https://github.com/Ahljenn/Metabolite/issues"
             rel="noopener noreferrer"
             target="_blank"
-            className="cursor-pointer opacity-[0.5] hover:opacity-[1]"
+            className="cursor-pointer opacity-[0.5] hover:opacity-[1] duration-300"
           >
             Report a bug
           </a>
@@ -52,9 +60,17 @@ const MainTop: React.FC = (): JSX.Element => {
       </section>
 
       <section className="text-center max-w-screen-2xl">
-        <picture className="mt-5 flex justify-center">
+        <Image
+          className="animate-pulse"
+          src="/beta-hydro.png"
+          alt="beta"
+          width={380}
+          height={200}
+        />
+
+        {/* <picture className="mt-5 flex justify-center animate-pulse">
           <img className="w-[20rem]" src="./beta-hydro.png" alt="beta" />
-        </picture>
+        </picture> */}
 
         <h1 className="mt-5 font-bold text-2xl">Ketogenic Guide</h1>
         <p className="mx-5">
