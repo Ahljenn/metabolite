@@ -36,9 +36,6 @@ const MainTop: React.FC = (): JSX.Element => {
               height={30}
               alt="github"
             />
-            {/* <picture className="cursor-pointer opacity-[0.5] hover:opacity-[1]">
-              <img className="w-[2rem]" src="./github.png" alt="github" />
-            </picture> */}
           </a>
           <a
             href="https://github.com/Ahljenn/Metabolite/labels/enhancement"
@@ -67,10 +64,6 @@ const MainTop: React.FC = (): JSX.Element => {
           width={380}
           height={200}
         />
-
-        {/* <picture className="mt-5 flex justify-center animate-pulse">
-          <img className="w-[20rem]" src="./beta-hydro.png" alt="beta" />
-        </picture> */}
 
         <h1 className="mt-5 font-bold text-2xl">Ketogenic Guide</h1>
         <p className="mx-5">
