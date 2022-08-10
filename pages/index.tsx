@@ -7,7 +7,7 @@ const Home: NextPage = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Metabolite | Welcome</title>
+        <title>Metabolite</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
       <MainTop />

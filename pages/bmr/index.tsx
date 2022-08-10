@@ -6,7 +6,7 @@ const BasalMetabolicRate: React.FC = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Metabolite | BMR</title>
+        <title>BMR | Metabolite</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
 

@@ -12,14 +12,19 @@ const Header: React.FC = (): JSX.Element => {
             </picture>
             <h1 className="text-secondary text-xl sm:visible">Metabolite</h1>
           </div>
-          <button
-            className="text-gray-400 px-2 rounded-xl hover:text-white transition duration-300"
-            onClick={(): void => {
-              Router.push('/');
-            }}
-          >
-            Home
-          </button>
+          <div>
+            <button
+              className="text-gray-400 px-2 hover:text-white transition duration-300"
+              onClick={(): void => {
+                Router.push('/');
+              }}
+            >
+              Home
+            </button>
+            <button className="text-gray-400 px-2 hover:text-white transition duration-300">
+              Disclaimer
+            </button>
+          </div>
         </div>
       </header>
     </>
