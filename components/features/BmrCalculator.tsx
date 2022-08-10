@@ -4,8 +4,8 @@ import React from 'react';
 
 const BmrCalculator: React.FC = (): JSX.Element => {
   return (
-    <div className="mt-10 flex justify-center">
-      <section className="w-[35rem] border p-10 rounded-lg shadow-xl">
+    <div className="mt-10 flex justify-center mb-[10rem]">
+      <section className="w-full sm:w-[35rem] border p-10 sm:rounded-lg shadow-xl">
         <h1 className="font-bold mb-1">Age</h1>
         <input type="number" placeholder="21"></input>
 
