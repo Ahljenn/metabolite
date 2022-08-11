@@ -47,10 +47,10 @@ const BmrCalculator: React.FC = (): JSX.Element => {
         </form>
 
         <div className="flex flex-col items-center sm:flex-row justify-between">
-          <button className="mt-5 w-[10rem] py-2 text-lg bg-secondary text-white rounded-xl shadow-xl hover:bg-metablack transition duration-300">
+          <button className="mt-5 w-[10rem] py-2 text-lg bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
             Unit converter
           </button>
-          <button className="mt-5 w-[10rem] py-2 text-lg bg-secondary text-white rounded-xl shadow-xl hover:bg-metablack transition duration-300">
+          <button className="mt-5 w-[10rem] py-2 text-lg bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
             Calculate
           </button>
         </div>
