@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WhatToEat: React.FC = (): JSX.Element => {
+const Supplements: React.FC = (): JSX.Element => {
   return (
     <>
       <h1 className="mx-5 text-[2rem] sm:text-[3.5rem] font-bold text-center">Come back later!</h1>
@@ -8,4 +8,4 @@ const WhatToEat: React.FC = (): JSX.Element => {
   );
 };
 
-export default WhatToEat;
+export default Supplements;
