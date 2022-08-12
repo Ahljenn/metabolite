@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'next/router';
 import Image from 'next/image';
 import { guide_cards, PageData } from '../static_data/guide_cards';
 
@@ -102,6 +103,9 @@ const MainTop: React.FC = (): JSX.Element => {
               <div
                 className="border p-5 rounded-xl hover:shadow-xl transition duration-300 cursor-pointer"
                 key={entry.heading}
+                onClick={(): void => {
+                  Router.push(entry.route);
+                }}
               >
                 <h1 className="sm:text-xl font-bold">{entry.heading}</h1>
                 <p>{entry.description}</p>

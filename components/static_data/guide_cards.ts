@@ -9,7 +9,7 @@ export const guide_cards: PageData[] = [
     heading: 'What can I eat?',
     description:
       'After walking around the grocery store and looking at different foods, you may be curious which ones are good for you.',
-    route: '/nutrients',
+    route: '/what-can-i-eat',
   },
   {
     heading: 'Nutrients',
