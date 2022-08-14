@@ -17,12 +17,22 @@ const MainTop: React.FC = (): JSX.Element => {
 
         <div className="flex flex-col mt-5 gap-5 sm:flex-row justify-center items-center">
           <div>
-            <button className="w-[12rem] h-[2.5rem] bg-tertiary rounded-xl shadow-xl hover:bg-white transition duration-300">
+            <button
+              className="w-[12rem] h-[2.5rem] bg-tertiary rounded-xl shadow-xl hover:bg-white transition duration-300"
+              onClick={(): void => {
+                Router.push('/research');
+              }}
+            >
               Read the Research
             </button>
           </div>
           <div>
-            <button className="w-[12rem] h-[2.5rem] bg-secondary rounded-xl shadow-xl hover:bg-white transition duration-300">
+            <button
+              className="w-[12rem] h-[2.5rem] bg-secondary rounded-xl shadow-xl hover:bg-white transition duration-300"
+              onClick={(): void => {
+                Router.push('/recipes');
+              }}
+            >
               Read the Recipes
             </button>
           </div>
