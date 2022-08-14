@@ -17,7 +17,7 @@ const Header: React.FC = (): JSX.Element => {
 
           <div>
             <button
-              className="text-gray-400 px-2 hover:text-white transition duration-300"
+              className="text-gray-400 px-2 hover:text-white transition duration-300 text-sm sm:text-base"
               onClick={(): void => {
                 Router.push('/');
               }}
@@ -25,10 +25,18 @@ const Header: React.FC = (): JSX.Element => {
               Home
             </button>
             <button
+              className="text-gray-400 px-2 hover:text-white transition duration-300 text-sm sm:text-base"
               onClick={() => setModalView(true)}
-              className="text-gray-400 px-2 hover:text-white transition duration-300"
             >
               Disclaimer
+            </button>
+            <button
+              className="text-gray-400 px-2 hover:text-white transition duration-300 text-sm sm:text-base"
+              onClick={(): void => {
+                Router.push('/sources');
+              }}
+            >
+              Sources
             </button>
           </div>
         </div>
