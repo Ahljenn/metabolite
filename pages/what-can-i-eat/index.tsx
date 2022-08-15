@@ -14,7 +14,7 @@ const WhatToEat: React.FC = (): JSX.Element => {
           </p>
         </div>
 
-        {good_foods.map((food: String, index: int) => {
+        {good_foods.map((food: String, index: number) => {
           return <div key={index}>{food}</div>;
         })}
       </section>
