@@ -16,6 +16,7 @@ const WhatToEat: React.FC = (): JSX.Element => {
           </p>
         </div>
 
+        {/* To add: foods to avoid */}
         <div className="flex justify-center mt-5">
           <table className="table-auto">
             <caption>Foods you can eat</caption>
