@@ -1,8 +1,15 @@
-import React from 'react';
+import { useState } from 'react';
 
 // Add unit converter calculator
 
 const BmrCalculator: React.FC = (): JSX.Element => {
+  const [age, setAge] = useState<number>();
+  const [gender, setGender] = useState<number>();
+  const [feet, setFeet] = useState<number>();
+  const [inches, setinches] = useState<number>();
+  const [pounds, setPounds] = useState<number>();
+  const [estimationFormula, setFormula] = useState<string>('');
+
   return (
     <div className="mt-10 flex justify-center mb-[10rem]">
       <section className="w-full sm:w-[35rem] border p-10 sm:rounded-lg shadow-xl">
