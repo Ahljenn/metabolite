@@ -7,8 +7,8 @@ const Nutrients: React.FC = (): JSX.Element => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <section className="flex flex-col items-center mt-5 ">
-        <h2 className="font-bold text-md sm:text-2xl">Macro Nutrients</h2>
-        <div className="w-[50rem]">
+        <h2 className="font-bold text-md sm:text-2xl text-primary">Macro Nutrients</h2>
+        <div className="w-[18rem] sm:w-[40rem] text-sm sm:text-xl">
           <ul className="list-disc my-5">
             <li>
               Always aim to eat 30g or less carbohydrates. You may eat up to 50g if you are
@@ -61,7 +61,9 @@ const Nutrients: React.FC = (): JSX.Element => {
             already in your body. This is how you will lose weight.
           </p>
 
-          <h2 className="font-bold text-md sm:text-2xl">Micro Nutrients</h2>
+          <h2 className="font-bold text-md sm:text-2xl text-center text-primary">
+            Micro Nutrients
+          </h2>
 
           <ul className="list-disc my-5">
             <li>
