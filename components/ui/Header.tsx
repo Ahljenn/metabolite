@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Router from 'next/router';
 import Image from 'next/image';
 import Modal from './Modal';
@@ -9,8 +9,13 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <>
       <header className="sticky top-0 z-50 bg-metablack py-2">
-        <div className="flex flex-col sm:flex-row justify-between mx-5 items-center">
-          <div className="hidden sm:flex items-center content-center sm:gap-2">
+        <div className="flex flex-col sm:flex-row justify-between mx-5 items-center cursor-pointer">
+          <div
+            className="hidden sm:flex items-center content-center sm:gap-2"
+            onClick={(): void => {
+              Router.push('/');
+            }}
+          >
             <Image src="/logo.png" width={40} height={40} alt="logo" />
             <h1 className="text-secondary text-xl sm:visible">Metabolite</h1>
           </div>

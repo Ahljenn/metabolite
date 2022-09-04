@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Image from 'next/image';
+
 const Nutrients: React.FC = (): JSX.Element => {
   return (
     <>
@@ -7,7 +9,8 @@ const Nutrients: React.FC = (): JSX.Element => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <section className="flex flex-col items-center mt-5 ">
-        <h2 className="font-bold text-md sm:text-2xl text-primary">Macro Nutrients</h2>
+        <Image src="/essential-nutrients.png" width={400} height={200} alt="nutrients" />
+        <h2 className="font-bold text-md sm:text-2xl text-primary mt-5">Macro Nutrients</h2>
         <div className="w-[18rem] sm:w-[40rem] text-sm sm:text-xl">
           <ul className="list-disc my-5">
             <li>
