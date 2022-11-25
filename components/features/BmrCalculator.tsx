@@ -37,12 +37,23 @@ const Calculate = (
 };
 
 const BmrCalculator: React.FC = (): JSX.Element => {
-  const [age, setAge] = useState<number>(21);
-  const [gender, setGender] = useState<string>('female');
-  const [feet, setFeet] = useState<number>(5);
-  const [inches, setinches] = useState<number>(11);
-  const [pounds, setPounds] = useState<number>(190);
-  const [estimationFormula, setFormula] = useState<string>('mifflin');
+  const [age, setAge] = useState<number>(0);
+  const [gender, setGender] = useState<string>('');
+  const [feet, setFeet] = useState<number>(0);
+  const [inches, setinches] = useState<number>(0);
+  const [pounds, setPounds] = useState<number>(0);
+  const [estimationFormula, setFormula] = useState<string>('');
+  const [bmrValue, setBmrValue] = useState<string>('');
+
+  const onCalculate = (): void => {
+    if (age && gender && feet && inches && pounds && estimationFormula) {
+      {
+        Calculate(age, gender, feet, inches, pounds, estimationFormula);
+      }
+    } else {
+      window.alert('Check your values');
+    }
+  };
 
   return (
     <div className="mt-10 flex justify-center mb-[10rem]">
@@ -109,14 +120,17 @@ const BmrCalculator: React.FC = (): JSX.Element => {
         </form>
 
         <div className="mt-5 flex flex-col items-center sm:flex-row justify-between gap-2">
-          <button className="mt-5 w-[8rem] py-2 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
+          <button
+            className="mt-5 w-[8rem] py-2 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300"
+            onClick={onCalculate}
+          >
             Calculate
           </button>
           <span>
             <p className="mt-5">
               BMR:
               <span className="bg-gray-100 border-2 rounded-lg border-secondary mx-2 px-2 py-1 font-bold text-secondary">
-                {Calculate(age, gender, feet, inches, pounds, estimationFormula)}
+                {bmrValue}
               </span>
               Calories per/day
             </p>
