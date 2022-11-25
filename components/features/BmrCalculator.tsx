@@ -14,7 +14,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
     <div className="mt-10 flex justify-center mb-[10rem]">
       <section className="w-full sm:w-[35rem] border p-10 sm:rounded-lg shadow-xl">
         <h1 className="font-bold mb-1">Age</h1>
-        <input type="number" placeholder="21"></input>
+        <input type="number" placeholder="Years (21)"></input>
 
         <h1 className="font-bold mt-2 mb-1">Gender</h1>
         <form>
@@ -34,8 +34,8 @@ const BmrCalculator: React.FC = (): JSX.Element => {
 
         <h1 className="font-bold mt-2 mb-1">Height</h1>
         <div className="flex">
-          <input type="number" placeholder="Feet"></input>
-          <input type="number" placeholder="Inches"></input>
+          <input type="number" placeholder="Feet (5)"></input>
+          <input type="number" placeholder="Inches (11)"></input>
         </div>
 
         <div className="mt-5 flex justify-between items-center">
@@ -48,7 +48,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
             </button>
           </span>
         </div>
-        <input type="number" placeholder="Pounds"></input>
+        <input type="number" placeholder="Pounds (190)"></input>
         <h1 className="font-bold mt-2 mb-1">Estimation Formula</h1>
 
         <form>
