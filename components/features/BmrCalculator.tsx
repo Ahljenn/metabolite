@@ -36,20 +36,27 @@ const BmrCalculator: React.FC = (): JSX.Element => {
         <input type="number" placeholder="Pounds"></input>
 
         <h1 className="font-bold mt-2 mb-1">Estimation Formula</h1>
+
         <form>
           <div>
-            <input type="radio" name="bmr-type" value="mifflin" checked></input>
-            <p className="inline mx-2">Mifflin St Jeor (Default)</p>
+            <input type="radio" name="bmr-type" id="mifflin" value="mifflin"></input>
+            <label htmlFor="mifflin" className="inline mx-2">
+              Mifflin St Jeor (Default)
+            </label>
           </div>
 
           <div>
-            <input type="radio" name="bmr-type" value="revised-hb"></input>
-            <p className="inline mx-2">Revised Harris-Benedict</p>
+            <input type="radio" name="bmr-type" id="revised-hb" value="revised-hb"></input>
+            <label htmlFor="revised-hb" className="inline mx-2">
+              Revised Harris-Benedict
+            </label>
           </div>
 
           <div>
-            <input type="radio" name="bmr-type" value="mifflin"></input>
-            <p className="inline mx-2">Katch-McArdle</p>
+            <input type="radio" name="bmr-type" id="katch" value="katch"></input>
+            <label htmlFor="katch" className="inline mx-2">
+              Katch-McArdle
+            </label>
           </div>
         </form>
 
