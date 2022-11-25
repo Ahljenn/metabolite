@@ -38,9 +38,17 @@ const BmrCalculator: React.FC = (): JSX.Element => {
           <input type="number" placeholder="Inches"></input>
         </div>
 
-        <h1 className="font-bold mt-2 mb-1">Weight</h1>
+        <div className="mt-5 flex justify-between items-center">
+          <span>
+            <h1 className="font-bold">Weight</h1>
+          </span>
+          <span>
+            <button className=" w-[8rem] py-2 mb-5 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
+              Unit converter
+            </button>
+          </span>
+        </div>
         <input type="number" placeholder="Pounds"></input>
-
         <h1 className="font-bold mt-2 mb-1">Estimation Formula</h1>
 
         <form>
@@ -67,10 +75,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
         </form>
 
         <div className="flex flex-col items-center sm:flex-row justify-between">
-          <button className="mt-5 w-[10rem] py-2 text-lg bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
-            Unit converter
-          </button>
-          <button className="mt-5 w-[10rem] py-2 text-lg bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
+          <button className="mt-5 w-[8rem] py-2 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
             Calculate
           </button>
         </div>
