@@ -74,14 +74,14 @@ const BmrCalculator: React.FC = (): JSX.Element => {
           </div>
         </form>
 
-        <div className="flex flex-col items-center sm:flex-row justify-between gap-5">
+        <div className="mt-5 flex flex-col items-center sm:flex-row justify-between gap-2">
           <button className="mt-5 w-[8rem] py-2 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
             Calculate
           </button>
           <span>
             <p className="mt-5">
               BMR:
-              <span className="bg-gray-100 border-2 rounded-lg border-secondary mx-2 px-2 font-bold text-secondary">
+              <span className="bg-gray-100 border-2 rounded-lg border-secondary mx-2 px-2 py-1 font-bold text-secondary">
                 (1,889)
               </span>
               Calories per/day
