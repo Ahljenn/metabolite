@@ -1,14 +1,53 @@
+import { Agent } from 'https';
 import { useState } from 'react';
 
-// Add unit converter calculator
+const FeetInchToCm = (feet: number, inches: number): number => {
+  return feet * 30.48 + inches * 2.54;
+};
+
+const PoundToKg = (pound: number): number => {
+  return pound / 2.2046;
+};
+
+const Calculate = (
+  age: number,
+  gender: string,
+  feet: number,
+  inches: number,
+  pounds: number,
+  estimationFormula: string
+): String => {
+  switch (estimationFormula) {
+    case 'mifflin':
+      if (gender === 'male') {
+        return `(${(
+          10 * PoundToKg(pounds) +
+          (6.25 * FeetInchToCm(feet, inches) - 5 * age) +
+          5
+        ).toLocaleString()})`;
+      } else {
+        return `(${(
+          10 * PoundToKg(pounds) +
+          (6.25 * FeetInchToCm(feet, inches) - 5 * age) -
+          161
+        ).toLocaleString()})`;
+      }
+    case 'revised-hb':
+      return 'a';
+    case 'katch':
+      return 'a';
+    default:
+      return `(${(1799).toLocaleString()})`;
+  }
+};
 
 const BmrCalculator: React.FC = (): JSX.Element => {
-  const [age, setAge] = useState<number>();
-  const [gender, setGender] = useState<number>();
-  const [feet, setFeet] = useState<number>();
-  const [inches, setinches] = useState<number>();
-  const [pounds, setPounds] = useState<number>();
-  const [estimationFormula, setFormula] = useState<string>('');
+  const [age, setAge] = useState<number>(21);
+  const [gender, setGender] = useState<string>('female');
+  const [feet, setFeet] = useState<number>(5);
+  const [inches, setinches] = useState<number>(11);
+  const [pounds, setPounds] = useState<number>(190);
+  const [estimationFormula, setFormula] = useState<string>('mifflin');
 
   return (
     <div className="mt-10 flex justify-center mb-[10rem]">
@@ -82,7 +121,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
             <p className="mt-5">
               BMR:
               <span className="bg-gray-100 border-2 rounded-lg border-secondary mx-2 px-2 py-1 font-bold text-secondary">
-                (1,889)
+                {Calculate(age, gender, feet, inches, pounds, estimationFormula)}
               </span>
               Calories per/day
             </p>
