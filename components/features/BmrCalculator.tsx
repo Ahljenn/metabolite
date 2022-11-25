@@ -1,11 +1,11 @@
 import { Agent } from 'https';
 import { useState } from 'react';
 
-const FeetInchToCm = (feet: number, inches: number): number => {
+const toCm = (feet: number, inches: number): number => {
   return feet * 30.48 + inches * 2.54;
 };
 
-const PoundToKg = (pound: number): number => {
+const toKg = (pound: number): number => {
   return pound / 2.2046;
 };
 
@@ -17,21 +17,15 @@ const Calculate = (
   pounds: number,
   estimationFormula: string
 ): String => {
+  let val: String;
   switch (estimationFormula) {
     case 'mifflin':
       if (gender === 'male') {
-        return `(${(
-          10 * PoundToKg(pounds) +
-          (6.25 * FeetInchToCm(feet, inches) - 5 * age) +
-          5
-        ).toLocaleString()})`;
+        val = (10 * toKg(pounds) + (6.25 * toCm(feet, inches) - 5 * age) - 5).toFixed(1);
       } else {
-        return `(${(
-          10 * PoundToKg(pounds) +
-          (6.25 * FeetInchToCm(feet, inches) - 5 * age) -
-          161
-        ).toLocaleString()})`;
+        val = (10 * toKg(pounds) + (6.25 * toCm(feet, inches) - 5 * age) - 161).toFixed(1);
       }
+      break;
     case 'revised-hb':
       return 'a';
     case 'katch':
@@ -39,6 +33,7 @@ const Calculate = (
     default:
       return `(${(1799).toLocaleString()})`;
   }
+  return `(${val.toLocaleString()})`;
 };
 
 const BmrCalculator: React.FC = (): JSX.Element => {
