@@ -55,7 +55,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
           <div>
             <input type="radio" name="bmr-type" id="mifflin" value="mifflin"></input>
             <label htmlFor="mifflin" className="inline mx-2">
-              Mifflin St Jeor (Default)
+              Mifflin St Jeor (Recommended)
             </label>
           </div>
 
