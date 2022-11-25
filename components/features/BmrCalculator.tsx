@@ -18,12 +18,18 @@ const BmrCalculator: React.FC = (): JSX.Element => {
 
         <h1 className="font-bold mt-2 mb-1">Gender</h1>
         <form>
-          <input type="radio" name="gender" value="male"></input>
-          <p className="inline mx-2 mr-10">Male</p>
-          <input type="radio" name="gender" value="female"></input>
-          <p className="inline mx-2 mr-10">Female</p>
-          <input type="radio" name="gender" value="other"></input>
-          <p className="inline mx-2">Other</p>
+          <input type="radio" name="gender" id="male" value="male"></input>
+          <label htmlFor="male" className="inline mx-2 mr-10">
+            Male
+          </label>
+          <input type="radio" name="gender" id="female" value="female"></input>
+          <label htmlFor="female" className="inline mx-2 mr-10">
+            Female
+          </label>
+          <input type="radio" name="gender" id="other" value="other"></input>
+          <label htmlFor="other" className="inline mx-2">
+            Other
+          </label>
         </form>
 
         <h1 className="font-bold mt-2 mb-1">Height</h1>
