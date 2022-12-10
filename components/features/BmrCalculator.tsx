@@ -1,6 +1,15 @@
 import { Agent } from 'https';
 import { useState } from 'react';
 
+interface BmrData_T {
+  age: number;
+  gender: string;
+  feet: number;
+  inches: number;
+  pounds: number;
+  estimationFormula: string;
+}
+
 const toCm = (feet: number, inches: number): number => {
   return feet * 30.48 + inches * 2.54;
 };
@@ -16,8 +25,8 @@ const Calculate = (
   inches: number,
   pounds: number,
   estimationFormula: string
-): String => {
-  let val: String;
+): string => {
+  let val: string;
   switch (estimationFormula) {
     case 'mifflin':
       if (gender === 'male') {
@@ -43,12 +52,14 @@ const BmrCalculator: React.FC = (): JSX.Element => {
   const [inches, setinches] = useState<number>(0);
   const [pounds, setPounds] = useState<number>(0);
   const [estimationFormula, setFormula] = useState<string>('');
-  const [bmrValue, setBmrValue] = useState<string>('');
+  const [bmrValue, setBmrValue] = useState<string>('1,799');
 
   const onCalculate = (): void => {
+    console.info(age, gender, feet, inches, pounds, estimationFormula);
     if (age && gender && feet && inches && pounds && estimationFormula) {
       {
-        Calculate(age, gender, feet, inches, pounds, estimationFormula);
+        let bmr: string = Calculate(age, gender, feet, inches, pounds, estimationFormula);
+        setBmrValue(bmr);
       }
     } else {
       window.alert('Check your values');
@@ -59,7 +70,11 @@ const BmrCalculator: React.FC = (): JSX.Element => {
     <div className="mt-10 flex justify-center mb-[10rem]">
       <section className="w-full sm:w-[35rem] border p-10 sm:rounded-lg shadow-xl">
         <h1 className="font-bold mb-1">Age</h1>
-        <input type="number" placeholder="Years (21)"></input>
+        <input
+          type="number"
+          placeholder="Years (21)"
+          onChange={(e: any) => setAge(e.target.value)}
+        ></input>
 
         <h1 className="font-bold mt-2 mb-1">Gender</h1>
         <form>
