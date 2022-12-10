@@ -49,7 +49,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
   const [age, setAge] = useState<number>(0);
   const [gender, setGender] = useState<string>('');
   const [feet, setFeet] = useState<number>(0);
-  const [inches, setinches] = useState<number>(0);
+  const [inches, setInches] = useState<number>(0);
   const [pounds, setPounds] = useState<number>(0);
   const [estimationFormula, setFormula] = useState<string>('');
   const [bmrValue, setBmrValue] = useState<string>('1,799');
@@ -94,8 +94,16 @@ const BmrCalculator: React.FC = (): JSX.Element => {
 
         <h1 className="font-bold mt-2 mb-1">Height</h1>
         <div className="flex">
-          <input type="number" placeholder="Feet (5)"></input>
-          <input type="number" placeholder="Inches (11)"></input>
+          <input
+            type="number"
+            placeholder="Feet (5)"
+            onChange={(e: any) => setFeet(e.target.value)}
+          ></input>
+          <input
+            type="number"
+            placeholder="Inches (11)"
+            onChange={(e: any) => setInches(e.target.value)}
+          ></input>
         </div>
 
         <div className="mt-5 flex justify-between items-center">
@@ -108,7 +116,11 @@ const BmrCalculator: React.FC = (): JSX.Element => {
             </button>
           </span>
         </div>
-        <input type="number" placeholder="Pounds (190)"></input>
+        <input
+          type="number"
+          placeholder="Pounds (190)"
+          onChange={(e: any) => setPounds(e.target.value)}
+        ></input>
         <h1 className="font-bold mt-2 mb-1">Estimation Formula</h1>
 
         <form>
