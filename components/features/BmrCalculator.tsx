@@ -67,7 +67,6 @@ const BmrCalculator: React.FC = (): JSX.Element => {
   const [bmrValue, setBmrValue] = useState<string>('1,799');
 
   const onCalculate = (): void => {
-    console.table(age, gender, feet, inches, pounds, estimationFormula);
     if (age && gender && feet && inches && pounds && estimationFormula) {
       {
         let bmr: string = Calculate(age, gender, feet, inches, pounds, estimationFormula);
