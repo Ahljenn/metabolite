@@ -88,7 +88,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
         ></input>
 
         <h1 className="font-bold mt-2 mb-1">Gender</h1>
-        <form onChange={(e) => setGender(e.target.value)}>
+        <form onChange={(e: React.ChangeEvent<HTMLFormElement>) => setGender(e.target.value)}>
           {genderChoices.map((gender: string) => {
             return (
               <>
@@ -136,7 +136,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
         <h1 className="font-bold mt-2 mb-1">Estimation Formula</h1>
 
         <form
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLFormElement>) => {
             setFormula(e.target.value);
           }}
         >
