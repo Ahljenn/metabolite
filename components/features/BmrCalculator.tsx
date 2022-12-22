@@ -10,7 +10,7 @@ const genderChoices = ['male', 'female', 'other'];
 const bmrTypes: BmrType[] = [
   { label: 'Mifflin St Jeor (Common)', value: 'mifflin' },
   { label: 'Revised Harris-Benedict', value: 'revised-hb' },
-  { label: 'Katch-McArdle', value: 'katch' },
+  // { label: 'Katch-McArdle', value: 'katch' },
 ];
 
 interface BmrData_T {
@@ -55,7 +55,7 @@ const Calculate = (
       }
       break;
     case 'katch':
-      return 'a';
+      return '0';
     default:
       return `(${(1799).toLocaleString()})`;
   }
@@ -69,7 +69,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
   const [inches, setInches] = useState<number>(0);
   const [pounds, setPounds] = useState<number>(0);
   const [estimationFormula, setFormula] = useState<string>('');
-  const [bmrValue, setBmrValue] = useState<string>('1,799');
+  const [bmrValue, setBmrValue] = useState<string>('0');
 
   const onCalculate = (): void => {
     if (age && gender && feet && inches && pounds && estimationFormula) {

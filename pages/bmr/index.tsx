@@ -17,13 +17,13 @@ const BasalMetabolicRate: React.FC = (): JSX.Element => {
           life-sustaining function. Each person&apos;s BMR varies as it depends on factors such as
           age, weight, height, gender, and activity levels.
         </p>
-        <p>
-          Read more about it{' '}
+        <p className="mt-10">
+          For more information about <i>BMR</i>, read it{' '}
           <a
             href="https://www.garnethealth.org/news/basal-metabolic-rate-calculator#:~:text=BMR%20Definition%3A%20Your%20Basal%20Metabolic,stayed%20in%20bed%20all%20day."
             rel="noopener noreferrer"
             target="_blank"
-            className="underline text-primary"
+            className=" text-primary"
           >
             here
           </a>
