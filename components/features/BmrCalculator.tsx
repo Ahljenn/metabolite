@@ -48,7 +48,12 @@ const Calculate = (
       }
       break;
     case 'revised-hb':
-      return 'a';
+      if (gender === 'male') {
+        val = (88.4 + (13.4 * toKg(pounds) + (4.8 * toCm(feet, inches) - 5.68 * age))).toFixed(1);
+      } else {
+        val = (447.6 + (9.25 * toKg(pounds) + (3.1 * toCm(feet, inches) - 4.33 * age))).toFixed(1);
+      }
+      break;
     case 'katch':
       return 'a';
     default:
