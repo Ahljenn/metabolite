@@ -18,7 +18,8 @@ const MainTop: React.FC = (): JSX.Element => {
         <div className="flex flex-col mt-5 gap-5 sm:flex-row justify-center items-center">
           <div>
             <button
-              className="w-[12rem] h-[2.5rem] bg-tertiary rounded-xl shadow-xl hover:bg-white transition duration-300"
+              className="w-[12rem] h-[2.5rem] bg-tertiary rounded-xl shadow-xl hover:bg-white transition duration-300 cursor-not-allowed"
+              disabled
               onClick={(): void => {
                 Router.push('/research');
               }}
@@ -28,7 +29,8 @@ const MainTop: React.FC = (): JSX.Element => {
           </div>
           <div>
             <button
-              className="w-[12rem] h-[2.5rem] bg-secondary rounded-xl shadow-xl hover:bg-white transition duration-300"
+              className="w-[12rem] h-[2.5rem] bg-secondary rounded-xl shadow-xl hover:bg-white transition duration-300 cursor-not-allowed"
+              disabled
               onClick={(): void => {
                 Router.push('/recipes');
               }}
