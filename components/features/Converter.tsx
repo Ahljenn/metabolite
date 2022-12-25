@@ -53,6 +53,24 @@ const Converter: React.FC<DialogInfo> = ({
                     <p className="text-sm text-gray-500">{description}</p>
                   </div>
 
+                  <section className="text-sm mt-2">
+                    <div>
+                      <p className="mb-1 font-bold">Height</p>
+                      <span className="flex">
+                        <input type="number" placeholder="centimeters"></input>
+                        <input type="number" placeholder="feet and inches" disabled></input>
+                      </span>
+                    </div>
+
+                    <div>
+                      <p className="mb-1 mt-2 font-bold">Weight</p>
+                      <span className="flex">
+                        <input type="number" placeholder="kilograms"></input>
+                        <input type="number" placeholder="pounds" disabled></input>
+                      </span>
+                    </div>
+                  </section>
+
                   <div className="mt-4">
                     <button
                       type="button"
