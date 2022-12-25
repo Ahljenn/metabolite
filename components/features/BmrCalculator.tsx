@@ -1,6 +1,17 @@
 import { Agent } from 'https';
 import { useState } from 'react';
 import Converter from '../features/Converter';
+interface BmrType {
+  label: string;
+  value: string;
+}
+
+const genderChoices = ['male', 'female', 'other'];
+const bmrTypes: BmrType[] = [
+  { label: 'Mifflin St Jeor (Common)', value: 'mifflin' },
+  { label: 'Revised Harris-Benedict', value: 'revised-hb' },
+  // { label: 'Katch-McArdle', value: 'katch' },
+];
 
 interface BmrData_T {
   age: number;
@@ -37,9 +48,14 @@ const Calculate = (
       }
       break;
     case 'revised-hb':
-      return 'a';
+      if (gender === 'male') {
+        val = (88.4 + (13.4 * toKg(pounds) + (4.8 * toCm(feet, inches) - 5.68 * age))).toFixed(1);
+      } else {
+        val = (447.6 + (9.25 * toKg(pounds) + (3.1 * toCm(feet, inches) - 4.33 * age))).toFixed(1);
+      }
+      break;
     case 'katch':
-      return 'a';
+      return '0';
     default:
       return `(${(1799).toLocaleString()})`;
   }
@@ -53,7 +69,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
   const [inches, setInches] = useState<number>(0);
   const [pounds, setPounds] = useState<number>(0);
   const [estimationFormula, setFormula] = useState<string>('');
-  const [bmrValue, setBmrValue] = useState<string>('1,799');
+  const [bmrValue, setBmrValue] = useState<string>('0');
   const [converterView, setConverterView] = useState<boolean>(false);
 
   const onCalculate = (): void => {
@@ -79,19 +95,19 @@ const BmrCalculator: React.FC = (): JSX.Element => {
         ></input>
 
         <h1 className="font-bold mt-2 mb-1">Gender</h1>
-        <form>
-          <input type="radio" name="gender" id="male" value="male"></input>
-          <label htmlFor="male" className="inline mx-2 mr-10">
-            Male
-          </label>
-          <input type="radio" name="gender" id="female" value="female"></input>
-          <label htmlFor="female" className="inline mx-2 mr-10">
-            Female
-          </label>
-          <input type="radio" name="gender" id="other" value="other"></input>
-          <label htmlFor="other" className="inline mx-2">
-            Other
-          </label>
+        <form onChange={(e: React.ChangeEvent<HTMLFormElement>) => setGender(e.target.value)}>
+          {genderChoices.map((gender: string) => {
+            return (
+              <>
+                <span key={gender}>
+                  <input type="radio" name="gender" id={gender} value={gender}></input>
+                  <label htmlFor={gender} className="inline mx-2 mr-10">
+                    {gender.charAt(0).toUpperCase() + gender.slice(1)}
+                  </label>
+                </span>
+              </>
+            );
+          })}
         </form>
 
         <h1 className="font-bold mt-2 mb-1">Height</h1>
@@ -113,14 +129,12 @@ const BmrCalculator: React.FC = (): JSX.Element => {
             <h1 className="font-bold">Weight</h1>
           </span>
           <span>
-            <button
-              className=" w-[8rem] py-2 mb-5 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300"
-              onClick={() => setConverterView(true)}
-            >
+            <button className=" w-[8rem] py-2 mb-5 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
               Unit converter
             </button>
           </span>
         </div>
+
         <input
           type="number"
           placeholder="Pounds (190)"
@@ -128,27 +142,23 @@ const BmrCalculator: React.FC = (): JSX.Element => {
         ></input>
         <h1 className="font-bold mt-2 mb-1">Estimation Formula</h1>
 
-        <form>
-          <div>
-            <input type="radio" name="bmr-type" id="mifflin" value="mifflin"></input>
-            <label htmlFor="mifflin" className="inline mx-2">
-              Mifflin St Jeor (Common)
-            </label>
-          </div>
-
-          <div>
-            <input type="radio" name="bmr-type" id="revised-hb" value="revised-hb"></input>
-            <label htmlFor="revised-hb" className="inline mx-2">
-              Revised Harris-Benedict
-            </label>
-          </div>
-
-          <div>
-            <input type="radio" name="bmr-type" id="katch" value="katch"></input>
-            <label htmlFor="katch" className="inline mx-2">
-              Katch-McArdle
-            </label>
-          </div>
+        <form
+          onChange={(e: React.ChangeEvent<HTMLFormElement>) => {
+            setFormula(e.target.value);
+          }}
+        >
+          {bmrTypes.map((type: BmrType) => {
+            return (
+              <>
+                <div key={type.label}>
+                  <input type="radio" name="bmr-type" id={type.value} value={type.value}></input>
+                  <label htmlFor={type.value} className="inline mx-2">
+                    {type.label}
+                  </label>
+                </div>
+              </>
+            );
+          })}
         </form>
 
         <div className="mt-5 flex flex-col items-center sm:flex-row justify-between gap-2">

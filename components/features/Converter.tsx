@@ -57,16 +57,16 @@ const Converter: React.FC<DialogInfo> = ({
                     <div>
                       <p className="mb-1 font-bold">Height</p>
                       <span className="flex">
-                        <input type="number" placeholder="centimeters"></input>
-                        <input type="number" placeholder="feet and inches" disabled></input>
+                        <input type="number" placeholder="Centimeters"></input>
+                        <input type="number" placeholder="Feet and inches" disabled></input>
                       </span>
                     </div>
 
                     <div>
                       <p className="mb-1 mt-2 font-bold">Weight</p>
                       <span className="flex">
-                        <input type="number" placeholder="kilograms"></input>
-                        <input type="number" placeholder="pounds" disabled></input>
+                        <input type="number" placeholder="Kilograms"></input>
+                        <input type="number" placeholder="Pounds" disabled></input>
                       </span>
                     </div>
                   </section>
@@ -77,7 +77,7 @@ const Converter: React.FC<DialogInfo> = ({
                       className="mt-5 w-[10rem] py-2 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300"
                       onClick={handleModalClick}
                     >
-                      All done!
+                      All done
                     </button>
                   </div>
                 </Dialog.Panel>
