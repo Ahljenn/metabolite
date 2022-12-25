@@ -172,7 +172,7 @@ const BmrCalculator: React.FC = (): JSX.Element => {
 
       <Converter
         title="Unit Conversion"
-        description=""
+        description="Metabolite utilizes weight, feet, and inches to calculate your basal metabolic rate."
         modalView={converterView}
         setModalView={setConverterView}
       />
