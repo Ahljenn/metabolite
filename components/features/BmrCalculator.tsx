@@ -129,7 +129,10 @@ const BmrCalculator: React.FC = (): JSX.Element => {
             <h1 className="font-bold">Weight</h1>
           </span>
           <span>
-            <button className=" w-[8rem] py-2 mb-5 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300">
+            <button
+              className=" w-[8rem] py-2 mb-5 text-sm bg-secondary text-black rounded-xl shadow-xl hover:bg-tertiary transition duration-300"
+              onClick={() => setConverterView(true)}
+            >
               Unit converter
             </button>
           </span>
