@@ -18,6 +18,16 @@ const Converter: React.FC<DialogInfo> = ({
     setModalView(!modalView);
   };
 
+  const [feet, setFeet] = useState<string>('0');
+  const [inches, setInches] = useState<string>('0');
+  const [centimeters, setCentimeters] = useState<Number>(0);
+
+  const onHeightChange = (cm: number): void => {
+    const inches = cm / 2.54;
+    setFeet(String(Math.floor(inches / 12)));
+    setInches(String(Math.round(inches % 12)));
+  };
+
   return (
     <>
       <Transition appear show={modalView} as={Fragment}>
@@ -57,8 +67,22 @@ const Converter: React.FC<DialogInfo> = ({
                     <div>
                       <p className="mb-1 font-bold">Height</p>
                       <span className="flex">
-                        <input type="number" placeholder="Centimeters"></input>
-                        <input type="number" placeholder="Feet and inches" disabled></input>
+                        <input
+                          type="number"
+                          placeholder="Centimeters"
+                          onChange={(e: any) => {
+                            onHeightChange(e.target.value);
+                          }}
+                        ></input>
+                        <input
+                          type="number"
+                          placeholder={
+                            feet !== '0' || inches !== '0'
+                              ? `${feet} ft. ${inches} in.`
+                              : 'Feet and inches'
+                          }
+                          disabled
+                        ></input>
                       </span>
                     </div>
 
