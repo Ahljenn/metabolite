@@ -20,12 +20,16 @@ const Converter: React.FC<DialogInfo> = ({
 
   const [feet, setFeet] = useState<string>('0');
   const [inches, setInches] = useState<string>('0');
-  const [centimeters, setCentimeters] = useState<Number>(0);
+  const [pounds, setPounds] = useState<string>('0');
 
   const onHeightChange = (cm: number): void => {
     const inches = cm / 2.54;
     setFeet(String(Math.floor(inches / 12)));
     setInches(String(Math.round(inches % 12)));
+  };
+
+  const onWeightChange = (kilo: number): void => {
+    setPounds(String(Math.round(kilo * 2.2046)));
   };
 
   return (
@@ -89,8 +93,18 @@ const Converter: React.FC<DialogInfo> = ({
                     <div>
                       <p className="mb-1 mt-2 font-bold">Weight</p>
                       <span className="flex">
-                        <input type="number" placeholder="Kilograms"></input>
-                        <input type="number" placeholder="Pounds" disabled></input>
+                        <input
+                          type="number"
+                          placeholder="Kilograms"
+                          onChange={(e: any) => {
+                            onWeightChange(e.target.value);
+                          }}
+                        ></input>
+                        <input
+                          type="number"
+                          placeholder={pounds !== '0' ? `${pounds} lbs.` : 'Pounds'}
+                          disabled
+                        ></input>
                       </span>
                     </div>
                   </section>
