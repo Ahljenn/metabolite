@@ -87,6 +87,14 @@ const Converter: React.FC<DialogInfo> = ({
                           }
                           disabled
                         ></input>
+                        <button
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                          onClick={() => {
+                            navigator.clipboard.writeText(feet);
+                          }}
+                        >
+                          Copy
+                        </button>
                       </span>
                     </div>
 
@@ -105,6 +113,14 @@ const Converter: React.FC<DialogInfo> = ({
                           placeholder={pounds !== '0' ? `${pounds} lbs.` : 'Pounds'}
                           disabled
                         ></input>
+                        <button
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                          onClick={() => {
+                            navigator.clipboard.writeText(pounds);
+                          }}
+                        >
+                          Copy
+                        </button>
                       </span>
                     </div>
                   </section>
