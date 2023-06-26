@@ -8,9 +8,11 @@ interface HeaderProps {
 export default function Header({ h1 }: HeaderProps) {
   return (
     <header className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-      <div className="flex flex-col items-center gap-5 lg:flex-row lg:items-start">
+      <div className="flex flex-col items-center gap-5 lg:flex-row lg:flex-end">
         {h1 === 'Welcome to Metabolite' ? <> </> : <HomeIcon />}
-        <h1 className="text-center mb-10 text-lg lg:mb-0">{h1}</h1>
+        <div>
+          <h1 className="text-center mb-10 text-lg lg:mb-0 ">{h1}</h1>
+        </div>
       </div>
       <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none hover:animate-pulse">
         <a
