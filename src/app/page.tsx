@@ -33,6 +33,7 @@ export default function Home() {
             <Image
               src="/github.png"
               alt="Github Logo"
+              draggable="false"
               className="dark:invert"
               width={20}
               height={20}
