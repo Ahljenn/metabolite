@@ -9,7 +9,7 @@ export default function Header({ children }: HeaderProps) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <header className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <div className="flex flex-col items-center gap-5 lg:flex-row lg:flex-end">
+        <div className="flex flex-col items-center lg:items-stretch gap-5 lg:flex-row lg:flex-end">
           <HomeIcon />
           <div>
             <h1 className="text-center mb-10 text-lg lg:mb-0 ">Metabolite</h1>
@@ -49,7 +49,7 @@ function HomeIcon() {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6 cursor-pointer"
+        className="w-6 h-6 cursor-pointer hover:animate-pulse"
       >
         <path
           strokeLinecap="round"
