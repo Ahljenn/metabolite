@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Header from './components/ui/Header';
+import Header from './components/ui/AppWrapper';
 import { TopGradient } from './components/ui/TopGradient';
 import Image from 'next/image';
 
@@ -28,8 +28,7 @@ const rootCardData: { header: string; desc: string; route: string }[] = [
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Header h1="Welcome to Metabolite" />
+    <>
       <TopGradient fromColor={'from-green-200'} toColor={'to-emerald-800'} />
 
       <Image
@@ -65,6 +64,6 @@ export default function Home() {
           }
         )}
       </div>
-    </main>
+    </>
   );
 }
