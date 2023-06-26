@@ -48,15 +48,16 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-green-200 to-emerald-800 rounded-md filter blur-3xl opacity-50 -z-50" />
+      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-green-200 to-emerald-800 rounded-md filter blur-3xl opacity-30 -z-50" />
 
       <Image
         // className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
         className="relative "
         src="/metabolite-full.png"
         alt="Metabolite logo"
-        width={180}
-        height={37}
+        width={200}
+        height={200}
+        quality={100}
         priority
       />
 
