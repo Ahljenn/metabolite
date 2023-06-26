@@ -1,3 +1,4 @@
+import Header from './components/ui/Header';
 import { TopGradient } from './components/ui/TopGradient';
 import Image from 'next/image';
 
@@ -26,30 +27,8 @@ const rootCardData: { header: string; desc: string; route: string }[] = [
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <h1 className="text-center mb-10 text-lg lg:mb-0">Welcome to Metabolite</h1>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://github.com/Ahljenn/metabolite"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/github.png"
-              alt="Github Logo"
-              draggable="false"
-              className="dark:invert"
-              width={20}
-              height={20}
-              priority
-            />
-            Contribute
-          </a>
-        </div>
-      </div>
-
+    <main className="transition-all flex min-h-screen flex-col items-center justify-between p-24">
+      <Header h1="Welcome to Metabolite" />
       <TopGradient fromColor={'from-green-200'} toColor={'to-emerald-800'} />
 
       <Image
@@ -70,7 +49,7 @@ export default function Home() {
               <a
                 key={index}
                 href={card.route}
-                className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+                className="group rounded-lg border border-transparent px-5 py-4 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
                 rel="noopener noreferrer"
               >
                 <h2 className={`mb-3 text-2xl font-semibold`}>
