@@ -61,7 +61,7 @@ export default function Home() {
         priority
       />
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <div className="mt-20 mb-32 lg:mt-0 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
         {rootCardData.map(
           (card: { header: string; desc: string; route: string }, index: number) => {
             return (
