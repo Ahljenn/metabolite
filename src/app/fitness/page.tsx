@@ -4,7 +4,7 @@ import Header from '../components/ui/Header';
 
 export default function Fitness() {
   return (
-    <main className="transition-all flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Header h1="Fitness" />
 
       <TopGradient fromColor={'to-emerald-200'} toColor={'from-green-600'} />

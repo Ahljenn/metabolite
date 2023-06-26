@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Header from './components/ui/Header';
 import { TopGradient } from './components/ui/TopGradient';
 import Image from 'next/image';
@@ -27,7 +28,7 @@ const rootCardData: { header: string; desc: string; route: string }[] = [
 
 export default function Home() {
   return (
-    <main className="transition-all flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Header h1="Welcome to Metabolite" />
       <TopGradient fromColor={'from-green-200'} toColor={'to-emerald-800'} />
 
@@ -46,7 +47,7 @@ export default function Home() {
         {rootCardData.map(
           (card: { header: string; desc: string; route: string }, index: number) => {
             return (
-              <a
+              <Link
                 key={index}
                 href={card.route}
                 className="group rounded-lg border border-transparent px-5 py-4 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
@@ -59,7 +60,7 @@ export default function Home() {
                   </span>
                 </h2>
                 <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
-              </a>
+              </Link>
             );
           }
         )}

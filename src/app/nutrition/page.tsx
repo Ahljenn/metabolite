@@ -27,7 +27,7 @@ const nutritionCardData: { header: string; desc: string; route: string }[] = [
 
 export default function Home() {
   return (
-    <main className="transition-all flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Header h1="Nutrition" />
 
       <TopGradient fromColor={'to-emerald-400'} toColor={'from-green-400'} />
