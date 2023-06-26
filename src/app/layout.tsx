@@ -8,10 +8,6 @@ export const metadata: Metadata = {
   title: 'Metabolite',
   description:
     'Metabolite empowers you to take charge of your fitness and nutrition journey. Elevate your well-being, achieve your goals, and unlock a healthier, stronger you.',
-  icons: {
-    icon: '/metabolite-m.png',
-    apple: '/metabolite-m.png',
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
