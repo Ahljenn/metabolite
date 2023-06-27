@@ -1,34 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Metabolite
 
-## Getting Started
+Welcome to Metabolite, a comprehensive platform that combines nutrition,
+fitness, and technology to empower individuals on their journey to optimal
+health and well-being.
 
-First, run the development server:
+## Mission Statement
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+At Metabolite, our mission is to revolutionize the way people approach their
+health journeys by seamlessly integrating nutrition, fitness, and technology. We
+believe that by combining innovative technologies and scientific research, we
+can empower individuals to achieve their health goals and live their best lives.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Personalized nutrition guidance tailored to individual needs
+- Customized fitness plans to help you achieve your fitness goals
+- Cutting-edge technology to track your progress and provide real-time feedback
+- Access to a community of like-minded individuals for support and motivation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Live Sites
 
-## Learn More
+- **Old Site (Development):**
+  [https://metabolite-903ykfx3o-ahljenn.vercel.app/](https://metabolite-903ykfx3o-ahljenn.vercel.app/)
+- **Production Site:**
+  [https://metabolite.vercel.app/](https://metabolite.vercel.app/)
 
-To learn more about Next.js, take a look at the following resources:
+Please note that the old site (development) may not reflect the latest updates
+and features. We recommend using the production site for the best experience.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contribute
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+We welcome contributions from the open-source community to help us further
+improve Metabolite. If you have ideas, bug fixes, or new features to propose,
+please submit a pull request on [GitHub](https://github.com/Ahljenn/metabolite).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Together, let's make a positive impact on the lives of individuals by
+integrating health, nutrition, and technology.

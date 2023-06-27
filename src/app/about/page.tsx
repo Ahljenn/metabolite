@@ -34,7 +34,7 @@ export default function About() {
   return (
     <>
       <TopGradient fromColor={'to-green-400'} toColor={'from-teal-400'} />
-      <h1 className="text-3xl font-sans italic">Meet the Team</h1>
+      <h1 className="text-2xl font-bold">Meet the Team</h1>
       <div className="mt-5 flex gap-10 flex-col lg:flex-row">
         {teamCardData.map((card: teamCardProps, index: number) => {
           return (
@@ -51,6 +51,7 @@ export default function About() {
                 width="250"
                 height="250"
                 className="rounded-full"
+                quality={100}
               />
               <h2 className={`text-2xl font-semibold mt-3`}>{card.name}</h2>
               <p className="text-sm opacity-75">{card.education}</p>
@@ -60,8 +61,8 @@ export default function About() {
           );
         })}
       </div>
-      <div>
-        <h2 className="mt-10 text-2xl font-bold">Mission Statement</h2>
+      <div className="">
+        <h2 className="mt-10 text-2xl font-bold">Our Vision</h2>
         <div className="mt-5 opacity-50 max-w-[30rem] lg:max-w-[45rem]">
           <p>
             At <b className="font-bold opacity-100 text-emerald-300">Metabolite</b>, our mission is
