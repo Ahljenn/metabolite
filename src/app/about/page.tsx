@@ -51,6 +51,7 @@ export default function About() {
                 width="250"
                 height="250"
                 className="rounded-full"
+                quality={100}
               />
               <h2 className={`text-2xl font-semibold mt-3`}>{card.name}</h2>
               <p className="text-sm opacity-75">{card.education}</p>
