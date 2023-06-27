@@ -1,13 +1,20 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface HeaderProps {
   children: any;
 }
 
 export default function Header({ children }: HeaderProps) {
+  const pathname = usePathname();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main
+      className={`flex min-h-screen flex-col items-center ${
+        pathname === '/' ? 'justify-between' : ''
+      } p-24`}
+    >
       <header className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         <div className="flex flex-col items-center lg:items-stretch gap-5 lg:flex-row lg:flex-end">
           <HomeIcon />
