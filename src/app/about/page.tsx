@@ -72,10 +72,10 @@ export default function About() {
             the way people approach their health journeys.
           </p>
           <p className="mt-5">
-            Ahljenn's expertise in full-stack development, artificial intelligence, and web
+            Ahljenn&apos;s expertise in full-stack development, artificial intelligence, and web
             applications drives us to deliver groundbreaking solutions that enhance lives in
-            healthcare, education, and scientific advancements. Dylan's passion for nutrition and
-            his commitment to understanding the intricate relationship between metabolism and
+            healthcare, education, and scientific advancements. Dylan&apos;s passion for nutrition
+            and his commitment to understanding the intricate relationship between metabolism and
             overall well-being make him an invaluable asset in our pursuit of advancing knowledge
             and promoting better health practices.{' '}
           </p>
