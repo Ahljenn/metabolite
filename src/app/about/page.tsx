@@ -63,11 +63,12 @@ export default function About() {
       <h2 className="mt-10 text-2xl font-bold">Mission Statement</h2>
       <div className="mt-5 opacity-50 max-w-[30rem] lg:max-w-[45rem]">
         <p>
-          At Metabolite, our mission is to empower individuals to achieve optimal health and
-          well-being through the seamless integration of nutrition, fitness, and technology. With a
-          team led by Ahljenn Mallari, our founding software engineer, and Dylan Sarmiento, our
-          dedicated researcher, we combine the power of innovative technologies and scientific
-          research to revolutionize the way people approach their health journeys.
+          At <b className="font-bold opacity-100 text-emerald-300">Metabolite</b>, our mission is to
+          empower individuals to achieve optimal health and well-being through the seamless
+          integration of nutrition, fitness, and technology. With a team led by Ahljenn Mallari, our
+          founding software engineer, and Dylan Sarmiento, our dedicated researcher, we combine the
+          power of innovative technologies and scientific research to revolutionize the way people
+          approach their health journeys.
         </p>
         <p className="mt-5">
           Ahljenn's expertise in full-stack development, artificial intelligence, and web
