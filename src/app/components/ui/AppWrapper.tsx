@@ -15,7 +15,7 @@ export default function Header({ children }: HeaderProps) {
         pathname === '/' ? 'justify-between' : ''
       } p-24`}
     >
-      <header className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+      <header className="z-10 w-full max-w-5xl items-center justify-between text-sm lg:flex">
         <div className="flex flex-col items-center lg:items-stretch gap-5 lg:flex-row lg:flex-end">
           <HomeIcon />
           <div>
