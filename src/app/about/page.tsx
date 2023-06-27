@@ -34,7 +34,7 @@ export default function About() {
   return (
     <>
       <TopGradient fromColor={'to-green-400'} toColor={'from-teal-400'} />
-      <h1 className="text-3xl font-sans italic">Meet the Team</h1>
+      <h1 className="text-3xl font-semibold">Meet the Team</h1>
       <div className="mt-5 flex gap-10 flex-col lg:flex-row">
         {teamCardData.map((card: teamCardProps, index: number) => {
           return (
