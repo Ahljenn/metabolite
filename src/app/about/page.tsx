@@ -34,14 +34,14 @@ export default function About() {
   return (
     <>
       <TopGradient fromColor={'to-green-400'} toColor={'from-teal-400'} />
-      <h1 className="text-2xl font-bold">Meet the Team</h1>
+      <h1 className="lg:text-2xl font-bold whitespace-nowrap">Meet the Team</h1>
       <div className="mt-5 flex gap-10 flex-col lg:flex-row">
         {teamCardData.map((card: teamCardProps, index: number) => {
           return (
             <Link
               key={index}
               href={card.linkedin}
-              className="rounded-lg flex flex-col items-center border border-transparent px-5 py-4 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="rounded-lg flex flex-col items-center border border-transparent lg:px-5 lg:py-4 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -53,17 +53,17 @@ export default function About() {
                 className="rounded-full"
                 quality={100}
               />
-              <h2 className={`text-2xl font-semibold mt-3`}>{card.name}</h2>
-              <p className="text-sm opacity-75">{card.education}</p>
-              <p className="mt-5 italic">{card.role}</p>
+              <h2 className={`lg:text-2xl font-semibold mt-3 whitespace-nowrap`}>{card.name}</h2>
+              <p className="text-sm opacity-75 ">{card.education}</p>
+              <p className="mt-5 italic whitespace-nowrap">{card.role}</p>
               <p className={`m-0 max-w-[20rem] text-sm opacity-50`}>{card.desc}</p>
             </Link>
           );
         })}
       </div>
       <div className="">
-        <h2 className="mt-10 text-2xl font-bold">Our Vision</h2>
-        <div className="mt-5 opacity-50 max-w-[30rem] lg:max-w-[45rem]">
+        <h2 className="mt-10 lg:text-2xl font-bold">Our Vision</h2>
+        <div className="mt-5 opacity-50 max-w-[30rem] lg:max-w-[45rem] ">
           <p>
             At <b className="font-bold opacity-100 text-emerald-300">Metabolite</b>, our mission is
             to empower individuals to achieve optimal health and well-being through the seamless

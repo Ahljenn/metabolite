@@ -20,7 +20,7 @@ can empower individuals to achieve their health goals and live their best lives.
 
 ## Live Sites
 
-- **Old Site (Development):**
+- **Old Site (Deprecated):**
   [https://metabolite-903ykfx3o-ahljenn.vercel.app/](https://metabolite-903ykfx3o-ahljenn.vercel.app/)
 - **Production Site:**
   [https://metabolite.vercel.app/](https://metabolite.vercel.app/)
