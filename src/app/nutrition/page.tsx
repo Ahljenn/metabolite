@@ -34,6 +34,19 @@ export default function Nutrition() {
   return (
     <>
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
+      <p className="mt-5 text-center opacity-75 ">
+        Empower yourself with the knowledge and guidance you need to make informed dietary choices
+        and simplify your journey to optimal nutrition and embrace a healthier lifestyle.
+      </p>
+      <div className="flex flex-col lg:flex-row lg:gap-5">
+        <button className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap">
+          Learn More
+        </button>
+        <button className="mt-5 border-green-300 bg-emerald-700/30 hover:border-green-200 hover:bg-emerald-600/30 transition-all border rounded-lg py-2 px-4 whitespace-nowrap">
+          Get Started
+        </button>
+      </div>
+
       <TopGradient fromColor={'to-emerald-400'} toColor={'from-green-400'} />
 
       <div className="mt-20 grid text-center lg:mb-0 lg:grid-cols-3 lg:text-left gap-5">
@@ -45,7 +58,7 @@ export default function Nutrition() {
                 href={card.route}
                 className={`${
                   card.header === 'Diet' ? 'col-span-2' : ''
-                } rounded-lg  border border-transparent px-5 py-4 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all`}
+                } rounded-lg  border px-5 py-4 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all`}
                 rel="noopener noreferrer"
               >
                 <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
