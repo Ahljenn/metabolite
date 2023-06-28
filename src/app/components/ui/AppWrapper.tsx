@@ -21,7 +21,7 @@ export default function AppWrapper({ children }: AppWrapperProps) {
     <motion.div
       key={pathname}
       initial="pageInitial"
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
       animate="pageAnimate"
       variants={variants}
     >

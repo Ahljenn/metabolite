@@ -20,9 +20,8 @@ interface NavBarProps {
 }
 
 export default function Navbar({ currentRoute }: NavBarProps) {
-  console.log(currentRoute);
   return (
-    <Disclosure as="nav" className="sticky top-0 z-50 bg-gray-800">
+    <Disclosure as="nav" className="sticky top-0 z-50 bg-black">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -43,7 +42,7 @@ export default function Navbar({ currentRoute }: NavBarProps) {
                   <Image
                     className="block h-8 w-auto lg:hidden"
                     src="/metabolite-m.png"
-                    alt="Your Company"
+                    alt="Metabolite Logo"
                     width={50}
                     height={50}
                     quality={100}
@@ -51,7 +50,7 @@ export default function Navbar({ currentRoute }: NavBarProps) {
                   <Image
                     className="hidden h-8 w-auto lg:block"
                     src="/metabolite-m.png"
-                    alt="Your Company"
+                    alt="Metabolite Logo"
                     width={50}
                     height={50}
                     quality={100}
@@ -83,10 +82,12 @@ export default function Navbar({ currentRoute }: NavBarProps) {
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
-                      <img
+                      <Image
                         className="h-8 w-8 rounded-full invert"
                         src="/profile-placeholder.png"
                         alt=""
+                        width={50}
+                        height={50}
                       />
                     </Menu.Button>
                   </div>
