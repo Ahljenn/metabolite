@@ -24,10 +24,6 @@ interface NavBarProps {
 export default function Navbar({ currentRoute }: NavBarProps) {
   const { data: session, status } = useSession();
 
-  function onSignOut() {
-    signOut();
-  }
-
   return (
     <Disclosure as="nav" className="sticky top-0 z-50 bg-black">
       {({ open }) => (
@@ -85,15 +81,18 @@ export default function Navbar({ currentRoute }: NavBarProps) {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <LoginWithGoogle data={session} status={status} />
+                {status === 'loading' ? <></> : <LoginWithGoogle data={session} status={status} />}
                 {session ? (
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">Open user menu</span>
                         <Image
-                          className="h-8 w-8 rounded-full invert"
-                          src="/profile-placeholder.png"
+                          className={classNames(
+                            session?.user?.image ? '' : 'invert',
+                            'h-8 w-8 rounded-full'
+                          )}
+                          src={session?.user?.image ?? '/profile-placeholder.png'}
                           alt=""
                           width={50}
                           height={50}
@@ -138,15 +137,19 @@ export default function Navbar({ currentRoute }: NavBarProps) {
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <p
-                              onClick={onSignOut}
+                            <a
+                              href={`/api/auth/signout`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                signOut();
+                              }}
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
                                 'block px-4 py-2 text-sm text-gray-700'
                               )}
                             >
                               Sign out
-                            </p>
+                            </a>
                           )}
                         </Menu.Item>
                       </Menu.Items>
