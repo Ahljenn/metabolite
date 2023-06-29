@@ -41,7 +41,7 @@ export default function About() {
             <Link
               key={index}
               href={card.linkedin}
-              className="rounded-lg flex flex-col items-center border border-transparent lg:px-5 lg:py-4 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="rounded-lg flex flex-col items-center border border-transparent p-5 hover:lg:border-neutral-700 hover:lg:bg-neutral-800/30"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -61,7 +61,7 @@ export default function About() {
           );
         })}
       </div>
-      <div className="">
+      <div className="p-5">
         <h2 className="mt-10 lg:text-2xl font-bold">Our Vision</h2>
         <div className="mt-5 opacity-50 max-w-[30rem] lg:max-w-[45rem] ">
           <p>
