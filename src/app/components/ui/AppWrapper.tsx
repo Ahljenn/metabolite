@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SessionProvider } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 
 import { motion } from 'framer-motion';
@@ -55,8 +56,12 @@ export default function AppWrapper({ children }: AppWrapperProps) {
         </section>
       ) : (
         <>
-          <Navbar currentRoute={pathname} />
-          <section className={`flex min-h-screen flex-col items-center mt-10`}>{children}</section>
+          <SessionProvider>
+            <Navbar currentRoute={pathname} />
+            <section className={`flex min-h-screen flex-col items-center mt-10`}>
+              {children}
+            </section>
+          </SessionProvider>
         </>
       )}
     </motion.div>
