@@ -7,7 +7,13 @@ import NextAuthProvider from './services/providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Metabolite',
+  title: {
+    template: '%s | Metabolite',
+    default: 'Metabolite', // a default is required when creating a template
+  },
+  applicationName: 'Metabolite',
+  keywords: ['Fitness', 'Nutrition', 'Health', 'Wellness'],
+  creator: 'Ahljenn Mallari',
   description:
     'Metabolite empowers you to take charge of your fitness and nutrition journey. Elevate your well-being, achieve your goals, and unlock a healthier, stronger you.',
 };

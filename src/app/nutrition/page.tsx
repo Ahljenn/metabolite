@@ -1,6 +1,11 @@
 import Image from 'next/image';
 import { TopGradient } from '../components/ui/TopGradient';
 
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Nutrition',
+};
+
 const nutritionCardData: { header: string; desc: string; route: string }[] = [
   {
     header: 'Diet',
