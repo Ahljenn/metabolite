@@ -9,4 +9,8 @@ export const authConfig: NextAuthOptions = {
     }),
   ],
   secret: process.env.JWT_SECRET as string,
+  pages: {
+    signIn: '/', //TODO: Create sign in page
+    error: '/api/auth/error',
+  },
 };
