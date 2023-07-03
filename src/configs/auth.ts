@@ -4,6 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import clientPromise from '../../lib/mongo/client';
 
 export const authConfig: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET as string,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -15,7 +16,6 @@ export const authConfig: NextAuthOptions = {
       if (trigger === 'update' && session?.name) {
         token.name = session.name;
       }
-
       return token;
     },
   },
@@ -27,7 +27,4 @@ export const authConfig: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-
-  // Messes with redirect:
-  // secret: process.env.JWT_SECRET as string,
 };
