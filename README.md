@@ -36,3 +36,5 @@ please submit a pull request on [GitHub](https://github.com/Ahljenn/metabolite).
 
 Together, let's make a positive impact on the lives of individuals by
 integrating health, nutrition, and technology.
+
+*Ahljenn.*
