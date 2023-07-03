@@ -10,7 +10,15 @@ export const authConfig: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
-  secret: process.env.JWT_SECRET as string,
+  callbacks: {
+    async jwt({ token, trigger, session }) {
+      if (trigger === 'update' && session?.name) {
+        token.name = session.name;
+      }
+
+      return token;
+    },
+  },
   pages: {
     signIn: '/', //TODO: Create sign in page
     error: '/api/auth/error',
@@ -19,4 +27,7 @@ export const authConfig: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
+
+  // Messes with redirect:
+  // secret: process.env.JWT_SECRET as string,
 };
