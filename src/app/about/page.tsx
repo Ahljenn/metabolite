@@ -11,6 +11,11 @@ interface teamCardProps {
   education: string;
 }
 
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'About',
+};
+
 const teamCardData: teamCardProps[] = [
   {
     name: 'Ahljenn Mallari',

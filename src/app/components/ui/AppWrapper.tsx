@@ -56,12 +56,8 @@ export default function AppWrapper({ children }: AppWrapperProps) {
         </section>
       ) : (
         <>
-          <SessionProvider>
-            <Navbar currentRoute={pathname} />
-            <section className={`flex min-h-screen flex-col items-center mt-10`}>
-              {children}
-            </section>
-          </SessionProvider>
+          <Navbar currentRoute={pathname} />
+          <section className={`flex min-h-screen flex-col items-center mt-10`}>{children}</section>
         </>
       )}
     </motion.div>
