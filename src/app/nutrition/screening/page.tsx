@@ -3,44 +3,16 @@ import { RadioGroup } from '@headlessui/react';
 import { useState } from 'react';
 
 interface MethodProps {
-  method: string | null;
-  setMethod: React.Dispatch<React.SetStateAction<string | null>>;
+  method: Method;
+  setMethod: React.Dispatch<React.SetStateAction<Method>>;
 }
 
-export default function Screening() {
-  const [method, setMethod] = useState<string | null>(null);
-  console.log(method);
-  return (
-    <>
-      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
-      <p className="mt-5">Prior to embarking on your journey...</p>
-      <PreScreening method={method} setMethod={setMethod} />
-    </>
-  );
-}
+type Method = {
+  name: string;
+  desc: string;
+};
 
-// const methods = [
-//   {
-//     name: 'Quick',
-//     ram: '12GB',
-//     cpus: '6 CPUs',
-//     disk: '160 GB SSD disk',
-//   },
-//   {
-//     name: 'Complete',
-//     ram: '16GB',
-//     cpus: '8 CPUs',
-//     disk: '512 GB SSD disk',
-//   },
-//   {
-//     name: 'Enterprise',
-//     ram: '32GB',
-//     cpus: '12 CPUs',
-//     disk: '1024 GB SSD disk',
-//   },
-// ];
-
-const methods = [
+const methods: Method[] = [
   {
     name: 'Quickstart',
     desc: 'Get started on your health journey with a fast and efficient pre-screening assessment designed to provide immediate insights.',
@@ -50,6 +22,62 @@ const methods = [
     desc: 'Dive deeper into your health assessment with a comprehensive screening, uncovering valuable insights for a holistic understanding of your well-being.',
   },
 ];
+
+export default function Screening() {
+  const [method, setMethod] = useState<Method>({ name: 'None', desc: 'None' });
+  const [stage, setStage] = useState<number>(1);
+  let content;
+
+  console.log(method);
+
+  switch (stage) {
+    case 1:
+      content = (
+        <>
+          <p className="mt-5">Prior to embarking on your journey...</p>
+          <PreScreening method={method} setMethod={setMethod} />
+          {method.name !== 'None' ? (
+            <button
+              className="group mt-5 border-green-300 bg-emerald-700/30 hover:border-green-200 hover:bg-emerald-600/30 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
+              onClick={nextStage}
+            >
+              Continue{' '}
+              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                -&gt;
+              </span>
+            </button>
+          ) : (
+            <></>
+          )}
+        </>
+      );
+      break;
+    case 2:
+      content = <div>Disclaimer</div>;
+      break;
+    default:
+      content = <div>Default content</div>;
+      break;
+  }
+
+  function nextStage() {
+    setStage((i) => i + 1);
+  }
+
+  function prevStage() {
+    setStage((i) => i - 1);
+  }
+
+  return (
+    <>
+      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
+      <p className="mt-5 opacity-50">
+        {stage} of {method?.name === 'Complete' ? 20 : 10}
+      </p>
+      {content}
+    </>
+  );
+}
 
 function PreScreening({ method, setMethod }: MethodProps) {
   return (
@@ -104,7 +132,7 @@ function PreScreening({ method, setMethod }: MethodProps) {
   );
 }
 
-function CheckIcon(props) {
+function CheckIcon(props: string) {
   return (
     <svg viewBox="0 0 24 24" fill="none" {...props}>
       <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
