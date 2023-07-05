@@ -28,8 +28,6 @@ export default function Screening() {
   const [stage, setStage] = useState<number>(1);
   let content;
 
-  console.log(method);
-
   switch (stage) {
     case 1:
       content = (
@@ -71,9 +69,7 @@ export default function Screening() {
   return (
     <>
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
-      <p className="mt-5 opacity-50">
-        {stage} of {method?.name === 'Complete' ? 20 : 10}
-      </p>
+      <ProgressBar stage={stage} method={method} />
       {content}
     </>
   );
@@ -128,6 +124,23 @@ function PreScreening({ method, setMethod }: MethodProps) {
           </div>
         </RadioGroup>
       </div>
+    </div>
+  );
+}
+
+function ProgressBar({ stage, method }: { stage: number; method: Method }) {
+  return (
+    <div className="w-1/2">
+      <div className="mb-1 text-base font-medium text-green-300">Progress</div>
+      <div className="w-full rounded-full h-2.5 bg-gray-700">
+        <div
+          className="h-2.5 rounded-full bg-emerald-700 transition-all duration-700"
+          style={{ width: `${method?.name === 'Complete' ? stage * 10 : stage * 5}%` }}
+        ></div>
+      </div>
+      <p className="mt-2 opacity-50 text-center">
+        {stage} of {method?.name === 'Complete' ? 10 : 5}
+      </p>
     </div>
   );
 }
