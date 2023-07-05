@@ -2,6 +2,7 @@
 import { RadioGroup } from '@headlessui/react';
 import { useState } from 'react';
 
+// Constants:
 interface MethodProps {
   method: Method;
   setMethod: React.Dispatch<React.SetStateAction<Method>>;
@@ -24,6 +25,9 @@ const methods: Method[] = [
   },
 ];
 
+const genders: String[] = ['Female', 'Male'];
+
+// Page:
 export default function Screening() {
   const [method, setMethod] = useState<Method>({ name: 'None', desc: 'None' });
   const [stage, setStage] = useState<number>(1);
@@ -57,6 +61,14 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5">Body Metrics</p>
+          <BodyMetrics setIsComplete={setIsComplete} />
+        </>
+      );
+      break;
+    case 3:
+      content = (
+        <>
+          <p className="mt-5">Lifestyle Factors</p>
         </>
       );
       break;
@@ -69,17 +81,18 @@ export default function Screening() {
     <>
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
       <ProgressBar stage={stage} method={method} />
-      {content}
       <ScreeningPageSelector
         nextStage={nextStage}
         prevStage={prevStage}
         stage={stage}
         isComplete={isComplete}
       />
+      {content}
     </>
   );
 }
 
+// Components:
 function PreScreening({ method, setMethod, setIsComplete }: MethodProps) {
   return (
     <div className="w-full px-4 py-5">
@@ -134,6 +147,74 @@ function PreScreening({ method, setMethod, setIsComplete }: MethodProps) {
             ))}
           </div>
         </RadioGroup>
+      </div>
+    </div>
+  );
+}
+
+function BodyMetrics(setIsComplete: React.Dispatch<React.SetStateAction<boolean>>) {
+  return (
+    <div className="w-full px-4 py-5">
+      <div className="mx-auto w-full max-w-md">
+        <p className="bold mb-2">Gender</p>
+        <RadioGroup
+          onChange={(e) => {
+            // setMethod(e);
+            // setIsComplete(true);
+          }}
+        >
+          <RadioGroup.Label className="sr-only">Genders</RadioGroup.Label>
+          <div className="space-y-4">
+            {genders.map((current, index) => (
+              <RadioGroup.Option
+                key={index}
+                value={current}
+                className={({ active, checked }) =>
+                  `${active ? 'ring-2  ring-green-400' : ''}
+                ${checked ? 'bg-emerald-700 bg-opacity-75 text-white' : 'bg-white'}
+                  relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                }
+              >
+                {({ active, checked }) => (
+                  <>
+                    <div className="flex w-full items-center justify-between">
+                      <div className="flex items-center">
+                        <div className="text-sm">
+                          <RadioGroup.Label
+                            as="p"
+                            className={`font-medium  ${checked ? 'text-white' : 'text-gray-900'}`}
+                          >
+                            {current}
+                          </RadioGroup.Label>
+                          {/* <RadioGroup.Description
+                            as="span"
+                            className={`inline ${checked ? 'text-sky-100' : 'text-gray-500'}`}
+                          >
+                            <span>{current.desc}</span>
+                          </RadioGroup.Description> */}
+                        </div>
+                      </div>
+                      {checked && (
+                        <div className="shrink-0 text-white">
+                          <CheckIcon className="h-6 w-6" />
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+              </RadioGroup.Option>
+            ))}
+          </div>
+        </RadioGroup>
+
+        <p className="bold mb-2 mt-10">Age</p>
+        <div></div>
+
+        <p className="bold mb-2 mt-10">Height</p>
+        <div></div>
+
+        <p className="bold mb-2 mt-10">Weight</p>
+        <div></div>
       </div>
     </div>
   );
