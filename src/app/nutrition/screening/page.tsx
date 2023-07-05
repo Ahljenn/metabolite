@@ -152,7 +152,11 @@ function PreScreening({ method, setMethod, setIsComplete }: MethodProps) {
   );
 }
 
-function BodyMetrics(setIsComplete: React.Dispatch<React.SetStateAction<boolean>>) {
+function BodyMetrics({
+  setIsComplete,
+}: {
+  setIsComplete: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <div className="w-full px-4 py-5">
       <div className="mx-auto w-full max-w-md">
@@ -160,7 +164,7 @@ function BodyMetrics(setIsComplete: React.Dispatch<React.SetStateAction<boolean>
         <RadioGroup
           onChange={(e) => {
             // setMethod(e);
-            // setIsComplete(true);
+            setIsComplete(true);
           }}
         >
           <RadioGroup.Label className="sr-only">Genders</RadioGroup.Label>
