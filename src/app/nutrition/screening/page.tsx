@@ -26,44 +26,37 @@ const methods: Method[] = [
 export default function Screening() {
   const [method, setMethod] = useState<Method>({ name: 'None', desc: 'None' });
   const [stage, setStage] = useState<number>(1);
-  let content;
+  const [isComplete, setIsComplete] = useState<boolean>(false);
 
+  function nextStage() {
+    // if (stage < 5 && isComplete) setStage((i) => i + 1);
+    setStage((i) => i + 1);
+  }
+
+  function prevStage() {
+    if (stage > 1) setStage((i) => i - 1);
+  }
+
+  let content;
   switch (stage) {
     case 1:
       content = (
         <>
           <p className="mt-5">Prior to embarking on your journey...</p>
           <PreScreening method={method} setMethod={setMethod} />
-          {method.name !== 'None' ? (
-            <button
-              className="group mt-5 border-green-300 bg-emerald-700/30 hover:border-green-200 hover:bg-emerald-600/30 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
-              onClick={nextStage}
-            >
-              Continue{' '}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </button>
-          ) : (
-            <></>
-          )}
         </>
       );
       break;
     case 2:
-      content = <div>Disclaimer</div>;
+      content = (
+        <>
+          <p className="mt-5">Body Metrics</p>
+        </>
+      );
       break;
     default:
       content = <div>Default content</div>;
       break;
-  }
-
-  function nextStage() {
-    setStage((i) => i + 1);
-  }
-
-  function prevStage() {
-    setStage((i) => i - 1);
   }
 
   return (
@@ -71,6 +64,7 @@ export default function Screening() {
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
       <ProgressBar stage={stage} method={method} />
       {content}
+      <ScreeningPageSelector nextStage={nextStage} prevStage={prevStage} stage={stage} />
     </>
   );
 }
@@ -80,7 +74,7 @@ function PreScreening({ method, setMethod }: MethodProps) {
     <div className="w-full px-4 py-5">
       <div className="mx-auto w-full max-w-md">
         <RadioGroup value={method} onChange={setMethod}>
-          <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
+          <RadioGroup.Label className="sr-only">Method Type</RadioGroup.Label>
           <div className="space-y-4">
             {methods.map((current) => (
               <RadioGroup.Option
@@ -124,6 +118,44 @@ function PreScreening({ method, setMethod }: MethodProps) {
           </div>
         </RadioGroup>
       </div>
+    </div>
+  );
+}
+
+function ScreeningPageSelector({
+  prevStage,
+  nextStage,
+  stage,
+}: {
+  prevStage: any;
+  nextStage: any;
+  stage: number;
+}) {
+  return (
+    <div className="flex flex-col md:gap-5 md:flex-row">
+      <button
+        className={`group mt-5  transition-all border rounded-lg py-2 px-4 whitespace-nowrap ${
+          stage > 1
+            ? 'border-red-300 bg-rose-700/30 hover:border-red-200 hover:bg-rose-600/30'
+            : 'cursor-not-allowed bg-rose-700/10 hover:border-red-200 hover:bg-rose-800/30 opacity-50'
+        }`}
+        onClick={prevStage}
+        disabled={stage === 1}
+      >
+        <span className="inline-block transition-transform group-hover:-translate-x-1 motion-reduce:transform-none">
+          &lt;-
+        </span>{' '}
+        Previous
+      </button>
+      <button
+        className="group mt-5 border-green-300 bg-emerald-700/30 hover:border-green-200 hover:bg-emerald-600/30 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
+        onClick={nextStage}
+      >
+        Continue{' '}
+        <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+          -&gt;
+        </span>
+      </button>
     </div>
   );
 }
