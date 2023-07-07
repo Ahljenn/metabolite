@@ -52,7 +52,9 @@ export default function Screening() {
     case 1:
       content = (
         <>
-          <p className="mt-5">Prior to embarking on your journey...</p>
+          <p className="mt-5">
+            Prior to embarking on your journey, select one of the options below
+          </p>
           <PreScreening method={method} setMethod={setMethod} setIsComplete={setIsComplete} />
         </>
       );
@@ -60,7 +62,7 @@ export default function Screening() {
     case 2:
       content = (
         <>
-          <p className="mt-5">Body Metrics</p>
+          <p className="mt-5 font-semibold">Body Metrics</p>
           <BodyMetrics setIsComplete={setIsComplete} />
         </>
       );
@@ -68,7 +70,7 @@ export default function Screening() {
     case 3:
       content = (
         <>
-          <p className="mt-5">Lifestyle Factors</p>
+          <p className="mt-5 font-semibold">Lifestyle Factors</p>
         </>
       );
       break;
@@ -96,7 +98,7 @@ export default function Screening() {
 function PreScreening({ method, setMethod, setIsComplete }: MethodProps) {
   return (
     <div className="w-full px-4 py-5">
-      <div className="mx-auto w-full max-w-md">
+      <div className="mx-auto w-full max-w-md lg:max-w-xl">
         <RadioGroup
           value={method}
           onChange={(e) => {
@@ -105,7 +107,7 @@ function PreScreening({ method, setMethod, setIsComplete }: MethodProps) {
           }}
         >
           <RadioGroup.Label className="sr-only">Method Type</RadioGroup.Label>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {methods.map((current) => (
               <RadioGroup.Option
                 key={current.name}
@@ -158,8 +160,8 @@ function BodyMetrics({
   setIsComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
-    <div className="w-full px-4 py-5">
-      <div className="mx-auto w-full max-w-md">
+    <div className="w-full px-4 ">
+      <div className="mx-auto w-full max-w-md lg:max-w-xl">
         <p className="bold mb-2">Gender</p>
         <RadioGroup
           onChange={(e) => {
@@ -168,7 +170,7 @@ function BodyMetrics({
           }}
         >
           <RadioGroup.Label className="sr-only">Genders</RadioGroup.Label>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {genders.map((current, index) => (
               <RadioGroup.Option
                 key={index}
@@ -190,12 +192,12 @@ function BodyMetrics({
                           >
                             {current}
                           </RadioGroup.Label>
-                          {/* <RadioGroup.Description
+                          <RadioGroup.Description
                             as="span"
                             className={`inline ${checked ? 'text-sky-100' : 'text-gray-500'}`}
                           >
-                            <span>{current.desc}</span>
-                          </RadioGroup.Description> */}
+                            <span>Gender</span>
+                          </RadioGroup.Description>
                         </div>
                       </div>
                       {checked && (
@@ -211,14 +213,59 @@ function BodyMetrics({
           </div>
         </RadioGroup>
 
-        <p className="bold mb-2 mt-10">Age</p>
-        <div></div>
+        <div>
+          <label htmlFor="age">
+            <div className="flex flex-row justify-between mb-2 mt-10">
+              <p className="">Age</p>
+              <p className="text-gray-400 text-sm">Years</p>
+            </div>
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="age"
+            type="number"
+            min={1}
+            max={150}
+            // value={null}
+            placeholder="Age"
+          />
+        </div>
 
-        <p className="bold mb-2 mt-10">Height</p>
-        <div></div>
+        <div>
+          <label htmlFor="height">
+            <div className="flex flex-row justify-between mb-2 mt-10">
+              <p className="">Height</p>
+              <p className="text-gray-400 text-sm">Centimeters</p>
+            </div>
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="height"
+            type="number"
+            min={1}
+            max={400}
+            // value={null}
+            placeholder="Height"
+          />
+        </div>
 
-        <p className="bold mb-2 mt-10">Weight</p>
-        <div></div>
+        <div>
+          <label htmlFor="weight">
+            <div className="flex flex-row justify-between mb-2 mt-10">
+              <p className="">Weight</p>
+              <p className="text-gray-400 text-sm">Kilograms</p>
+            </div>
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="height"
+            type="number"
+            min={1}
+            max={600}
+            // value={null}
+            placeholder="weight"
+          />
+        </div>
       </div>
     </div>
   );
@@ -271,7 +318,7 @@ function ScreeningPageSelector({
 
 function ProgressBar({ stage, method }: { stage: number; method: Method }) {
   return (
-    <div className="w-1/2">
+    <div className="mt-5 px-5 md:px-0 md:mx-auto w-full max-w-md lg:max-w-xl">
       <div className="mb-1 text-base font-medium text-green-300">Progress</div>
       <div className="w-full rounded-full h-2.5 bg-gray-700">
         <div
