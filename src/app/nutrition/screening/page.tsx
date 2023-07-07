@@ -170,7 +170,7 @@ function BodyMetrics() {
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
         <div>
           <label htmlFor="age">
-            <div className="flex flex-row justify-between mb-2">
+            <div className="flex flex-row justify-between mb-2 items-baseline">
               <p className="">Age</p>
               <p className="text-gray-400 text-sm">Years</p>
             </div>
@@ -186,40 +186,42 @@ function BodyMetrics() {
           />
         </div>
 
-        <div>
-          <label htmlFor="height">
-            <div className="flex flex-row justify-between mb-2 mt-5">
-              <p className="">Height</p>
-              <p className="text-gray-400 text-sm">Centimeters</p>
-            </div>
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="height"
-            type="number"
-            min={1}
-            max={400}
-            // value={null}
-            placeholder="Height"
-          />
-        </div>
+        <div className="flex justify-between mt-5 gap-5">
+          <div className="w-1/2">
+            <label htmlFor="height">
+              <div className="flex flex-row justify-between mb-2 items-baseline">
+                <p className="">Height</p>
+                <p className="text-gray-400 text-sm">Centimeters</p>
+              </div>
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="height"
+              type="number"
+              min={1}
+              max={400}
+              // value={null}
+              placeholder="Height"
+            />
+          </div>
 
-        <div>
-          <label htmlFor="weight">
-            <div className="flex flex-row justify-between mb-2 mt-5">
-              <p className="">Weight</p>
-              <p className="text-gray-400 text-sm">Kilograms</p>
-            </div>
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="height"
-            type="number"
-            min={1}
-            max={600}
-            // value={null}
-            placeholder="weight"
-          />
+          <div className="w-1/2">
+            <label htmlFor="weight">
+              <div className="flex flex-row justify-between mb-2 items-baseline">
+                <p className="">Weight</p>
+                <p className="text-gray-400 text-sm">Kilograms</p>
+              </div>
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="height"
+              type="number"
+              min={1}
+              max={600}
+              // value={null}
+              placeholder="Weight"
+            />
+          </div>
         </div>
       </div>
     </div>
