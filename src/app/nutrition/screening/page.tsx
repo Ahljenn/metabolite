@@ -1,20 +1,10 @@
 'use client';
-import { RadioGroup } from '@headlessui/react';
+
+import { Radio } from './../../components/ui/Radio';
 import { useState } from 'react';
+import { RadioBasic } from './../../components/ui/Radio';
 
-// Constants:
-interface MethodProps {
-  method: Method;
-  setMethod: React.Dispatch<React.SetStateAction<Method>>;
-  setIsComplete: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-type Method = {
-  name: string;
-  desc: string;
-};
-
-const methods: Method[] = [
+const methods: RadioBasic[] = [
   {
     name: 'Quickstart',
     desc: 'Get started on your health journey with a fast and efficient pre-screening assessment designed to provide immediate insights.',
@@ -25,18 +15,78 @@ const methods: Method[] = [
   },
 ];
 
-const genders: String[] = ['Female', 'Male'];
+const genders: RadioBasic[] = [
+  {
+    name: 'Female',
+    desc: 'Select if you identify as female gender.',
+  },
+  {
+    name: 'Male',
+    desc: 'Select if you identify as male gender.',
+  },
+];
 
-// Page:
+const activityLevels: RadioBasic[] = [
+  {
+    name: 'Sedentary',
+    desc: 'Limited physical activity or mostly sedentary lifestyle.',
+  },
+  {
+    name: 'Lightly active',
+    desc: 'Light physical activity or regular exercise a few times per week.',
+  },
+  {
+    name: 'Active',
+    desc: 'Moderate physical activity or regular exercise most days of the week.',
+  },
+  {
+    name: 'Very active',
+    desc: 'High level of physical activity or intense exercise on a daily basis.',
+  },
+];
+
+const workExertions: RadioBasic[] = [
+  {
+    name: 'Not applicable',
+    desc: 'This question is not applicable for you to the current situation.',
+  },
+  {
+    name: 'Work from home',
+    desc: 'Working remotely or from home without a fixed office location.',
+  },
+  {
+    name: 'Office job',
+    desc: 'Office environment with sedentary tasks and minimal physical exertion.',
+  },
+  {
+    name: 'Active labor',
+    desc: 'Engaged in physically demanding work or job with significant physical activity.',
+  },
+  {
+    name: 'Very active labor',
+    desc: 'High-intensity physical labor or job requiring extensive physical exertion.',
+  },
+];
+
 export default function Screening() {
-  const [method, setMethod] = useState<Method>({ name: 'None', desc: 'None' });
+  // Form fields //
+  // -- Prescreening:
+  const [method, setMethod] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
+  // -- Body metrics:
+  const [gender, setGender] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
+  // -- Lifestyle factors:
+  const [activityLevel, setActivityLevel] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+  const [workExertion, setWorkExertion] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+  // Page states //
   const [stage, setStage] = useState<number>(1);
-  const [isComplete, setIsComplete] = useState<boolean>(false);
+  const [isComplete, setIsComplete] = useState<boolean>(true);
 
   function nextStage() {
     if (stage < 5) {
       setStage((i) => i + 1);
-      setIsComplete(false);
+      // setIsComplete(false);
     }
   }
 
@@ -55,7 +105,7 @@ export default function Screening() {
           <p className="mt-5">
             Prior to embarking on your journey, select one of the options below
           </p>
-          <PreScreening method={method} setMethod={setMethod} setIsComplete={setIsComplete} />
+          <Radio items={methods} setSelection={setMethod} />
         </>
       );
       break;
@@ -63,7 +113,8 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Body Metrics</p>
-          <BodyMetrics setIsComplete={setIsComplete} />
+          <Radio items={genders} setSelection={setGender} label={'Gender'}></Radio>
+          <BodyMetrics />
         </>
       );
       break;
@@ -71,9 +122,28 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Lifestyle Factors</p>
+          <Radio items={activityLevels} setSelection={setActivityLevel} label={'Activity Levels'} />
+          <Radio items={workExertions} setSelection={setWorkExertion} label={'Work exertion'} />
         </>
       );
       break;
+    case 4:
+      content = (
+        <>
+          <p className="mt-5 font-semibold">Considerations</p>
+          <p>Dietary Concerns</p>
+          <p>Dietary Preferences</p>
+        </>
+      );
+      break;
+    case 5:
+      content = (
+        <>
+          <p className="mt-5 font-semibold">Budget</p>
+        </>
+      );
+      break;
+
     default:
       content = <div>Default content</div>;
       break;
@@ -94,128 +164,13 @@ export default function Screening() {
   );
 }
 
-// Components:
-function PreScreening({ method, setMethod, setIsComplete }: MethodProps) {
+function BodyMetrics() {
   return (
-    <div className="w-full px-4 py-5">
+    <div className="w-full px-4">
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
-        <RadioGroup
-          value={method}
-          onChange={(e) => {
-            setMethod(e);
-            setIsComplete(true);
-          }}
-        >
-          <RadioGroup.Label className="sr-only">Method Type</RadioGroup.Label>
-          <div className="space-y-5">
-            {methods.map((current) => (
-              <RadioGroup.Option
-                key={current.name}
-                value={current}
-                className={({ active, checked }) =>
-                  `${active ? 'ring-2  ring-green-400' : ''}
-                ${checked ? 'bg-emerald-700 bg-opacity-75 text-white' : 'bg-white'}
-                  relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
-                }
-              >
-                {({ active, checked }) => (
-                  <>
-                    <div className="flex w-full items-center justify-between">
-                      <div className="flex items-center">
-                        <div className="text-sm">
-                          <RadioGroup.Label
-                            as="p"
-                            className={`font-medium  ${checked ? 'text-white' : 'text-gray-900'}`}
-                          >
-                            {current.name}
-                          </RadioGroup.Label>
-                          <RadioGroup.Description
-                            as="span"
-                            className={`inline ${checked ? 'text-sky-100' : 'text-gray-500'}`}
-                          >
-                            <span>{current.desc}</span>
-                          </RadioGroup.Description>
-                        </div>
-                      </div>
-                      {checked && (
-                        <div className="shrink-0 text-white">
-                          <CheckIcon className="h-6 w-6" />
-                        </div>
-                      )}
-                    </div>
-                  </>
-                )}
-              </RadioGroup.Option>
-            ))}
-          </div>
-        </RadioGroup>
-      </div>
-    </div>
-  );
-}
-
-function BodyMetrics({
-  setIsComplete,
-}: {
-  setIsComplete: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
-  return (
-    <div className="w-full px-4 ">
-      <div className="mx-auto w-full max-w-md lg:max-w-xl">
-        <p className="bold mb-2">Gender</p>
-        <RadioGroup
-          onChange={(e) => {
-            // setMethod(e);
-            setIsComplete(true);
-          }}
-        >
-          <RadioGroup.Label className="sr-only">Genders</RadioGroup.Label>
-          <div className="space-y-5">
-            {genders.map((current, index) => (
-              <RadioGroup.Option
-                key={index}
-                value={current}
-                className={({ active, checked }) =>
-                  `${active ? 'ring-2  ring-green-400' : ''}
-                ${checked ? 'bg-emerald-700 bg-opacity-75 text-white' : 'bg-white'}
-                  relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
-                }
-              >
-                {({ active, checked }) => (
-                  <>
-                    <div className="flex w-full items-center justify-between">
-                      <div className="flex items-center">
-                        <div className="text-sm">
-                          <RadioGroup.Label
-                            as="p"
-                            className={`font-medium  ${checked ? 'text-white' : 'text-gray-900'}`}
-                          >
-                            {current}
-                          </RadioGroup.Label>
-                          <RadioGroup.Description
-                            as="span"
-                            className={`inline ${checked ? 'text-sky-100' : 'text-gray-500'}`}
-                          >
-                            <span>Gender</span>
-                          </RadioGroup.Description>
-                        </div>
-                      </div>
-                      {checked && (
-                        <div className="shrink-0 text-white">
-                          <CheckIcon className="h-6 w-6" />
-                        </div>
-                      )}
-                    </div>
-                  </>
-                )}
-              </RadioGroup.Option>
-            ))}
-          </div>
-        </RadioGroup>
-
         <div>
           <label htmlFor="age">
-            <div className="flex flex-row justify-between mb-2 mt-10">
+            <div className="flex flex-row justify-between mb-2">
               <p className="">Age</p>
               <p className="text-gray-400 text-sm">Years</p>
             </div>
@@ -233,7 +188,7 @@ function BodyMetrics({
 
         <div>
           <label htmlFor="height">
-            <div className="flex flex-row justify-between mb-2 mt-10">
+            <div className="flex flex-row justify-between mb-2 mt-5">
               <p className="">Height</p>
               <p className="text-gray-400 text-sm">Centimeters</p>
             </div>
@@ -251,7 +206,7 @@ function BodyMetrics({
 
         <div>
           <label htmlFor="weight">
-            <div className="flex flex-row justify-between mb-2 mt-10">
+            <div className="flex flex-row justify-between mb-2 mt-5">
               <p className="">Weight</p>
               <p className="text-gray-400 text-sm">Kilograms</p>
             </div>
@@ -316,34 +271,19 @@ function ScreeningPageSelector({
   );
 }
 
-function ProgressBar({ stage, method }: { stage: number; method: Method }) {
+function ProgressBar({ stage, method }: { stage: number; method: RadioBasic }) {
   return (
     <div className="mt-5 px-5 md:px-0 md:mx-auto w-full max-w-md lg:max-w-xl">
       <div className="mb-1 text-base font-medium text-green-300">Progress</div>
       <div className="w-full rounded-full h-2.5 bg-gray-700">
         <div
           className="h-2.5 rounded-full bg-emerald-700 transition-all duration-700"
-          style={{ width: `${method?.name === 'Complete' ? stage * 10 : stage * 5}%` }}
+          style={{ width: `${method?.name === 'Complete' ? stage * 5 : stage * 20}%` }}
         ></div>
       </div>
       <p className="mt-2 opacity-50 text-center">
         {stage} of {method?.name === 'Complete' ? 10 : 5}
       </p>
     </div>
-  );
-}
-
-function CheckIcon(props: any) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
-      <path
-        d="M7 13l3 3 7-7"
-        stroke="#fff"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }
