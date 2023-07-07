@@ -52,7 +52,9 @@ export default function Screening() {
     case 1:
       content = (
         <>
-          <p className="mt-5">Prior to embarking on your journey...</p>
+          <p className="mt-5">
+            Prior to embarking on your journey, select one of the options below
+          </p>
           <PreScreening method={method} setMethod={setMethod} setIsComplete={setIsComplete} />
         </>
       );
@@ -60,7 +62,7 @@ export default function Screening() {
     case 2:
       content = (
         <>
-          <p className="mt-5">Body Metrics</p>
+          <p className="mt-5 font-semibold">Body Metrics</p>
           <BodyMetrics setIsComplete={setIsComplete} />
         </>
       );
@@ -68,7 +70,7 @@ export default function Screening() {
     case 3:
       content = (
         <>
-          <p className="mt-5">Lifestyle Factors</p>
+          <p className="mt-5 font-semibold">Lifestyle Factors</p>
         </>
       );
       break;
@@ -105,7 +107,7 @@ function PreScreening({ method, setMethod, setIsComplete }: MethodProps) {
           }}
         >
           <RadioGroup.Label className="sr-only">Method Type</RadioGroup.Label>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {methods.map((current) => (
               <RadioGroup.Option
                 key={current.name}
@@ -158,7 +160,7 @@ function BodyMetrics({
   setIsComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
-    <div className="w-full px-4 py-5">
+    <div className="w-full px-4 ">
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
         <p className="bold mb-2">Gender</p>
         <RadioGroup
@@ -168,7 +170,7 @@ function BodyMetrics({
           }}
         >
           <RadioGroup.Label className="sr-only">Genders</RadioGroup.Label>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {genders.map((current, index) => (
               <RadioGroup.Option
                 key={index}
@@ -214,7 +216,7 @@ function BodyMetrics({
         <div>
           <label htmlFor="age">
             <div className="flex flex-row justify-between mb-2 mt-10">
-              <p className="bold">Age</p>
+              <p className="">Age</p>
               <p className="text-gray-400 text-sm">Years</p>
             </div>
           </label>
@@ -232,7 +234,7 @@ function BodyMetrics({
         <div>
           <label htmlFor="height">
             <div className="flex flex-row justify-between mb-2 mt-10">
-              <p className="bold ">Height</p>
+              <p className="">Height</p>
               <p className="text-gray-400 text-sm">Centimeters</p>
             </div>
           </label>
@@ -250,7 +252,7 @@ function BodyMetrics({
         <div>
           <label htmlFor="weight">
             <div className="flex flex-row justify-between mb-2 mt-10">
-              <p className="bold ">Weight</p>
+              <p className="">Weight</p>
               <p className="text-gray-400 text-sm">Kilograms</p>
             </div>
           </label>
