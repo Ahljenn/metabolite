@@ -21,7 +21,7 @@ export function Radio({ items, setSelection, label }: RadioProps) {
           }}
         >
           <RadioGroup.Label className="sr-only">{label}</RadioGroup.Label>
-          <p className="mb-2">{label}</p>
+          <p className="mb-2 text-sm">{label}</p>
           <div className="space-y-5">
             {items.map((current: RadioBasic) => (
               <RadioGroup.Option
