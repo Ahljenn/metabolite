@@ -4,7 +4,7 @@ import { Radio } from './../../components/ui/Radio';
 import { useState } from 'react';
 import { RadioBasic } from './../../components/ui/Radio';
 
-const methods: RadioBasic[] = [
+const methodOptions: RadioBasic[] = [
   {
     name: 'Quickstart',
     desc: 'Get started on your health journey with a fast and efficient pre-screening assessment designed to provide immediate insights.',
@@ -26,7 +26,7 @@ const genders: RadioBasic[] = [
   },
 ];
 
-const activityLevels: RadioBasic[] = [
+const activityOptions: RadioBasic[] = [
   {
     name: 'Sedentary',
     desc: 'Limited physical activity or mostly sedentary lifestyle.',
@@ -45,7 +45,7 @@ const activityLevels: RadioBasic[] = [
   },
 ];
 
-const workExertions: RadioBasic[] = [
+const workOptions: RadioBasic[] = [
   {
     name: 'Not applicable',
     desc: 'This question is not applicable for you to the current situation.',
@@ -68,7 +68,7 @@ const workExertions: RadioBasic[] = [
   },
 ];
 
-const existingPreferences: RadioBasic[] = [
+const dietOptions: RadioBasic[] = [
   {
     name: 'Not applicable',
     desc: 'Select this option if you do not have any dietary preference.',
@@ -99,6 +99,29 @@ const existingPreferences: RadioBasic[] = [
   },
 ];
 
+const budgetOptions: RadioBasic[] = [
+  {
+    name: '$ (Economical)',
+    desc: 'I have a very tight budget and can spend a minimal amount on my weekly diet.',
+  },
+  {
+    name: '$$ (Affordable)',
+    desc: 'I have a limited budget and can allocate a modest amount for my weekly diet.',
+  },
+  {
+    name: '$$$ (Moderate)',
+    desc: 'I have a moderate budget and can spend a reasonable amount on my weekly diet.',
+  },
+  {
+    name: '$$$$ (Generous)',
+    desc: 'I have a generous budget and can invest a substantial amount in high-quality dietary options.',
+  },
+  {
+    name: '$$$$$ (Flexible)',
+    desc: 'I have a flexible budget and can afford premium and diverse dietary options.',
+  },
+];
+
 export default function Screening() {
   // Form fields //
   // -- Prescreening:
@@ -113,6 +136,9 @@ export default function Screening() {
 
   // -- Considerations
   const [dietPref, setDietPref] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
+  // -- Budgets
+  const [budget, setBudget] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // Page states //
   const [stage, setStage] = useState<number>(1);
@@ -140,7 +166,7 @@ export default function Screening() {
           <p className="mt-5">
             Prior to embarking on your journey, select one of the options below
           </p>
-          <Radio items={methods} setSelection={setMethod} />
+          <Radio items={methodOptions} setSelection={setMethod} />
         </>
       );
       break;
@@ -157,8 +183,12 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Lifestyle Factors</p>
-          <Radio items={activityLevels} setSelection={setActivityLevel} label={'Activity Levels'} />
-          <Radio items={workExertions} setSelection={setWorkExertion} label={'Work exertion'} />
+          <Radio
+            items={activityOptions}
+            setSelection={setActivityLevel}
+            label={'Activity Levels'}
+          />
+          <Radio items={workOptions} setSelection={setWorkExertion} label={'Work exertion'} />
         </>
       );
       break;
@@ -167,11 +197,7 @@ export default function Screening() {
         <>
           <p className="mt-5 font-semibold">Considerations</p>
           <DietaryConcerns />
-          <Radio
-            items={existingPreferences}
-            setSelection={setDietPref}
-            label={'Diet Preferences'}
-          />
+          <Radio items={dietOptions} setSelection={setDietPref} />
         </>
       );
       break;
@@ -187,6 +213,7 @@ export default function Screening() {
               well-balanced approach to your nutrition journey.
             </p>
           </div>
+          <Radio items={budgetOptions} setSelection={setBudget} />
         </>
       );
       break;
