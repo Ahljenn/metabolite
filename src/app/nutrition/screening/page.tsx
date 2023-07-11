@@ -68,6 +68,37 @@ const workExertions: RadioBasic[] = [
   },
 ];
 
+const existingPreferences: RadioBasic[] = [
+  {
+    name: 'Not applicable',
+    desc: 'Select this option if you do not have any dietary preference.',
+  },
+  {
+    name: 'Ketogenic Diet',
+    desc: 'A low-carb, high-fat diet that focuses on reducing carbohydrate intake and increasing fat consumption.',
+  },
+  {
+    name: 'Low Carb Diet',
+    desc: 'A diet that restricts the consumption of carbohydrates, typically focusing on reducing intake of refined sugars and starches.',
+  },
+  {
+    name: 'Vegan Diet',
+    desc: 'A plant-based diet that excludes all animal products, including meat, dairy, eggs, and honey.',
+  },
+  {
+    name: 'Vegetarian Diet',
+    desc: 'A diet that excludes meat and seafood but allows for the consumption of other animal-derived products, such as dairy and eggs.',
+  },
+  {
+    name: 'Paleo Diet',
+    desc: 'An eating pattern that emphasizes whole foods and avoids processed foods and grains to mimic the eating patterns of our ancestors from the Paleolithic era.',
+  },
+  {
+    name: 'Whole30',
+    desc: 'A 30-day dietary program that eliminates certain food groups, such as grains, dairy, legumes, and added sugars, to reset eating habits and improve overall health.',
+  },
+];
+
 export default function Screening() {
   // Form fields //
   // -- Prescreening:
@@ -79,6 +110,10 @@ export default function Screening() {
   // -- Lifestyle factors:
   const [activityLevel, setActivityLevel] = useState<RadioBasic>({ name: 'None', desc: 'None' });
   const [workExertion, setWorkExertion] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
+  // -- Considerations
+  const [dietPref, setDietPref] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
   // Page states //
   const [stage, setStage] = useState<number>(1);
   const [isComplete, setIsComplete] = useState<boolean>(true);
@@ -132,6 +167,11 @@ export default function Screening() {
         <>
           <p className="mt-5 font-semibold">Considerations</p>
           <DietaryConcerns />
+          <Radio
+            items={existingPreferences}
+            setSelection={setDietPref}
+            label={'Diet Preferences'}
+          />
         </>
       );
       break;
@@ -235,12 +275,28 @@ function DietaryConcerns() {
         <p className="my-2 font-bold">Dietary Concerns</p>
         <p>
           Is there any concerns related to your diet that could help Metabolite in assisting you in
-          recommending you a diet such as <b>allergies</b> specifically?
+          recommending your diet such as <b>allergies</b> or sensitivity to certain foods?{' '}
         </p>
+        <div className="mt-5">
+          <label htmlFor="allergies">
+            <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
+              <p className="">Allergies</p>
+              <p className="text-gray-400">Optional</p>
+            </div>
+          </label>
+          <textarea
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="allergies"
+            rows={4}
+            // value={null}
+            placeholder="Peanut allergy, Soy allergy, shellfish allergy, etc."
+          />
+        </div>
         <p className="mt-4 mb-2 font-bold">Dietary Preferences</p>
         <p>
-          At the moment, do you have any dietary preferences? If not, please select <b>other</b>.
-          Don&apos;t worry, Metabolite will still recommend the best diet for you!
+          At the moment, do you have any dietary preferences? If not, please select{' '}
+          <b>not applicable</b>. Don&apos;t worry, Metabolite will still recommend the best diet for
+          you!
         </p>
       </div>
     </div>

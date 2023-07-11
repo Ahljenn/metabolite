@@ -27,9 +27,13 @@ export function Radio({ items, setSelection, label }: RadioProps) {
               <RadioGroup.Option
                 key={current.name}
                 value={current}
-                className={({ active, checked }) => `${active ? 'ring-2  ring-green-400' : ''}
-                ${checked ? 'bg-emerald-700 bg-opacity-75 text-white' : 'bg-white'}
-                  relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`}
+                className={({ active, checked }) => `
+                ${
+                  checked
+                    ? 'bg-emerald-700 bg-opacity-75 text-white ring-2 ring-green-400 scale-105'
+                    : 'bg-white  hover:scale-105'
+                }
+                  relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none transition duration-300`}
               >
                 {({ active, checked }) => (
                   <>
