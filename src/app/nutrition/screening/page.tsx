@@ -3,8 +3,10 @@
 import { Radio } from './../../components/ui/Radio';
 import { useState } from 'react';
 import { RadioBasic } from './../../components/ui/Radio';
+import Lottie from 'lottie-react';
+import LoadingAnimation from '#/loading.json';
 
-const methods: RadioBasic[] = [
+const methodOptions: RadioBasic[] = [
   {
     name: 'Quickstart',
     desc: 'Get started on your health journey with a fast and efficient pre-screening assessment designed to provide immediate insights.',
@@ -26,7 +28,7 @@ const genders: RadioBasic[] = [
   },
 ];
 
-const activityLevels: RadioBasic[] = [
+const activityOptions: RadioBasic[] = [
   {
     name: 'Sedentary',
     desc: 'Limited physical activity or mostly sedentary lifestyle.',
@@ -45,7 +47,7 @@ const activityLevels: RadioBasic[] = [
   },
 ];
 
-const workExertions: RadioBasic[] = [
+const workOptions: RadioBasic[] = [
   {
     name: 'Not applicable',
     desc: 'This question is not applicable for you to the current situation.',
@@ -68,6 +70,60 @@ const workExertions: RadioBasic[] = [
   },
 ];
 
+const dietOptions: RadioBasic[] = [
+  {
+    name: 'Not applicable',
+    desc: 'Select this option if you do not have any dietary preference.',
+  },
+  {
+    name: 'Ketogenic Diet',
+    desc: 'A low-carb, high-fat diet that focuses on reducing carbohydrate intake and increasing fat consumption.',
+  },
+  {
+    name: 'Low Carb Diet',
+    desc: 'A diet that restricts the consumption of carbohydrates, typically focusing on reducing intake of refined sugars and starches.',
+  },
+  {
+    name: 'Vegan Diet',
+    desc: 'A plant-based diet that excludes all animal products, including meat, dairy, eggs, and honey.',
+  },
+  {
+    name: 'Vegetarian Diet',
+    desc: 'A diet that excludes meat and seafood but allows for the consumption of other animal-derived products, such as dairy and eggs.',
+  },
+  {
+    name: 'Paleo Diet',
+    desc: 'An eating pattern that emphasizes whole foods and avoids processed foods and grains to mimic the eating patterns of our ancestors from the Paleolithic era.',
+  },
+  {
+    name: 'Whole30',
+    desc: 'A 30-day dietary program that eliminates certain food groups, such as grains, dairy, legumes, and added sugars, to reset eating habits and improve overall health.',
+  },
+];
+
+const budgetOptions: RadioBasic[] = [
+  {
+    name: '$ (Economical)',
+    desc: 'I have a very tight budget and can spend a minimal amount on my weekly diet.',
+  },
+  {
+    name: '$$ (Affordable)',
+    desc: 'I have a limited budget and can allocate a modest amount for my weekly diet.',
+  },
+  {
+    name: '$$$ (Moderate)',
+    desc: 'I have a moderate budget and can spend a reasonable amount on my weekly diet.',
+  },
+  {
+    name: '$$$$ (Generous)',
+    desc: 'I have a generous budget and can invest a substantial amount in high-quality dietary options.',
+  },
+  {
+    name: '$$$$$ (Flexible)',
+    desc: 'I have a flexible budget and can afford premium and diverse dietary options.',
+  },
+];
+
 export default function Screening() {
   // Form fields //
   // -- Prescreening:
@@ -79,14 +135,24 @@ export default function Screening() {
   // -- Lifestyle factors:
   const [activityLevel, setActivityLevel] = useState<RadioBasic>({ name: 'None', desc: 'None' });
   const [workExertion, setWorkExertion] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
+  // -- Considerations
+  const [dietPref, setDietPref] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
+  // -- Budgets
+  const [budget, setBudget] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
   // Page states //
   const [stage, setStage] = useState<number>(1);
   const [isComplete, setIsComplete] = useState<boolean>(true);
+  const [isScreeningComplete, setIsScreeningComplete] = useState<boolean>(false);
 
   function nextStage() {
     if (stage < 5) {
       setStage((i) => i + 1);
       // setIsComplete(false);
+    } else {
+      setIsScreeningComplete(true);
     }
   }
 
@@ -102,10 +168,11 @@ export default function Screening() {
     case 1:
       content = (
         <>
-          <p className="mt-5">
+          <p className="mt-5 mx-5 text-center ">
             Prior to embarking on your journey, select one of the options below
           </p>
-          <Radio items={methods} setSelection={setMethod} />
+
+          <Radio items={methodOptions} setSelection={setMethod} />
         </>
       );
       break;
@@ -122,8 +189,12 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Lifestyle Factors</p>
-          <Radio items={activityLevels} setSelection={setActivityLevel} label={'Activity Levels'} />
-          <Radio items={workExertions} setSelection={setWorkExertion} label={'Work exertion'} />
+          <Radio
+            items={activityOptions}
+            setSelection={setActivityLevel}
+            label={'Activity Levels'}
+          />
+          <Radio items={workOptions} setSelection={setWorkExertion} label={'Work exertion'} />
         </>
       );
       break;
@@ -131,8 +202,8 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Considerations</p>
-          <p>Dietary Concerns</p>
-          <p>Dietary Preferences</p>
+          <DietaryConcerns />
+          <Radio items={dietOptions} setSelection={setDietPref} />
         </>
       );
       break;
@@ -140,6 +211,15 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Budget</p>
+          <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+            <p className="mt-5 mx-5 text-center sm:text-left">
+              What is your <i>estimated weekly budget</i> for your diet? This information will
+              enable <b className="text-metagreen">Metabolite</b> to provide personalized
+              recommendations that align with both your financial and health goals, ensuring a
+              well-balanced approach to your nutrition journey.
+            </p>
+          </div>
+          <Radio items={budgetOptions} setSelection={setBudget} />
         </>
       );
       break;
@@ -152,14 +232,32 @@ export default function Screening() {
   return (
     <>
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
-      <ProgressBar stage={stage} method={method} />
-      <ScreeningPageSelector
-        nextStage={nextStage}
-        prevStage={prevStage}
-        stage={stage}
-        isComplete={isComplete}
-      />
-      {content}
+      {!isScreeningComplete ? (
+        <>
+          <ProgressBar stage={stage} method={method} />
+          <ScreeningPageSelector
+            nextStage={nextStage}
+            prevStage={prevStage}
+            stage={stage}
+            isComplete={isComplete}
+          />
+          {content}
+        </>
+      ) : (
+        <>
+          {' '}
+          <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+            <p className="mt-5 mx-5 text-center">
+              You&apos;re all set! One moment as we let <b className="text-metagreen">Metabolite</b>{' '}
+              work its magic and unveil the top three <b className="text-green-300">personalized</b>{' '}
+              diets tailored just for you. Your health journey is about to take off!
+            </p>
+          </div>
+          <div className="bg-gray-800 rounded-full mt-20 mx-20">
+            <Lottie animationData={LoadingAnimation} loop={true} />
+          </div>
+        </>
+      )}
     </>
   );
 }
@@ -224,6 +322,44 @@ function BodyMetrics() {
             />
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function DietaryConcerns() {
+  return (
+    <div className="w-full px-4">
+      <div className="mx-auto w-full max-w-md lg:max-w-xl ">
+        <p className="my-2 font-bold">Dietary Concerns</p>
+        <p>
+          Are there any concerns related to your diet that could assist{' '}
+          <b className="text-metagreen">Metabolite</b> in recommending a suitable dietary plan, such
+          as <b className="text-green-300">allergies</b> or{' '}
+          <b className="text-green-300">sensitivities</b> to certain foods?{' '}
+        </p>
+        <p>Leave blank if this does not apply to you.</p>
+        <div className="mt-5">
+          <label htmlFor="allergies">
+            <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
+              <p className="">Allergies</p>
+              <p className="text-gray-400">Optional</p>
+            </div>
+          </label>
+          <textarea
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="allergies"
+            rows={4}
+            // value={null}
+            placeholder="Peanut allergy, Soy allergy, shellfish allergy, etc."
+          />
+        </div>
+        <p className="mt-4 mb-2 font-bold">Dietary Preferences</p>
+        <p>
+          At the moment, do you have any specific dietary preferences? If not, please select{' '}
+          <b className="text-green-300">Not Applicable</b>. Don&apos;t worry, Metabolite will still
+          recommend the best diet for you!
+        </p>
       </div>
     </div>
   );
