@@ -274,8 +274,9 @@ function DietaryConcerns() {
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
         <p className="my-2 font-bold">Dietary Concerns</p>
         <p>
-          Is there any concerns related to your diet that could help Metabolite in assisting you in
-          recommending your diet such as <b>allergies</b> or sensitivity to certain foods?{' '}
+          Are there any concerns related to your diet that could assist Metabolite in recommending a
+          suitable dietary plan, such as <b className="text-green-300">allergies</b> or{' '}
+          <b className="text-green-300">sensitivities</b> to certain foods?{' '}
         </p>
         <div className="mt-5">
           <label htmlFor="allergies">
@@ -294,9 +295,9 @@ function DietaryConcerns() {
         </div>
         <p className="mt-4 mb-2 font-bold">Dietary Preferences</p>
         <p>
-          At the moment, do you have any dietary preferences? If not, please select{' '}
-          <b>not applicable</b>. Don&apos;t worry, Metabolite will still recommend the best diet for
-          you!
+          At the moment, do you have any specific dietary preferences? If not, please select{' '}
+          <b className="text-green-300">Not Applicable</b>. Don&apos;t worry, Metabolite will still
+          recommend the best diet for you!
         </p>
       </div>
     </div>
