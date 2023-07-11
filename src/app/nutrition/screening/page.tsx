@@ -179,6 +179,14 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Budget</p>
+          <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+            <p>
+              What is your <i>estimated weekly budget</i> for your diet? This information will
+              enable <b className="text-metagreen">Metabolite</b> to provide personalized
+              recommendations that align with both your financial and health goals, ensuring a
+              well-balanced approach to your nutrition journey.
+            </p>
+          </div>
         </>
       );
       break;
@@ -274,8 +282,9 @@ function DietaryConcerns() {
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
         <p className="my-2 font-bold">Dietary Concerns</p>
         <p>
-          Are there any concerns related to your diet that could assist Metabolite in recommending a
-          suitable dietary plan, such as <b className="text-green-300">allergies</b> or{' '}
+          Are there any concerns related to your diet that could assist{' '}
+          <b className="text-metagreen">Metabolite</b> in recommending a suitable dietary plan, such
+          as <b className="text-green-300">allergies</b> or{' '}
           <b className="text-green-300">sensitivities</b> to certain foods?{' '}
         </p>
         <div className="mt-5">
