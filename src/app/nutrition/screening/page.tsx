@@ -3,6 +3,8 @@
 import { Radio } from './../../components/ui/Radio';
 import { useState } from 'react';
 import { RadioBasic } from './../../components/ui/Radio';
+import Lottie from 'lottie-react';
+import LoadingAnimation from '#/loading.json';
 
 const methodOptions: RadioBasic[] = [
   {
@@ -143,11 +145,14 @@ export default function Screening() {
   // Page states //
   const [stage, setStage] = useState<number>(1);
   const [isComplete, setIsComplete] = useState<boolean>(true);
+  const [isScreeningComplete, setIsScreeningComplete] = useState<boolean>(false);
 
   function nextStage() {
     if (stage < 5) {
       setStage((i) => i + 1);
       // setIsComplete(false);
+    } else {
+      setIsScreeningComplete(true);
     }
   }
 
@@ -163,9 +168,10 @@ export default function Screening() {
     case 1:
       content = (
         <>
-          <p className="mt-5">
+          <p className="mt-5 mx-5 text-center ">
             Prior to embarking on your journey, select one of the options below
           </p>
+
           <Radio items={methodOptions} setSelection={setMethod} />
         </>
       );
@@ -206,7 +212,7 @@ export default function Screening() {
         <>
           <p className="mt-5 font-semibold">Budget</p>
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
-            <p>
+            <p className="mt-5 mx-5 text-center sm:text-left">
               What is your <i>estimated weekly budget</i> for your diet? This information will
               enable <b className="text-metagreen">Metabolite</b> to provide personalized
               recommendations that align with both your financial and health goals, ensuring a
@@ -226,14 +232,32 @@ export default function Screening() {
   return (
     <>
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
-      <ProgressBar stage={stage} method={method} />
-      <ScreeningPageSelector
-        nextStage={nextStage}
-        prevStage={prevStage}
-        stage={stage}
-        isComplete={isComplete}
-      />
-      {content}
+      {!isScreeningComplete ? (
+        <>
+          <ProgressBar stage={stage} method={method} />
+          <ScreeningPageSelector
+            nextStage={nextStage}
+            prevStage={prevStage}
+            stage={stage}
+            isComplete={isComplete}
+          />
+          {content}
+        </>
+      ) : (
+        <>
+          {' '}
+          <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+            <p className="mt-5 mx-5 text-center">
+              You&apos;re all set! One moment as we let <b className="text-metagreen">Metabolite</b>{' '}
+              work its magic and unveil the top three <b className="text-green-300">personalized</b>{' '}
+              diets tailored just for you. Your health journey is about to take off!
+            </p>
+          </div>
+          <div className="bg-gray-800 rounded-full mt-20 mx-20">
+            <Lottie animationData={LoadingAnimation} loop={true} />
+          </div>
+        </>
+      )}
     </>
   );
 }
@@ -306,7 +330,7 @@ function BodyMetrics() {
 function DietaryConcerns() {
   return (
     <div className="w-full px-4">
-      <div className="mx-auto w-full max-w-md lg:max-w-xl">
+      <div className="mx-auto w-full max-w-md lg:max-w-xl ">
         <p className="my-2 font-bold">Dietary Concerns</p>
         <p>
           Are there any concerns related to your diet that could assist{' '}
@@ -314,6 +338,7 @@ function DietaryConcerns() {
           as <b className="text-green-300">allergies</b> or{' '}
           <b className="text-green-300">sensitivities</b> to certain foods?{' '}
         </p>
+        <p>Leave blank if this does not apply to you.</p>
         <div className="mt-5">
           <label htmlFor="allergies">
             <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
