@@ -131,8 +131,7 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Considerations</p>
-          <p>Dietary Concerns</p>
-          <p>Dietary Preferences</p>
+          <DietaryConcerns />
         </>
       );
       break;
@@ -224,6 +223,25 @@ function BodyMetrics() {
             />
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function DietaryConcerns() {
+  return (
+    <div className="w-full px-4">
+      <div className="mx-auto w-full max-w-md lg:max-w-xl">
+        <p className="my-2 font-bold">Dietary Concerns</p>
+        <p>
+          Is there any concerns related to your diet that could help Metabolite in assisting you in
+          recommending you a diet such as <b>allergies</b> specifically?
+        </p>
+        <p className="mt-4 mb-2 font-bold">Dietary Preferences</p>
+        <p>
+          At the moment, do you have any dietary preferences? If not, please select <b>other</b>.
+          Don&apos;t worry, Metabolite will still recommend the best diet for you!
+        </p>
       </div>
     </div>
   );
