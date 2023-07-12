@@ -1,10 +1,29 @@
 'use client';
 
 import { Radio } from './../../components/ui/Radio';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RadioBasic } from './../../components/ui/Radio';
 import Lottie from 'lottie-react';
 import LoadingAnimation from '#/loading.json';
+
+// Types
+interface MetricSetters {
+  setHeight: React.Dispatch<React.SetStateAction<number | null>>;
+  setWeight: React.Dispatch<React.SetStateAction<number | null>>;
+  setAge: React.Dispatch<React.SetStateAction<number | null>>;
+}
+
+interface MetricValues {
+  height: number | null;
+  weight: number | null;
+  age: number | null;
+}
+
+interface BodyMetricsProps {
+  metricSetters: MetricSetters;
+  metricValues: MetricValues;
+}
+// Constants
 
 const methodOptions: RadioBasic[] = [
   {
@@ -134,6 +153,9 @@ export default function Screening() {
 
   // -- Body metrics:
   const [gender, setGender] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+  const [height, setHeight] = useState<number | null>(null);
+  const [weight, setWeight] = useState<number | null>(null);
+  const [age, setAge] = useState<number | null>(null);
 
   // -- Lifestyle factors:
   const [activityLevel, setActivityLevel] = useState<RadioBasic>({ name: 'None', desc: 'None' });
@@ -147,7 +169,7 @@ export default function Screening() {
 
   // Page states //
   const [stage, setStage] = useState<number>(1);
-  const [isComplete, setIsComplete] = useState<boolean>(true);
+  const [isComplete, setIsComplete] = useState<boolean>(false);
   const [isScreeningComplete, setIsScreeningComplete] = useState<boolean>(false);
 
   function nextStage() {
@@ -155,7 +177,7 @@ export default function Screening() {
       case 'Quickstart':
         if (stage < MAX_QUESTION_QUICK && isComplete) {
           setStage((i) => i + 1);
-          //setIsComplete(false);
+          setIsComplete(false);
         } else {
           setIsScreeningComplete(true);
         }
@@ -163,7 +185,7 @@ export default function Screening() {
       case 'Complete':
         if (stage < MAX_QUESTION_COMPLETE && isComplete) {
           setStage((i) => i + 1);
-          // setIsComplete(false);
+          setIsComplete(false);
         } else {
           setIsScreeningComplete(true);
         }
@@ -177,6 +199,24 @@ export default function Screening() {
       setIsComplete(true);
     }
   }
+  function validateSelector() {
+    switch (stage) {
+      case 1:
+        if (method.name !== 'None') {
+          setIsComplete(true);
+        }
+        break;
+      case 2:
+        if (gender.name !== 'None' && weight !== null && height !== null && age !== null) {
+          setIsComplete(true);
+        }
+        break;
+    }
+  }
+
+  useEffect(() => {
+    validateSelector();
+  });
 
   let content;
   switch (stage) {
@@ -187,7 +227,7 @@ export default function Screening() {
             Prior to embarking on your journey, select one of the options below
           </p>
 
-          <Radio items={methodOptions} setSelection={setMethod} />
+          <Radio items={methodOptions} setSelection={setMethod} existingSelection={method} />
         </>
       );
       break;
@@ -209,7 +249,10 @@ export default function Screening() {
             </p>
           </div>
           <Radio items={genders} setSelection={setGender} label={'Gender'}></Radio>
-          <BodyMetrics />
+          <BodyMetrics
+            metricSetters={{ setHeight, setWeight, setAge }}
+            metricValues={{ height, weight, age }}
+          />
         </>
       );
       break;
@@ -351,7 +394,9 @@ export default function Screening() {
   );
 }
 
-function BodyMetrics() {
+function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
+  const { setHeight, setWeight, setAge } = metricSetters;
+  const { height, weight, age } = metricValues;
   return (
     <div className="w-full px-4">
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
@@ -369,7 +414,10 @@ function BodyMetrics() {
               type="number"
               min={1}
               max={400}
-              // value={null}
+              value={height ?? 0}
+              onChange={(e) => {
+                setHeight(Number(e.target.value));
+              }}
               placeholder="Height"
             />
           </div>
@@ -387,7 +435,10 @@ function BodyMetrics() {
               type="number"
               min={1}
               max={600}
-              // value={null}
+              value={weight ?? 0}
+              onChange={(e) => {
+                setWeight(Number(e.target.value));
+              }}
               placeholder="Weight"
             />
           </div>
@@ -406,7 +457,10 @@ function BodyMetrics() {
               type="number"
               min={1}
               max={150}
-              // value={null}
+              value={age ?? 0}
+              onChange={(e) => {
+                setAge(Number(e.target.value));
+              }}
               placeholder="Age"
             />
           </div>

@@ -7,11 +7,12 @@ export type RadioBasic = {
 
 export interface RadioProps {
   items: RadioBasic[];
-  label?: string;
   setSelection: React.Dispatch<React.SetStateAction<RadioBasic>>;
+  label?: string;
+  existingSelection?: RadioBasic;
 }
 
-export function Radio({ items, setSelection, label }: RadioProps) {
+export function Radio({ items, setSelection, label, existingSelection }: RadioProps) {
   return (
     <div className="w-full px-4 py-5">
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
@@ -29,7 +30,7 @@ export function Radio({ items, setSelection, label }: RadioProps) {
                 value={current}
                 className={({ active, checked }) => `
                 ${
-                  checked
+                  existingSelection?.name === current.name || checked
                     ? 'bg-emerald-700 bg-opacity-75 text-white ring-2 ring-green-400 scale-105'
                     : 'bg-white  hover:scale-105'
                 }
@@ -42,13 +43,21 @@ export function Radio({ items, setSelection, label }: RadioProps) {
                         <div className="text-sm">
                           <RadioGroup.Label
                             as="p"
-                            className={`font-medium  ${checked ? 'text-white' : 'text-gray-900'}`}
+                            className={`font-medium  ${
+                              existingSelection?.name === current.name || checked
+                                ? 'text-white'
+                                : 'text-gray-900'
+                            }`}
                           >
                             {current.name}
                           </RadioGroup.Label>
                           <RadioGroup.Description
                             as="span"
-                            className={`inline ${checked ? 'text-sky-100' : 'text-gray-500'}`}
+                            className={`inline ${
+                              existingSelection?.name === current.name || checked
+                                ? 'text-sky-100'
+                                : 'text-gray-500'
+                            }`}
                           >
                             <span>{current.desc}</span>
                           </RadioGroup.Description>
