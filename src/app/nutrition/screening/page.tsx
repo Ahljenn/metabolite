@@ -124,6 +124,9 @@ const budgetOptions: RadioBasic[] = [
   },
 ];
 
+const MAX_QUESTION_QUICK: number = 5;
+const MAX_QUESTION_COMPLETE: number = 7;
+
 export default function Screening() {
   // Form fields //
   // -- Prescreening:
@@ -148,11 +151,23 @@ export default function Screening() {
   const [isScreeningComplete, setIsScreeningComplete] = useState<boolean>(false);
 
   function nextStage() {
-    if (stage < 5) {
-      setStage((i) => i + 1);
-      // setIsComplete(false);
-    } else {
-      setIsScreeningComplete(true);
+    switch (method?.name) {
+      case 'Quickstart':
+        if (stage < MAX_QUESTION_QUICK && isComplete) {
+          setStage((i) => i + 1);
+          //setIsComplete(false);
+        } else {
+          setIsScreeningComplete(true);
+        }
+        break;
+      case 'Complete':
+        if (stage < MAX_QUESTION_COMPLETE && isComplete) {
+          setStage((i) => i + 1);
+          // setIsComplete(false);
+        } else {
+          setIsScreeningComplete(true);
+        }
+        break;
     }
   }
 
@@ -180,6 +195,19 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Body Metrics</p>
+          <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+            <p className="mx-5 sm:mx-0 text-center sm:text-left">
+              Gender, height, weight, and age play a crucial role in calculating your{' '}
+              <b className="text-green-300">Basal Metabolic Rate</b> (BMR). BMR represents the
+              number of calories your body needs to function at rest, providing valuable insights
+              into your individual energy expenditure.
+            </p>
+            <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
+              By accurately determining your BMR, <b className="text-metagreen">Metabolite</b> can
+              better understand your body&apos;s specific needs and customize a nutrition plan that
+              supports your health and well-being goals.
+            </p>
+          </div>
           <Radio items={genders} setSelection={setGender} label={'Gender'}></Radio>
           <BodyMetrics />
         </>
@@ -189,6 +217,14 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Lifestyle Factors</p>
+          <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+            <p className="mx-5 sm:mx-0 text-center sm:text-left">
+              By considering your activity levels and work exertion,{' '}
+              <b className="text-metagreen">Metabolite</b> can provide tailored recommendations that
+              align with your energy needs and help you achieve your health and wellness goals
+              effectively
+            </p>
+          </div>
           <Radio
             items={activityOptions}
             setSelection={setActivityLevel}
@@ -212,7 +248,7 @@ export default function Screening() {
         <>
           <p className="mt-5 font-semibold">Budget</p>
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
-            <p className="mt-5 mx-5 text-center sm:text-left">
+            <p className="mx-5 sm:mx-0 text-center sm:text-left">
               What is your <i>estimated weekly budget</i> for your diet? This information will
               enable <b className="text-metagreen">Metabolite</b> to provide personalized
               recommendations that align with both your financial and health goals, ensuring a
@@ -220,6 +256,44 @@ export default function Screening() {
             </p>
           </div>
           <Radio items={budgetOptions} setSelection={setBudget} />
+        </>
+      );
+      break;
+    case 6:
+      content = (
+        <>
+          <p className="mt-5 font-semibold">Fasting</p>
+          <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+            <p className="mx-5 sm:mx-0 text-center sm:text-left">
+              If you have a preference for fasting, we&apos;re here to cater to your unique dietary
+              needs. Fasting has gained popularity as an approach to promote various health
+              benefits, and we understand the importance of incorporating it into your nutrition
+              plan. By understanding your fasting preferences, we can provide tailored
+              recommendations that align with your goals, ensuring a well-rounded and effective
+              approach to your health journey.
+            </p>
+          </div>
+          {/* <Radio items={budgetOptions} setSelection={setBudget} /> */}
+        </>
+      );
+      break;
+    case 7:
+      content = (
+        <>
+          <p className="mt-5 font-semibold">Health Goals</p>
+          <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+            <p className="mx-5 sm:mx-0 text-center sm:text-left">
+              <b>Health Goals</b> encompass a wide range of objectives beyond just weight loss. It
+              allows you to define your desired outcomes, such as improving overall well-being,
+              enhancing cardiovascular health, reducing blood pressure, managing diabetes, building
+              muscle mass, cutting body fat, or achieving a specific body composition.
+            </p>
+            <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
+              By specifying your health goals, we can provide personalized recommendations tailored
+              to your unique aspirations, supporting you in your journey towards optimal health. .
+            </p>
+          </div>
+          {/* <Radio items={budgetOptions} setSelection={setBudget} /> */}
         </>
       );
       break;
@@ -232,6 +306,21 @@ export default function Screening() {
   return (
     <>
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
+      <div
+        className="z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
+      rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] 
+      after:bg-gradient-conic after:blur-2xl after:content-[''] before:bg-gradient-to-br 
+      before:from-transparent before:to-green-800 before:opacity-10 after:from-emerald-800 after:via-lime-800 
+      after:opacity-40 before:lg:h-[260px] translate-x-[-25rem] translate-y-[12rem]"
+      />
+      <div
+        className="z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
+      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[280px] after:w-[340px] 
+      after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
+      before:from-transparent before:to-green-700 before:opacity-10 after:from-emerald-900 after:via-green-600 
+      after:opacity-40 before:lg:h-[460px] translate-y-[30rem]"
+      />
+
       {!isScreeningComplete ? (
         <>
           <ProgressBar stage={stage} method={method} />
@@ -417,11 +506,15 @@ function ProgressBar({ stage, method }: { stage: number; method: RadioBasic }) {
       <div className="w-full rounded-full h-2.5 bg-gray-700">
         <div
           className="h-2.5 rounded-full bg-emerald-700 transition-all duration-700"
-          style={{ width: `${method?.name === 'Complete' ? stage * 5 : stage * 20}%` }}
+          style={{
+            width: `${
+              method?.name === 'Complete' ? stage * MAX_QUESTION_COMPLETE * 2.05 : stage * 20
+            }%`,
+          }}
         ></div>
       </div>
       <p className="mt-2 opacity-50 text-center">
-        {stage} of {method?.name === 'Complete' ? 10 : 5}
+        {stage} of {method?.name === 'Complete' ? MAX_QUESTION_COMPLETE : MAX_QUESTION_QUICK}
       </p>
     </div>
   );
