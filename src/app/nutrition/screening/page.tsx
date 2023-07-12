@@ -167,7 +167,7 @@ export default function Screening() {
   const [workExertion, setWorkExertion] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // -- Considerations
-  const [allergies, setAllergies] = useState<String>('');
+  const [allergies, setAllergies] = useState<string>('');
   const [dietPref, setDietPref] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // -- Budgets
@@ -463,7 +463,7 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="height"
+              id="weight"
               type="number"
               min={1}
               max={600}
