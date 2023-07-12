@@ -23,8 +23,13 @@ interface BodyMetricsProps {
   metricSetters: MetricSetters;
   metricValues: MetricValues;
 }
-// Constants
 
+interface DietaryConcernsProps {
+  allergies: string;
+  setAllergies: React.Dispatch<React.SetStateAction<string>>;
+}
+
+// Constants
 const methodOptions: RadioBasic[] = [
   {
     name: 'Quickstart',
@@ -162,6 +167,7 @@ export default function Screening() {
   const [workExertion, setWorkExertion] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // -- Considerations
+  const [allergies, setAllergies] = useState<String>('');
   const [dietPref, setDietPref] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // -- Budgets
@@ -307,7 +313,7 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Considerations</p>
-          <DietaryConcerns />
+          <DietaryConcerns allergies={allergies} setAllergies={setAllergies} />
           <Radio items={dietOptions} setSelection={setDietPref} existingSelection={dietPref} />
         </>
       );
@@ -496,7 +502,7 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
   );
 }
 
-function DietaryConcerns() {
+function DietaryConcerns({ allergies, setAllergies }: DietaryConcernsProps) {
   return (
     <div className="w-full px-4">
       <div className="mx-auto w-full max-w-md lg:max-w-xl ">
@@ -519,7 +525,10 @@ function DietaryConcerns() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="allergies"
             rows={4}
-            // value={null}
+            onChange={(e) => {
+              setAllergies(e.target.value);
+            }}
+            value={allergies || undefined}
             placeholder="Peanut allergy, Soy allergy, shellfish allergy, etc."
           />
         </div>
