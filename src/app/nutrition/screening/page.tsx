@@ -308,18 +308,19 @@ export default function Screening() {
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
       <div
         className="z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
-      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[280px] after:w-[240px] 
+      rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] 
       after:bg-gradient-conic after:blur-2xl after:content-[''] before:bg-gradient-to-br 
       before:from-transparent before:to-green-800 before:opacity-10 after:from-emerald-800 after:via-lime-800 
-      after:opacity-40 before:lg:h-[260px] translate-x-[-25rem] translate-y-[12rem] "
+      after:opacity-40 before:lg:h-[260px] translate-x-[-25rem] translate-y-[12rem]"
       />
       <div
         className="z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
-      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[380px] after:w-[340px] 
+      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[280px] after:w-[340px] 
       after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
       before:from-transparent before:to-green-700 before:opacity-10 after:from-emerald-900 after:via-green-600 
       after:opacity-40 before:lg:h-[460px] translate-y-[30rem]"
       />
+
       {!isScreeningComplete ? (
         <>
           <ProgressBar stage={stage} method={method} />
