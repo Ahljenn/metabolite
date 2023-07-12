@@ -2,8 +2,8 @@ import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-import LoginWithGoogle from './LoginWithGoogle';
-import { useSession, signOut } from 'next-auth/react';
+import LoginWithGoogle, { onSignIn } from './LoginWithGoogle';
+import { useSession, signOut, signIn } from 'next-auth/react';
 
 const navigation = [
   { name: 'Hub', href: '/', current: true },
@@ -165,14 +165,19 @@ export default function Navbar({ currentRoute }: NavBarProps) {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              <Disclosure.Button
-                href="/api/auth/signin"
-                as="a"
-                className="text-blue-300 hover:bg-gray-700 hover:text-white
-                    block rounded-md px-3 py-2 text-base font-medium"
-              >
-                Login With Google
-              </Disclosure.Button>
+              {session ? (
+                <></>
+              ) : (
+                <Disclosure.Button
+                  onClick={onSignIn}
+                  as="a"
+                  className="text-blue-300 hover:bg-gray-700 hover:text-white
+                    block rounded-md px-3 py-2 text-base font-medium cursor-pointer"
+                >
+                  Login With Google
+                </Disclosure.Button>
+              )}
+
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}

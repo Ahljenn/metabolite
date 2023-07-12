@@ -6,11 +6,11 @@ interface SessionProps {
   status: string;
 }
 
-export default function LoginWithGoogle({ data: session, status }: SessionProps) {
-  function onSignIn() {
-    signIn('google');
-  }
+export function onSignIn() {
+  signIn('google');
+}
 
+export default function LoginWithGoogle({ data: session, status }: SessionProps) {
   if (!session)
     return (
       <button
