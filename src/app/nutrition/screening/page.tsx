@@ -181,13 +181,13 @@ export default function Screening() {
         <>
           <p className="mt-5 font-semibold">Body Metrics</p>
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
-            <p className="mt-5 mx-5 text-center sm:text-left">
+            <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
               Gender, height, weight, and age play a crucial role in calculating your{' '}
               <b className="text-green-300">Basal Metabolic Rate</b> (BMR). BMR represents the
               number of calories your body needs to function at rest, providing valuable insights
               into your individual energy expenditure.
             </p>
-            <p className="mt-5 mx-5 text-center sm:text-left">
+            <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
               By accurately determining your BMR, <b className="text-metagreen">Metabolite</b> can
               better understand your body&apos;s specific needs and customize a nutrition plan that
               supports your health and well-being goals.
@@ -225,7 +225,7 @@ export default function Screening() {
         <>
           <p className="mt-5 font-semibold">Budget</p>
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
-            <p className="mt-5 mx-5 text-center sm:text-left">
+            <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
               What is your <i>estimated weekly budget</i> for your diet? This information will
               enable <b className="text-metagreen">Metabolite</b> to provide personalized
               recommendations that align with both your financial and health goals, ensuring a
