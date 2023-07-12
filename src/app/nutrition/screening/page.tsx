@@ -263,7 +263,12 @@ export default function Screening() {
               supports your health and well-being goals.
             </p>
           </div>
-          <Radio items={genders} setSelection={setGender} label={'Gender'}></Radio>
+          <Radio
+            items={genders}
+            setSelection={setGender}
+            label={'Gender'}
+            existingSelection={gender}
+          />
           <BodyMetrics
             metricSetters={{ setHeight, setWeight, setAge }}
             metricValues={{ height, weight, age }}
@@ -287,8 +292,14 @@ export default function Screening() {
             items={activityOptions}
             setSelection={setActivityLevel}
             label={'Activity Levels'}
+            existingSelection={activityLevel}
           />
-          <Radio items={workOptions} setSelection={setWorkExertion} label={'Work exertion'} />
+          <Radio
+            items={workOptions}
+            setSelection={setWorkExertion}
+            label={'Work exertion'}
+            existingSelection={workExertion}
+          />
         </>
       );
       break;
@@ -297,7 +308,7 @@ export default function Screening() {
         <>
           <p className="mt-5 font-semibold">Considerations</p>
           <DietaryConcerns />
-          <Radio items={dietOptions} setSelection={setDietPref} />
+          <Radio items={dietOptions} setSelection={setDietPref} existingSelection={dietPref} />
         </>
       );
       break;
@@ -313,7 +324,7 @@ export default function Screening() {
               well-balanced approach to your nutrition journey.
             </p>
           </div>
-          <Radio items={budgetOptions} setSelection={setBudget} />
+          <Radio items={budgetOptions} setSelection={setBudget} existingSelection={budget} />
         </>
       );
       break;
