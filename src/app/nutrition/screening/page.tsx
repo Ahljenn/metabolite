@@ -181,7 +181,7 @@ export default function Screening() {
         <>
           <p className="mt-5 font-semibold">Body Metrics</p>
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
-            <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
+            <p className="mx-5 sm:mx-0 text-center sm:text-left">
               Gender, height, weight, and age play a crucial role in calculating your{' '}
               <b className="text-green-300">Basal Metabolic Rate</b> (BMR). BMR represents the
               number of calories your body needs to function at rest, providing valuable insights
@@ -202,6 +202,14 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Lifestyle Factors</p>
+          <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+            <p className="mx-5 sm:mx-0 text-center sm:text-left">
+              By considering your activity levels and work exertion,{' '}
+              <b className="text-metagreen">Metabolite</b> can provide tailored recommendations that
+              align with your energy needs and help you achieve your health and wellness goals
+              effectively
+            </p>
+          </div>
           <Radio
             items={activityOptions}
             setSelection={setActivityLevel}
@@ -225,7 +233,7 @@ export default function Screening() {
         <>
           <p className="mt-5 font-semibold">Budget</p>
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
-            <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
+            <p className="mx-5 sm:mx-0 text-center sm:text-left">
               What is your <i>estimated weekly budget</i> for your diet? This information will
               enable <b className="text-metagreen">Metabolite</b> to provide personalized
               recommendations that align with both your financial and health goals, ensuring a
