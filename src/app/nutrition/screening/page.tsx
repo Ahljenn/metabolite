@@ -211,6 +211,21 @@ export default function Screening() {
           setIsComplete(true);
         }
         break;
+      case 3:
+        if (activityLevel.name !== 'None' && workExertion.name !== 'None') {
+          setIsComplete(true);
+        }
+        break;
+      case 4:
+        if (dietPref.name !== 'None') {
+          setIsComplete(true);
+        }
+        break;
+      case 5:
+        if (budget.name !== 'None') {
+          setIsComplete(true);
+        }
+        break;
     }
   }
 
