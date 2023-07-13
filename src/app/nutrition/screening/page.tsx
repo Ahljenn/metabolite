@@ -205,39 +205,56 @@ export default function Screening() {
       setIsComplete(true);
     }
   }
-  function validateSelector() {
-    switch (stage) {
-      case 1:
-        if (method.name !== 'None') {
-          setIsComplete(true);
-        }
-        break;
-      case 2:
-        if (gender.name !== 'None' && Number(weight) > 0 && Number(height) > 0 && Number(age) > 0) {
-          setIsComplete(true);
-        }
-        break;
-      case 3:
-        if (activityLevel.name !== 'None' && workExertion.name !== 'None') {
-          setIsComplete(true);
-        }
-        break;
-      case 4:
-        if (dietPref.name !== 'None') {
-          setIsComplete(true);
-        }
-        break;
-      case 5:
-        if (budget.name !== 'None') {
-          setIsComplete(true);
-        }
-        break;
-    }
-  }
 
   useEffect(() => {
+    function validateSelector() {
+      switch (stage) {
+        case 1:
+          if (method.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
+        case 2:
+          if (
+            gender.name !== 'None' &&
+            Number(weight) > 0 &&
+            Number(height) > 0 &&
+            Number(age) > 0
+          ) {
+            setIsComplete(true);
+          }
+          break;
+        case 3:
+          if (activityLevel.name !== 'None' && workExertion.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
+        case 4:
+          if (dietPref.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
+        case 5:
+          if (budget.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
+      }
+    }
     validateSelector();
-  });
+  }, [
+    method,
+    gender,
+    height,
+    weight,
+    age,
+    activityLevel,
+    workExertion,
+    allergies,
+    dietPref,
+    budget,
+    stage,
+  ]);
 
   let content;
   switch (stage) {
@@ -413,6 +430,18 @@ export default function Screening() {
       ) : (
         <>
           {' '}
+          {console.log(
+            method,
+            gender,
+            height,
+            weight,
+            age,
+            activityLevel,
+            workExertion,
+            allergies,
+            dietPref,
+            budget
+          )}
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mt-5 mx-5 text-center">
               You&apos;re all set! One moment as we let <b className="text-metagreen">Metabolite</b>{' '}
@@ -420,7 +449,7 @@ export default function Screening() {
               diets tailored just for you. Your health journey is about to take off!
             </p>
           </div>
-          <div className="rounded-full mt-20 mx-20">
+          <div className="rounded-full mt-10 mx-20">
             <Lottie animationData={LoadingAnimation} loop={true} />
           </div>
         </>
