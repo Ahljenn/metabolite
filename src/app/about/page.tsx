@@ -92,6 +92,16 @@ export default function About() {
             on a journey towards a healthier, happier future.
           </p>
         </div>
+        <h2 className="mt-10 lg:text-2xl font-bold">Contact us</h2>
+        <div className="mt-5 opacity-50 max-w-[30rem] lg:max-w-[45rem] ">
+          <p>
+            We value your feedback and are here to assist you with any questions, concerns, or
+            suggestions you may have.{' '}
+            <a className="italic  text-emerald-300 underline" href="mailto:metabolite.io@gmail.com">
+              Please feel free to reach out to us
+            </a>
+          </p>
+        </div>
       </div>
     </>
   );
