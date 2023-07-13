@@ -412,10 +412,20 @@ export default function Screening() {
       before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[280px] after:w-[340px] 
       after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
       before:from-transparent before:to-green-700 before:opacity-10 after:from-emerald-900 after:via-green-600 
-      after:opacity-40 before:lg:h-[460px] translate-y-[30rem] ${
+      after:opacity-40 before:lg:h-[460px] translate-y-[27rem] ${
         isScreeningComplete ? 'animate-pulse' : ''
       }`}
       />
+      <div
+        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
+      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[220px] after:w-[250px] 
+      after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
+      before:from-transparent before:to-green-300 before:opacity-10 after:from-emerald-200 after:via-lime-600 
+      after:opacity-50 before:lg:h-[660px] translate-y-[30rem] translate-x-[-18rem] ${
+        isScreeningComplete ? 'animate-pulse' : ''
+      }`}
+      />
+
       {!isScreeningComplete ? (
         <>
           <ProgressBar stage={stage} method={method} />
@@ -473,7 +483,7 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               </div>
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
               id="height"
               type="number"
               min={1}
@@ -494,7 +504,7 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               </div>
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
               id="weight"
               type="number"
               min={1}
@@ -516,7 +526,7 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               </div>
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
               id="age"
               type="number"
               min={1}
@@ -554,9 +564,9 @@ function DietaryConcerns({ allergies, setAllergies }: DietaryConcernsProps) {
             </div>
           </label>
           <textarea
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border  w-full py-2 px-3 text-sm text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
             id="allergies"
-            rows={4}
+            rows={5}
             onChange={(e) => {
               setAllergies(e.target.value);
             }}
