@@ -213,7 +213,7 @@ export default function Screening() {
         }
         break;
       case 2:
-        if (gender.name !== 'None' && weight !== null && height !== null && age !== null) {
+        if (gender.name !== 'None' && Number(weight) > 0 && Number(height) > 0 && Number(age) > 0) {
           setIsComplete(true);
         }
         break;
@@ -446,9 +446,9 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               type="number"
               min={1}
               max={400}
-              value={height ?? undefined}
+              value={height != null ? height.toString() : ''}
               onChange={(e) => {
-                setHeight(Number(e.target.value));
+                setHeight(Number(e.target.valueAsNumber));
               }}
               placeholder="Height"
             />
@@ -467,9 +467,9 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               type="number"
               min={1}
               max={600}
-              value={weight ?? undefined}
+              value={weight != null ? weight.toString() : ''}
               onChange={(e) => {
-                setWeight(Number(e.target.value));
+                setWeight(Number(e.target.valueAsNumber));
               }}
               placeholder="Weight"
             />
@@ -489,9 +489,9 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               type="number"
               min={1}
               max={150}
-              value={age ?? undefined}
+              value={age != null ? age.toString() : ''}
               onChange={(e) => {
-                setAge(Number(e.target.value));
+                setAge(Number(e.target.valueAsNumber));
               }}
               placeholder="Age"
             />
