@@ -23,8 +23,13 @@ interface BodyMetricsProps {
   metricSetters: MetricSetters;
   metricValues: MetricValues;
 }
-// Constants
 
+interface DietaryConcernsProps {
+  allergies: string;
+  setAllergies: React.Dispatch<React.SetStateAction<string>>;
+}
+
+// Constants
 const methodOptions: RadioBasic[] = [
   {
     name: 'Quickstart',
@@ -162,6 +167,7 @@ export default function Screening() {
   const [workExertion, setWorkExertion] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // -- Considerations
+  const [allergies, setAllergies] = useState<string>('');
   const [dietPref, setDietPref] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // -- Budgets
@@ -199,39 +205,56 @@ export default function Screening() {
       setIsComplete(true);
     }
   }
-  function validateSelector() {
-    switch (stage) {
-      case 1:
-        if (method.name !== 'None') {
-          setIsComplete(true);
-        }
-        break;
-      case 2:
-        if (gender.name !== 'None' && weight !== null && height !== null && age !== null) {
-          setIsComplete(true);
-        }
-        break;
-      case 3:
-        if (activityLevel.name !== 'None' && workExertion.name !== 'None') {
-          setIsComplete(true);
-        }
-        break;
-      case 4:
-        if (dietPref.name !== 'None') {
-          setIsComplete(true);
-        }
-        break;
-      case 5:
-        if (budget.name !== 'None') {
-          setIsComplete(true);
-        }
-        break;
-    }
-  }
 
   useEffect(() => {
+    function validateSelector() {
+      switch (stage) {
+        case 1:
+          if (method.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
+        case 2:
+          if (
+            gender.name !== 'None' &&
+            Number(weight) > 0 &&
+            Number(height) > 0 &&
+            Number(age) > 0
+          ) {
+            setIsComplete(true);
+          }
+          break;
+        case 3:
+          if (activityLevel.name !== 'None' && workExertion.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
+        case 4:
+          if (dietPref.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
+        case 5:
+          if (budget.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
+      }
+    }
     validateSelector();
-  });
+  }, [
+    method,
+    gender,
+    height,
+    weight,
+    age,
+    activityLevel,
+    workExertion,
+    allergies,
+    dietPref,
+    budget,
+    stage,
+  ]);
 
   let content;
   switch (stage) {
@@ -307,7 +330,7 @@ export default function Screening() {
       content = (
         <>
           <p className="mt-5 font-semibold">Considerations</p>
-          <DietaryConcerns />
+          <DietaryConcerns allergies={allergies} setAllergies={setAllergies} />
           <Radio items={dietOptions} setSelection={setDietPref} existingSelection={dietPref} />
         </>
       );
@@ -376,18 +399,31 @@ export default function Screening() {
     <>
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
       <div
-        className="z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
+        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
       rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] 
       after:bg-gradient-conic after:blur-2xl after:content-[''] before:bg-gradient-to-br 
       before:from-transparent before:to-green-800 before:opacity-10 after:from-emerald-800 after:via-lime-800 
-      after:opacity-40 before:lg:h-[260px] translate-x-[-25rem] translate-y-[12rem]"
+      after:opacity-40 before:lg:h-[260px] translate-x-[-25rem] translate-y-[12rem] ${
+        isScreeningComplete ? 'animate-pulse' : ''
+      }`}
       />
       <div
-        className="z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
+        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
       before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[280px] after:w-[340px] 
       after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
       before:from-transparent before:to-green-700 before:opacity-10 after:from-emerald-900 after:via-green-600 
-      after:opacity-40 before:lg:h-[460px] translate-y-[30rem]"
+      after:opacity-40 before:lg:h-[460px] translate-y-[27rem] ${
+        isScreeningComplete ? 'animate-pulse' : ''
+      }`}
+      />
+      <div
+        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
+      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[220px] after:w-[250px] 
+      after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
+      before:from-transparent before:to-green-300 before:opacity-10 after:from-emerald-200 after:via-lime-600 
+      after:opacity-50 before:lg:h-[660px] translate-y-[30rem] translate-x-[-18rem] ${
+        isScreeningComplete ? 'animate-pulse' : ''
+      }`}
       />
 
       {!isScreeningComplete ? (
@@ -404,6 +440,18 @@ export default function Screening() {
       ) : (
         <>
           {' '}
+          {console.log(
+            method,
+            gender,
+            height,
+            weight,
+            age,
+            activityLevel,
+            workExertion,
+            allergies,
+            dietPref,
+            budget
+          )}
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mt-5 mx-5 text-center">
               You&apos;re all set! One moment as we let <b className="text-metagreen">Metabolite</b>{' '}
@@ -411,7 +459,7 @@ export default function Screening() {
               diets tailored just for you. Your health journey is about to take off!
             </p>
           </div>
-          <div className="bg-gray-800 rounded-full mt-20 mx-20">
+          <div className="rounded-full mt-10 mx-20">
             <Lottie animationData={LoadingAnimation} loop={true} />
           </div>
         </>
@@ -435,14 +483,14 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               </div>
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
               id="height"
               type="number"
               min={1}
               max={400}
-              value={height ?? undefined}
+              value={height != null ? height.toString() : ''}
               onChange={(e) => {
-                setHeight(Number(e.target.value));
+                setHeight(Number(e.target.valueAsNumber));
               }}
               placeholder="Height"
             />
@@ -456,14 +504,14 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               </div>
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="height"
+              className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
+              id="weight"
               type="number"
               min={1}
               max={600}
-              value={weight ?? undefined}
+              value={weight != null ? weight.toString() : ''}
               onChange={(e) => {
-                setWeight(Number(e.target.value));
+                setWeight(Number(e.target.valueAsNumber));
               }}
               placeholder="Weight"
             />
@@ -478,14 +526,14 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               </div>
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
               id="age"
               type="number"
               min={1}
               max={150}
-              value={age ?? undefined}
+              value={age != null ? age.toString() : ''}
               onChange={(e) => {
-                setAge(Number(e.target.value));
+                setAge(Number(e.target.valueAsNumber));
               }}
               placeholder="Age"
             />
@@ -496,7 +544,7 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
   );
 }
 
-function DietaryConcerns() {
+function DietaryConcerns({ allergies, setAllergies }: DietaryConcernsProps) {
   return (
     <div className="w-full px-4">
       <div className="mx-auto w-full max-w-md lg:max-w-xl ">
@@ -516,10 +564,13 @@ function DietaryConcerns() {
             </div>
           </label>
           <textarea
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border  w-full py-2 px-3 text-sm text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
             id="allergies"
-            rows={4}
-            // value={null}
+            rows={5}
+            onChange={(e) => {
+              setAllergies(e.target.value);
+            }}
+            value={allergies || undefined}
             placeholder="Peanut allergy, Soy allergy, shellfish allergy, etc."
           />
         </div>

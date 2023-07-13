@@ -32,9 +32,9 @@ export function Radio({ items, setSelection, label, existingSelection }: RadioPr
                 ${
                   existingSelection?.name === current.name || checked
                     ? 'bg-emerald-700 bg-opacity-75 text-white ring-2 ring-green-400 scale-105'
-                    : 'bg-white  hover:scale-105'
+                    : 'border-neutral-800 bg-neutral-900 hover:scale-105 hover:border-neutral-700 hover:bg-neutral-800 '
                 }
-                  relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none transition duration-300`}
+                  relative border flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none transition duration-300`}
               >
                 {({ active, checked }) => (
                   <>
@@ -45,8 +45,8 @@ export function Radio({ items, setSelection, label, existingSelection }: RadioPr
                             as="p"
                             className={`font-medium  ${
                               existingSelection?.name === current.name || checked
-                                ? 'text-white'
-                                : 'text-gray-900'
+                                ? 'text-emerald-50'
+                                : 'text-white'
                             }`}
                           >
                             {current.name}
@@ -55,8 +55,8 @@ export function Radio({ items, setSelection, label, existingSelection }: RadioPr
                             as="span"
                             className={`inline ${
                               existingSelection?.name === current.name || checked
-                                ? 'text-sky-100'
-                                : 'text-gray-500'
+                                ? 'text-white'
+                                : 'opacity-50'
                             }`}
                           >
                             <span>{current.desc}</span>
