@@ -148,6 +148,37 @@ const budgetOptions: RadioBasic[] = [
   },
 ];
 
+const fastingOptions: RadioBasic[] = [
+  {
+    name: 'Not Fasting',
+    desc: 'Select this option if you wish to not follow any specific fasting regimen.',
+  },
+  {
+    name: 'Intermittent Fasting',
+    desc: 'Alternate between periods of eating and fasting with various schedules like 16/8 or 5:2.',
+  },
+  {
+    name: 'Extended Fasting',
+    desc: 'Engage in longer periods of fasting lasting 24 to 48 hours or more.',
+  },
+  {
+    name: 'Time-Restricted Feeding',
+    desc: 'Limit the eating window to a specific time frame each day, such as 8-hour eating and 16-hour fasting.',
+  },
+  {
+    name: '5-Day Fasting Mimicking Diet (FMD)',
+    desc: 'Follow a low-calorie diet designed to mimic fasting effects for five days.',
+  },
+  {
+    name: 'Alternate-Day Fasting',
+    desc: 'Alternate between fasting days and regular eating days, restricting calorie intake on fasting days.',
+  },
+  {
+    name: 'OMAD (One Meal a Day)',
+    desc: 'Consume all daily calories in a single meal, fasting for the rest of the day.',
+  },
+];
+
 const MAX_QUESTION_QUICK: number = 5;
 const MAX_QUESTION_COMPLETE: number = 7;
 
@@ -172,6 +203,9 @@ export default function Screening() {
 
   // -- Budgets
   const [budget, setBudget] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
+  // -- Fasting
+  const [fast, setFast] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // Page states //
   const [stage, setStage] = useState<number>(1);
@@ -236,6 +270,11 @@ export default function Screening() {
           break;
         case 5:
           if (budget.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
+        case 6:
+          if (fast.name !== 'None') {
             setIsComplete(true);
           }
           break;
@@ -365,7 +404,7 @@ export default function Screening() {
               approach to your health journey.
             </p>
           </div>
-          {/* <Radio items={budgetOptions} setSelection={setBudget} /> */}
+          <Radio items={fastingOptions} setSelection={setFast} existingSelection={fast} />
         </>
       );
       break;
