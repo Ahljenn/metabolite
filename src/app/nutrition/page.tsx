@@ -14,7 +14,7 @@ const nutritionCardData: { header: string; desc: string; route: string }[] = [
     route: '#',
   },
   {
-    header: 'Basal Metaboic Rate',
+    header: 'Basal Metabolic Rate',
     desc: 'Learn more about the amount of energy expended by your body at rest to maintain basic bodily functions such as breathing, circulation, and cell production.',
     route: '#',
   },
