@@ -293,6 +293,7 @@ export default function Screening() {
     dietPref,
     budget,
     stage,
+    fast,
   ]);
 
   let content;
