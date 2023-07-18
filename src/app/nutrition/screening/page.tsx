@@ -44,11 +44,11 @@ const methodOptions: RadioBasic[] = [
 const genders: RadioBasic[] = [
   {
     name: 'Female',
-    desc: 'Select if you identify as female gender.',
+    desc: 'Select if you are a biological female.',
   },
   {
     name: 'Male',
-    desc: 'Select if you identify as male gender.',
+    desc: 'Select if you are a biological male.',
   },
 ];
 
