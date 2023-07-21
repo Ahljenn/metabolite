@@ -530,7 +530,8 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               max={400}
               value={height != null ? height.toString() : ''}
               onChange={(e) => {
-                setHeight(Number(e.target.valueAsNumber));
+                let value = Number(e.target.valueAsNumber);
+                if (value <= 1000) setHeight(value);
               }}
               placeholder="Height"
             />
@@ -551,7 +552,8 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               max={600}
               value={weight != null ? weight.toString() : ''}
               onChange={(e) => {
-                setWeight(Number(e.target.valueAsNumber));
+                let value = Number(e.target.valueAsNumber);
+                if (value <= 2000) setWeight(value);
               }}
               placeholder="Weight"
             />
@@ -573,7 +575,8 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
               max={150}
               value={age != null ? age.toString() : ''}
               onChange={(e) => {
-                setAge(Number(e.target.valueAsNumber));
+                let value = Number(e.target.valueAsNumber);
+                if (value <= 150) setAge(value);
               }}
               placeholder="Age"
             />
