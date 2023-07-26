@@ -15,7 +15,7 @@ export interface RadioProps {
 
 export function Radio({ items, setSelection, label, existingSelection, isRow }: RadioProps) {
   return (
-    <div className="w-full sm:px-2 py-5">
+    <div className="w-full px-4 sm:px-2 py-5">
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
         <RadioGroup onChange={(e: any) => setSelection(e)}>
           <RadioGroup.Label className="sr-only">{label}</RadioGroup.Label>

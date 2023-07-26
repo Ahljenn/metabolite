@@ -96,7 +96,7 @@ const workOptions: RadioBasic[] = [
 
 const allergyOptions: RadioBasic[] = [
   {
-    name: 'None',
+    name: 'No Allergy',
     desc: 'No known allergies.',
   },
   {
@@ -234,6 +234,24 @@ const fastingOptions: RadioBasic[] = [
   },
 ];
 
+const goalOptions: RadioBasic[] = [
+  { name: 'Losing Weight', desc: 'Focus on weight loss and reducing body fat.' },
+  { name: 'Building Muscle', desc: 'Emphasize building and gaining muscle mass.' },
+  { name: 'Building Strength', desc: 'Prioritize increasing overall strength and power.' },
+  {
+    name: 'Enhancing Cardiovascular Health',
+    desc: 'Improve cardiovascular fitness and endurance.',
+  },
+  { name: 'Managing Diabetes', desc: 'Tailored diet plan for individuals with diabetes.' },
+  { name: 'Body Recomposition', desc: 'Simultaneously lose fat and gain muscle.' },
+  {
+    name: 'Ethical or Environment Concerns',
+    desc: 'Consider ethical and environmental factors in food choices.',
+  },
+  { name: 'Performance Enhancement', desc: 'Optimize diet for athletic performance.' },
+  { name: 'Gut Health', desc: 'Focus on improving digestive and gut health.' },
+];
+
 const MAX_QUESTION_QUICK: number = 5;
 const MAX_QUESTION_COMPLETE: number = 7;
 
@@ -261,6 +279,9 @@ export default function Screening() {
 
   // -- Fasting
   const [fast, setFast] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+
+  // -- Health Goals
+  const [healthGoal, setHealthGoal] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // Page states //
   const [stage, setStage] = useState<number>(1);
@@ -333,6 +354,11 @@ export default function Screening() {
             setIsComplete(true);
           }
           break;
+        case 7:
+          if (healthGoal.name !== 'None') {
+            setIsComplete(true);
+          }
+          break;
       }
     }
     validateSelector();
@@ -349,6 +375,7 @@ export default function Screening() {
     budget,
     stage,
     fast,
+    healthGoal,
   ]);
 
   let content;
@@ -483,10 +510,10 @@ export default function Screening() {
             </p>
             <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
               By specifying your health goals, we can provide personalized recommendations tailored
-              to your unique aspirations, supporting you in your journey towards optimal health. .
+              to your unique aspirations, supporting you in your journey towards optimal health.
             </p>
           </div>
-          {/* <Radio items={budgetOptions} setSelection={setBudget} /> */}
+          <Radio items={goalOptions} setSelection={setHealthGoal} existingSelection={healthGoal} />
         </>
       );
       break;
