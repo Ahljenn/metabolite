@@ -10,31 +10,30 @@ export interface RadioProps {
   setSelection: React.Dispatch<React.SetStateAction<RadioBasic>>;
   label?: string;
   existingSelection?: RadioBasic;
+  isRow?: boolean;
 }
 
-export function Radio({ items, setSelection, label, existingSelection }: RadioProps) {
+export function Radio({ items, setSelection, label, existingSelection, isRow }: RadioProps) {
   return (
-    <div className="w-full px-4 py-5">
+    <div className="w-full sm:px-2 py-5">
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
-        <RadioGroup
-          onChange={(e: any) => {
-            setSelection(e);
-          }}
-        >
+        <RadioGroup onChange={(e: any) => setSelection(e)}>
           <RadioGroup.Label className="sr-only">{label}</RadioGroup.Label>
           <p className="mb-2 text-sm">{label}</p>
-          <div className="space-y-5">
+          <div
+            className={isRow ? `grid grid-cols-1 gap-5` : `grid grid-cols-1 sm:grid-cols-2 gap-5 `}
+          >
             {items.map((current: RadioBasic) => (
               <RadioGroup.Option
                 key={current.name}
                 value={current}
                 className={({ active, checked }) => `
-                ${
-                  existingSelection?.name === current.name || checked
-                    ? 'bg-emerald-700 bg-opacity-75 text-white ring-2 ring-green-400 scale-105'
-                    : 'border-neutral-800 bg-neutral-900 hover:scale-105 hover:border-neutral-700 hover:bg-neutral-800 '
-                }
-                  relative border flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none transition duration-300`}
+          ${
+            existingSelection?.name === current.name || checked
+              ? 'bg-emerald-700 bg-opacity-75 text-white ring-2 ring-green-400 scale-105'
+              : 'border-neutral-800 bg-neutral-900 hover:scale-105 hover:border-neutral-700 hover:bg-neutral-800 '
+          }
+          relative border flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none transition duration-300`}
               >
                 {({ active, checked }) => (
                   <>
@@ -43,7 +42,7 @@ export function Radio({ items, setSelection, label, existingSelection }: RadioPr
                         <div className="text-sm">
                           <RadioGroup.Label
                             as="p"
-                            className={`font-medium  ${
+                            className={`font-medium ${
                               existingSelection?.name === current.name || checked
                                 ? 'text-emerald-50'
                                 : 'text-white'
