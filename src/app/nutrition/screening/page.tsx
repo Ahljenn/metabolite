@@ -25,8 +25,8 @@ interface BodyMetricsProps {
 }
 
 interface DietaryConcernsProps {
-  allergies: string;
-  setAllergies: React.Dispatch<React.SetStateAction<string>>;
+  allergies: RadioBasic;
+  setAllergies: React.Dispatch<React.SetStateAction<RadioBasic>>;
 }
 
 // Constants
@@ -91,6 +91,61 @@ const workOptions: RadioBasic[] = [
   {
     name: 'Very active labor',
     desc: 'High-intensity physical labor or job requiring extensive physical exertion.',
+  },
+];
+
+const allergyOptions: RadioBasic[] = [
+  {
+    name: 'None',
+    desc: 'No known allergies.',
+  },
+  {
+    name: 'Gluten',
+    desc: 'An allergic reaction to the gluten protein found in wheat, barley, and rye.',
+  },
+  {
+    name: 'Dairy',
+    desc: 'An allergy to milk and milk products, including lactose intolerance.',
+  },
+  {
+    name: 'Nuts',
+    desc: 'An allergy to tree nuts or peanuts, which are common allergens.',
+  },
+  {
+    name: 'Shellfish',
+    desc: 'An allergic reaction to shellfish like shrimp, crab, and lobster.',
+  },
+  {
+    name: 'Soy',
+    desc: 'An allergic reaction to soybeans and soy-based products.',
+  },
+  {
+    name: 'Eggs',
+    desc: 'An allergy to eggs, including egg whites and yolks.',
+  },
+  {
+    name: 'Fish',
+    desc: 'An allergic reaction to various types of fish.',
+  },
+  {
+    name: 'Sesame',
+    desc: 'An allergy to sesame seeds and sesame-based products.',
+  },
+  {
+    name: 'Sulfites',
+    desc: 'An allergy to sulfites used as preservatives in certain foods and beverages.',
+  },
+  {
+    name: 'Corn',
+    desc: 'An allergic reaction to corn or corn-based products.',
+  },
+  {
+    name: 'Sodium',
+    desc: 'An allergic reaction to sodium, a common component of table salt and processed foods.',
+  },
+  {
+    name: 'Other',
+    desc: 'An allergy to specific foods not listed above.',
   },
 ];
 
@@ -198,7 +253,7 @@ export default function Screening() {
   const [workExertion, setWorkExertion] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // -- Considerations
-  const [allergies, setAllergies] = useState<string>('');
+  const [allergies, setAllergies] = useState<RadioBasic>({ name: 'None', desc: 'None' });
   const [dietPref, setDietPref] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
   // -- Budgets
@@ -305,7 +360,12 @@ export default function Screening() {
             Prior to embarking on your journey, select one of the options below
           </p>
 
-          <Radio items={methodOptions} setSelection={setMethod} existingSelection={method} />
+          <Radio
+            items={methodOptions}
+            setSelection={setMethod}
+            existingSelection={method}
+            isRow={true}
+          />
         </>
       );
       break;
@@ -331,6 +391,7 @@ export default function Screening() {
             setSelection={setGender}
             label={'Gender'}
             existingSelection={gender}
+            isRow={true}
           />
           <BodyMetrics
             metricSetters={{ setHeight, setWeight, setAge }}
@@ -598,7 +659,8 @@ function DietaryConcerns({ allergies, setAllergies }: DietaryConcernsProps) {
           as <b className="text-green-300">allergies</b> or{' '}
           <b className="text-green-300">sensitivities</b> to certain foods?{' '}
         </p>
-        <p>Leave blank if this does not apply to you.</p>
+        <Radio items={allergyOptions} setSelection={setAllergies} existingSelection={allergies} />
+        {/* <p>Leave blank if this does not apply to you.</p>
         <div className="mt-5">
           <label htmlFor="allergies">
             <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
@@ -616,7 +678,7 @@ function DietaryConcerns({ allergies, setAllergies }: DietaryConcernsProps) {
             value={allergies || undefined}
             placeholder="Peanut allergy, Soy allergy, shellfish allergy, etc."
           />
-        </div>
+        </div> */}
         <p className="mt-4 mb-2 font-bold">Dietary Preferences</p>
         <p>
           At the moment, do you have any specific dietary preferences? If not, please select{' '}
