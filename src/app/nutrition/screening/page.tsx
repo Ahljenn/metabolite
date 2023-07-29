@@ -302,34 +302,10 @@ export default function Screening() {
 
   return (
     <>
-      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
-      <div
-        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
-      rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] 
-      after:bg-gradient-conic after:blur-2xl after:content-[''] before:bg-gradient-to-br 
-      before:from-transparent before:to-green-800 before:opacity-10 after:from-emerald-800 after:via-lime-800 
-      after:opacity-40 before:lg:h-[260px] translate-x-[-25rem] translate-y-[12rem] ${
-        isScreeningComplete ? 'animate-pulse' : ''
-      }`}
-      />
-      <div
-        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
-      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[280px] after:w-[340px] 
-      after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
-      before:from-transparent before:to-green-700 before:opacity-10 after:from-emerald-900 after:via-green-600 
-      after:opacity-40 before:lg:h-[460px] translate-y-[27rem] ${
-        isScreeningComplete ? 'animate-pulse' : ''
-      }`}
-      />
-      <div
-        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
-      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[220px] after:w-[250px] 
-      after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
-      before:from-transparent before:to-green-300 before:opacity-10 after:from-emerald-200 after:via-lime-600 
-      after:opacity-50 before:lg:h-[660px] translate-y-[30rem] translate-x-[-18rem] ${
-        isScreeningComplete ? 'animate-pulse' : ''
-      }`}
-      />
+      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-green-600 via-emerald-600 to-lime-800 bg-clip-text text-transparent">
+        Metabolite Nutrition
+      </h1>
+      <BgBlob isScreeningComplete={isScreeningComplete} />
 
       {!isScreeningComplete ? (
         <>
@@ -344,18 +320,24 @@ export default function Screening() {
         </>
       ) : (
         <>
-          {redirect()}
+          {/* {redirect()} */}
           {console.log(
-            method,
-            gender,
-            height,
-            weight,
-            age,
-            activityLevel,
-            workExertion,
-            allergies,
-            dietPref,
-            budget
+            JSON.stringify(
+              {
+                method,
+                gender,
+                height,
+                weight,
+                age,
+                activityLevel,
+                workExertion,
+                allergies,
+                dietPref,
+                budget,
+              },
+              null,
+              2
+            )
           )}
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mt-5 mx-5 text-center">
@@ -538,5 +520,39 @@ function ProgressBar({ stage, method }: { stage: number; method: RadioBasic }) {
         {stage} of {method?.name === 'Complete' ? MAX_QUESTION_COMPLETE : MAX_QUESTION_QUICK}
       </p>
     </div>
+  );
+}
+
+function BgBlob({ isScreeningComplete }: { isScreeningComplete: boolean }) {
+  return (
+    <section className="bg-transparent">
+      <div
+        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
+      rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] 
+      after:bg-gradient-conic after:blur-2xl after:content-[''] before:bg-gradient-to-br 
+      before:from-transparent before:to-green-800 before:opacity-10 after:from-emerald-800 after:via-lime-800 
+      after:opacity-40 before:lg:h-[260px] translate-x-[-25rem] translate-y-[12rem] ${
+        isScreeningComplete ? 'animate-pulse' : ''
+      }`}
+      />
+      {/* <div
+        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
+      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[280px] after:w-[340px] 
+      after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
+      before:from-transparent before:to-green-700 before:opacity-10 after:from-emerald-900 after:via-green-600 
+      after:opacity-40 before:lg:h-[460px] translate-y-[27rem] ${
+        isScreeningComplete ? 'animate-pulse' : ''
+      }`} */}
+
+      <div
+        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[200px] 
+      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[220px] after:w-[200px] 
+      after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
+      before:from-transparent before:to-green-300 before:opacity-10 after:from-emerald-200 after:via-lime-600 
+      after:opacity-50 before:lg:h-[660px] translate-y-[30rem] translate-x-[-18rem] ${
+        isScreeningComplete ? 'animate-pulse' : ''
+      }`}
+      />
+    </section>
   );
 }
