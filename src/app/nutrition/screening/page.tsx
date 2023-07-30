@@ -344,8 +344,8 @@ export default function Screening() {
         </>
       ) : (
         <>
-          {redirect()}
-          {console.log('Sending data...')}
+          {/* {redirect()}
+          {console.log('Sending data...')} */}
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mt-5 mx-5 text-center">
               You&apos;re all set! One moment as we let <b className="text-metagreen">Metabolite</b>{' '}
