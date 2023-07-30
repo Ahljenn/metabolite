@@ -314,17 +314,12 @@ export default function Screening() {
     //     2
     //   ),
     // });
-
-    const response = await fetch('/api/test');
-
-    const data = await response.json();
-
-    console.log('Data: ', data);
-
+    // const response = await fetch('/api/test');
+    // const data = await response.json();
+    // console.log('Data: ', data);
     // const redirectTimeout = setTimeout(() => {
     //   router.push('/nutrition/results'); // Replace '/new-page' with the desired URL
     // }, 3000); // N miliseconds
-
     // // Clean up the timeout when the component unmounts
     // return () => clearTimeout(redirectTimeout);
   }
