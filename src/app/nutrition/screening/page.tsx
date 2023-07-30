@@ -65,6 +65,7 @@ export default function Screening() {
           setStage((i) => i + 1);
           setIsComplete(false);
         } else {
+          redirect();
           setIsScreeningComplete(true);
         }
         break;
@@ -73,6 +74,7 @@ export default function Screening() {
           setStage((i) => i + 1);
           setIsComplete(false);
         } else {
+          redirect();
           setIsScreeningComplete(true);
         }
         break;
@@ -291,15 +293,40 @@ export default function Screening() {
       break;
   }
 
-  function redirect() {
+  async function redirect() {
     // Send POST request to server for data
+    // const response = await fetch('/api/user_api/screen', {
+    //   method: 'POST',
+    //   body: JSON.stringify(
+    //     {
+    //       method,
+    //       gender,
+    //       height,
+    //       weight,
+    //       age,
+    //       activityLevel,
+    //       workExertion,
+    //       allergies,
+    //       dietPref,
+    //       budget,
+    //     },
+    //     null,
+    //     2
+    //   ),
+    // });
 
-    const redirectTimeout = setTimeout(() => {
-      router.push('/nutrition/results'); // Replace '/new-page' with the desired URL
-    }, 3000); // N miliseconds
+    const response = await fetch('/api/test');
 
-    // Clean up the timeout when the component unmounts
-    return () => clearTimeout(redirectTimeout);
+    const data = await response.json();
+
+    console.log('Data: ', data);
+
+    // const redirectTimeout = setTimeout(() => {
+    //   router.push('/nutrition/results'); // Replace '/new-page' with the desired URL
+    // }, 3000); // N miliseconds
+
+    // // Clean up the timeout when the component unmounts
+    // return () => clearTimeout(redirectTimeout);
   }
 
   return (
@@ -323,24 +350,7 @@ export default function Screening() {
       ) : (
         <>
           {redirect()}
-          {console.log(
-            JSON.stringify(
-              {
-                method,
-                gender,
-                height,
-                weight,
-                age,
-                activityLevel,
-                workExertion,
-                allergies,
-                dietPref,
-                budget,
-              },
-              null,
-              2
-            )
-          )}
+          {console.log('Sending data...')}
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mt-5 mx-5 text-center">
               You&apos;re all set! One moment as we let <b className="text-metagreen">Metabolite</b>{' '}
