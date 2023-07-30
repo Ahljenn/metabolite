@@ -292,6 +292,8 @@ export default function Screening() {
   }
 
   function redirect() {
+    // Send POST request to server for data
+
     const redirectTimeout = setTimeout(() => {
       router.push('/nutrition/results'); // Replace '/new-page' with the desired URL
     }, 3000); // N miliseconds
@@ -302,7 +304,7 @@ export default function Screening() {
 
   return (
     <>
-      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-green-600 via-emerald-600 to-lime-800 bg-clip-text text-transparent">
+      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-green-600 via-emerald-200 to-lime-300 bg-clip-text text-transparent">
         Metabolite Nutrition
       </h1>
       <BgBlob isScreeningComplete={isScreeningComplete} />
@@ -320,7 +322,7 @@ export default function Screening() {
         </>
       ) : (
         <>
-          {/* {redirect()} */}
+          {redirect()}
           {console.log(
             JSON.stringify(
               {
@@ -508,7 +510,7 @@ function ProgressBar({ stage, method }: { stage: number; method: RadioBasic }) {
       <div className="mb-1 text-base font-medium text-green-300">Progress</div>
       <div className="w-full rounded-full h-2.5 bg-gray-700">
         <div
-          className="h-2.5 rounded-full bg-emerald-700 transition-all duration-700"
+          className="h-2.5 rounded-full bg-gradient-to-r from-green-600 via-emerald-200 to-lime-300 transition-all duration-700"
           style={{
             width: `${
               method?.name === 'Complete' ? stage * MAX_QUESTION_COMPLETE * 2.05 : stage * 20
