@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col lg:flex-row items-center">
-        <div className="mb-32 lg:mt-0 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
+        <div className="mb-10 lg:mt-0 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
           {rootCardData.map(
             (card: { header: string; desc: string; route: string }, index: number) => {
               return (
