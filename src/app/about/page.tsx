@@ -37,7 +37,10 @@ const teamCardData: teamCardProps[] = [
 
 export default function About() {
   return (
-    <>
+    <section
+      className={`flex flex-col items-center  justify-between 
+  p-24`}
+    >
       <TopGradient fromColor={'to-green-400'} toColor={'from-teal-400'} />
       <h1 className="lg:text-2xl font-bold whitespace-nowrap">Meet the Team</h1>
       <div className="mt-5 flex gap-10 flex-col lg:flex-row">
@@ -103,6 +106,6 @@ export default function About() {
           </p>
         </div>
       </div>
-    </>
+    </section>
   );
 }

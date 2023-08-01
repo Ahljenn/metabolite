@@ -38,13 +38,17 @@ const nutritionCardData: { header: string; desc: string; route: string }[] = [
 
 export default function Nutrition() {
   return (
-    <>
+    <section
+      className={`flex flex-col items-center  justify-between 
+    p-24`}
+    >
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
       <p className="mt-5 text-center opacity-75 mx-10">
         Empower yourself with the knowledge and guidance you need to make informed dietary choices
         and simplify your journey to optimal nutrition and embrace a healthier lifestyle.
       </p>
-      <div className="flex flex-col lg:flex-row lg:gap-5">
+
+      <div className="flex gap-5 flex-row">
         <Link
           rel="noopener noreferrer"
           href=""
@@ -88,6 +92,6 @@ export default function Nutrition() {
           }
         )}
       </div>
-    </>
+    </section>
   );
 }
