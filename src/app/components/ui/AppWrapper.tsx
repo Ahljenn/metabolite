@@ -3,7 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SessionProvider } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
-
+import Lottie from 'lottie-react';
+import Health from '#/health2.json';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 
@@ -16,6 +17,10 @@ interface AppWrapperProps {
   children: any;
 }
 
+const lottieStyle = {
+  height: 500,
+};
+
 export default function AppWrapper({ children }: AppWrapperProps) {
   const pathname = usePathname();
   return (
@@ -27,33 +32,52 @@ export default function AppWrapper({ children }: AppWrapperProps) {
       variants={variants}
     >
       {pathname === '/' ? (
-        <section
-          className={`flex min-h-screen flex-col items-center  justify-between 
-        p-24`}
-        >
-          <header className="z-10 w-full max-w-5xl items-center justify-between text-sm lg:flex">
-            <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none hover:animate-pulse">
-              <a
-                className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-                href="https://github.com/Ahljenn/metabolite"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/github.png"
-                  alt="Github Logo"
-                  draggable="false"
-                  className="dark:invert"
-                  width={20}
-                  height={20}
-                  priority
-                />
-                Contribute
-              </a>
+        <>
+          <div
+            className="w-full bg-center bg-cover"
+            style={{
+              backgroundImage: `url('/hero-bg2.jpeg')`,
+            }}
+          >
+            <div className="flex max-w-screen-xl px-4 py-8 mx-auto flex-col sm:flex-row">
+              <div className="col-span-6 hidden sm:block">
+                <Lottie animationData={Health} loop={true} style={lottieStyle} />
+              </div>
+              <div className="mr-auto place-self-center">
+                <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white m-10 sm:m-0">
+                  The Comprehensive Health and Wellness Platform
+                </h1>
+                <p className="max-w-2xl mb-6 sm:mb-8 md:text-lg sm:text-xl text-white m-10 sm:m-0">
+                  With personalized assessments and data-driven insights, we provide tailored
+                  recommendations to help you reach your specific health goals.
+                </p>
+                <div className="flex flex-row gap-5 justify-center sm:justify-start">
+                  <Link
+                    href="/about"
+                    className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href="/nutrition"
+                    className="mt-5 border-green-300 bg-emerald-700/30 hover:border-green-200 hover:bg-emerald-600/30 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
+                  >
+                    Metabolite
+                  </Link>
+                </div>
+              </div>
             </div>
-          </header>
-          {children}
-        </section>
+          </div>
+          <section
+            className={`flex flex-col items-center  justify-between 
+        p-24`}
+          >
+            <header className="z-10 w-full max-w-5xl items-center justify-between text-sm sm:flex">
+              <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-black via-black sm:static sm:h-auto sm:w-auto sm:bg-none hover:animate-pulse"></div>
+            </header>
+            {children}
+          </section>
+        </>
       ) : (
         <>
           <Navbar currentRoute={pathname} />
