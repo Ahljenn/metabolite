@@ -9,9 +9,12 @@ export const metadata: Metadata = {
 
 export default function Fitness() {
   return (
-    <>
+    <section
+      className={`flex flex-col items-center  justify-between 
+    p-24`}
+    >
       <TopGradient fromColor={'to-emerald-200'} toColor={'from-green-600'} />
       <UnderConstruction />
-    </>
+    </section>
   );
 }
