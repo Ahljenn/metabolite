@@ -56,18 +56,18 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-5 justify-center sm:justify-start items-center">
               <div>
                 <Link
-                  href="/about"
-                  className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
+                  href="/nutrition"
+                  className="mt-5 border-green-300 bg-emerald-700 hover:border-green-200 hover:bg-emerald-600 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
                 >
-                  About
+                  Metabolite
                 </Link>
               </div>
               <div>
                 <Link
-                  href="/nutrition"
-                  className="mt-5 border-green-300 bg-emerald-700/30 hover:border-green-200 hover:bg-emerald-600/30 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
+                  href="/about"
+                  className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
                 >
-                  Metabolite
+                  About
                 </Link>
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function Home() {
       </div>
       <section
         className={`flex flex-col items-center  justify-between 
-    p-24`}
+    p-12`}
       >
         <div className="flex flex-col lg:flex-row items-center">
           <div className="mb-10 lg:mt-0 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">

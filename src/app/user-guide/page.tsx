@@ -11,7 +11,7 @@ export default function UserGuide() {
   return (
     <section
       className={`flex flex-col items-center  justify-between 
-  p-24`}
+  p-12`}
     >
       <TopGradient fromColor={'to-emerald-600'} toColor={'from-lime-200'} />
       <UnderConstruction />

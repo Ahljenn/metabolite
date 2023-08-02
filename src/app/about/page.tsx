@@ -39,7 +39,7 @@ export default function About() {
   return (
     <section
       className={`flex flex-col items-center  justify-between 
-  p-24`}
+  p-12`}
     >
       <TopGradient fromColor={'to-green-400'} toColor={'from-teal-400'} />
       <h1 className="lg:text-2xl font-bold whitespace-nowrap">Meet the Team</h1>
