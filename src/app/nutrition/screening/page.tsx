@@ -327,7 +327,7 @@ export default function Screening() {
   return (
     <section
       className={`flex flex-col items-center  justify-between 
-  p-24`}
+  p-12`}
     >
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-green-600 via-emerald-200 to-lime-300 bg-clip-text text-transparent">
         Metabolite Nutrition

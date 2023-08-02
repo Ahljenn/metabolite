@@ -39,16 +39,18 @@ const nutritionCardData: { header: string; desc: string; route: string }[] = [
 export default function Nutrition() {
   return (
     <section
-      className={`flex flex-col items-center  justify-between 
-    p-24`}
+      className={`flex flex-col items-center justify-between 
+    p-12`}
     >
-      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Metabolite Nutrition</h1>
-      <p className="mt-5 text-center opacity-75 mx-10">
+      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-green-600 via-emerald-200 to-lime-300 bg-clip-text text-transparent">
+        Metabolite Nutrition
+      </h1>
+      <p className="mt-5 text-center opacity-75 max-w-xl">
         Empower yourself with the knowledge and guidance you need to make informed dietary choices
         and simplify your journey to optimal nutrition and embrace a healthier lifestyle.
       </p>
 
-      <div className="flex gap-5 flex-row">
+      <div className="flex gap-5 flex-col sm:flex-row">
         <Link
           rel="noopener noreferrer"
           href=""
@@ -64,8 +66,6 @@ export default function Nutrition() {
           Get Started
         </Link>
       </div>
-
-      <TopGradient fromColor={'to-emerald-400'} toColor={'from-green-400'} />
 
       <div className="mt-20 grid text-center lg:mb-0 lg:grid-cols-3 lg:text-left gap-5 mx-10">
         {nutritionCardData.map(

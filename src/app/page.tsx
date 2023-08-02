@@ -76,7 +76,7 @@ export default function Home() {
       </div>
       <section
         className={`flex flex-col items-center  justify-between 
-    p-24`}
+    p-12`}
       >
         <div className="flex flex-col lg:flex-row items-center">
           <div className="mb-10 lg:mt-0 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
