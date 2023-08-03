@@ -317,7 +317,6 @@ export default function Screening() {
       ),
     });
     const data = await response.json();
-    window.alert(data.message);
 
     // const redirectTimeout = setTimeout(() => {
     //   router.push('/nutrition/results'); // Replace '/new-page' with the desired URL

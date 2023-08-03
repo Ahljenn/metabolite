@@ -13,13 +13,7 @@ function TestAPI() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(
-        {
-          BMR: 1200,
-        },
-        null,
-        2
-      ),
+      body: JSON.stringify(testData, null, 2),
     });
     const data = await response.json();
     window.alert(data.message);
@@ -48,5 +42,33 @@ function TestAPI() {
     </>
   );
 }
+
+const testData = {
+  method: {
+    name: 'Quickstart',
+    desc: 'Get started on your health journey with a fast and efficient pre-screening assessment designed to provide immediate insights.',
+  },
+  gender: { name: 'Male', desc: 'Select if you are a biological male.' },
+  height: 154,
+  weight: 210,
+  age: 20,
+  activityLevel: {
+    name: 'Active',
+    desc: 'Moderate physical activity or regular exercise most days of the week.',
+  },
+  workExertion: {
+    name: 'Office job',
+    desc: 'Office environment with sedentary tasks and minimal physical exertion.',
+  },
+  allergies: { name: 'No Allergy', desc: 'No known allergies.' },
+  dietPref: {
+    name: 'Paleo Diet',
+    desc: 'An eating pattern that emphasizes whole foods and avoids processed foods and grains to mimic the eating patterns of our ancestors from the Paleolithic era.',
+  },
+  budget: {
+    name: '$$$ (Moderate)',
+    desc: 'I have a moderate budget and can spend a reasonable amount on my weekly diet.',
+  },
+};
 
 export default TestAPI;
