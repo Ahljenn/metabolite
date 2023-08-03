@@ -65,7 +65,7 @@ export default function Screening() {
           setStage((i) => i + 1);
           setIsComplete(false);
         } else {
-          redirect();
+          userMetricsPOST();
           setIsScreeningComplete(true);
         }
         break;
@@ -74,7 +74,7 @@ export default function Screening() {
           setStage((i) => i + 1);
           setIsComplete(false);
         } else {
-          redirect();
+          userMetricsPOST();
           setIsScreeningComplete(true);
         }
         break;
@@ -293,30 +293,32 @@ export default function Screening() {
       break;
   }
 
-  async function redirect() {
-    // Send POST request to server for data
-    // const response = await fetch('/api/user_api/screen', {
-    //   method: 'POST',
-    //   body: JSON.stringify(
-    //     {
-    //       method,
-    //       gender,
-    //       height,
-    //       weight,
-    //       age,
-    //       activityLevel,
-    //       workExertion,
-    //       allergies,
-    //       dietPref,
-    //       budget,
-    //     },
-    //     null,
-    //     2
-    //   ),
-    // });
-    // const response = await fetch('/api/test');
-    // const data = await response.json();
-    // console.log('Data: ', data);
+  async function userMetricsPOST() {
+    const response = await fetch('/api/user_api', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(
+        {
+          method,
+          gender,
+          height,
+          weight,
+          age,
+          activityLevel,
+          workExertion,
+          allergies,
+          dietPref,
+          budget,
+        },
+        null,
+        2
+      ),
+    });
+    const data = await response.json();
+    window.alert(data.message);
+
     // const redirectTimeout = setTimeout(() => {
     //   router.push('/nutrition/results'); // Replace '/new-page' with the desired URL
     // }, 3000); // N miliseconds
@@ -347,8 +349,6 @@ export default function Screening() {
         </>
       ) : (
         <>
-          {/* {redirect()}
-          {console.log('Sending data...')} */}
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mt-5 mx-5 text-center">
               You&apos;re all set! One moment as we let <b className="text-metagreen">Metabolite</b>{' '}

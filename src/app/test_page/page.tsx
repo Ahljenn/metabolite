@@ -22,7 +22,7 @@ function TestAPI() {
       ),
     });
     const data = await response.json();
-    console.log('Data: ', data);
+    window.alert(data.message);
   }
 
   return (
