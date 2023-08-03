@@ -1,13 +1,14 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 import clientPromise from '%/mongo/client';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(request: Request) {
   try {
-    // let { db } = await clientPromise;
-    // let bodyContent = JSON.parse(req.body);
+    let { db } = await clientPromise;
+    console.log(request.body);
+    // let bodyContent = JSON.parse(request.body);
     // console.log(bodyContent);
-    res.status(200).json({ message: 'API call successful!' });
-  } catch (err) {
-    res.status(400).json({ message: 'Not able to send screening data to MongoDB. ' });
+    return NextResponse.json({ message: 'Test API call success!' }, { status: 200 });
+  } catch {
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 400 });
   }
 }
