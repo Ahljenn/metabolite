@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from '%/mongo/client';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   try {
     // let { db } = await clientPromise;
     // let bodyContent = JSON.parse(req.body);
