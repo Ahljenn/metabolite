@@ -4,7 +4,7 @@ function TestAPI() {
   async function onApiRequest() {
     const response = await fetch('/api/test_api');
     const data = await response.json();
-    window.alert(data.message);
+    // window.alert(data.message);
   }
 
   async function onMongoApiRequest() {
@@ -16,7 +16,7 @@ function TestAPI() {
       body: JSON.stringify(testData, null, 2),
     });
     const data = await response.json();
-    window.alert(data.message);
+    // window.alert(data.message);
   }
 
   return (
@@ -44,6 +44,7 @@ function TestAPI() {
 }
 
 const testData = {
+  user: 'Test User 01',
   method: {
     name: 'Quickstart',
     desc: 'Get started on your health journey with a fast and efficient pre-screening assessment designed to provide immediate insights.',
