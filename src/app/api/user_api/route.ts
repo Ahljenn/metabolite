@@ -4,7 +4,7 @@ import clientPromise from '%/mongo/client';
 export async function POST(request: Request) {
   try {
     let content = await request.json();
-    // console.log(content);
+    console.log(content);
 
     let client = await clientPromise;
     let db = await client.db();

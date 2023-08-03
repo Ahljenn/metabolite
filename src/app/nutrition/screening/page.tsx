@@ -301,22 +301,24 @@ export default function Screening() {
       },
       body: JSON.stringify(
         {
-          method,
-          gender,
+          user: localStorage.getItem('user'),
+          method: method.name,
+          gender: gender.name,
           height,
           weight,
           age,
-          activityLevel,
-          workExertion,
-          allergies,
-          dietPref,
-          budget,
+          activityLevel: activityLevel.name,
+          workExertion: workExertion.name,
+          allergies: allergies.name,
+          dietPref: dietPref.name,
+          budget: budget.name,
         },
         null,
         2
       ),
     });
     const data = await response.json();
+    // console.log(data);
 
     // const redirectTimeout = setTimeout(() => {
     //   router.push('/nutrition/results'); // Replace '/new-page' with the desired URL

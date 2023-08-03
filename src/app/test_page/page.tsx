@@ -44,32 +44,17 @@ function TestAPI() {
 }
 
 const testData = {
-  user: 'Test User 01',
-  method: {
-    name: 'Quickstart',
-    desc: 'Get started on your health journey with a fast and efficient pre-screening assessment designed to provide immediate insights.',
-  },
-  gender: { name: 'Male', desc: 'Select if you are a biological male.' },
-  height: 154,
-  weight: 210,
-  age: 20,
-  activityLevel: {
-    name: 'Active',
-    desc: 'Moderate physical activity or regular exercise most days of the week.',
-  },
-  workExertion: {
-    name: 'Office job',
-    desc: 'Office environment with sedentary tasks and minimal physical exertion.',
-  },
-  allergies: { name: 'No Allergy', desc: 'No known allergies.' },
-  dietPref: {
-    name: 'Paleo Diet',
-    desc: 'An eating pattern that emphasizes whole foods and avoids processed foods and grains to mimic the eating patterns of our ancestors from the Paleolithic era.',
-  },
-  budget: {
-    name: '$$$ (Moderate)',
-    desc: 'I have a moderate budget and can spend a reasonable amount on my weekly diet.',
-  },
+  user: 'Test Metabolite',
+  method: 'Quickstart',
+  gender: 'Male',
+  height: 162,
+  weight: 80,
+  age: 21,
+  activityLevel: 'Lightly active',
+  workExertion: 'Office job',
+  allergies: 'Nuts',
+  dietPref: 'Not applicable',
+  budget: '$$$ (Moderate)',
 };
 
 export default TestAPI;
