@@ -45,7 +45,7 @@ export default function Home() {
           <div className="col-span-6 hidden sm:block">
             <Lottie animationData={Health} loop={true} style={lottieStyle} />
           </div>
-          <div className="mr-auto place-self-center">
+          <div className="mr-auto place-self-center text-center sm:text-left">
             <h1 className="max-w-2xl mb-4 text-xl sm:text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white m-5 sm:m-0">
               The Comprehensive Health and Wellness Platform
             </h1>
@@ -53,7 +53,7 @@ export default function Home() {
               With personalized assessments and data-driven insights, we provide tailored
               recommendations to help you reach your specific health goals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-5 justify-center sm:justify-start items-center">
+            <div className="flex flex-col-reverse sm:flex-row gap-8 justify-center sm:justify-start items-center">
               <div>
                 <Link
                   href="/nutrition"
@@ -102,13 +102,13 @@ export default function Home() {
             )}
           </div>
           <div>
-            <p className="text-right text-sm mb-2 text-gray-400">Powered by</p>
+            <p className="text-sm mb-2 text-gray-400 text-center">Powered by</p>
             <Image
               className="relative "
               src="/metabolite-full.png"
               alt="Metabolite logo"
-              width={150}
-              height={150}
+              width={200}
+              height={200}
               quality={100}
               priority
             />
