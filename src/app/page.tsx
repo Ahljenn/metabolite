@@ -105,7 +105,7 @@ export default function Home() {
             <p className="text-right text-sm mb-2 text-gray-400">Powered by</p>
             <Image
               className="relative "
-              src="/metabolite-m.png"
+              src="/metabolite-full.png"
               alt="Metabolite logo"
               width={150}
               height={150}
