@@ -22,7 +22,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "#/*": ["./public/*"],
-      "%/*": ["./lib/*"]
+      "%/*": ["./lib/*"],
+      "&/*": ["./src/app/global-redux/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

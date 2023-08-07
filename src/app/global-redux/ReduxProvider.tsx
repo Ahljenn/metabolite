@@ -7,6 +7,6 @@ interface AppProps {
   children: any;
 }
 
-export function Providers({ children }: AppProps) {
+export function ReduxProvider({ children }: AppProps) {
   return <Provider store={store}>{children}</Provider>;
 }

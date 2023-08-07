@@ -1,11 +1,7 @@
 'use client';
-import type { RootState } from '../global-redux/store';
+import type { RootState } from '&/store';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  increment,
-  decrement,
-  incrementByAmount,
-} from '@/app/global-redux/features/user-metrics/metricsSlice';
+import { increment, decrement, incrementByAmount } from '&/features/user-metrics/metricsSlice';
 
 function TestAPI() {
   async function onMongoApiRequest() {

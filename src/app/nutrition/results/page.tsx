@@ -1,9 +1,17 @@
-import React from 'react';
+'use client';
+import type { RootState } from '&/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement, incrementByAmount } from '&/features/user-metrics/metricsSlice';
 
-interface Props {}
+function Results() {
+  const countState = useSelector((state: RootState) => state.metrics.value);
 
-function Results({}: Props) {
-  return <div> Results</div>;
+  return (
+    <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+      state:
+      {countState}
+    </div>
+  );
 }
 
 export default Results;
