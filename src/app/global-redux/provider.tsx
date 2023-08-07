@@ -3,6 +3,10 @@
 import { Provider } from 'react-redux';
 import { store } from './store';
 
-export function Providers({ children }) {
+interface AppProps {
+  children: any;
+}
+
+export function Providers({ children }: AppProps) {
   return <Provider store={store}>{children}</Provider>;
 }
