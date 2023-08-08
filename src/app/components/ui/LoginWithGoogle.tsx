@@ -6,9 +6,9 @@ interface SessionProps {
   status: string;
 }
 
-export function onSignIn() {
+export const onSignIn = () => {
   signIn('google');
-}
+};
 
 const LoginWithGoogle = ({ data: session, status }: SessionProps) => {
   if (!session)

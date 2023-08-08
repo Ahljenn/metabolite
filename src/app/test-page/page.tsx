@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { increment, decrement, incrementByAmount } from '&/features/user-metrics/metricsSlice';
 
 const TestAPI: React.FC = (): JSX.Element => {
-  async function onMongoApiRequest() {
+  const onMongoApiRequest = async () => {
     const response = await fetch('/api/user_api', {
       method: 'POST',
       headers: {
@@ -14,7 +14,7 @@ const TestAPI: React.FC = (): JSX.Element => {
     });
     const data = await response.json();
     // window.alert(data.message);
-  }
+  };
 
   // const countState = useSelector((state: RootState) => state.metrics.value);
   // const dispatch = useDispatch();

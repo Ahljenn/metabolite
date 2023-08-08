@@ -119,7 +119,7 @@ const Screening: React.FC = () => {
           }
           break;
         case 5:
-          if (budget.name !== 'None') {
+          if (healthGoal.name !== 'None') {
             setIsComplete(true);
           }
           break;
@@ -129,7 +129,7 @@ const Screening: React.FC = () => {
           }
           break;
         case 7:
-          if (healthGoal.name !== 'None') {
+          if (budget.name !== 'None') {
             setIsComplete(true);
           }
           break;
@@ -146,10 +146,10 @@ const Screening: React.FC = () => {
     workExertion,
     allergies,
     dietPref,
+    healthGoal,
+    fast,
     budget,
     stage,
-    fast,
-    healthGoal,
   ]);
 
   let content;
@@ -240,16 +240,18 @@ const Screening: React.FC = () => {
     case 5:
       content = (
         <>
-          <p className="mt-5 font-semibold">Budget</p>
+          <p className="mt-5 font-semibold">Health Goals</p>
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mx-5 sm:mx-0 text-center sm:text-left">
-              What is your <i>estimated weekly budget</i> for your diet? This information will
-              enable <b className="text-metaAccent">Metabolite</b> to provide personalized
-              recommendations that align with both your financial and health goals, ensuring a
-              well-balanced approach to your nutrition journey.
+              <b>Health Goals</b> encompass a wide range of objectives beyond just weight loss. It
+              allows you to define your desired outcomes.
+            </p>
+            <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
+              By specifying your health goals, we can provide personalized recommendations tailored
+              to your unique aspirations, supporting you in your journey towards optimal health.
             </p>
           </div>
-          <Radio items={budgetOptions} setSelection={setBudget} existingSelection={budget} />
+          <Radio items={goalOptions} setSelection={setHealthGoal} existingSelection={healthGoal} />
         </>
       );
       break;
@@ -274,18 +276,16 @@ const Screening: React.FC = () => {
     case 7:
       content = (
         <>
-          <p className="mt-5 font-semibold">Health Goals</p>
+          <p className="mt-5 font-semibold">Budget</p>
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mx-5 sm:mx-0 text-center sm:text-left">
-              <b>Health Goals</b> encompass a wide range of objectives beyond just weight loss. It
-              allows you to define your desired outcomes.
-            </p>
-            <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
-              By specifying your health goals, we can provide personalized recommendations tailored
-              to your unique aspirations, supporting you in your journey towards optimal health.
+              What is your <i>estimated weekly budget</i> for your diet? This information will
+              enable <b className="text-metaAccent">Metabolite</b> to provide personalized
+              recommendations that align with both your financial and health goals, ensuring a
+              well-balanced approach to your nutrition journey.
             </p>
           </div>
-          <Radio items={goalOptions} setSelection={setHealthGoal} existingSelection={healthGoal} />
+          <Radio items={budgetOptions} setSelection={setBudget} existingSelection={budget} />
         </>
       );
       break;
@@ -313,7 +313,9 @@ const Screening: React.FC = () => {
           workExertion: workExertion.name,
           allergies: allergies.name,
           dietPref: dietPref.name,
-          budget: budget.name,
+          healthGoal: healthGoal.name,
+          fast: fast.name === 'None' ? 'Not Fasting' : fast.name,
+          budget: budget.name === 'None' ? '$$ (Affordable)' : budget.name,
         },
         null,
         2
@@ -330,7 +332,7 @@ const Screening: React.FC = () => {
   };
 
   return (
-    <section
+    <main
       className={`flex flex-col items-center  justify-between 
   p-12`}
     >
@@ -360,12 +362,14 @@ const Screening: React.FC = () => {
               journey is about to take off!
             </p>
           </div>
-          <div className="rounded-full mt-10 mx-20 grayscale">
-            <Lottie animationData={LoadingAnimation} loop={false} />
-          </div>
+          <section className="bg-metaAccent/20 rounded-full mt-10 mx-10 opacity-90">
+            <div className="grayscale">
+              <Lottie animationData={LoadingAnimation} loop={true} />
+            </div>
+          </section>
         </>
       )}
-    </section>
+    </main>
   );
 };
 
