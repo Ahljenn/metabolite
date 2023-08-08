@@ -79,7 +79,7 @@ const Radio = ({ items, setSelection, label, existingSelection, isRow }: RadioPr
   );
 };
 
-function CheckIcon(props: any) {
+const CheckIcon = (props: any) => {
   return (
     <svg viewBox="0 0 24 24" fill="none" {...props}>
       <circle cx={12} cy={12} r={12} fill="#00B287" opacity="0.2" />
@@ -92,5 +92,5 @@ function CheckIcon(props: any) {
       />
     </svg>
   );
-}
+};
 export default Radio;
