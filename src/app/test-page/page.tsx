@@ -1,7 +1,7 @@
 'use client';
 import type { RootState } from '&/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, incrementByAmount } from '&/features/user-metrics/metricsSlice';
+// import { increment, decrement, incrementByAmount } from '&/features/user-metrics/metricsSlice';
 
 function TestAPI() {
   async function onMongoApiRequest() {
@@ -16,8 +16,8 @@ function TestAPI() {
     // window.alert(data.message);
   }
 
-  const countState = useSelector((state: RootState) => state.metrics.value);
-  const dispatch = useDispatch();
+  // const countState = useSelector((state: RootState) => state.metrics.value);
+  // const dispatch = useDispatch();
 
   return (
     <>
@@ -34,7 +34,7 @@ function TestAPI() {
 
       <div className="flex justify-center mt-20 flex-col gap-5 items-center">
         <h1>Redux</h1>
-        <button
+        {/* <button
           className="bg-green-500 hover:bg-lime-500 transition-all duration-300 px-5 py-2 rounded-lg text-black"
           onClick={() => dispatch(increment())}
         >
@@ -52,7 +52,7 @@ function TestAPI() {
         >
           Up by 10
         </button>
-        {countState}
+  {countState}*/}
       </div>
     </>
   );

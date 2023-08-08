@@ -30,10 +30,10 @@ export function Radio({ items, setSelection, label, existingSelection, isRow }: 
                 className={({ active, checked }) => `
           ${
             existingSelection?.name === current.name || checked
-              ? 'bg-emerald-700 bg-opacity-75 text-white ring-2 ring-green-400 scale-105'
-              : 'border-neutral-800 bg-neutral-900 hover:scale-105 hover:border-neutral-700 hover:bg-neutral-800 '
+              ? 'border-metaSecondary hover:border-metaSecondary text-white scale-105'
+              : 'border-neutral-800 hover:border-neutral-700'
           }
-          relative border flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none transition duration-300`}
+          hover:scale-105 bg-neutral-900 hover:bg-neutral-800 relative border flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none transition duration-300`}
               >
                 {({ active, checked }) => (
                   <>
@@ -42,9 +42,9 @@ export function Radio({ items, setSelection, label, existingSelection, isRow }: 
                         <div className="text-sm">
                           <RadioGroup.Label
                             as="p"
-                            className={`font-medium ${
+                            className={`font-bold ${
                               existingSelection?.name === current.name || checked
-                                ? 'text-emerald-50'
+                                ? 'text-metaAccent'
                                 : 'text-white'
                             }`}
                           >
