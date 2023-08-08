@@ -3,7 +3,7 @@ import type { RootState } from '&/store';
 import { useSelector, useDispatch } from 'react-redux';
 // import { increment, decrement, incrementByAmount } from '&/features/user-metrics/metricsSlice';
 
-function Results() {
+const Results: React.FC = (): JSX.Element => {
   // const countState = useSelector((state: RootState) => state.metrics.value);
 
   return (
@@ -12,6 +12,6 @@ function Results() {
       {/* {countState} */}
     </div>
   );
-}
+};
 
 export default Results;

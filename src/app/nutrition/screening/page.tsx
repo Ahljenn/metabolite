@@ -1,11 +1,12 @@
 'use client';
 
-import { Radio } from './../../components/ui/Radio';
+import Radio from './../../components/ui/Radio';
 import { useEffect, useState } from 'react';
 import { RadioBasic } from './../../components/ui/Radio';
 import Lottie from 'lottie-react';
 import LoadingAnimation from '#/lottie/diet-plan.json';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 import {
   methodOptions,
@@ -23,8 +24,9 @@ import {
   BodyMetricsProps,
 } from './screening.interface';
 
-export default function Screening() {
+const Screening: React.FC = () => {
   const router = useRouter();
+  const { data: session, status } = useSession();
 
   // Form fields //
   // -- Prescreening:
@@ -58,7 +60,7 @@ export default function Screening() {
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [isScreeningComplete, setIsScreeningComplete] = useState<boolean>(false);
 
-  function nextStage() {
+  const nextStage = () => {
     switch (method?.name) {
       case 'Quickstart':
         if (stage < MAX_QUESTION_QUICK && isComplete) {
@@ -79,17 +81,17 @@ export default function Screening() {
         }
         break;
     }
-  }
+  };
 
-  function prevStage() {
+  const prevStage = () => {
     if (stage > 1) {
       setStage((i) => i - 1);
       setIsComplete(true);
     }
-  }
+  };
 
   useEffect(() => {
-    function validateSelector() {
+    const validateSelector = () => {
       switch (stage) {
         case 1:
           if (method.name !== 'None') {
@@ -132,7 +134,7 @@ export default function Screening() {
           }
           break;
       }
-    }
+    };
     validateSelector();
   }, [
     method,
@@ -293,7 +295,7 @@ export default function Screening() {
       break;
   }
 
-  async function userMetricsPOST() {
+  const userMetricsPOST = async () => {
     const response = await fetch('/api/user_api', {
       method: 'POST',
       headers: {
@@ -301,7 +303,7 @@ export default function Screening() {
       },
       body: JSON.stringify(
         {
-          user: localStorage.getItem('user'),
+          user: session?.user?.name || 'No user loaded',
           method: method.name,
           gender: gender.name,
           height,
@@ -325,7 +327,7 @@ export default function Screening() {
     // }, 3000); // N miliseconds
     // // Clean up the timeout when the component unmounts
     // return () => clearTimeout(redirectTimeout);
-  }
+  };
 
   return (
     <section
@@ -365,9 +367,9 @@ export default function Screening() {
       )}
     </section>
   );
-}
+};
 
-function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
+const BodyMetrics = ({ metricSetters, metricValues }: BodyMetricsProps) => {
   const { setHeight, setWeight, setAge } = metricSetters;
   const { height, weight, age } = metricValues;
   return (
@@ -444,9 +446,9 @@ function BodyMetrics({ metricSetters, metricValues }: BodyMetricsProps) {
       </div>
     </div>
   );
-}
+};
 
-function DietaryConcerns({ allergies, setAllergies }: DietaryConcernsProps) {
+const DietaryConcerns = ({ allergies, setAllergies }: DietaryConcernsProps) => {
   return (
     <div className="w-full px-4">
       <div className="mx-auto w-full max-w-md lg:max-w-xl ">
@@ -467,9 +469,9 @@ function DietaryConcerns({ allergies, setAllergies }: DietaryConcernsProps) {
       </div>
     </div>
   );
-}
+};
 
-function ScreeningPageSelector({
+const ScreeningPageSelector = ({
   prevStage,
   nextStage,
   stage,
@@ -479,7 +481,7 @@ function ScreeningPageSelector({
   nextStage: any;
   stage: number;
   isComplete: boolean;
-}) {
+}) => {
   return (
     <div className="flex flex-col md:gap-5 md:flex-row">
       <button
@@ -510,9 +512,9 @@ function ScreeningPageSelector({
       </button>
     </div>
   );
-}
+};
 
-function ProgressBar({ stage, method }: { stage: number; method: RadioBasic }) {
+const ProgressBar = ({ stage, method }: { stage: number; method: RadioBasic }) => {
   return (
     <div className="mt-5 px-5 md:px-0 md:mx-auto w-full max-w-md lg:max-w-xl">
       <div className="mb-1 text-base font-medium text-teal-300">Progress</div>
@@ -531,9 +533,9 @@ function ProgressBar({ stage, method }: { stage: number; method: RadioBasic }) {
       </p>
     </div>
   );
-}
+};
 
-function BgBlob({ isScreeningComplete }: { isScreeningComplete: boolean }) {
+const BgBlob = ({ isScreeningComplete }: { isScreeningComplete: boolean }) => {
   return (
     <section className="bg-transparent">
       <div
@@ -545,15 +547,6 @@ function BgBlob({ isScreeningComplete }: { isScreeningComplete: boolean }) {
         isScreeningComplete ? 'animate-pulse' : ''
       }`}
       />
-      {/* <div
-        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
-      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[280px] after:w-[340px] 
-      after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
-      before:from-transparent before:to-teal-700 before:opacity-10 after:from-emerald-900 after:via-teal-600 
-      after:opacity-40 before:lg:h-[460px] translate-y-[27rem] ${
-        isScreeningComplete ? 'animate-pulse' : ''
-      }`} */}
-
       <div
         className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[200px] 
       before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[220px] after:w-[200px] 
@@ -565,4 +558,6 @@ function BgBlob({ isScreeningComplete }: { isScreeningComplete: boolean }) {
       />
     </section>
   );
-}
+};
+
+export default Screening;

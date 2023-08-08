@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function UnderConstruction() {
+const UnderConstruction = () => {
   return (
     <>
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">Launching Soon</h1>
@@ -17,4 +17,5 @@ export default function UnderConstruction() {
       </Link>
     </>
   );
-}
+};
+export default UnderConstruction;

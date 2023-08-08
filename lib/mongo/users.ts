@@ -4,23 +4,22 @@ import clientPromise from './client';
 let client: any;
 let db: any;
 let users: any;
-
-async function init() {
+const init = async () => {
   if (db) return;
   try {
     client = await clientPromise;
     db = await client.db();
     users = await db.collection('users');
   } catch (error) {
-    throw new Error('Failed to stablish connection to database');
+    throw new Error('Failed to establish connection to the database');
   }
-}
+};
 
 /////////////
 /// USERS ///
 /////////////
 
-export async function findUserById(userId: string) {
+const findUserById = async (userId: string) => {
   try {
     if (!users) await init();
 
@@ -32,9 +31,9 @@ export async function findUserById(userId: string) {
   } catch (error) {
     return { error: 'Failed to find the user.' };
   }
-}
+};
 
-export async function findUserByEmail(email: string) {
+const findUserByEmail = async (email: string) => {
   try {
     if (!users) await init();
 
@@ -46,9 +45,9 @@ export async function findUserByEmail(email: string) {
   } catch (error) {
     return { error: 'Failed to find the user.' };
   }
-}
+};
 
-export async function updateUser(email: string, update: string) {
+const updateUser = async (email: string, update: string) => {
   try {
     if (!users) await init();
 
@@ -58,4 +57,6 @@ export async function updateUser(email: string, update: string) {
   } catch (error) {
     return { error: 'Failed to reset the password.' };
   }
-}
+};
+
+export { init, findUserById, findUserByEmail, updateUser };

@@ -13,15 +13,15 @@ const navigation = [
   { name: 'About', href: '/about', current: false },
 ];
 
-function classNames(...classes: any[]): string {
+const classNames = (...classes: any[]): string => {
   return classes.filter(Boolean).join(' ');
-}
+};
 
 interface NavBarProps {
   currentRoute: string;
 }
 
-export default function Navbar({ currentRoute }: NavBarProps) {
+const Navbar = ({ currentRoute }: NavBarProps) => {
   const { data: session, status } = useSession();
 
   return (
@@ -200,6 +200,7 @@ export default function Navbar({ currentRoute }: NavBarProps) {
       )}
     </Disclosure>
   );
-}
+};
+export default Navbar;
 
 //  { name: 'Login with Google', href: '/api/auth/signin', current: false },

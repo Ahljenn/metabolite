@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
-import { ReduxProvider } from '&/ReduxProvider';
+import ReduxProvider from '&/ReduxProvider';
 
 const variants = {
   pageInitial: { opacity: 0 },
@@ -14,7 +14,7 @@ interface AppWrapperProps {
   children: any;
 }
 
-export default function AppWrapper({ children }: AppWrapperProps) {
+const AppWrapper = ({ children }: AppWrapperProps) => {
   const pathname = usePathname();
   return (
     <ReduxProvider>
@@ -30,4 +30,5 @@ export default function AppWrapper({ children }: AppWrapperProps) {
       </motion.div>
     </ReduxProvider>
   );
-}
+};
+export default AppWrapper;
