@@ -332,7 +332,7 @@ const Screening: React.FC = () => {
   };
 
   return (
-    <section
+    <main
       className={`flex flex-col items-center  justify-between 
   p-12`}
     >
@@ -362,12 +362,14 @@ const Screening: React.FC = () => {
               journey is about to take off!
             </p>
           </div>
-          <div className="rounded-full mt-10 mx-20 grayscale">
-            <Lottie animationData={LoadingAnimation} loop={false} />
-          </div>
+          <section className="bg-metaAccent/20 rounded-full mt-10 mx-10 opacity-90">
+            <div className="grayscale">
+              <Lottie animationData={LoadingAnimation} loop={true} />
+            </div>
+          </section>
         </>
       )}
-    </section>
+    </main>
   );
 };
 
