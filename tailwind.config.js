@@ -10,7 +10,9 @@ module.exports = {
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
-        metagreen: '#61B136',
+        metaPrimary: '#03C9BA',
+        metaSecondary: '#00B287',
+        metaAccent: '#BCFFEF',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

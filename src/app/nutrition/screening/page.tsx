@@ -4,7 +4,7 @@ import { Radio } from './../../components/ui/Radio';
 import { useEffect, useState } from 'react';
 import { RadioBasic } from './../../components/ui/Radio';
 import Lottie from 'lottie-react';
-import LoadingAnimation from '#/loading.json';
+import LoadingAnimation from '#/lottie/diet-plan.json';
 import { useRouter } from 'next/navigation';
 
 import {
@@ -175,12 +175,12 @@ export default function Screening() {
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mx-5 sm:mx-0 text-center sm:text-left">
               Gender, height, weight, and age play a crucial role in calculating your{' '}
-              <b className="text-green-300">Basal Metabolic Rate</b> (BMR). BMR represents the
-              number of calories your body needs to function at rest, providing valuable insights
-              into your individual energy expenditure.
+              <b className="text-teal-300">Basal Metabolic Rate</b> (BMR). BMR represents the number
+              of calories your body needs to function at rest, providing valuable insights into your
+              individual energy expenditure.
             </p>
             <p className="mt-5 mx-5 sm:mx-0 text-center sm:text-left">
-              By accurately determining your BMR, <b className="text-metagreen">Metabolite</b> can
+              By accurately determining your BMR, <b className="text-metaAccent">Metabolite</b> can
               better understand your body&apos;s specific needs and customize a nutrition plan that
               supports your health and well-being goals.
             </p>
@@ -206,8 +206,8 @@ export default function Screening() {
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mx-5 sm:mx-0 text-center sm:text-left">
               By considering your activity levels and work exertion,{' '}
-              <b className="text-metagreen">Metabolite</b> can provide tailored recommendations that
-              align with your energy needs and help you achieve your health and wellness goals
+              <b className="text-metaAccent">Metabolite</b> can provide tailored recommendations
+              that align with your energy needs and help you achieve your health and wellness goals
               effectively
             </p>
           </div>
@@ -242,7 +242,7 @@ export default function Screening() {
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mx-5 sm:mx-0 text-center sm:text-left">
               What is your <i>estimated weekly budget</i> for your diet? This information will
-              enable <b className="text-metagreen">Metabolite</b> to provide personalized
+              enable <b className="text-metaAccent">Metabolite</b> to provide personalized
               recommendations that align with both your financial and health goals, ensuring a
               well-balanced approach to your nutrition journey.
             </p>
@@ -332,7 +332,7 @@ export default function Screening() {
       className={`flex flex-col items-center  justify-between 
   p-12`}
     >
-      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-green-600 via-emerald-200 to-lime-300 bg-clip-text text-transparent">
+      <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-metaPrimary via-metaSecondary to-metaAccent bg-clip-text text-transparent">
         Metabolite Nutrition
       </h1>
       <BgBlob isScreeningComplete={isScreeningComplete} />
@@ -352,13 +352,14 @@ export default function Screening() {
         <>
           <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
             <p className="mt-5 mx-5 text-center">
-              You&apos;re all set! One moment as we let <b className="text-metagreen">Metabolite</b>{' '}
-              work its magic and unveil the top three <b className="text-green-300">personalized</b>{' '}
-              diets tailored just for you. Your health journey is about to take off!
+              You&apos;re all set! One moment as we let{' '}
+              <b className="text-metaAccent">Metabolite</b> work its magic and unveil the top three{' '}
+              <b className="text-teal-300">personalized</b> diets tailored just for you. Your health
+              journey is about to take off!
             </p>
           </div>
-          <div className="rounded-full mt-10 mx-20">
-            <Lottie animationData={LoadingAnimation} loop={true} />
+          <div className="rounded-full mt-10 mx-20 grayscale">
+            <Lottie animationData={LoadingAnimation} loop={false} />
           </div>
         </>
       )}
@@ -452,15 +453,15 @@ function DietaryConcerns({ allergies, setAllergies }: DietaryConcernsProps) {
         <p className="my-2 font-bold">Dietary Concerns</p>
         <p>
           Are there any concerns related to your diet that could assist{' '}
-          <b className="text-metagreen">Metabolite</b> in recommending a suitable dietary plan, such
-          as <b className="text-green-300">allergies</b> or{' '}
-          <b className="text-green-300">sensitivities</b> to certain foods?{' '}
+          <b className="text-metaAccent">Metabolite</b> in recommending a suitable dietary plan,
+          such as <b className="text-teal-300">allergies</b> or{' '}
+          <b className="text-teal-300">sensitivities</b> to certain foods?{' '}
         </p>
         <Radio items={allergyOptions} setSelection={setAllergies} existingSelection={allergies} />
         <p className="mt-4 mb-2 font-bold">Dietary Preferences</p>
         <p>
           At the moment, do you have any specific dietary preferences? If not, please select{' '}
-          <b className="text-green-300">Not Applicable</b>. Don&apos;t worry, Metabolite will still
+          <b className="text-teal-300">Not Applicable</b>. Don&apos;t worry, Metabolite will still
           recommend the best diet for you!
         </p>
       </div>
@@ -496,10 +497,8 @@ function ScreeningPageSelector({
         Previous
       </button>
       <button
-        className={`group mt-5 transition-all border rounded-lg py-2 px-4 whitespace-nowrap ${
-          isComplete
-            ? 'border-green-300 bg-emerald-700/30 hover:border-green-200 hover:bg-emerald-600/30'
-            : 'border-green-100 bg-emerald-700/10 hover:border-green-200 hover:bg-emerald-800/30 opacity-50'
+        className={`group mt-5 transition-all border rounded-lg py-2 px-4 whitespace-nowrap bg-neutral-900  ${
+          isComplete ? 'border-metaSecondary hover:border-metaAccent' : 'border-gray-500 opacity-50'
         }`}
         onClick={nextStage}
         disabled={isComplete === false}
@@ -516,10 +515,10 @@ function ScreeningPageSelector({
 function ProgressBar({ stage, method }: { stage: number; method: RadioBasic }) {
   return (
     <div className="mt-5 px-5 md:px-0 md:mx-auto w-full max-w-md lg:max-w-xl">
-      <div className="mb-1 text-base font-medium text-green-300">Progress</div>
+      <div className="mb-1 text-base font-medium text-teal-300">Progress</div>
       <div className="w-full rounded-full h-2.5 bg-gray-700">
         <div
-          className="h-2.5 rounded-full bg-gradient-to-r from-green-600 via-emerald-200 to-lime-300 transition-all duration-700"
+          className="h-2.5 rounded-full bg-gradient-to-r from-metaPrimary via-metaSecondary to-metaAccent transition-all duration-700"
           style={{
             width: `${
               method?.name === 'Complete' ? stage * MAX_QUESTION_COMPLETE * 2.05 : stage * 20
@@ -541,7 +540,7 @@ function BgBlob({ isScreeningComplete }: { isScreeningComplete: boolean }) {
         className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
       rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] 
       after:bg-gradient-conic after:blur-2xl after:content-[''] before:bg-gradient-to-br 
-      before:from-transparent before:to-green-800 before:opacity-10 after:from-emerald-800 after:via-lime-800 
+      before:from-transparent before:to-teal-800 before:opacity-10 after:from-emerald-800 after:via-teal-800 
       after:opacity-40 before:lg:h-[260px] translate-x-[-25rem] translate-y-[12rem] ${
         isScreeningComplete ? 'animate-pulse' : ''
       }`}
@@ -550,7 +549,7 @@ function BgBlob({ isScreeningComplete }: { isScreeningComplete: boolean }) {
         className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
       before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[280px] after:w-[340px] 
       after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
-      before:from-transparent before:to-green-700 before:opacity-10 after:from-emerald-900 after:via-green-600 
+      before:from-transparent before:to-teal-700 before:opacity-10 after:from-emerald-900 after:via-teal-600 
       after:opacity-40 before:lg:h-[460px] translate-y-[27rem] ${
         isScreeningComplete ? 'animate-pulse' : ''
       }`} */}
@@ -559,7 +558,7 @@ function BgBlob({ isScreeningComplete }: { isScreeningComplete: boolean }) {
         className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[200px] 
       before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[220px] after:w-[200px] 
       after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
-      before:from-transparent before:to-green-300 before:opacity-10 after:from-emerald-200 after:via-lime-600 
+      before:from-transparent before:to-teal-300 before:opacity-10 after:from-emerald-200 after:via-teal-600 
       after:opacity-50 before:lg:h-[660px] translate-y-[30rem] translate-x-[-18rem] ${
         isScreeningComplete ? 'animate-pulse' : ''
       }`}

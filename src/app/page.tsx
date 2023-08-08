@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Header from './components/ui/AppWrapper';
 import Image from 'next/image';
 import Lottie from 'lottie-react';
-import Health from '#/health2.json';
+import Health from '#/lottie/health-hero.json';
 
 const lottieStyle = {
   height: 500,

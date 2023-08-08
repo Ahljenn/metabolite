@@ -43,7 +43,7 @@ export default function Nutrition() {
         className={`flex flex-col items-center justify-between 
     p-12`}
       >
-        <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-green-600 via-emerald-200 to-lime-300 bg-clip-text text-transparent">
+        <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-metaPrimary via-metaSecondary to-metaAccent bg-clip-text text-transparent">
           Metabolite Nutrition
         </h1>
         <p className="mt-5 text-center opacity-75 max-w-xl">
@@ -62,7 +62,7 @@ export default function Nutrition() {
           <Link
             rel="noopener noreferrer"
             href="/nutrition/screening"
-            className="mt-5 border-green-300 bg-emerald-700/30 hover:border-green-200 hover:bg-emerald-600/30 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
+            className="mt-5 transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent"
           >
             Get Started
           </Link>
