@@ -146,10 +146,10 @@ const Screening: React.FC = () => {
     workExertion,
     allergies,
     dietPref,
+    healthGoal,
+    fast,
     budget,
     stage,
-    fast,
-    healthGoal,
   ]);
 
   let content;
@@ -313,7 +313,9 @@ const Screening: React.FC = () => {
           workExertion: workExertion.name,
           allergies: allergies.name,
           dietPref: dietPref.name,
-          budget: budget.name,
+          healthGoal: healthGoal.name,
+          fast: fast.name === 'None' ? 'Not Fasting' : fast.name,
+          budget: budget.name === 'None' ? '$$ (Affordable)' : budget.name,
         },
         null,
         2
