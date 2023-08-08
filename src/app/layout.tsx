@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     'Metabolite empowers you to take charge of your fitness and nutrition journey. Elevate your well-being, achieve your goals, and unlock a healthier, stronger you.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <NextAuthProvider>
-          <AppWrapper>{children}</AppWrapper>
-        </NextAuthProvider>
-      </body>
-    </html>
-  );
-}
+const RootLayout = ({ children }: { children: React.ReactNode }) => (
+  <html lang="en">
+    <body className={inter.className}>
+      <NextAuthProvider>
+        <AppWrapper>{children}</AppWrapper>
+      </NextAuthProvider>
+    </body>
+  </html>
+);
+
+export default RootLayout;

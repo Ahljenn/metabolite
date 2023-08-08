@@ -32,7 +32,7 @@ const rootCardData: { header: string; desc: string; route: string }[] = [
   // },
 ];
 
-export default function Home() {
+const Home: React.FC = (): JSX.Element => {
   return (
     <>
       <div
@@ -117,4 +117,5 @@ export default function Home() {
       </section>
     </>
   );
-}
+};
+export default Home;

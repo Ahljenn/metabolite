@@ -5,7 +5,7 @@ interface WrapperProps {
   children: any;
 }
 
-function FadeInWrapper({ children }: WrapperProps) {
+const FadeInWrapper = ({ children }: WrapperProps) => {
   return (
     <Transition
       show={true}
@@ -20,6 +20,6 @@ function FadeInWrapper({ children }: WrapperProps) {
       {children}
     </Transition>
   );
-}
+};
 
 export default FadeInWrapper;

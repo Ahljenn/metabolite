@@ -13,7 +13,7 @@ export interface RadioProps {
   isRow?: boolean;
 }
 
-export function Radio({ items, setSelection, label, existingSelection, isRow }: RadioProps) {
+const Radio = ({ items, setSelection, label, existingSelection, isRow }: RadioProps) => {
   return (
     <div className="w-full px-4 sm:px-2 py-5">
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
@@ -77,7 +77,7 @@ export function Radio({ items, setSelection, label, existingSelection, isRow }: 
       </div>
     </div>
   );
-}
+};
 
 function CheckIcon(props: any) {
   return (
@@ -93,3 +93,4 @@ function CheckIcon(props: any) {
     </svg>
   );
 }
+export default Radio;

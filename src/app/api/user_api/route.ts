@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '%/mongo/client';
 
-export async function POST(request: Request) {
+export const POST = async (request: Request) => {
   try {
     let content = await request.json();
     console.log(content);
@@ -17,6 +17,6 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 400 });
   }
-}
+};
 
 // Reference: https://www.mongodb.com/developer/languages/javascript/nextjs-building-modern-applications/

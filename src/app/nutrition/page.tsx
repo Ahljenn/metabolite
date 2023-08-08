@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { TopGradient } from '../components/ui/TopGradient';
 
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -36,7 +35,7 @@ const nutritionCardData: { header: string; desc: string; route: string }[] = [
   },
 ];
 
-export default function Nutrition() {
+const Nutrition: React.FC = (): JSX.Element => {
   return (
     <>
       <section
@@ -110,4 +109,5 @@ export default function Nutrition() {
       </section>
     </>
   );
-}
+};
+export default Nutrition;

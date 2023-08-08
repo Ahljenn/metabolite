@@ -10,7 +10,7 @@ export function onSignIn() {
   signIn('google');
 }
 
-export default function LoginWithGoogle({ data: session, status }: SessionProps) {
+const LoginWithGoogle = ({ data: session, status }: SessionProps) => {
   if (!session)
     return (
       <button
@@ -31,4 +31,5 @@ export default function LoginWithGoogle({ data: session, status }: SessionProps)
         </span>
       </button>
     );
-}
+};
+export default LoginWithGoogle;

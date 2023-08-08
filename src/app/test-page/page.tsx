@@ -3,7 +3,7 @@ import type { RootState } from '&/store';
 import { useSelector, useDispatch } from 'react-redux';
 // import { increment, decrement, incrementByAmount } from '&/features/user-metrics/metricsSlice';
 
-function TestAPI() {
+const TestAPI: React.FC = (): JSX.Element => {
   async function onMongoApiRequest() {
     const response = await fetch('/api/user_api', {
       method: 'POST',
@@ -56,7 +56,7 @@ function TestAPI() {
       </div>
     </>
   );
-}
+};
 
 const testData = {
   user: 'Test Metabolite',

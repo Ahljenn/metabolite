@@ -6,6 +6,7 @@ interface ReactProps {
   children: React.ReactNode;
 }
 
-export default function NextAuthProvider({ children }: ReactProps) {
+const NextAuthProvider = ({ children }: ReactProps) => {
   return <SessionProvider> {children}</SessionProvider>;
-}
+};
+export default NextAuthProvider;

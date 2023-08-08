@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { TopGradient } from '../components/ui/TopGradient';
 import Link from 'next/link';
 
 interface teamCardProps {
@@ -35,14 +34,13 @@ const teamCardData: teamCardProps[] = [
   },
 ];
 
-export default function About() {
+const About = () => {
   return (
     <section
       className={`flex flex-col items-center  justify-between 
   p-12`}
     >
-      <TopGradient fromColor={'to-green-400'} toColor={'from-teal-400'} />
-      <h1 className="lg:text-2xl font-bold whitespace-nowrap">Meet the Team</h1>
+      <h1 className="lg:text-3xl font-semibold whitespace-nowrap">Meet the Team</h1>
       <div className="mt-5 flex gap-10 flex-col lg:flex-row">
         {teamCardData.map((card: teamCardProps, index: number) => {
           return (
@@ -108,4 +106,5 @@ export default function About() {
       </div>
     </section>
   );
-}
+};
+export default About;
