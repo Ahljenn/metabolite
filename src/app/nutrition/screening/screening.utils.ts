@@ -1,4 +1,4 @@
-import { RadioBasic } from './../../components/ui/Radio';
+import { RadioBasic } from '../../components/ui/Radio';
 
 // Types
 export interface MetricSetters {

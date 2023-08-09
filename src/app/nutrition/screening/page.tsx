@@ -22,7 +22,7 @@ import {
   MAX_QUESTION_COMPLETE,
   DietaryConcernsProps,
   BodyMetricsProps,
-} from './screening.interface';
+} from './screening.utils';
 
 const Screening: React.FC = () => {
   const router = useRouter();
