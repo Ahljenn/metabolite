@@ -14,6 +14,8 @@ export interface UserScreeningType {
   budget: string;
 }
 
+export type EntryType = [string | null, number];
+
 export const fastingOptions: string[] = [
   'Not Fasting',
   'Intermittent Fasting',
