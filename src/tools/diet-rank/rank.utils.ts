@@ -2,9 +2,9 @@ export interface UserScreeningType {
   user: string;
   method: string;
   gender: string;
-  height: number;
-  weight: number;
-  age: number;
+  height: number | null;
+  weight: number | null;
+  age: number | null;
   activityLevel: string;
   workExertion: string;
   allergies: string;
@@ -62,13 +62,17 @@ export const workMultiplier: { [key: string]: number } = {
 };
 
 export const calculateBmr = (metrics: UserScreeningType): number => {
-  if (metrics.gender === 'Male') {
-    return Math.round(
-      88.362 + 13.397 * metrics.weight + 4.799 * metrics.height - 5.677 * metrics.age
-    );
+  if (metrics.weight !== null && metrics.height !== null && metrics.age !== null) {
+    if (metrics.gender === 'Male') {
+      return Math.round(
+        88.362 + 13.397 * metrics.weight + 4.799 * metrics.height - 5.677 * metrics.age
+      );
+    } else {
+      return Math.round(
+        447.593 + 9.247 * metrics.weight + 3.098 * metrics.height - 4.33 * metrics.age
+      );
+    }
   } else {
-    return Math.round(
-      447.593 + 9.247 * metrics.weight + 3.098 * metrics.height - 4.33 * metrics.age
-    );
+    return 0;
   }
 };

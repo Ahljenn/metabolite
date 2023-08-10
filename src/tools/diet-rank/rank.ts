@@ -18,7 +18,10 @@ let clusterScore: { [key: string]: number } = {
   ZON: 0.0,
 };
 
-export const rank = (metrics: UserScreeningType, normalizeScore: boolean = false) => {
+export const rank = (
+  metrics: UserScreeningType,
+  normalizeScore: boolean = false
+): [number, string[]] => {
   const bmr = calculateBmr(metrics);
   const normalizedBmr = bmr / 1000;
 
@@ -29,6 +32,15 @@ export const rank = (metrics: UserScreeningType, normalizeScore: boolean = false
   clusterScore['VEG'] += 1 / Math.log(normalizedBmr);
   clusterScore['FLX'] += 1 / Math.log(normalizedBmr);
   clusterScore['ZON'] += Math.sqrt(normalizedBmr);
+
+  // Compute on activity and work multipliers
+  const activityLevel = metrics.activityLevel;
+  const workExertion = metrics.workExertion;
+  clusterScore['KTO'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.05;
+  clusterScore['HPO'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.45;
+  clusterScore['VEG'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.05;
+  clusterScore['FLX'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.35;
+  clusterScore['ZON'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.25;
 
   // Health Goals
   const goal = metrics.healthGoal;
@@ -55,15 +67,6 @@ export const rank = (metrics: UserScreeningType, normalizeScore: boolean = false
     clusterScore['FLX'] += 2;
     clusterScore['KTO'] += 0.5;
   }
-
-  // Compute on activity and work multipliers
-  const activityLevel = metrics.activityLevel;
-  const workExertion = metrics.workExertion;
-  clusterScore['KTO'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.05;
-  clusterScore['HPO'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.45;
-  clusterScore['VEG'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.05;
-  clusterScore['FLX'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.35;
-  clusterScore['ZON'] += (activityMultiplier[activityLevel] + workMultiplier[workExertion]) * 1.25;
 
   // Existing dietary preferences
   const pref = metrics.dietPref;
@@ -102,9 +105,10 @@ export const rank = (metrics: UserScreeningType, normalizeScore: boolean = false
 
   const [bestKey, bestValue] = bestCluster;
 
-  console.table(clusterScore);
-  console.log('BMR:', bmr, 'calories per day');
-  console.log('Normalized rank value: ', bestValue); // i.e - Output: 2.0 (or the highest score)
-  console.log('Recommend Diets: '); // i.e - Output: "KTO" (or the key with the highest score)
-  console.table(clusterMap[bestKey ?? 0]);
+  // console.table(clusterScore);
+  // console.log('BMR:', bmr, 'calories per day');
+  // console.log('Normalized rank value: ', bestValue); // i.e - Output: 2.0 (or the highest score)
+  // console.log('Recommend Diets: '); // i.e - Output: "KTO" (or the key with the highest score)
+  // console.table(clusterMap[bestKey ?? 0]);
+  return [bmr, clusterMap[bestKey ?? 0]];
 };
