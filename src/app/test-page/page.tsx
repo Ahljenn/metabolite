@@ -3,6 +3,9 @@ import type { RootState } from '&/store';
 import { useSelector, useDispatch } from 'react-redux';
 // import { increment, decrement, incrementByAmount } from '&/features/user-metrics/metricsSlice';
 
+import { UserScreeningType } from '../../tools/diet-rank/rank.utils';
+import { rank } from '../../tools/diet-rank/rank';
+
 const TestAPI: React.FC = (): JSX.Element => {
   const onMongoApiRequest = async () => {
     const response = await fetch('/api/user_api', {
@@ -10,10 +13,14 @@ const TestAPI: React.FC = (): JSX.Element => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(testData, null, 2),
+      body: JSON.stringify(sample, null, 2),
     });
     const data = await response.json();
     // window.alert(data.message);
+  };
+
+  const onRankRequest = () => {
+    rank(sample);
   };
 
   // const countState = useSelector((state: RootState) => state.metrics.value);
@@ -28,6 +35,17 @@ const TestAPI: React.FC = (): JSX.Element => {
             onClick={onMongoApiRequest}
           >
             MONGO TEST
+          </button>
+        </div>
+      </div>
+
+      <div className="flex justify-center mt-20 flex-col gap-5 items-center">
+        <div>
+          <button
+            className="bg-green-500 hover:bg-lime-500 transition-all duration-300 px-5 py-2 rounded-lg text-black"
+            onClick={onRankRequest}
+          >
+            Rank Test
           </button>
         </div>
       </div>
@@ -58,18 +76,20 @@ const TestAPI: React.FC = (): JSX.Element => {
   );
 };
 
-const testData = {
-  user: 'Test Metabolite',
+const sample: UserScreeningType = {
+  user: 'Sample User',
   method: 'Quickstart',
-  gender: 'Male',
-  height: 162,
-  weight: 80,
+  gender: 'Female',
+  height: 100,
+  weight: 102,
   age: 21,
   activityLevel: 'Lightly active',
-  workExertion: 'Office job',
-  allergies: 'Nuts',
+  workExertion: 'Not applicable',
+  allergies: 'Gluten',
   dietPref: 'Not applicable',
-  budget: '$$$ (Moderate)',
+  healthGoal: 'Losing Weight',
+  fast: 'Not Fasting',
+  budget: '$$ (Affordable)',
 };
 
 export default TestAPI;

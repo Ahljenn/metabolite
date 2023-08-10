@@ -126,18 +126,6 @@ export const allergyOptions: RadioBasic[] = [
     desc: 'An allergy to sesame seeds and sesame-based products.',
   },
   {
-    name: 'Sulfites',
-    desc: 'An allergy to sulfites used as preservatives in certain foods and beverages.',
-  },
-  {
-    name: 'Corn',
-    desc: 'An allergic reaction to corn or corn-based products.',
-  },
-  {
-    name: 'Sodium',
-    desc: 'An allergic reaction to sodium, a common component of table salt and processed foods.',
-  },
-  {
     name: 'Other',
     desc: 'An allergy to specific foods not listed above.',
   },
@@ -146,31 +134,23 @@ export const allergyOptions: RadioBasic[] = [
 export const dietOptions: RadioBasic[] = [
   {
     name: 'Not applicable',
-    desc: 'Select this option if you do not have any dietary preference.',
+    desc: 'Select this option if you do not have any dietary preference or it is not listed.',
   },
   {
     name: 'Ketogenic Diet',
     desc: 'A low-carb, high-fat diet that focuses on reducing carbohydrate intake and increasing fat consumption.',
   },
   {
-    name: 'Low Carb Diet',
-    desc: 'A diet that restricts the consumption of carbohydrates, typically focusing on reducing intake of refined sugars and starches.',
+    name: 'Zone Diet',
+    desc: 'A popular dietary approach that emphasizes a balanced intake of macronutrients (carbohydrates, proteins, and fats).',
   },
   {
     name: 'Vegan Diet',
     desc: 'A plant-based diet that excludes all animal products, including meat, dairy, eggs, and honey.',
   },
   {
-    name: 'Vegetarian Diet',
-    desc: 'A diet that excludes meat and seafood but allows for the consumption of other animal-derived products, such as dairy and eggs.',
-  },
-  {
     name: 'Paleo Diet',
     desc: 'An eating pattern that emphasizes whole foods and avoids processed foods and grains to mimic the eating patterns of our ancestors from the Paleolithic era.',
-  },
-  {
-    name: 'Whole30',
-    desc: 'A 30-day dietary program that eliminates certain food groups, such as grains, dairy, legumes, and added sugars, to reset eating habits and improve overall health.',
   },
 ];
 
@@ -209,10 +189,6 @@ export const fastingOptions: RadioBasic[] = [
   {
     name: 'Extended Fasting',
     desc: 'Engage in longer periods of fasting lasting 24 to 48 hours or more.',
-  },
-  {
-    name: 'Time-Restricted Feeding',
-    desc: 'Limit the eating window to a specific time frame each day, such as 8-hour eating and 16-hour fasting.',
   },
   {
     name: '5-Day Fasting Mimicking Diet (FMD)',

@@ -9,22 +9,6 @@ import {
   clusterMap,
 } from './rank.utils';
 
-const sample: UserScreeningType = {
-  user: 'Sample User',
-  method: 'Quickstart',
-  gender: 'Female',
-  height: 100,
-  weight: 102,
-  age: 21,
-  activityLevel: 'Lightly active',
-  workExertion: 'Not applicable',
-  allergies: 'Gluten',
-  dietPref: 'Not applicable',
-  healthGoal: 'Losing Weight',
-  fast: 'Not Fasting',
-  budget: '$$ (Affordable)',
-};
-
 // User's cluster "score"
 let clusterScore: { [key: string]: number } = {
   KTO: 0.0,
@@ -34,7 +18,7 @@ let clusterScore: { [key: string]: number } = {
   ZON: 0.0,
 };
 
-const rank = (metrics: UserScreeningType, normalizeScore: boolean = false) => {
+export const rank = (metrics: UserScreeningType, normalizeScore: boolean = false) => {
   const bmr = calculateBmr(metrics);
 
   const normalizedBmr = bmr / 1000;
