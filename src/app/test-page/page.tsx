@@ -52,7 +52,7 @@ const TestAPI: React.FC = (): JSX.Element => {
       {diets.length > 0 ? (
         <>
           <div className="flex justify-center mt-10 flex-col sm:flex-row gap-2 items-center">
-            <div>
+            <div className="flex flex-col">
               <Image
                 className="grayscale"
                 src="/eating.png"
@@ -62,12 +62,22 @@ const TestAPI: React.FC = (): JSX.Element => {
                 quality={100}
                 priority
               />
+              <p className="text-center">
+                Your Basal Metabolic Rate is: <b className="bold text-metaAccent">{bmr}</b>
+              </p>
             </div>
-            <div className="sm:border-l-[0.01px] sm:border-slate-700 sm:pl-5">
+            <div className="sm:border-l-[0.01px] sm:border-slate-300 sm:px-5">
               <p className="text-center font-semibold mb-5">Select your journey</p>
+              <p className="mb-5">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus felis quis
+                ultricies malesuada. Aliquam erat volutpat. Donec ac sapien sed erat tincidunt
+                faucibus id a leo.{' '}
+              </p>
               {diets.map((diet: string, index: number) => (
                 <div className="mb-5 p-2" key={index}>
-                  <p className="font-bold text-metaAccent text-xl">{diet}</p>
+                  <p className="font-bold text-metaAccent text-xl">
+                    {index + 1}. {diet}
+                  </p>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus felis quis
                     ultricies malesuada. Aliquam erat volutpat. Donec ac sapien sed erat tincidunt
@@ -77,13 +87,10 @@ const TestAPI: React.FC = (): JSX.Element => {
                     venenatis tempus.
                   </p>
                   <Link className="italic text-metaSecondary cursor-pointer" href="#">
-                    Learn more
+                    Learn more <b className="bold">&gt;</b>
                   </Link>
                 </div>
               ))}
-              <p className="text-center">
-                Your Basal Metabolic Rate is: <b className="bold text-metaAccent">{bmr}</b>
-              </p>
             </div>
           </div>
         </>
