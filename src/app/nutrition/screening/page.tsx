@@ -22,7 +22,9 @@ import {
   MAX_QUESTION_COMPLETE,
   DietaryConcernsProps,
   BodyMetricsProps,
-} from './screening.interface';
+} from './screening.utils';
+import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
+import { rank } from '@/tools/diet-rank/rank';
 
 const Screening: React.FC = () => {
   const router = useRouter();
@@ -67,7 +69,7 @@ const Screening: React.FC = () => {
           setStage((i) => i + 1);
           setIsComplete(false);
         } else {
-          userMetricsPOST();
+          onScreeningComplete();
           setIsScreeningComplete(true);
         }
         break;
@@ -76,7 +78,7 @@ const Screening: React.FC = () => {
           setStage((i) => i + 1);
           setIsComplete(false);
         } else {
-          userMetricsPOST();
+          onScreeningComplete();
           setIsScreeningComplete(true);
         }
         break;
@@ -295,33 +297,32 @@ const Screening: React.FC = () => {
       break;
   }
 
-  const userMetricsPOST = async () => {
+  const onScreeningComplete = async () => {
+    const userData: UserScreeningType = {
+      user: session?.user?.name || 'No user loaded',
+      method: method.name,
+      gender: gender.name,
+      height,
+      weight,
+      age,
+      activityLevel: activityLevel.name,
+      workExertion: workExertion.name,
+      allergies: allergies.name,
+      dietPref: dietPref.name,
+      healthGoal: healthGoal.name,
+      fast: fast.name === 'None' ? 'Not Fasting' : fast.name,
+      budget: budget.name === 'None' ? '$$ (Affordable)' : budget.name,
+    };
+
     const response = await fetch('/api/user_api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(
-        {
-          user: session?.user?.name || 'No user loaded',
-          method: method.name,
-          gender: gender.name,
-          height,
-          weight,
-          age,
-          activityLevel: activityLevel.name,
-          workExertion: workExertion.name,
-          allergies: allergies.name,
-          dietPref: dietPref.name,
-          healthGoal: healthGoal.name,
-          fast: fast.name === 'None' ? 'Not Fasting' : fast.name,
-          budget: budget.name === 'None' ? '$$ (Affordable)' : budget.name,
-        },
-        null,
-        2
-      ),
+      body: JSON.stringify(userData, null, 2),
     });
     const data = await response.json();
+    rank(userData);
     // console.log(data);
 
     // const redirectTimeout = setTimeout(() => {
