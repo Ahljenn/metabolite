@@ -52,7 +52,7 @@ const TestAPI: React.FC = (): JSX.Element => {
       {diets.length > 0 ? (
         <>
           <div className="flex justify-center mt-10 flex-col sm:flex-row gap-2 items-center">
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center">
               <Image
                 className="grayscale"
                 src="/eating.png"
@@ -63,7 +63,13 @@ const TestAPI: React.FC = (): JSX.Element => {
                 priority
               />
               <p className="text-center">
-                Your Basal Metabolic Rate is: <b className="bold text-metaAccent">{bmr}</b>
+                Your Basal Metabolic Rate is: <b className="font-semibold text-metaAccent">{bmr}</b>
+              </p>
+              <p>
+                Fasting procedure: <b className="font-semibold text-metaAccent">{sample.fast}</b>
+              </p>
+              <p>
+                Health goal: <b className="font-semibold text-metaAccent">{sample.healthGoal}</b>
               </p>
             </div>
             <div className="sm:border-l-[0.01px] sm:border-slate-300 sm:px-5">
@@ -86,11 +92,23 @@ const TestAPI: React.FC = (): JSX.Element => {
                     vulputate augue leo, nec ultrices nisi ullamcorper ac. Aenean posuere lacus in
                     venenatis tempus.
                   </p>
-                  <Link className="italic text-metaSecondary cursor-pointer" href="#">
-                    Learn more <b className="bold">&gt;</b>
-                  </Link>
+                  <div className="flex justify-between items-center">
+                    <Link className="italic text-metaSecondary cursor-pointer" href="#">
+                      Learn more <b className="bold">&gt;</b>
+                    </Link>
+                    <button className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent">
+                      Select
+                    </button>
+                  </div>
                 </div>
               ))}
+              <p className="text-sm opacity-50 tracking-tighter">
+                Disclaimer: The nutrition recommendations provided by Metabolite are intended for
+                general informational purposes only and are not a substitute for professional
+                medical advice, diagnosis, or treatment. Always seek the advice of a qualified
+                healthcare provider or registered dietitian before making any significant changes to
+                your diet, exercise routine, or lifestyle.
+              </p>
             </div>
           </div>
         </>
