@@ -38,17 +38,6 @@ const TestAPI: React.FC = (): JSX.Element => {
 
   return (
     <main className="flex max-w-screen-xl px-4 py-8 mx-auto flex-col">
-      <div className="flex justify-center mt-20 flex-col gap-5 items-center">
-        <div>
-          <button
-            className="bg-green-500 hover:bg-lime-500 transition-all duration-300 px-5 py-2 rounded-lg text-black"
-            onClick={onRankRequest}
-          >
-            Rank Test
-          </button>
-        </div>
-      </div>
-
       {diets.length > 0 ? (
         <>
           <div className="flex justify-center mt-10 flex-col sm:flex-row gap-2 items-center">
@@ -74,10 +63,11 @@ const TestAPI: React.FC = (): JSX.Element => {
             </div>
             <div className="sm:border-l-[0.01px] sm:border-slate-300 sm:px-5">
               <p className="text-center font-semibold mb-5">Select your journey</p>
-              <p className="mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus felis quis
-                ultricies malesuada. Aliquam erat volutpat. Donec ac sapien sed erat tincidunt
-                faucibus id a leo.{' '}
+              <p className="mb-5 text-center">
+                Congratulations on completing the screening process! Now that we have a better
+                understanding of your preferences and goals, it&apos;s time for you to embark on
+                your personalized nutritional journey. Below are the diet options tailored to your
+                needs:
               </p>
               {diets.map((diet: string, index: number) => (
                 <div className="mb-5 p-2" key={index}>
@@ -106,7 +96,16 @@ const TestAPI: React.FC = (): JSX.Element => {
           </div>
         </>
       ) : (
-        <> </>
+        <div className="flex justify-center mt-20 flex-col gap-5 items-center">
+          <div>
+            <button
+              className="bg-green-500 hover:bg-lime-500 transition-all duration-300 px-5 py-2 rounded-lg text-black"
+              onClick={onRankRequest}
+            >
+              Rank Test
+            </button>
+          </div>
+        </div>
       )}
 
       {/* 
