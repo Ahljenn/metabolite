@@ -3,7 +3,7 @@ import type { RootState } from '&/store';
 import { useSelector, useDispatch } from 'react-redux';
 // import { increment, decrement, incrementByAmount } from '&/features/user-metrics/metricsSlice';
 
-import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
+import { UserScreeningType, dietDescriptions } from '@/tools/diet-rank/rank.utils';
 import { rank } from '@/tools/diet-rank/rank';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -84,14 +84,7 @@ const TestAPI: React.FC = (): JSX.Element => {
                   <p className="font-bold text-metaAccent text-xl">
                     {index + 1}. {diet}
                   </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus felis quis
-                    ultricies malesuada. Aliquam erat volutpat. Donec ac sapien sed erat tincidunt
-                    faucibus id a leo. Fusce eleifend gravida mauris, quis suscipit enim dignissim
-                    mollis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras
-                    vulputate augue leo, nec ultrices nisi ullamcorper ac. Aenean posuere lacus in
-                    venenatis tempus.
-                  </p>
+                  <p>{dietDescriptions[diet]}</p>
                   <div className="flex justify-between items-center">
                     <Link className="italic text-metaSecondary cursor-pointer" href="#">
                       Learn more <b className="bold">&gt;</b>
