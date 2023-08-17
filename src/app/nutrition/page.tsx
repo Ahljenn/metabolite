@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 import { Metadata } from 'next';
-import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Nutrition',
 };
@@ -51,20 +50,20 @@ const Nutrition: React.FC = (): JSX.Element => {
         </p>
 
         <div className="flex sm:gap-5 flex-col sm:flex-row">
-          <Link
+          <a
             rel="noopener noreferrer"
             href=""
             className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
           >
             Learn More
-          </Link>
-          <Link
+          </a>
+          <a
             rel="noopener noreferrer"
             href="/nutrition/screening"
             className="mt-5 transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent"
           >
             Get Started
-          </Link>
+          </a>
         </div>
 
         <div className="mt-20 grid text-center lg:mb-0 lg:grid-cols-3 lg:text-left gap-5 mx-10">
