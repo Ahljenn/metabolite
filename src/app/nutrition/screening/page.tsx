@@ -348,8 +348,8 @@ const Screening: React.FC = () => {
           className={`flex flex-col items-center  justify-between 
 p-12`}
         >
-          <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-metaPrimary via-metaSecondary to-metaAccent bg-clip-text text-transparent">
-            Metabolite Nutrition
+          <h1 className="text-3xl lg:text-5xl font-bold text-center mt-5 bg-gradient-to-r from-metaAccent via-metaPrimary to-metaAccent bg-clip-text text-transparent">
+            Personalized Wellness Metrics
           </h1>
           <SelectDiet user={userData} diets={diets} bmr={bmr} />
         </main>

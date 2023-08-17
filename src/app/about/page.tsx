@@ -40,7 +40,13 @@ const About = () => {
       className={`flex flex-col items-center  justify-between 
   p-12`}
     >
-      <h1 className="lg:text-3xl font-semibold whitespace-nowrap">Meet the Team</h1>
+      <h1 className="lg:text-4xl font-bold whitespace-nowrap text-white">Meet the Team</h1>
+      <p className="mt-5 text-center opacity-75 max-w-xl">
+        We&apos;re excited to introduce you to the dynamic duo that drives our mission to support
+        your health and wellness journey. With a shared dedication to your well-being, these are the
+        faces behind the scenes who are here to guide, motivate, and empower you:
+      </p>
+
       <div className="mt-5 flex gap-10 flex-col lg:flex-row">
         {teamCardData.map((card: teamCardProps, index: number) => {
           return (
@@ -87,6 +93,7 @@ const About = () => {
             and promoting better health practices.{' '}
           </p>
           <p className="mt-5">
+            Our team may be small, but we&apos;re mighty in our commitment to your journey.
             Together, we strive to provide a holistic platform that seamlessly integrates
             personalized nutrition guidance, tailored fitness plans, and cutting-edge technology to
             transform lives. With Metabolite, individuals can unlock their true potential and embark
@@ -102,6 +109,8 @@ const About = () => {
               Please feel free to reach out to us
             </a>
           </p>
+          <p className="mt-5">To your health and happiness, </p>
+          <p>Ahljenn.</p>
         </div>
       </div>
     </section>
