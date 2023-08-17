@@ -7,6 +7,6 @@ interface ReactProps {
 }
 
 const NextAuthProvider = ({ children }: ReactProps) => {
-  return <SessionProvider> {children}</SessionProvider>;
+  return <SessionProvider>{children}</SessionProvider>;
 };
 export default NextAuthProvider;

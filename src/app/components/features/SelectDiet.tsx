@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 interface SelectDietProps {
   diets: string[];
-  user: UserScreeningType;
+  user: UserScreeningType | undefined;
   bmr: number | undefined;
 }
 
@@ -28,10 +28,10 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
             Your Basal Metabolic Rate is: <b className="font-semibold text-metaAccent">{bmr}</b>
           </p>
           <p>
-            Fasting procedure: <b className="font-semibold text-metaAccent">{user.fast}</b>
+            Fasting procedure: <b className="font-semibold text-metaAccent">{user?.fast}</b>
           </p>
           <p>
-            Health goal: <b className="font-semibold text-metaAccent">{user.healthGoal}</b>
+            Health goal: <b className="font-semibold text-metaAccent">{user?.healthGoal}</b>
           </p>
         </div>
         <div className="sm:border-l-[0.01px] sm:border-slate-300 sm:px-5">
@@ -41,7 +41,7 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
             understanding of your preferences and goals, it&apos;s time for you to embark on your
             personalized nutritional journey. Below are the diet options tailored to your needs:
           </p>
-          {diets.map((diet: string, index: number) => (
+          {diets?.map((diet: string, index: number) => (
             <div className="mb-5 p-2" key={index}>
               <p className="font-bold text-metaAccent text-xl">
                 {index + 1}. {diet}

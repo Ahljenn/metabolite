@@ -4,11 +4,7 @@ import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import ReduxProvider from '&/ReduxProvider';
-
-const variants = {
-  pageInitial: { opacity: 0 },
-  pageAnimate: { opacity: 1 },
-};
+import FadeWrapper from './FadeWrapper';
 
 interface AppWrapperProps {
   children: any;
@@ -18,16 +14,10 @@ const AppWrapper = ({ children }: AppWrapperProps) => {
   const pathname = usePathname();
   return (
     <ReduxProvider>
-      <motion.div
-        key={pathname}
-        initial="pageInitial"
-        transition={{ duration: 0.5 }}
-        animate="pageAnimate"
-        variants={variants}
-      >
+      <FadeWrapper>
         <Navbar currentRoute={pathname} />
         {children}
-      </motion.div>
+      </FadeWrapper>
     </ReduxProvider>
   );
 };

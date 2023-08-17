@@ -7,7 +7,6 @@ import Lottie from 'lottie-react';
 import LoadingAnimation from '#/lottie/diet-plan.json';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-
 import {
   methodOptions,
   genders,
@@ -25,6 +24,8 @@ import {
 } from './screening.utils';
 import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
 import { rank } from '@/tools/diet-rank/rank';
+import SelectDiet from '@/app/components/features/SelectDiet';
+import FadeWrapper from '@/app/components/ui/FadeWrapper';
 
 const Screening: React.FC = () => {
   const router = useRouter();
@@ -34,13 +35,13 @@ const Screening: React.FC = () => {
   // -- Prescreening:
   const [method, setMethod] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
-  // -- Body metrics:
+  // -- Body Metrics:
   const [gender, setGender] = useState<RadioBasic>({ name: 'None', desc: 'None' });
   const [height, setHeight] = useState<number | null>(null);
   const [weight, setWeight] = useState<number | null>(null);
   const [age, setAge] = useState<number | null>(null);
 
-  // -- Lifestyle factors:
+  // -- Lifestyle Factors:
   const [activityLevel, setActivityLevel] = useState<RadioBasic>({ name: 'None', desc: 'None' });
   const [workExertion, setWorkExertion] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
@@ -57,10 +58,15 @@ const Screening: React.FC = () => {
   // -- Health Goals
   const [healthGoal, setHealthGoal] = useState<RadioBasic>({ name: 'None', desc: 'None' });
 
-  // Page states //
+  // Page States //
   const [stage, setStage] = useState<number>(1);
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [isScreeningComplete, setIsScreeningComplete] = useState<boolean>(false);
+
+  // Final Results
+  const [diets, setDiets] = useState<string[]>([]);
+  const [bmr, setBmr] = useState<number>();
+  const [userData, setUserData] = useState<UserScreeningType>();
 
   const nextStage = () => {
     switch (method?.name) {
@@ -298,7 +304,7 @@ const Screening: React.FC = () => {
   }
 
   const onScreeningComplete = async () => {
-    const userData: UserScreeningType = {
+    const tempUserData: UserScreeningType = {
       user: session?.user?.name || 'No user loaded',
       method: method.name,
       gender: gender.name,
@@ -314,23 +320,42 @@ const Screening: React.FC = () => {
       budget: budget.name === 'None' ? '$$ (Affordable)' : budget.name,
     };
 
+    setUserData(tempUserData);
+
     const response = await fetch('/api/user_api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(userData, null, 2),
+      body: JSON.stringify(tempUserData, null, 2),
     });
-    const data = await response.json();
-    rank(userData);
-    // console.log(data);
 
-    // const redirectTimeout = setTimeout(() => {
-    //   router.push('/nutrition/results'); // Replace '/new-page' with the desired URL
-    // }, 3000); // N miliseconds
-    // // Clean up the timeout when the component unmounts
-    // return () => clearTimeout(redirectTimeout);
+    const data = await response.json();
+
+    const redirectTimeout = setTimeout(() => {
+      let [bmrVal, cluster] = rank(tempUserData);
+      setDiets(cluster);
+      setBmr(bmrVal);
+    }, 1500); // N miliseconds
+    // Clean up the timeout when the component unmounts
+    return () => clearTimeout(redirectTimeout);
   };
+
+  if (diets.length > 0) {
+    return (
+      <FadeWrapper>
+        <main
+          className={`flex flex-col items-center  justify-between 
+p-12`}
+        >
+          <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-metaPrimary via-metaSecondary to-metaAccent bg-clip-text text-transparent">
+            Metabolite Nutrition
+          </h1>
+          <SelectDiet user={userData} diets={diets} bmr={bmr} />
+        </main>
+      </FadeWrapper>
+    );
+  }
 
   return (
     <main

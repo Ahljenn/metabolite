@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import Header from './components/ui/AppWrapper';
 import Image from 'next/image';
 import Lottie from 'lottie-react';
@@ -55,20 +54,20 @@ const Home: React.FC = (): JSX.Element => {
             </p>
             <div className="flex flex-col-reverse sm:flex-row gap-8 justify-center sm:justify-start items-center">
               <div>
-                <Link
+                <a
                   href="/nutrition"
                   className="mt-5 border-green-300 bg-emerald-700 hover:border-green-200 hover:bg-emerald-600 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
                 >
                   Metabolite
-                </Link>
+                </a>
               </div>
               <div>
-                <Link
+                <a
                   href="/about"
                   className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
                 >
                   About
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -83,7 +82,7 @@ const Home: React.FC = (): JSX.Element => {
             {rootCardData.map(
               (card: { header: string; desc: string; route: string }, index: number) => {
                 return (
-                  <Link
+                  <a
                     key={index}
                     href={card.route}
                     className="group rounded-lg border border-transparent px-5 py-4 hover:border-neutral-700 hover:bg-neutral-800/50 mx-2 my-5 sm:my-0"
@@ -96,7 +95,7 @@ const Home: React.FC = (): JSX.Element => {
                       </span>
                     </h2>
                     <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
-                  </Link>
+                  </a>
                 );
               }
             )}
