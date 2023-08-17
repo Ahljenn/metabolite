@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-import LoginWithGoogle, { onSignIn } from './LoginWithGoogle';
+import LoginWithGoogle, { onSignIn } from '../features/LoginWithGoogle';
 import { useSession, signOut, signIn } from 'next-auth/react';
 
 const navigation = [

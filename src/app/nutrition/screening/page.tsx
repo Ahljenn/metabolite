@@ -1,8 +1,8 @@
 'use client';
 
-import Radio from './../../components/ui/Radio';
+import Radio from '../../components/features/Radio';
 import { useEffect, useState } from 'react';
-import { RadioBasic } from './../../components/ui/Radio';
+import { RadioBasic } from '../../components/features/Radio';
 import Lottie from 'lottie-react';
 import LoadingAnimation from '#/lottie/diet-plan.json';
 import { useRouter } from 'next/navigation';
