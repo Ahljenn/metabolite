@@ -3,6 +3,7 @@
 import { UserScreeningType, dietDescriptions } from '@/tools/diet-rank/rank.utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Router } from 'next/router';
 
 interface SelectDietProps {
   diets: string[];
@@ -48,12 +49,15 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
               </p>
               <p>{dietDescriptions[diet]}</p>
               <div className="flex justify-between items-center">
-                <Link className="italic text-metaSecondary cursor-pointer" href="#">
+                <a className="italic text-metaSecondary cursor-pointer" href="#">
                   Learn more <b className="bold">&gt;</b>
-                </Link>
-                <button className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent">
+                </a>
+                <a
+                  className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent"
+                  href={`/nutrition/results/${diet}`}
+                >
                   Select
-                </button>
+                </a>
               </div>
             </div>
           ))}
