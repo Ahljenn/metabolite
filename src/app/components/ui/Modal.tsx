@@ -31,7 +31,7 @@ const Modal: React.FC<DialogInfo> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-20 backdrop-blur" />
+            <div className="fixed inset-0 bg-black bg-opacity-20 backdrop-blur-lg" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -45,21 +45,21 @@ const Modal: React.FC<DialogInfo> = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900 p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title as="h3" className="text-lg font-medium leading-6">
                     {title}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">{description}</p>
+                    <p className="text-sm opacity-50">{description}</p>
                   </div>
 
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="mt-5 w-[10rem] py-2 text-sm text-black rounded-xl shadow-xl opacity-50 hover:opacity-100 transition duration-300 "
+                      className="mt-5 w-[8rem] py-2 text-sm rounded-xl shadow-xl opacity-50 hover:opacity-100 transition duration-300 border"
                       onClick={handleModalClick}
                     >
-                      Got it, thanks!
+                      Done
                     </button>
                   </div>
                 </Dialog.Panel>
