@@ -23,6 +23,7 @@ const NutritionCards = () => {
           card: {
             header: string;
             desc: string;
+            info: string;
           },
           index: number
         ) => {
@@ -36,7 +37,7 @@ const NutritionCards = () => {
               onClick={() => {
                 setModalData({
                   title: card.header,
-                  desc: card.desc,
+                  desc: card.info,
                 });
                 setModalView(true);
               }}
@@ -56,28 +57,35 @@ const NutritionCards = () => {
     </div>
   );
 };
-
-const nutritionCardData: { header: string; desc: string }[] = [
+const nutritionCardData: {
+  header: string;
+  desc: string;
+  info: string;
+}[] = [
   {
     header: 'Diet',
     desc: 'The specific food and drinks a person consumes regularly to meet their nutritional needs and achieve their health and fitness goals. The goal of a diet is often to achieve specific health and fitness objectives, such as weight management, muscle gain, improved athletic performance, or the prevention of chronic diseases. Different dietary approaches, such as vegetarian, vegan, Mediterranean, or low-carb diets, exist to cater to individual needs and preferences.',
+    info: 'A diet is not just about what you eat, but also how it can impact your overall well-being. It plays a crucial role in providing the necessary nutrients for your body to function optimally.',
   },
   {
     header: 'Basal Metabolic Rate',
     desc: 'Learn more about the amount of energy expended by your body at rest to maintain basic bodily functions such as breathing, circulation, and cell production.',
+    info: 'Basal Metabolic Rate (BMR) is a key factor in understanding how many calories your body needs to maintain its essential functions, even when you are at rest.',
   },
   {
     header: 'Nutrients',
     desc: 'The essential components of food that are vital for optimal fitness and health.',
+    info: 'Nutrients encompass a wide range of substances, including vitamins, minerals, carbohydrates, proteins, and fats, all of which are necessary for various physiological processes in the body.',
   },
-
   {
     header: 'Water',
     desc: 'A vital liquid essential for maintaining hydration, regulating body temperature, transporting nutrients, and eliminating waste from the body.',
+    info: 'Water is often referred to as the "elixir of life" due to its critical role in numerous bodily functions, including maintaining electrolyte balance and supporting cellular processes.',
   },
   {
     header: 'Fasting',
     desc: 'Often practiced for various health and spiritual reasons, or as a strategy for weight management and metabolic health.',
+    info: 'Fasting involves voluntarily abstaining from food for a specified period. It can have different effects on the body, ranging from promoting fat utilization to providing potential mental and spiritual benefits.',
   },
 ];
 
