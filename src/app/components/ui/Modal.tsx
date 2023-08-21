@@ -6,6 +6,8 @@ interface DialogInfo {
   description?: string;
   modalView: boolean;
   setModalView: any;
+  onAcknowledge?: any; // Optional callback function on acknowledge;
+  moreContent?: React.FC<any>; // Optional react content
 }
 
 const Modal: React.FC<DialogInfo> = ({
@@ -13,6 +15,8 @@ const Modal: React.FC<DialogInfo> = ({
   description,
   modalView,
   setModalView,
+  onAcknowledge,
+  moreContent,
 }: DialogInfo): JSX.Element => {
   const handleModalClick = (): void => {
     setModalView(!modalView);
