@@ -26,6 +26,7 @@ import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
 import { rank } from '@/tools/diet-rank/rank';
 import SelectDiet from '@/app/components/features/SelectDiet';
 import FadeWrapper from '@/app/components/ui/FadeWrapper';
+import ModalAdvanced from '@/app/components/ui/Modals/ModalAdvanced';
 
 const Screening: React.FC = () => {
   const router = useRouter();
@@ -63,6 +64,9 @@ const Screening: React.FC = () => {
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [isScreeningComplete, setIsScreeningComplete] = useState<boolean>(false);
 
+  // Modal
+  const [modalView, setModalView] = useState<boolean>(false);
+
   // Final Results
   const [diets, setDiets] = useState<string[]>([]);
   const [bmr, setBmr] = useState<number>();
@@ -75,8 +79,7 @@ const Screening: React.FC = () => {
           setStage((i) => i + 1);
           setIsComplete(false);
         } else {
-          onScreeningComplete();
-          setIsScreeningComplete(true);
+          onFormComplete();
         }
         break;
       case 'Complete':
@@ -84,8 +87,7 @@ const Screening: React.FC = () => {
           setStage((i) => i + 1);
           setIsComplete(false);
         } else {
-          onScreeningComplete();
-          setIsScreeningComplete(true);
+          onFormComplete();
         }
         break;
     }
@@ -303,7 +305,12 @@ const Screening: React.FC = () => {
       break;
   }
 
-  const onScreeningComplete = async () => {
+  const onFormComplete = () => {
+    setModalView(true);
+  };
+
+  // After user acknowledge
+  const handleUserData = async () => {
     const tempUserData: UserScreeningType = {
       user: session?.user?.name || 'No user loaded',
       method: method.name,
@@ -319,9 +326,7 @@ const Screening: React.FC = () => {
       fast: fast.name === 'None' ? 'Not Fasting' : fast.name,
       budget: budget.name === 'None' ? '$$ (Affordable)' : budget.name,
     };
-
     setUserData(tempUserData);
-
     const response = await fetch('/api/user_api', {
       method: 'POST',
       headers: {
@@ -331,7 +336,6 @@ const Screening: React.FC = () => {
     });
 
     const data = await response.json();
-
     const redirectTimeout = setTimeout(() => {
       let [bmrVal, cluster] = rank(tempUserData);
       setDiets(cluster);
@@ -365,6 +369,25 @@ p-12`}
       <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-metaPrimary via-metaSecondary to-metaAccent bg-clip-text text-transparent">
         Metabolite Nutrition
       </h1>
+
+      <ModalAdvanced
+        title="Proceed"
+        description="
+        Are you ready to continue with the customized wellness metrics? Please note that once set, you won't be able to alter your values unless you start over."
+        modalView={modalView}
+        setModalView={setModalView}
+        acknowledgeText="Continue"
+        onAcknowledge={() => {
+          handleUserData();
+          setIsScreeningComplete(true);
+          setModalView(false);
+        }}
+        rejectText="Revise"
+        onReject={() => {
+          setModalView(false);
+        }}
+      />
+
       <BgBlob isScreeningComplete={isScreeningComplete} />
 
       {!isScreeningComplete ? (

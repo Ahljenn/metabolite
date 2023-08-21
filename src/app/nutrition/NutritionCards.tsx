@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import Modal from '../components/ui/Modal';
+import ModalBasic from '@/app/components/ui/Modals/ModalBasic';
 
 interface ModalDataType {
   title?: string;
@@ -12,7 +12,7 @@ const NutritionCards = () => {
   const [modalData, setModalData] = useState<ModalDataType>({ title: 'None', desc: 'None' });
   return (
     <div className="mt-20 grid text-center lg:mb-0 lg:grid-cols-3 lg:text-left gap-5 mx-10">
-      <Modal
+      <ModalBasic
         title={modalData?.title}
         description={modalData?.desc}
         modalView={modalView}

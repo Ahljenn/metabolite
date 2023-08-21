@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, ReactNode } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
 interface DialogInfo {
@@ -6,13 +6,24 @@ interface DialogInfo {
   description?: string;
   modalView: boolean;
   setModalView: any;
+  acknowledgeText: string;
+  onAcknowledge: any;
+  rejectText: string;
+  onReject: any;
+  moreContent?: ReactNode; // Optional react content
 }
 
-const Modal: React.FC<DialogInfo> = ({
+const ModalAdvanced: React.FC<DialogInfo> = ({
   title,
   description,
   modalView,
   setModalView,
+  acknowledgeText,
+  rejectText,
+  onReject,
+  onAcknowledge,
+
+  moreContent,
 }: DialogInfo): JSX.Element => {
   const handleModalClick = (): void => {
     setModalView(!modalView);
@@ -53,15 +64,23 @@ const Modal: React.FC<DialogInfo> = ({
                     <p className="text-sm opacity-50">{description}</p>
                   </div>
 
-                  <div className="mt-4">
+                  <div className="mt-4 flex flex-row justify-between">
                     <button
                       type="button"
-                      className="mt-5 w-[8rem] py-2 text-sm rounded-xl shadow-xl opacity-50 hover:opacity-100 transition duration-300 border"
-                      onClick={handleModalClick}
+                      className="mt-5 w-[8rem] py-2 text-sm rounded-xl shadow-xl opacity-50 bg-rose-700/30 hover:opacity-100 transition duration-300 border"
+                      onClick={onReject}
                     >
-                      Done
+                      {rejectText}
+                    </button>
+                    <button
+                      type="button"
+                      className="mt-5 w-[8rem] py-2 text-sm rounded-xl shadow-xl opacity-50 border-metaSecondary hover:opacity-100 transition duration-300 border"
+                      onClick={onAcknowledge}
+                    >
+                      {acknowledgeText}
                     </button>
                   </div>
+                  {moreContent}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -72,4 +91,4 @@ const Modal: React.FC<DialogInfo> = ({
   );
 };
 
-export default Modal;
+export default ModalAdvanced;
