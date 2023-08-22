@@ -11,7 +11,7 @@ export const POST = async (request: Request) => {
 
     await db
       .collection('screeningData')
-      .updateOne({ user: content.user }, { $set: content }, { upsert: true });
+      .updateOne({ userEmail: content.userEmail }, { $set: content }, { upsert: true });
 
     return NextResponse.json({ message: 'Post user data success!' }, { status: 200 });
   } catch {
@@ -42,7 +42,7 @@ export const GET = async (request: Request) => {
     let client = await clientPromise;
     let db = await client.db();
 
-    const userData = await db.collection('screeningData').findOne({ user: userEmail });
+    const userData = await db.collection('screeningData').findOne({ userEmail: userEmail });
     console.log(userEmail);
     if (!userData) {
       return NextResponse.json({ message: 'User data not found' }, { status: 404 });

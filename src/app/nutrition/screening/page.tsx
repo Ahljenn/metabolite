@@ -312,7 +312,8 @@ const Screening: React.FC = () => {
   // After user acknowledge
   const handleUserData = async () => {
     const tempUserData: UserScreeningType = {
-      user: session?.user?.email || 'No user loaded',
+      userEmail: session?.user?.email || 'No user email loaded',
+      userName: session?.user?.name || 'No user name loaded',
       method: method.name,
       gender: gender.name,
       height,

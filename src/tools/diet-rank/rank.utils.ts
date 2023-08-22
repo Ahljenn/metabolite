@@ -1,5 +1,6 @@
 export interface UserScreeningType {
-  user: string;
+  userEmail: string;
+  userName: string;
   method: string;
   gender: string;
   height: number | null;
