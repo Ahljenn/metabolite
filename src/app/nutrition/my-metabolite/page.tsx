@@ -36,16 +36,7 @@ const Results = () => {
     return <>Loading...</>;
   }
 
-  if (data) {
-    return (
-      <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
-        <h1 className="whitespace-nowrap text-3xl lg:text-5xl font-bold text-center mt-5 bg-gradient-to-r from-metaAccent via-metaPrimary to-metaAccent bg-clip-text text-transparent">
-          MyMetabolite Summary
-        </h1>
-        <h2>Loaded</h2>
-      </div>
-    );
-  } else {
+  if (data.message === 'User data not found') {
     return (
       <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl flex flex-col items-center">
         <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">No results</h1>
@@ -62,6 +53,15 @@ const Results = () => {
             Return to Nutrition
           </a>
         </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+        <h1 className="whitespace-nowrap text-3xl lg:text-5xl font-bold text-center mt-5 bg-gradient-to-r from-metaAccent via-metaPrimary to-metaAccent bg-clip-text text-transparent">
+          MyMetabolite Summary
+        </h1>
+        <h2>Loaded</h2>
       </div>
     );
   }
