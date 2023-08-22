@@ -1,9 +1,51 @@
 'use client';
-import type { RootState } from '&/store';
+import { useEffect, useState } from 'react';
+import { useSession, signOut, signIn } from 'next-auth/react';
 
-const Results = (): JSX.Element => {
-  // Replace with post request
-  if (true) {
+const Results = () => {
+  const { data: session, status } = useSession();
+  const [data, setData] = useState<any>();
+  const [isEffectRun, setIsEffectRun] = useState(false);
+
+  useEffect(() => {
+    if (!isEffectRun && session?.user?.email) {
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      const userEmail = session.user.email; // Store the email in a variable
+      if (userEmail) {
+        headers.append('user-email', userEmail);
+      }
+
+      (async () => {
+        const response = await fetch('/api/user_api', {
+          method: 'GET',
+          headers: headers,
+        });
+
+        const data = await response.json();
+        console.log('dadzada', data);
+        setData(data);
+        setIsEffectRun(true); // Set the flag to indicate that the effect has run
+      })();
+    }
+  }, [session?.user?.email, isEffectRun]);
+
+  // Replace with loading animation
+  if (!isEffectRun) {
+    return <>Loading...</>;
+  }
+
+  if (data) {
+    return (
+      <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
+        <h1 className="whitespace-nowrap text-3xl lg:text-5xl font-bold text-center mt-5 bg-gradient-to-r from-metaAccent via-metaPrimary to-metaAccent bg-clip-text text-transparent">
+          MyMetabolite Summary
+        </h1>
+        <h2>Loaded</h2>
+      </div>
+    );
+  } else {
     return (
       <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl flex flex-col items-center">
         <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">No results</h1>
@@ -23,16 +65,6 @@ const Results = (): JSX.Element => {
       </div>
     );
   }
-
-  return (
-    <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
-      <h1 className="text-3xl lg:text-5xl font-bold text-center mt-5 bg-gradient-to-r from-metaAccent via-metaPrimary to-metaAccent bg-clip-text text-transparent">
-        My Metabolite - Nutrition
-      </h1>
-      <h2>test: </h2>
-      {/* {countState} */}
-    </div>
-  );
 };
 
 export default Results;

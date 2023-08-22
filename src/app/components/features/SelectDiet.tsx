@@ -54,7 +54,7 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
                 </a>
                 <a
                   className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent"
-                  href={`/nutrition/results/${diet}`}
+                  href="/nutrition/my-metabolite"
                 >
                   Select
                 </a>
@@ -64,7 +64,7 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
           <p className="text-sm">
             Not satisfied with your results? Navigate{' '}
             <a
-              href="/nutrition/my-metabolite"
+              href="/nutrition/screening"
               className="cursor-pointer font-bold text-metaPrimary opacity-75"
             >
               here
