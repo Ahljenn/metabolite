@@ -353,7 +353,7 @@ const Screening: React.FC = () => {
 p-12`}
         >
           <h1 className="text-3xl lg:text-5xl font-bold text-center mt-5 bg-gradient-to-r from-metaAccent via-metaPrimary to-metaAccent bg-clip-text text-transparent">
-            Personalized Wellness Metrics
+            Select Your Path
           </h1>
           <SelectDiet user={userData} diets={diets} bmr={bmr} />
         </main>

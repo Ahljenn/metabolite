@@ -61,6 +61,16 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
               </div>
             </div>
           ))}
+          <p className="text-sm">
+            Not satisfied with your results? Navigate{' '}
+            <a
+              href="/nutrition/my-metabolite"
+              className="cursor-pointer font-bold text-metaPrimary opacity-75"
+            >
+              here
+            </a>{' '}
+            or refresh to retry.
+          </p>
           <p className="text-sm opacity-50 tracking-tighter">
             Disclaimer: The nutrition recommendations provided by Metabolite are intended for
             general informational purposes only and are not a substitute for professional medical
