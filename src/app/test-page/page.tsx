@@ -77,7 +77,8 @@ const TestAPI: React.FC = (): JSX.Element => {
 };
 
 const sample: UserScreeningType = {
-  user: 'Sample User',
+  userEmail: 'Sample User',
+  userName: 'Sample User',
   method: 'Quickstart',
   gender: 'Female',
   height: 100,

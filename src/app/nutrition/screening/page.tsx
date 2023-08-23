@@ -336,6 +336,7 @@ const Screening: React.FC = () => {
       body: JSON.stringify(tempUserData, null, 2),
     });
 
+    //TODO: Handle request error
     const data = await response.json();
     const redirectTimeout = setTimeout(() => {
       let [bmrVal, cluster] = rank(tempUserData);
