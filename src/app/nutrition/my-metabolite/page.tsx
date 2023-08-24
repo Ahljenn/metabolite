@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useSession, signOut, signIn } from 'next-auth/react';
+import { quote } from './my-metabolite.utils';
+import Image from 'next/image';
 
 const Results = () => {
   const { data: session, status } = useSession();
@@ -59,17 +61,36 @@ const Results = () => {
     );
   } else {
     return (
-      <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl">
-        <h1 className="whitespace-nowrap text-3xl lg:text-5xl font-bold text-center mt-5 bg-gradient-to-r from-metaAccent via-metaPrimary to-metaAccent bg-clip-text text-transparent">
-          MyMetabolite Summary
-        </h1>
-        <section>
-          {data.map(([key, value]: [string, string]) => (
-            <li key={key}>
-              <strong>{key}:</strong> {value}
-            </li>
-          ))}
+      <div className="mt-5">
+        <section className="flex justify-center">
+          <div className="flex flex-col items-center lg:flex-row justify-between w-full gap-5 mt-10 max-w-5xl">
+            <div className="w-1/2">
+              <Image
+                className="relative"
+                src="/metabolite-m.png"
+                alt="Metabolite logo"
+                width={200}
+                height={200}
+                quality={100}
+                priority
+              />
+            </div>
+
+            <div className="w-1/2">
+              <h2 className="whitespace-nowrap text-2xl lg:text-4xl font-bold text-center mt-5">
+                Ignite Vitality.
+              </h2>
+              <p className="opacity-50 text-sm mt-2 text-center">{quote()}</p>
+            </div>
+          </div>
         </section>
+
+        <div
+          className={`w-full h-[8rem] bg-gradient-to-b from-black to-gray-700  opacity-30 -z-50`}
+        />
+        <div className="border w-full border-slate-700 border-y-[0.01px]" />
+
+        <main></main>
       </div>
     );
   }
