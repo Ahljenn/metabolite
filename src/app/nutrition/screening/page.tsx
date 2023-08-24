@@ -328,16 +328,7 @@ const Screening: React.FC = () => {
       budget: budget.name === 'None' ? '$$ (Affordable)' : budget.name,
     };
     setUserData(tempUserData);
-    const response = await fetch('/api/user_api', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(tempUserData, null, 2),
-    });
 
-    //TODO: Handle request error
-    const data = await response.json();
     const redirectTimeout = setTimeout(() => {
       let [bmrVal, cluster] = rank(tempUserData);
       setDiets(cluster);
@@ -346,6 +337,16 @@ const Screening: React.FC = () => {
     // Clean up the timeout when the component unmounts
     return () => clearTimeout(redirectTimeout);
   };
+
+  // const callback = async () => {
+  //   const response = await fetch('/api/user_api', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(userData, null, 2),
+  //   });
+  // };
 
   if (diets.length > 0) {
     return (

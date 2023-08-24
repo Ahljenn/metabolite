@@ -12,6 +12,18 @@ interface SelectDietProps {
 }
 
 const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
+  const callback = async (user: UserScreeningType, selection: string) => {
+    let userCopy = user;
+    userCopy.dietChoice = selection;
+    const response = await fetch('/api/user_api', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userCopy, null, 2),
+    });
+  };
+
   return (
     <section className="flex max-w-screen-xl px-4 py-8 mx-auto flex-col">
       <div className="flex justify-center mt-10 flex-col sm:flex-row gap-2 items-center">
@@ -52,12 +64,17 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
                 <a className="italic text-metaSecondary cursor-pointer" href="#">
                   Learn more <b className="bold">&gt;</b>
                 </a>
-                <a
+                <button
                   className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent"
-                  href="/nutrition/my-metabolite"
+                  onClick={() => {
+                    if (user) {
+                      callback(user, diet);
+                      window.location.href = '/nutrition/my-metabolite';
+                    }
+                  }}
                 >
                   Select
-                </a>
+                </button>
               </div>
             </div>
           ))}
