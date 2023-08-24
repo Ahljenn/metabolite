@@ -4,7 +4,7 @@ import { useSession, signOut, signIn } from 'next-auth/react';
 
 const Results = () => {
   const { data: session, status } = useSession();
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<any>(null);
   const [isEffectRun, setIsEffectRun] = useState(false);
 
   useEffect(() => {
@@ -24,8 +24,10 @@ const Results = () => {
         });
 
         const data = await response.json();
-        console.log('dadzada', data);
-        setData(data);
+
+        if (data.message !== 'User data not found') {
+          setData(Object.entries(data));
+        }
         setIsEffectRun(true); // Set the flag to indicate that the effect has run
       })();
     }
@@ -36,7 +38,7 @@ const Results = () => {
     return <>Loading...</>;
   }
 
-  if (data.message === 'User data not found') {
+  if (!data) {
     return (
       <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl flex flex-col items-center">
         <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">No results</h1>
@@ -61,7 +63,13 @@ const Results = () => {
         <h1 className="whitespace-nowrap text-3xl lg:text-5xl font-bold text-center mt-5 bg-gradient-to-r from-metaAccent via-metaPrimary to-metaAccent bg-clip-text text-transparent">
           MyMetabolite Summary
         </h1>
-        <h2>Loaded</h2>
+        <section>
+          {data.map(([key, value]: [string, string]) => (
+            <li key={key}>
+              <strong>{key}:</strong> {value}
+            </li>
+          ))}
+        </section>
       </div>
     );
   }
