@@ -1,10 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useSession, signOut, signIn } from 'next-auth/react';
-import { quote } from './my-metabolite.utils';
+import { quote } from './n.dashboard.utils';
 import Image from 'next/image';
 
-const Results = () => {
+const NDashboard = () => {
   const { data: session, status } = useSession();
   const [data, setData] = useState<any>(null);
   const [isEffectRun, setIsEffectRun] = useState(false);
@@ -96,4 +96,4 @@ const Results = () => {
   }
 };
 
-export default Results;
+export default NDashboard;

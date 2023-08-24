@@ -69,7 +69,7 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
                   onClick={() => {
                     if (user) {
                       callback(user, diet);
-                      window.location.href = '/nutrition/my-metabolite';
+                      window.location.href = '/nutrition/dashboard';
                     }
                   }}
                 >
