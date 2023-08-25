@@ -64,7 +64,7 @@ const NDashboard = () => {
       <div className="mt-5">
         <section className="flex justify-center">
           <div className="flex flex-col items-center lg:flex-row justify-between w-full gap-5 mt-10 max-w-5xl">
-            <div className="w-1/2">
+            <div className="lg:w-1/2">
               <Image
                 className="relative"
                 src="/metabolite-m.png"
@@ -76,11 +76,11 @@ const NDashboard = () => {
               />
             </div>
 
-            <div className="w-1/2">
-              <h2 className="whitespace-nowrap text-2xl lg:text-4xl font-bold text-center mt-5">
+            <div className="lg:w-1/2">
+              <h2 className="whitespace-nowrap text-2xl lg:text-4xl font-bold text-center mt-5 ">
                 Ignite Vitality.
               </h2>
-              <p className="opacity-50 text-sm mt-2 text-center">{quote()}</p>
+              <p className="opacity-50 text-sm mt-2 text-center mx-10">{quote()}</p>
             </div>
           </div>
         </section>
