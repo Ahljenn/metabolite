@@ -312,7 +312,8 @@ const Screening: React.FC = () => {
   // After user acknowledge
   const handleUserData = async () => {
     const tempUserData: UserScreeningType = {
-      user: session?.user?.name || 'No user loaded',
+      userEmail: session?.user?.email || 'No user email loaded',
+      userName: session?.user?.name || 'No user name loaded',
       method: method.name,
       gender: gender.name,
       height,
@@ -327,15 +328,7 @@ const Screening: React.FC = () => {
       budget: budget.name === 'None' ? '$$ (Affordable)' : budget.name,
     };
     setUserData(tempUserData);
-    const response = await fetch('/api/user_api', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(tempUserData, null, 2),
-    });
 
-    const data = await response.json();
     const redirectTimeout = setTimeout(() => {
       let [bmrVal, cluster] = rank(tempUserData);
       setDiets(cluster);
@@ -345,6 +338,16 @@ const Screening: React.FC = () => {
     return () => clearTimeout(redirectTimeout);
   };
 
+  // const callback = async () => {
+  //   const response = await fetch('/api/user_api', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(userData, null, 2),
+  //   });
+  // };
+
   if (diets.length > 0) {
     return (
       <FadeWrapper>
@@ -353,7 +356,7 @@ const Screening: React.FC = () => {
 p-12`}
         >
           <h1 className="text-3xl lg:text-5xl font-bold text-center mt-5 bg-gradient-to-r from-metaAccent via-metaPrimary to-metaAccent bg-clip-text text-transparent">
-            Personalized Wellness Metrics
+            Select Your Path
           </h1>
           <SelectDiet user={userData} diets={diets} bmr={bmr} />
         </main>

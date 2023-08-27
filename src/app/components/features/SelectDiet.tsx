@@ -12,6 +12,19 @@ interface SelectDietProps {
 }
 
 const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
+  const callback = async (user: UserScreeningType, selection: string, bmrValue: number) => {
+    let userCopy = user;
+    userCopy.dietChoice = selection;
+    userCopy.bmr = bmrValue;
+    const response = await fetch('/api/user_api', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userCopy, null, 2),
+    });
+  };
+
   return (
     <section className="flex max-w-screen-xl px-4 py-8 mx-auto flex-col">
       <div className="flex justify-center mt-10 flex-col sm:flex-row gap-2 items-center">
@@ -52,15 +65,30 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
                 <a className="italic text-metaSecondary cursor-pointer" href="#">
                   Learn more <b className="bold">&gt;</b>
                 </a>
-                <a
+                <button
                   className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent"
-                  href={`/nutrition/results/${diet}`}
+                  onClick={() => {
+                    if (user && bmr) {
+                      callback(user, diet, bmr);
+                      window.location.href = '/nutrition/dashboard';
+                    }
+                  }}
                 >
                   Select
-                </a>
+                </button>
               </div>
             </div>
           ))}
+          <p className="text-sm">
+            Not satisfied with your results? Navigate{' '}
+            <a
+              href="/nutrition/screening"
+              className="cursor-pointer font-bold text-metaPrimary opacity-75"
+            >
+              here
+            </a>{' '}
+            or refresh to retry.
+          </p>
           <p className="text-sm opacity-50 tracking-tighter">
             Disclaimer: The nutrition recommendations provided by Metabolite are intended for
             general informational purposes only and are not a substitute for professional medical

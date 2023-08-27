@@ -1,5 +1,8 @@
 export interface UserScreeningType {
-  user: string;
+  userEmail: string;
+  userName: string;
+  dietChoice?: string;
+  bmr?: number;
   method: string;
   gender: string;
   height: number | null;
