@@ -2,11 +2,13 @@
 import { useEffect, useState } from 'react';
 import { useSession, signOut, signIn } from 'next-auth/react';
 import { quote } from './n.dashboard.utils';
+import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
 import Image from 'next/image';
+import MealTabs from './MealTabs';
 
 const NDashboard = () => {
   const { data: session, status } = useSession();
-  const [data, setData] = useState<any>(null);
+  const [userData, setUserData] = useState<UserScreeningType>();
   const [isEffectRun, setIsEffectRun] = useState(false);
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const NDashboard = () => {
         const data = await response.json();
 
         if (data.message !== 'User data not found') {
-          setData(data);
+          setUserData(data);
         }
         setIsEffectRun(true); // Set the flag to indicate that the effect has run
       })();
@@ -40,9 +42,9 @@ const NDashboard = () => {
     return <>Loading...</>;
   }
 
-  console.table(data);
+  console.table(userData);
 
-  if (!data) {
+  if (!userData) {
     return (
       <div className="mt-5 mx-auto w-full max-w-md lg:max-w-xl flex flex-col items-center">
         <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5">No results</h1>
@@ -50,7 +52,7 @@ const NDashboard = () => {
           Looks like you have no screening results! Let&apos;s navigate back to the nutrition page
           to get started.
         </p>
-        <div className="mt-5 ">
+        <div className="mt-5">
           <a
             className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
             href="/nutrition"
@@ -94,43 +96,14 @@ const NDashboard = () => {
         <div className="border w-full border-slate-700 border-y-[0.01px]" />
 
         <main className="gap-5 flex flex-col items-center">
-          <h3 className="text-center mt-10 text-xl font-semibold italic">
-            <p className="text-metaAccent inline">{data.dietChoice}</p>
+          <h3 className="text-center mt-10 text-lg font-thin">
+            Path:
+            <p className="inline text-metaAccent"> {userData.dietChoice}</p>
           </h3>
 
-          <section className="flex flex-col justify-center">
-            <div
-              className="flex flex-row items-center justify-between rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 "
-              rel="noopener noreferrer"
-            >
-              <div>
-                <h2 className={`mb-3 text-2xl font-semibold`}>Calories</h2>
-                <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Total Calories</p>
-                <p>0 of {data.bmr}</p>
-              </div>
+          <Macros userData={userData} />
 
-              <div>
-                <button className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-slate-700/70 bg-neutral-800/70 hover:border-metaAccent/30">
-                  Start Logging
-                </button>
-              </div>
-            </div>
-            <div className="flex flex-col items-center lg:flex-row justify-center">
-              {macroCards.map((card: { header: string; desc: string }, index: number) => {
-                return (
-                  <div
-                    key={index}
-                    className="rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 "
-                    rel="noopener noreferrer"
-                  >
-                    <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
-                    <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
-                    <p>0 of 150g</p>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
+          <MealTabs />
         </main>
       </div>
     );
@@ -139,7 +112,12 @@ const NDashboard = () => {
 
 export default NDashboard;
 
-const macroCards: { header: string; desc: string }[] = [
+interface MacroInterfaceProps {
+  header: string;
+  desc: string;
+}
+
+const macroCards: MacroInterfaceProps[] = [
   {
     header: 'Protein',
     desc: 'Your remaining protein for today.',
@@ -153,3 +131,53 @@ const macroCards: { header: string; desc: string }[] = [
     desc: 'Your remaining fats for today.',
   },
 ];
+
+interface MacrosProps {
+  userData: UserScreeningType;
+}
+
+const Macros: React.FC<MacrosProps> = ({ userData }) => {
+  return (
+    <section className="flex flex-col justify-center">
+      <div
+        className="flex flex-col lg:flex-row gap-5 items-center justify-between rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2"
+        rel="noopener noreferrer"
+      >
+        <div>
+          <p className={`mb-3 text-2xl font-semibold`}>Calories</p>
+          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Total Calories</p>
+          <p>0 of {userData.bmr}</p>
+        </div>
+
+        <div>
+          <button className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-slate-700/70 bg-neutral-800/70 hover:border-metaAccent/30">
+            Start Logging
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-col items-center lg:flex-row justify-center">
+        {macroCards.map(
+          (
+            card: {
+              header: string;
+              desc: string;
+            },
+            index: number
+          ) => {
+            return (
+              <div
+                key={index}
+                className="rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 "
+                rel="noopener noreferrer"
+              >
+                <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
+                <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
+                <p>0 of 150g</p>
+              </div>
+            );
+          }
+        )}
+      </div>
+    </section>
+  );
+};
