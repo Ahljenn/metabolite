@@ -2,6 +2,7 @@ export interface UserScreeningType {
   userEmail: string;
   userName: string;
   dietChoice?: string;
+  bmr?: number;
   method: string;
   gender: string;
   height: number | null;

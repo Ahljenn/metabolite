@@ -93,24 +93,35 @@ const NDashboard = () => {
         />
         <div className="border w-full border-slate-700 border-y-[0.01px]" />
 
-        <main className=" w-full mt-10 gap-5">
-          <h3 className="text-center mt-10 font-mono text-lg">
+        <main className="gap-5 flex flex-col items-center">
+          <h3 className="text-center mt-10 text-lg">
             Your <p className="text-metaPrimary inline">{data.dietChoice}</p> Journey
           </h3>
-          <div className="flex flex-col items-center lg:flex-row justify-center">
-            {macroCards.map((card: { header: string; desc: string }, index: number) => {
-              return (
-                <div
-                  key={index}
-                  className="group rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 "
-                  rel="noopener noreferrer"
-                >
-                  <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
-                  <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
-                </div>
-              );
-            })}
-          </div>
+
+          <section className="flex flex-col justify-center">
+            <div
+              className="group rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 "
+              rel="noopener noreferrer"
+            >
+              <h2 className={`mb-3 text-2xl font-semibold`}>Calories</h2>
+              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Total Calories</p>
+              <p>0 of {data.bmr}</p>
+            </div>
+            <div className="flex flex-col items-center lg:flex-row justify-center">
+              {macroCards.map((card: { header: string; desc: string }, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="group rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 "
+                    rel="noopener noreferrer"
+                  >
+                    <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
+                    <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
         </main>
       </div>
     );

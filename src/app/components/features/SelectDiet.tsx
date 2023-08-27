@@ -12,9 +12,10 @@ interface SelectDietProps {
 }
 
 const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
-  const callback = async (user: UserScreeningType, selection: string) => {
+  const callback = async (user: UserScreeningType, selection: string, bmrValue: number) => {
     let userCopy = user;
     userCopy.dietChoice = selection;
+    userCopy.bmr = bmrValue;
     const response = await fetch('/api/user_api', {
       method: 'POST',
       headers: {
@@ -67,8 +68,8 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
                 <button
                   className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent"
                   onClick={() => {
-                    if (user) {
-                      callback(user, diet);
+                    if (user && bmr) {
+                      callback(user, diet, bmr);
                       window.location.href = '/nutrition/dashboard';
                     }
                   }}
