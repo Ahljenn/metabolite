@@ -1,3 +1,5 @@
+import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
+
 const nutritionQuotes: string[] = [
   '"Let food be thy medicine and medicine be thy food." - Hippocrates',
   '"Your diet is a bank account. Good food choices are good investments." - Bethenny Frankel',
@@ -18,3 +20,27 @@ const nutritionQuotes: string[] = [
 export const quote = (): string => {
   return nutritionQuotes[Math.floor(Math.random() * nutritionQuotes.length)];
 };
+
+interface MacroInterfaceProps {
+  header: string;
+  desc: string;
+}
+
+export const macroCards: MacroInterfaceProps[] = [
+  {
+    header: 'Protein',
+    desc: 'Your remaining protein for today.',
+  },
+  {
+    header: 'Carbohydrate',
+    desc: 'Your remaining carbs for today.',
+  },
+  {
+    header: 'Fat',
+    desc: 'Your remaining fats for today.',
+  },
+];
+
+export interface MacrosProps {
+  userData: UserScreeningType;
+}
