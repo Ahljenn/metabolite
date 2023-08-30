@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useSession, signOut, signIn } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { MacrosProps, macroCards, quote } from './n.dashboard.utils';
 import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
 import Image from 'next/image';
