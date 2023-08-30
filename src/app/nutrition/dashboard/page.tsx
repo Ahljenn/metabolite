@@ -1,10 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useSession, signOut, signIn } from 'next-auth/react';
-import { quote } from './n.dashboard.utils';
+import { MacrosProps, macroCards, quote } from './n.dashboard.utils';
 import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
 import Image from 'next/image';
 import MealTabs from './MealTabs';
+import fetchUserData from '@/app/services/fetchUserData';
 
 const NDashboard = () => {
   const { data: session, status } = useSession();
@@ -13,27 +14,11 @@ const NDashboard = () => {
 
   useEffect(() => {
     if (!isEffectRun && session?.user?.email) {
-      const headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-
-      const userEmail = session.user.email; // Store the email in a variable
-      if (userEmail) {
-        headers.append('user-email', userEmail);
-      }
-
-      (async () => {
-        const response = await fetch('/api/user_api', {
-          method: 'GET',
-          headers: headers,
-        });
-
-        const data = await response.json();
-
-        if (data.message !== 'User data not found') {
-          setUserData(data);
-        }
-        setIsEffectRun(true); // Set the flag to indicate that the effect has run
-      })();
+      fetchUserData({
+        userEmail: session?.user?.email || '', // Make sure to handle the case when userEmail is undefined
+        setUserData,
+        setIsEffectRun,
+      });
     }
   }, [session?.user?.email, isEffectRun]);
 
@@ -42,7 +27,7 @@ const NDashboard = () => {
     return <>Loading...</>;
   }
 
-  console.table(userData);
+  // console.table(userData);
 
   if (!userData) {
     return (
@@ -55,10 +40,10 @@ const NDashboard = () => {
         <div className="mt-5">
           <a
             className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
-            href="/nutrition"
+            href="/nutrition/screening"
             rel="noopener noreferrer"
           >
-            Return to Nutrition
+            Get Started
           </a>
         </div>
       </div>
@@ -111,30 +96,6 @@ const NDashboard = () => {
 };
 
 export default NDashboard;
-
-interface MacroInterfaceProps {
-  header: string;
-  desc: string;
-}
-
-const macroCards: MacroInterfaceProps[] = [
-  {
-    header: 'Protein',
-    desc: 'Your remaining protein for today.',
-  },
-  {
-    header: 'Carbohydrate',
-    desc: 'Your remaining carbs for today.',
-  },
-  {
-    header: 'Fat',
-    desc: 'Your remaining fats for today.',
-  },
-];
-
-interface MacrosProps {
-  userData: UserScreeningType;
-}
 
 const Macros: React.FC<MacrosProps> = ({ userData }) => {
   return (
