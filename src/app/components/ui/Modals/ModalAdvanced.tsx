@@ -1,6 +1,13 @@
 import React, { Fragment, ReactNode } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
+export interface ModalInfo {
+  titleTxt: string;
+  descTxt: string;
+  rejectTxt: string;
+  acceptTxt: string;
+}
+
 interface DialogInfo {
   title?: string;
   description?: string;
