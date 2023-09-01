@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Tab } from '@headlessui/react';
-import ModalAdvanced, { ModalInfo } from '@/app/components/ui/Modals/ModalAdvanced';
+import { ModalInfo } from '@/app/components/ui/Modals/ModalAdvanced';
 
 const classNames = (...classes: string[]): string => {
   return classes.filter(Boolean).join(' ');
 };
 
-interface MealProps {
+interface Meal {
   id: number;
   title: string;
   date: string;
@@ -16,10 +16,15 @@ interface MealProps {
 }
 
 interface MealCategory {
-  [category: string]: MealProps[];
+  [category: string]: Meal[];
 }
 
-const MealTabs = () => {
+interface MealTabsProps {
+  setModalView: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalInfo: React.Dispatch<React.SetStateAction<ModalInfo>>;
+}
+
+const MealTabs = ({ setModalView, setModalInfo }: MealTabsProps) => {
   const [categories, setCategories] = useState<MealCategory>({
     Breakfast: [
       {
@@ -78,41 +83,18 @@ const MealTabs = () => {
     Snacks: [],
   });
 
-  const [modalView, setModalView] = useState<boolean>(false);
-  const [modalInfo, setModalInfo] = useState<ModalInfo>({
-    titleTxt: '',
-    descTxt: '',
-    rejectTxt: '',
-    acceptTxt: '',
-  });
-
   const onAddItem = () => {
-    setModalView(true);
     setModalInfo({
       titleTxt: 'Adding Nutrition Source',
       descTxt: 'Please provide the details for the new nutrition source:',
       rejectTxt: 'Cancel',
       acceptTxt: 'Add Source',
     });
+    setModalView(true);
   };
 
   return (
     <>
-      <ModalAdvanced
-        title={modalInfo.titleTxt}
-        description={modalInfo.descTxt}
-        modalView={modalView}
-        setModalView={setModalView}
-        acknowledgeText={modalInfo.acceptTxt}
-        onAcknowledge={() => {
-          setModalView(false);
-        }}
-        rejectText={modalInfo.rejectTxt}
-        onReject={() => {
-          setModalView(false);
-        }}
-      />
-
       <h3 className="text-lg font-thin">Meal Tabs</h3>
       <div className="w-full max-w-sm lg:max-w-4xl px-2 sm:px-0 mx-10 pb-20">
         <Tab.Group>
@@ -145,15 +127,15 @@ const MealTabs = () => {
                 <ul>
                   <li
                     key="add-item"
-                    className="relative rounded-lg p-3 hover:bg-neutral-800/50 cursor-pointer"
+                    className="relative rounded-lg p-3 border border-metaAccent/30 hover:border-metaAccent hover:bg-neutral-800/50 cursor-pointer"
                     onClick={onAddItem}
                   >
-                    <h3 className="text-sm font-medium leading-5 text-metaAccent">Add Item (+)</h3>
+                    <h3 className="text-sm font-medium leading-5 text-metaPrimary">Add Item (+)</h3>
                     <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
                       <li>Add additional food or nutrition source</li>
                     </ul>
                   </li>
-                  {meal.map((mealInfo: MealProps) => (
+                  {meal.map((mealInfo: Meal) => (
                     <li
                       key={mealInfo.id}
                       className="relative rounded-lg p-3 hover:bg-neutral-800/50 cursor-pointer"

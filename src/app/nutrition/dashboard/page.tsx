@@ -6,11 +6,20 @@ import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
 import Image from 'next/image';
 import MealTabs from './MealTabs';
 import fetchUserData from '@/app/services/fetchUserData';
+import ModalAdvanced, { ModalInfo } from '@/app/components/ui/Modals/ModalAdvanced';
 
 const NDashboard = () => {
   const { data: session, status } = useSession();
   const [userData, setUserData] = useState<UserScreeningType>();
   const [isEffectRun, setIsEffectRun] = useState(false);
+
+  const [modalView, setModalView] = useState<boolean>(false);
+  const [modalInfo, setModalInfo] = useState<ModalInfo>({
+    titleTxt: '',
+    descTxt: '',
+    rejectTxt: '',
+    acceptTxt: '',
+  });
 
   useEffect(() => {
     if (!isEffectRun && session?.user?.email) {
@@ -51,6 +60,20 @@ const NDashboard = () => {
   } else {
     return (
       <div className="mt-5">
+        <ModalAdvanced
+          title={modalInfo.titleTxt}
+          description={modalInfo.descTxt}
+          modalView={modalView}
+          setModalView={setModalView}
+          acknowledgeText={modalInfo.acceptTxt}
+          onAcknowledge={() => {
+            setModalView(false);
+          }}
+          rejectText={modalInfo.rejectTxt}
+          onReject={() => {
+            setModalView(false);
+          }}
+        />
         <section className="flex justify-center">
           <div className="flex flex-col items-center lg:flex-row justify-between w-full gap-5 mt-10 max-w-5xl">
             <div className="lg:w-1/2">
@@ -86,9 +109,9 @@ const NDashboard = () => {
             <p className="inline text-metaAccent"> {userData.dietChoice}</p>
           </h3>
 
-          <Macros userData={userData} />
+          <Macros userData={userData} setModalView={setModalView} setModalInfo={setModalInfo} />
 
-          <MealTabs />
+          <MealTabs setModalView={setModalView} setModalInfo={setModalInfo} />
         </main>
       </div>
     );
@@ -97,11 +120,21 @@ const NDashboard = () => {
 
 export default NDashboard;
 
-const Macros: React.FC<MacrosProps> = ({ userData }) => {
+const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo }) => {
+  const onLogClick = () => {
+    setModalInfo({
+      titleTxt: 'Logging Nutrition Information',
+      descTxt: 'Please provide the details for the new nutrition source:',
+      rejectTxt: 'Cancel',
+      acceptTxt: 'Log',
+    });
+    setModalView(true);
+  };
+
   return (
     <section className="flex flex-col justify-center">
       <div
-        className="flex flex-col lg:flex-row gap-5 items-center justify-between rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2"
+        className="flex flex-col lg:flex-row gap-5 items-center justify-between rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 transition-all duration-500"
         rel="noopener noreferrer"
       >
         <div>
@@ -111,7 +144,10 @@ const Macros: React.FC<MacrosProps> = ({ userData }) => {
         </div>
 
         <div>
-          <button className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-slate-700/70 bg-neutral-800/70 hover:border-metaAccent/30">
+          <button
+            className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-slate-700/70 bg-neutral-800/70 hover:border-metaAccent/30"
+            onClick={onLogClick}
+          >
             Start Logging
           </button>
         </div>
