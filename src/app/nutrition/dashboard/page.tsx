@@ -168,6 +168,8 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
           ) => {
             const dietName = 'Ketogenic Diet'; // Replace with the appropriate diet name
             const dietRatio = dietRatios[dietName];
+            const macro = card.header;
+            const calPerGram = macro === 'Fat' ? 9 : 4;
 
             return (
               <div
@@ -175,10 +177,14 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
                 className="rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 "
                 rel="noopener noreferrer"
               >
-                <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
+                <h2 className={`mb-3 text-2xl font-semibold`}>{macro}</h2>
                 <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
                 <p>
-                  {dietRatio ? `0 of ${dietRatio.Carbohydrate * 150}g` : 'Diet ratio not found'}
+                  {dietRatio
+                    ? `0 of ${Math.round(
+                        (dietRatio[macro as keyof typeof dietRatio] * totalExpenditure) / calPerGram
+                      )}g`
+                    : 'Diet ratio not found'}
                 </p>
               </div>
             );
