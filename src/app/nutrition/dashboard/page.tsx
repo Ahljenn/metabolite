@@ -76,17 +76,15 @@ const NDashboard = () => {
         />
         <section className="flex justify-center">
           <div className="flex flex-col items-center lg:flex-row justify-between w-full gap-5 mt-10 max-w-5xl">
-            <div className="lg:w-1/2">
-              <Image
-                className="relative"
-                src="/metabolite-m.png"
-                alt="Metabolite logo"
-                width={200}
-                height={200}
-                quality={100}
-                priority
-              />
-            </div>
+            <Image
+              className="grayscale"
+              src="/eating.png"
+              alt="Person eating food"
+              width={500}
+              height={500}
+              quality={100}
+              priority
+            />
 
             <div className="lg:w-1/2">
               <h2 className="whitespace-nowrap text-2xl lg:text-4xl font-bold text-center mt-5 ">
@@ -167,7 +165,7 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
           </button>
         </div>
       </div>
-      <div className="mt-5">
+      <div className="mt-5 flex justify-center lg:justify-start">
         <button
           className="text-sm transition-all border rounded-lg mx-2 py-3 px-10 whitespace-nowrap border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50"
           onClick={onLogClick}
@@ -192,10 +190,10 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
             return (
               <div
                 key={index}
-                className="rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 "
+                className="rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 text-center sm:text-left"
                 rel="noopener noreferrer"
               >
-                <h2 className={`mb-3 text-2xl font-semibold`}>{macro}</h2>
+                <h2 className={`mb-3 text-lg md:text-2xl font-semibold`}>{macro}</h2>
                 <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
                 <p>
                   {dietRatio
