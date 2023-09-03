@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Tab } from '@headlessui/react';
+import { ModalInfo } from '@/app/components/ui/Modals/ModalAdvanced';
 
 const classNames = (...classes: string[]): string => {
   return classes.filter(Boolean).join(' ');
 };
 
-interface MealProps {
+interface Meal {
   id: number;
   title: string;
   date: string;
@@ -15,10 +16,15 @@ interface MealProps {
 }
 
 interface MealCategory {
-  [category: string]: MealProps[];
+  [category: string]: Meal[];
 }
 
-const MealTabs = () => {
+interface MealTabsProps {
+  setModalView: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalInfo: React.Dispatch<React.SetStateAction<ModalInfo>>;
+}
+
+const MealTabs = ({ setModalView, setModalInfo }: MealTabsProps) => {
   const [categories, setCategories] = useState<MealCategory>({
     Breakfast: [
       {
@@ -77,6 +83,16 @@ const MealTabs = () => {
     Snacks: [],
   });
 
+  const onAddItem = () => {
+    setModalInfo({
+      titleTxt: 'Adding Nutrition Source',
+      descTxt: 'Please provide the details for the new nutrition source:',
+      rejectTxt: 'Cancel',
+      acceptTxt: 'Add Source',
+    });
+    setModalView(true);
+  };
+
   return (
     <>
       <h3 className="text-lg font-thin">Meal Tabs</h3>
@@ -105,18 +121,26 @@ const MealTabs = () => {
               <Tab.Panel
                 key={idx}
                 className={classNames(
-                  'rounded-lg bg-neutral-800/50 p-3 border-slate-700/70 border',
-                  'ring-metaAccent/30 ring-opacity-60 ring-offset-2 focus:outline-none focus:ring-2'
+                  'rounded-lg bg-neutral-800/50 p-3 border-slate-700/70 border'
                 )}
               >
                 <ul>
-                  {meal.map((mealInfo: MealProps) => (
+                  <li
+                    key="add-item"
+                    className="relative rounded-lg p-3 border border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50 cursor-pointer"
+                    onClick={onAddItem}
+                  >
+                    <h3 className="text-sm font-medium leading-5 text-metaAccent">Add Item (+)</h3>
+                    <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
+                      <li>Add additional food or nutrition source</li>
+                    </ul>
+                  </li>
+                  {meal.map((mealInfo: Meal) => (
                     <li
                       key={mealInfo.id}
-                      className="relative rounded-lg p-3 hover:bg-neutral-800/50 "
+                      className="relative rounded-lg p-3 hover:bg-neutral-800/50 cursor-pointer"
                     >
                       <h3 className="text-sm font-medium leading-5">{mealInfo.title}</h3>
-
                       <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
                         <li>{mealInfo.date}</li>
                         <li>&middot;</li>
@@ -126,14 +150,6 @@ const MealTabs = () => {
                         <li>&middot;</li>
                         <li>{mealInfo.fats}g fats</li>
                       </ul>
-
-                      <a
-                        href="#"
-                        className={classNames(
-                          'absolute inset-0 rounded-md',
-                          'ring-metaAccent/30 focus:z-10 focus:outline-none focus:ring-2'
-                        )}
-                      />
                     </li>
                   ))}
                 </ul>

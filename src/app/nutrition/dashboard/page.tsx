@@ -2,15 +2,24 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { MacrosProps, macroCards, quote } from './n.dashboard.utils';
-import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
+import { UserScreeningType, dietRatios, activityFactor } from '@/tools/diet-rank/rank.utils';
 import Image from 'next/image';
 import MealTabs from './MealTabs';
 import fetchUserData from '@/app/services/fetchUserData';
+import ModalAdvanced, { ModalInfo } from '@/app/components/ui/Modals/ModalAdvanced';
 
 const NDashboard = () => {
   const { data: session, status } = useSession();
   const [userData, setUserData] = useState<UserScreeningType>();
   const [isEffectRun, setIsEffectRun] = useState(false);
+
+  const [modalView, setModalView] = useState<boolean>(false);
+  const [modalInfo, setModalInfo] = useState<ModalInfo>({
+    titleTxt: '',
+    descTxt: '',
+    rejectTxt: '',
+    acceptTxt: '',
+  });
 
   useEffect(() => {
     if (!isEffectRun && session?.user?.email) {
@@ -51,19 +60,31 @@ const NDashboard = () => {
   } else {
     return (
       <div className="mt-5">
+        <ModalAdvanced
+          title={modalInfo.titleTxt}
+          description={modalInfo.descTxt}
+          modalView={modalView}
+          setModalView={setModalView}
+          acknowledgeText={modalInfo.acceptTxt}
+          onAcknowledge={() => {
+            setModalView(false);
+          }}
+          rejectText={modalInfo.rejectTxt}
+          onReject={() => {
+            setModalView(false);
+          }}
+        />
         <section className="flex justify-center">
           <div className="flex flex-col items-center lg:flex-row justify-between w-full gap-5 mt-10 max-w-5xl">
-            <div className="lg:w-1/2">
-              <Image
-                className="relative"
-                src="/metabolite-m.png"
-                alt="Metabolite logo"
-                width={200}
-                height={200}
-                quality={100}
-                priority
-              />
-            </div>
+            <Image
+              className="grayscale"
+              src="/eating.png"
+              alt="Person eating food"
+              width={500}
+              height={500}
+              quality={100}
+              priority
+            />
 
             <div className="lg:w-1/2">
               <h2 className="whitespace-nowrap text-2xl lg:text-4xl font-bold text-center mt-5 ">
@@ -86,9 +107,9 @@ const NDashboard = () => {
             <p className="inline text-metaAccent"> {userData.dietChoice}</p>
           </h3>
 
-          <Macros userData={userData} />
+          <Macros userData={userData} setModalView={setModalView} setModalInfo={setModalInfo} />
 
-          <MealTabs />
+          <MealTabs setModalView={setModalView} setModalInfo={setModalInfo} />
         </main>
       </div>
     );
@@ -97,24 +118,60 @@ const NDashboard = () => {
 
 export default NDashboard;
 
-const Macros: React.FC<MacrosProps> = ({ userData }) => {
+const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo }) => {
+  const onLogClick = () => {
+    setModalInfo({
+      titleTxt: 'Logging Nutrition Information',
+      descTxt: 'Please provide the details for the new nutrition source:',
+      rejectTxt: 'Cancel',
+      acceptTxt: 'Log',
+    });
+    setModalView(true);
+  };
+
+  const onRatioClick = () => {
+    setModalInfo({
+      titleTxt: 'Modify Ratios',
+      descTxt: 'Please provide the details for the new macro-nutrient ratios:',
+      rejectTxt: 'Cancel',
+      acceptTxt: 'Save',
+    });
+    setModalView(true);
+  };
+
+  // TDEE
+  const totalExpenditure: number = Math.round(
+    (userData.bmr ?? 1) * activityFactor[userData.activityLevel]
+  );
+
   return (
     <section className="flex flex-col justify-center">
       <div
-        className="flex flex-col lg:flex-row gap-5 items-center justify-between rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2"
+        className="flex flex-col lg:flex-row gap-5 items-center justify-between rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 transition-all duration-500"
         rel="noopener noreferrer"
       >
         <div>
           <p className={`mb-3 text-2xl font-semibold`}>Calories</p>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Total Calories</p>
-          <p>0 of {userData.bmr}</p>
+          <p>0 of {totalExpenditure} cal</p>
         </div>
 
         <div>
-          <button className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-slate-700/70 bg-neutral-800/70 hover:border-metaAccent/30">
+          <button
+            className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50"
+            onClick={onLogClick}
+          >
             Start Logging
           </button>
         </div>
+      </div>
+      <div className="mt-5 flex justify-center lg:justify-start">
+        <button
+          className="text-sm transition-all border rounded-lg mx-2 py-3 px-10 whitespace-nowrap border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50"
+          onClick={onLogClick}
+        >
+          Modify Ratios
+        </button>
       </div>
       <div className="flex flex-col items-center lg:flex-row justify-center">
         {macroCards.map(
@@ -125,15 +182,26 @@ const Macros: React.FC<MacrosProps> = ({ userData }) => {
             },
             index: number
           ) => {
+            const dietName: string = userData.dietChoice ?? 'Low Carb Diet'; // Replace with the appropriate diet name
+            const dietRatio = dietRatios[dietName];
+            const macro = card.header;
+            const calPerGram = macro === 'Fat' ? 9 : 4;
+
             return (
               <div
                 key={index}
-                className="rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 "
+                className="rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 text-center sm:text-left"
                 rel="noopener noreferrer"
               >
-                <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
+                <h2 className={`mb-3 text-lg md:text-2xl font-semibold`}>{macro}</h2>
                 <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
-                <p>0 of 150g</p>
+                <p>
+                  {dietRatio
+                    ? `0 of ${Math.round(
+                        (dietRatio[macro as keyof typeof dietRatio] * totalExpenditure) / calPerGram
+                      )}g`
+                    : 'Diet ratio not found'}
+                </p>
               </div>
             );
           }

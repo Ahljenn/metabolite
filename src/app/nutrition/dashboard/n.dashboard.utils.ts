@@ -1,3 +1,4 @@
+import { ModalInfo } from '@/app/components/ui/Modals/ModalAdvanced';
 import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
 
 const nutritionQuotes: string[] = [
@@ -43,4 +44,6 @@ export const macroCards: MacroInterfaceProps[] = [
 
 export interface MacrosProps {
   userData: UserScreeningType;
+  setModalView: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalInfo: React.Dispatch<React.SetStateAction<ModalInfo>>;
 }
