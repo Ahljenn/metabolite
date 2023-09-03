@@ -166,7 +166,7 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
             },
             index: number
           ) => {
-            const dietName = 'Ketogenic Diet'; // Replace with the appropriate diet name
+            const dietName: string = userData.dietChoice ?? 'Low Carb Diet'; // Replace with the appropriate diet name
             const dietRatio = dietRatios[dietName];
             const macro = card.header;
             const calPerGram = macro === 'Fat' ? 9 : 4;

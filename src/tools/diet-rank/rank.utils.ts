@@ -130,9 +130,9 @@ export const dietRatios: {
     Protein: 0.3,
   },
   'High-protein Diet': {
-    Carbohydrate: 0.2,
-    Fat: 0.3,
-    Protein: 0.5,
+    Carbohydrate: 0.4,
+    Fat: 0.2,
+    Protein: 0.4,
   },
   'Paleo Diet': {
     Carbohydrate: 0.25,
