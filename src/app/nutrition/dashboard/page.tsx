@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { MacrosProps, macroCards, quote } from './n.dashboard.utils';
-import { UserScreeningType } from '@/tools/diet-rank/rank.utils';
+import { UserScreeningType, dietRatios, activityFactor } from '@/tools/diet-rank/rank.utils';
 import Image from 'next/image';
 import MealTabs from './MealTabs';
 import fetchUserData from '@/app/services/fetchUserData';
@@ -131,6 +131,9 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
     setModalView(true);
   };
 
+  // TDEE
+  const totalExpenditure: number = userData?.bmr * 2 || 1 * activityFactor[userData.activityLevel];
+
   return (
     <section className="flex flex-col justify-center">
       <div
@@ -140,7 +143,7 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
         <div>
           <p className={`mb-3 text-2xl font-semibold`}>Calories</p>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Total Calories</p>
-          <p>0 of {userData.bmr}</p>
+          <p>0 of {totalExpenditure}</p>
         </div>
 
         <div>
@@ -161,6 +164,9 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
             },
             index: number
           ) => {
+            const dietName = 'Ketogenic Diet'; // Replace with the appropriate diet name
+            const dietRatio = dietRatios[dietName];
+
             return (
               <div
                 key={index}
@@ -169,7 +175,9 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
               >
                 <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
                 <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
-                <p>0 of 150g</p>
+                <p>
+                  {dietRatio ? `0 of ${dietRatio.Carbohydrate * 150}g` : 'Diet ratio not found'}
+                </p>
               </div>
             );
           }

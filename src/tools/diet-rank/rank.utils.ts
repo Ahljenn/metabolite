@@ -110,3 +110,86 @@ export const dietDescriptions: { [key: string]: string } = {
   'DASH Diet':
     'Dietary Approaches to Stop Hypertension (DASH) is a diet designed to lower blood pressure and promote heart health by emphasizing fruits, vegetables, whole grains, lean proteins, and low-fat dairy.',
 };
+
+export const dietRatios: {
+  [dietName: string]: { Carbohydrate: number; Fat: number; Protein: number };
+} = {
+  'Ketogenic Diet': {
+    Carbohydrate: 0.05,
+    Fat: 0.7,
+    Protein: 0.25,
+  },
+  'Low Carb Diet': {
+    Carbohydrate: 0.2,
+    Fat: 0.4,
+    Protein: 0.4,
+  },
+  'Atkins Diet': {
+    Carbohydrate: 0.05,
+    Fat: 0.65,
+    Protein: 0.3,
+  },
+  'High-protein Diet': {
+    Carbohydrate: 0.2,
+    Fat: 0.3,
+    Protein: 0.5,
+  },
+  'Paleo Diet': {
+    Carbohydrate: 0.25,
+    Fat: 0.4,
+    Protein: 0.35,
+  },
+  'Carnivore Diet': {
+    Carbohydrate: 0.05,
+    Fat: 0.7,
+    Protein: 0.25,
+  },
+  'Vegan Diet': {
+    Carbohydrate: 0.7,
+    Fat: 0.2,
+    Protein: 0.1,
+  },
+  'Vegetarian Diet': {
+    Carbohydrate: 0.7,
+    Fat: 0.2,
+    Protein: 0.1,
+  },
+  'Pescatarian Diet': {
+    Carbohydrate: 0.7,
+    Fat: 0.2,
+    Protein: 0.1,
+  },
+  'Flexitarian Diet': {
+    Carbohydrate: 0.55,
+    Fat: 0.25,
+    Protein: 0.2,
+  },
+  'Mediterranean Diet': {
+    Carbohydrate: 0.55,
+    Fat: 0.35,
+    Protein: 0.15,
+  },
+  'Zone Diet': {
+    Carbohydrate: 0.4,
+    Fat: 0.3,
+    Protein: 0.3,
+  },
+  'Weight Watchers': {
+    Carbohydrate: 0.4,
+    Fat: 0.3,
+    Protein: 0.3,
+  },
+  'DASH Diet': {
+    Carbohydrate: 0.55,
+    Fat: 0.27,
+    Protein: 0.18,
+  },
+};
+
+export const activityFactor: Record<string, number> = {
+  sedentary: 1.2,
+  lightlyActive: 1.375,
+  moderatelyActive: 1.55,
+  veryActive: 1.725,
+  superActive: 1.9,
+};
