@@ -131,6 +131,16 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
     setModalView(true);
   };
 
+  const onRatioClick = () => {
+    setModalInfo({
+      titleTxt: 'Modify Ratios',
+      descTxt: 'Please provide the details for the new macro-nutrient ratios:',
+      rejectTxt: 'Cancel',
+      acceptTxt: 'Save',
+    });
+    setModalView(true);
+  };
+
   // TDEE
   const totalExpenditure: number = Math.round(
     (userData.bmr ?? 1) * activityFactor[userData.activityLevel]
@@ -150,12 +160,20 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
 
         <div>
           <button
-            className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-slate-700/70 bg-neutral-800/70 hover:border-metaAccent/30"
+            className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50"
             onClick={onLogClick}
           >
             Start Logging
           </button>
         </div>
+      </div>
+      <div className="mt-5">
+        <button
+          className="text-sm transition-all border rounded-lg mx-2 py-3 px-10 whitespace-nowrap border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50"
+          onClick={onLogClick}
+        >
+          Modify Ratios
+        </button>
       </div>
       <div className="flex flex-col items-center lg:flex-row justify-center">
         {macroCards.map(

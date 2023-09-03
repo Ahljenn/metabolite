@@ -127,10 +127,10 @@ const MealTabs = ({ setModalView, setModalInfo }: MealTabsProps) => {
                 <ul>
                   <li
                     key="add-item"
-                    className="relative rounded-lg p-3 border border-metaAccent/30 hover:border-metaAccent hover:bg-neutral-800/50 cursor-pointer"
+                    className="relative rounded-lg p-3 border border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50 cursor-pointer"
                     onClick={onAddItem}
                   >
-                    <h3 className="text-sm font-medium leading-5 text-metaPrimary">Add Item (+)</h3>
+                    <h3 className="text-sm font-medium leading-5 text-metaAccent">Add Item (+)</h3>
                     <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
                       <li>Add additional food or nutrition source</li>
                     </ul>
