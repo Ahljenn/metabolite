@@ -132,7 +132,9 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
   };
 
   // TDEE
-  const totalExpenditure: number = userData?.bmr * 2 || 1 * activityFactor[userData.activityLevel];
+  const totalExpenditure: number = Math.round(
+    (userData.bmr ?? 1) * activityFactor[userData.activityLevel]
+  );
 
   return (
     <section className="flex flex-col justify-center">
@@ -143,7 +145,7 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
         <div>
           <p className={`mb-3 text-2xl font-semibold`}>Calories</p>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Total Calories</p>
-          <p>0 of {totalExpenditure}</p>
+          <p>0 of {totalExpenditure} cal</p>
         </div>
 
         <div>

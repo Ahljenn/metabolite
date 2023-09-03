@@ -187,9 +187,8 @@ export const dietRatios: {
 };
 
 export const activityFactor: Record<string, number> = {
-  sedentary: 1.2,
-  lightlyActive: 1.375,
-  moderatelyActive: 1.55,
-  veryActive: 1.725,
-  superActive: 1.9,
+  Sedentary: 1.2,
+  'Lightly active': 1.375,
+  Active: 1.55,
+  'Very active': 1.9,
 };
