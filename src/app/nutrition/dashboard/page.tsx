@@ -96,10 +96,7 @@ const NDashboard = () => {
           </div>
         </section>
 
-        <div
-          className={`w-full h-[8rem] bg-gradient-to-b from-black to-gray-700  opacity-30 -z-50`}
-        />
-        <div className="border w-full border-slate-700 border-y-[0.01px]" />
+        <Divider />
 
         <main className="gap-5 flex flex-col items-center">
           <h3 className="text-center mt-10 text-lg font-thin">
@@ -111,6 +108,14 @@ const NDashboard = () => {
 
           <MealTabs setModalView={setModalView} setModalInfo={setModalInfo} />
         </main>
+
+        <Divider />
+
+        <section>
+          <div className="py-8 px-4 mx-auto text-center lg:py-16 lg:px-12 bg-neutral-900">
+            <h3 className="text-center text-lg font-thin">Your Progress</h3>
+          </div>
+        </section>
       </div>
     );
   }
@@ -158,17 +163,17 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
 
         <div>
           <button
-            className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50"
+            className="text-sm transition-all border rounded-lg py-3 px-10 whitespace-nowrap border-metaAccent/40 bg-neutral-800/70 hover:border-metaAccent"
             onClick={onLogClick}
           >
-            Start Logging
+            More Info
           </button>
         </div>
       </div>
       <div className="mt-5 flex justify-center lg:justify-start">
         <button
-          className="text-sm transition-all border rounded-lg mx-2 py-3 px-10 whitespace-nowrap border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50"
-          onClick={onLogClick}
+          className="text-sm transition-all border rounded-lg mx-2 py-3 px-10 whitespace-nowrap border-metaAccent/40 bg-neutral-800/70 hover:border-metaAccent"
+          onClick={onRatioClick}
         >
           Modify Ratios
         </button>
@@ -208,5 +213,14 @@ const Macros: React.FC<MacrosProps> = ({ userData, setModalView, setModalInfo })
         )}
       </div>
     </section>
+  );
+};
+
+const Divider = () => {
+  return (
+    <>
+      <div className={`w-full h-[5rem] bg-gradient-to-b from-black to-gray-700 opacity-30 -z-50`} />
+      <div className="border w-full border-slate-700 border-y-[0.01px]" />
+    </>
   );
 };
