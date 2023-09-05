@@ -82,7 +82,7 @@ const IntakeChart = () => {
   return (
     <>
       <div className="mt-5 rounded-lg p-10 mx-[10rem] bg-neutral-900">
-        <Line data={intakeData} options={options} />
+        <Chart type="bar" data={intakeData} />
       </div>
     </>
   );
