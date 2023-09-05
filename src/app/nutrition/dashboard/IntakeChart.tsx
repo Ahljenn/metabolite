@@ -8,12 +8,12 @@ import {
   LineElement,
   Legend,
   Tooltip,
+  Title,
   LineController,
   BarController,
 } from 'chart.js';
 
 import { Chart } from 'react-chartjs-2';
-import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
   LinearScale,
@@ -24,7 +24,8 @@ ChartJS.register(
   Legend,
   Tooltip,
   LineController,
-  BarController
+  BarController,
+  Title
 );
 
 const options = {
@@ -33,10 +34,10 @@ const options = {
     legend: {
       position: 'top' as const,
     },
-    // title: {
-    //   display: true,
-    //   text: 'Weekly Statistics',
-    // },
+    title: {
+      display: true,
+      text: 'Weekly Statistics',
+    },
   },
 };
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -50,7 +51,7 @@ const IntakeChart = () => {
         label: 'Weekly Caloric Intake',
         data: [2512, 2201, 2182, 2521, 2201, 2182, 2521],
         borderColor: '#03C9BA',
-        borderWidth: 3,
+        borderWidth: 2,
       },
       {
         type: 'bar' as const,
@@ -75,7 +76,7 @@ const IntakeChart = () => {
 
   return (
     <>
-      <div className="mt-5 rounded-lg p-10 mx-[10rem] bg-neutral-900">
+      <div className="mt-5 rounded-2xl p-10 mx-[10rem] bg-neutral-800">
         <Chart type="bar" data={intakeData} />
       </div>
     </>
