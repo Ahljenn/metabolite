@@ -35,51 +35,9 @@ const MealTabs = ({ setModalView, setModalInfo }: MealTabsProps) => {
         carbs: 2,
         fats: 24,
       },
-      {
-        id: 2,
-        title: 'Rotisserie Chicken',
-        date: '5h ago',
-        protein: 80,
-        carbs: 2,
-        fats: 24,
-      },
     ],
-    Lunch: [
-      {
-        id: 1,
-        title: 'Rotisserie Chicken',
-        date: '5h ago',
-        protein: 80,
-        carbs: 2,
-        fats: 24,
-      },
-      {
-        id: 2,
-        title: 'Rotisserie Chicken',
-        date: '5h ago',
-        protein: 80,
-        carbs: 2,
-        fats: 24,
-      },
-    ],
-    Dinner: [
-      {
-        id: 1,
-        title: 'Rotisserie Chicken',
-        date: '5h ago',
-        protein: 80,
-        carbs: 2,
-        fats: 24,
-      },
-      {
-        id: 2,
-        title: 'Rotisserie Chicken',
-        date: '5h ago',
-        protein: 80,
-        carbs: 2,
-        fats: 24,
-      },
-    ],
+    Lunch: [],
+    Dinner: [],
     Snacks: [],
   });
 
@@ -127,10 +85,10 @@ const MealTabs = ({ setModalView, setModalInfo }: MealTabsProps) => {
                 <ul>
                   <li
                     key="add-item"
-                    className="relative rounded-lg p-3 border border-metaAccent/80 bg-neutral-800/70 hover:border-metaAccent/50 cursor-pointer"
+                    className="relative rounded-lg p-3 border border-metaAccent/40 bg-neutral-800/70 hover:border-metaAccent transition-all cursor-pointer"
                     onClick={onAddItem}
                   >
-                    <h3 className="text-sm font-medium leading-5 text-metaAccent">Add Item (+)</h3>
+                    <h3 className="text-sm font-medium leading-5 text-metaAccent">Log Item (+)</h3>
                     <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
                       <li>Add additional food or nutrition source</li>
                     </ul>
