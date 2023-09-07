@@ -101,7 +101,7 @@ const Home: React.FC = (): JSX.Element => {
             )}
           </div>
           <div>
-            <p className="text-sm mb-2 text-gray-400 text-center">Powered by</p>
+            {/* <p className="text-sm mb-2 text-gray-400 text-center">Powered by</p>
             <Image
               className="relative "
               src="/metabolite-full.png"
@@ -110,7 +110,7 @@ const Home: React.FC = (): JSX.Element => {
               height={200}
               quality={100}
               priority
-            />
+            /> */}
           </div>
         </div>
       </section>
