@@ -26,17 +26,17 @@ const Nutrition: React.FC = (): JSX.Element => {
 
       {/* Divider */}
 
-      <div
+      {/* <div
         className={`w-full h-[8rem] bg-gradient-to-b from-black to-gray-700  opacity-30 -z-50`}
       />
-      <div className="border w-full border-slate-700 border-y-[0.01px]" />
+      <div className="border w-full border-slate-700 border-y-[0.01px]" /> */}
       {/* New section */}
-      <section
+      {/* <section
         className={`flex flex-col items-center justify-between 
     p-12`}
       >
         <p className="mt-5 text-center opacity-75 max-w-xl">Ignite Vitality.</p>
-      </section>
+      </section> */}
     </>
   );
 };
