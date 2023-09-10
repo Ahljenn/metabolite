@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
 import AppWrapper from './components/ui/AppWrapper';
 import NextAuthProvider from './components/features/NextAuthProvider';
+import Navbar from './components/ui/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,6 +23,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
     <body className={inter.className}>
       <NextAuthProvider>
+        <Navbar />
         <AppWrapper>{children}</AppWrapper>
       </NextAuthProvider>
     </body>
