@@ -23,7 +23,7 @@ const NutritionButtons = () => {
     <div className="flex sm:gap-5 flex-col sm:flex-row">
       <a
         rel="noopener noreferrer"
-        href=""
+        href="/about"
         className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
       >
         Learn More
