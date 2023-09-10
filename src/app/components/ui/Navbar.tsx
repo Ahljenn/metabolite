@@ -41,22 +41,21 @@ const Navbar = () => {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
+                <div className="flex flex-shrink-0 items-center relative w-20">
                   <Image
-                    className="block h-8 w-auto lg:hidden"
+                    className="block h-8 w-auto lg:hidden "
                     src="/metabolite-m.png"
                     alt="Metabolite Logo"
-                    width={50}
-                    height={50}
+                    fill
                     quality={100}
                     priority
                   />
+
                   <Image
                     className="hidden h-8 w-auto lg:block"
                     src="/metabolite-m.png"
                     alt="Metabolite Logo"
-                    width={50}
-                    height={50}
+                    fill
                     quality={100}
                     priority
                   />
