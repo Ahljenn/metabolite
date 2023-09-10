@@ -113,12 +113,12 @@ const NDashboard = () => {
 
         <Divider />
 
-        <section>
+        {/* <section>
           <div className="py-8 px-4 mx-auto text-center lg:py-16 lg:px-12 bg-neutral-900">
             <h3 className="text-center text-lg font-thin">Health Tracker</h3>
             <IntakeChart />
           </div>
-        </section>
+        </section> */}
       </div>
     );
   }

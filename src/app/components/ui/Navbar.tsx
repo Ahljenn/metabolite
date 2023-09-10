@@ -1,9 +1,11 @@
+'use client';
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import LoginWithGoogle, { onSignIn } from '../features/LoginWithGoogle';
 import { useSession, signOut, signIn } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 const navigation = [
   { name: 'Hub', href: '/', current: true },
@@ -17,15 +19,12 @@ const classNames = (...classes: any[]): string => {
   return classes.filter(Boolean).join(' ');
 };
 
-interface NavBarProps {
-  currentRoute: string;
-}
-
-const Navbar = ({ currentRoute }: NavBarProps) => {
+const Navbar = () => {
   const { data: session, status } = useSession();
+  const currentRoute = usePathname();
 
   return (
-    <Disclosure as="nav" className="sticky top-0 z-50 bg-black">
+    <Disclosure as="nav" className="sticky top-0 z-50 bg-neutral-900">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -50,6 +49,7 @@ const Navbar = ({ currentRoute }: NavBarProps) => {
                     width={50}
                     height={50}
                     quality={100}
+                    priority
                   />
                   <Image
                     className="hidden h-8 w-auto lg:block"
@@ -58,6 +58,7 @@ const Navbar = ({ currentRoute }: NavBarProps) => {
                     width={50}
                     height={50}
                     quality={100}
+                    priority
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
@@ -68,8 +69,8 @@ const Navbar = ({ currentRoute }: NavBarProps) => {
                         href={item.href}
                         className={classNames(
                           item.href === currentRoute
-                            ? 'bg-gray-900 text-white'
-                            : 'text-gray-300 hover:bg-gray-900 hover:text-white',
+                            ? 'bg-gray-800 text-white'
+                            : 'text-gray-400 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
