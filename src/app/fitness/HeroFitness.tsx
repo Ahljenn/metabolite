@@ -1,6 +1,6 @@
 'use client';
 import Lottie from 'lottie-react';
-import Health from '#/lottie/health-hero-blue.json';
+import Health from '#/lottie/blue-arm.json';
 const lottieStyle = {
   height: 500,
 };
