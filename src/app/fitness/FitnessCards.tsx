@@ -14,6 +14,11 @@ const FitnessCards = () => {
   return (
     <>
       <h2 className="text-2xl font-semibold">Featured Strength Tools</h2>
+      <p className="opacity-75 max-w-2xl mt-2 text-center">
+        Explore the tools below, designed to empower you in crafting a workout plan that is uniquely
+        yours. Each feature plays a crucial role in tailoring your fitness journey to your
+        individual goals while also providing better insights to your progress.
+      </p>
       <div className="mt-10 grid text-center lg:mb-0 sm:grid-cols-2 lg:grid-cols-4 lg:text-left gap-5 mx-10">
         <ModalBasic
           title={modalData?.title}
@@ -37,7 +42,7 @@ const FitnessCards = () => {
                 key={index}
                 className={`${
                   card.header === 'Diet' ? 'md:col-span-2' : ''
-                } rounded-lg cursor-pointer border px-5 py-4 border-cyan-800 bg-neutral-900 hover:border-cyan-300 transition-all`}
+                } rounded-lg cursor-pointer border px-5 py-4 border-neutral-800 bg-neutral-900 hover:border-cyan-300 transition-all`}
                 rel="noopener noreferrer"
               >
                 <h2 className={`mb-3 text-xl font-semibold`}>{card.header}</h2>
@@ -70,16 +75,16 @@ const fitnessCardData: {
     route: '/fitness/new-workout',
   },
   {
-    header: 'Strength Level Standards',
-    desc: 'Discover where you stand on the strength spectrum for various exercises. Gauge your performance against established strength level standards.',
-    info: 'Input your lifting stats and get an instant assessment of your strength level. Compare your progress over time and set new goals.',
-    route: '/fitness/standards',
-  },
-  {
     header: 'One Rep Max Calculator',
     desc: 'Calculate your one-rep maximum (1RM) for various exercises. Determine your peak strength for optimal training intensity.',
     info: 'Simply enter your lifting data, and let our calculator do the rest. Use this valuable tool to fine-tune your workout routine and achieve peak performance.',
     route: '/fitness/orm',
+  },
+  {
+    header: 'Strength Level Standards',
+    desc: 'Discover where you stand on the strength spectrum for various exercises. Gauge your performance against established strength level standards.',
+    info: 'Input your lifting stats and get an instant assessment of your strength level. Compare your progress over time and set new goals.',
+    route: '/fitness/standards',
   },
   {
     header: 'Fitness Rankings',
