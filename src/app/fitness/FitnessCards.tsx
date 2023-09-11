@@ -27,23 +27,18 @@ const FitnessCards = () => {
               header: string;
               desc: string;
               info: string;
+              route: string;
             },
             index: number
           ) => {
             return (
-              <div
+              <a
+                href={card.route}
                 key={index}
                 className={`${
                   card.header === 'Diet' ? 'md:col-span-2' : ''
                 } rounded-lg cursor-pointer border px-5 py-4 border-cyan-800 bg-neutral-900 hover:border-cyan-300 transition-all`}
                 rel="noopener noreferrer"
-                onClick={() => {
-                  setModalData({
-                    title: card.header,
-                    desc: card.info,
-                  });
-                  setModalView(true);
-                }}
               >
                 <h2 className={`mb-3 text-xl font-semibold`}>{card.header}</h2>
                 <p
@@ -53,7 +48,7 @@ const FitnessCards = () => {
                 >
                   {card.desc}
                 </p>
-              </div>
+              </a>
             );
           }
         )}
@@ -66,26 +61,31 @@ const fitnessCardData: {
   header: string;
   desc: string;
   info: string;
+  route: string;
 }[] = [
   {
     header: 'Workout Generator',
     desc: 'Access a dynamic workout generator that creates customized exercise routines tailored to your fitness goals and preferences targeting strength, hypertrophy, or endurance.',
     info: 'Specify your workout preferences, including target muscle groups, available equipment, and desired intensity. The generator will provide you with a detailed plan, complete with exercise selections, sets, reps, and rest intervals.',
+    route: '/fitness/new-workout',
   },
   {
     header: 'Strength Level Standards',
     desc: 'Discover where you stand on the strength spectrum for various exercises. Gauge your performance against established strength level standards.',
     info: 'Input your lifting stats and get an instant assessment of your strength level. Compare your progress over time and set new goals.',
+    route: '/fitness/standards',
   },
   {
     header: 'One Rep Max Calculator',
     desc: 'Calculate your one-rep maximum (1RM) for various exercises. Determine your peak strength for optimal training intensity.',
     info: 'Simply enter your lifting data, and let our calculator do the rest. Use this valuable tool to fine-tune your workout routine and achieve peak performance.',
+    route: '/fitness/orm',
   },
   {
     header: 'Fitness Rankings',
     desc: 'Get a comprehensive view of your overall strength across various lifts compared to the wider fitness community.',
     info: 'Explore leaderboards, track your performance, and get motivated by seeing how you measure up. Use this tool to set new goals and push your limits.',
+    route: '/fitness/rankings',
   },
 ];
 
