@@ -14,7 +14,7 @@ const FitnessCards = () => {
   return (
     <>
       <h2 className="text-2xl font-semibold">Featured Strength Tools</h2>
-      <div className="mt-10 grid text-center lg:mb-0 lg:grid-cols-3 lg:text-left gap-5 mx-10">
+      <div className="mt-10 grid text-center lg:mb-0 sm:grid-cols-2 lg:grid-cols-4 lg:text-left gap-5 mx-10">
         <ModalBasic
           title={modalData?.title}
           description={modalData?.desc}
@@ -67,6 +67,11 @@ const fitnessCardData: {
   desc: string;
   info: string;
 }[] = [
+  {
+    header: 'Workout Generator',
+    desc: 'Access a dynamic workout generator that creates customized exercise routines tailored to your fitness goals and preferences targeting strength, hypertrophy, or endurance.',
+    info: 'Specify your workout preferences, including target muscle groups, available equipment, and desired intensity. The generator will provide you with a detailed plan, complete with exercise selections, sets, reps, and rest intervals.',
+  },
   {
     header: 'Strength Level Standards',
     desc: 'Discover where you stand on the strength spectrum for various exercises. Gauge your performance against established strength level standards.',
