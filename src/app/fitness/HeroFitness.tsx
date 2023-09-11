@@ -22,8 +22,8 @@ const HeroFitness = () => {
             Unlock Your Potential
           </h1>
           <p className="max-w-2xl mb-6 sm:mb-8 md:text-lg sm:text-xl text-white m-5 sm:m-0">
-            Welcome to Metabolite: Fitness. Customize your strength training with personalized
-            workout plans and elevate your fitness journey to new heights.
+            Welcome to Metabolite: <b>Fitness</b>. Customize your strength training with
+            personalized workout plans and elevate your fitness journey to new heights.
           </p>
           <div className="flex flex-col-reverse sm:flex-row gap-8 justify-center sm:justify-start items-center">
             {/* <div>
