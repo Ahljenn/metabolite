@@ -6,6 +6,9 @@ interface FetchUserDataProps {
   setIsEffectRun: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+// Fetch user screening data from Mongo.
+// - Sets use effect run for loading animation in front end
+// - Sets user data only if data exists
 const fetchUserData = async ({ userEmail, setUserData, setIsEffectRun }: FetchUserDataProps) => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
