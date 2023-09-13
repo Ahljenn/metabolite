@@ -4,7 +4,7 @@ import Radio from '../../components/features/Radio';
 import { useEffect, useState } from 'react';
 import { RadioBasic } from '../../components/features/Radio';
 import Lottie from 'lottie-react';
-import LoadingAnimation from '#/lottie/diet-plan.json';
+import LoadingAnimation from '#/lottie/loading.json';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import {
@@ -391,8 +391,6 @@ p-12`}
         }}
       />
 
-      <BgBlob isScreeningComplete={isScreeningComplete} />
-
       {!isScreeningComplete ? (
         <>
           <ProgressBar stage={stage} method={method} />
@@ -415,7 +413,7 @@ p-12`}
             </p>
           </div>
           <section className="bg-metaAccent/20 rounded-full mt-10 mx-10 opacity-90">
-            <div className="grayscale">
+            <div>
               <Lottie animationData={LoadingAnimation} loop={true} />
             </div>
           </section>
@@ -588,31 +586,6 @@ const ProgressBar = ({ stage, method }: { stage: number; method: RadioBasic }) =
         {stage} of {method?.name === 'Complete' ? MAX_QUESTION_COMPLETE : MAX_QUESTION_QUICK}
       </p>
     </div>
-  );
-};
-
-const BgBlob = ({ isScreeningComplete }: { isScreeningComplete: boolean }) => {
-  return (
-    <section className="bg-transparent">
-      <div
-        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[480px] 
-      rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] 
-      after:bg-gradient-conic after:blur-2xl after:content-[''] before:bg-gradient-to-br 
-      before:from-transparent before:to-teal-800 before:opacity-10 after:from-emerald-800 after:via-teal-800 
-      after:opacity-40 before:lg:h-[260px] translate-x-[-25rem] translate-y-[12rem] ${
-        isScreeningComplete ? 'animate-pulse' : ''
-      }`}
-      />
-      <div
-        className={`z-[-100] relative flex place-items-center before:absolute before:h-[800px] before:w-[200px] 
-      before:rounded-full before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[220px] after:w-[200px] 
-      after:bg-gradient-conic  after:blur-2xl after:content-[''] before:bg-gradient-to-br 
-      before:from-transparent before:to-teal-300 before:opacity-10 after:from-emerald-200 after:via-teal-600 
-      after:opacity-50 before:lg:h-[660px] translate-y-[30rem] translate-x-[-18rem] ${
-        isScreeningComplete ? 'animate-pulse' : ''
-      }`}
-      />
-    </section>
   );
 };
 

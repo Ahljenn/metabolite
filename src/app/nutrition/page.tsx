@@ -1,3 +1,4 @@
+import HeroNutrition from './HeroNutrition';
 import NutritionButtons from './NutritionButtons';
 import NutritionCards from './NutritionCards';
 
@@ -9,18 +10,12 @@ export const metadata: Metadata = {
 const Nutrition: React.FC = (): JSX.Element => {
   return (
     <>
+      <HeroNutrition />
       <section
         className={`flex flex-col items-center justify-between 
     p-12`}
       >
-        <h1 className="text-4xl lg:text-6xl font-bold text-center mt-5 bg-gradient-to-r from-metaPrimary via-metaSecondary to-metaAccent bg-clip-text text-transparent">
-          Metabolite Nutrition
-        </h1>
-        <p className="mt-5 text-center opacity-75 max-w-xl">
-          Empower yourself with the knowledge and guidance you need to make informed dietary choices
-          and simplify your journey to optimal nutrition and embrace a healthier lifestyle.
-        </p>
-        <NutritionButtons />
+        {/* <NutritionButtons /> */}
         <NutritionCards />
       </section>
 
