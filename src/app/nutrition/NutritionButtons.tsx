@@ -42,7 +42,7 @@ const NutritionButtons = () => {
             href="/nutrition/screening"
             className="mt-5 transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent"
           >
-            Get Started
+            Get started - It&apos;s free
           </a>
         ) : (
           // User is logged in and has data
@@ -60,7 +60,7 @@ const NutritionButtons = () => {
           onClick={() => signIn('google')}
           className="mt-5 transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent cursor-pointer"
         >
-          Get Started
+          Get started - It&apos;s free
         </p>
       )}
     </div>
