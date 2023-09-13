@@ -11,50 +11,59 @@ const NutritionCards = () => {
   const [modalView, setModalView] = useState<boolean>(false);
   const [modalData, setModalData] = useState<ModalDataType>({ title: 'None', desc: 'None' });
   return (
-    <div className="mt-20 grid text-center lg:mb-0 lg:grid-cols-3 lg:text-left gap-5 mx-10">
-      <ModalBasic
-        title={modalData?.title}
-        description={modalData?.desc}
-        modalView={modalView}
-        setModalView={setModalView}
-      />
-      {nutritionCardData.map(
-        (
-          card: {
-            header: string;
-            desc: string;
-            info: string;
-          },
-          index: number
-        ) => {
-          return (
-            <div
-              key={index}
-              className={`${
-                card.header === 'Diet' ? 'md:col-span-2' : ''
-              } rounded-lg cursor-pointer border px-5 py-4 border-neutral-800 bg-neutral-900 hover:border-metaSecondary transition-all`}
-              rel="noopener noreferrer"
-              onClick={() => {
-                setModalData({
-                  title: card.header,
-                  desc: card.info,
-                });
-                setModalView(true);
-              }}
-            >
-              <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
-              <p
-                className={`m-0 ${
-                  card.header === 'Diet' ? 'md:max-w-[70ch]' : 'md:max-w-[30ch]'
-                } text-sm opacity-50`}
+    <>
+      <h2 className="text-2xl font-semibold">Facts On Nutrition</h2>
+      <p className="opacity-75 max-w-2xl mt-2 text-center">
+        In the realm of nutrition, understanding key terms is paramount for a holistic approach to
+        health and fitness. Your diet encompasses more than just food; it&apos;s a strategic tool
+        tailored to meet specific goals, whether for weight management, muscle gain, or overall
+        well-being.
+      </p>
+      <div className="mt-10 grid text-center lg:mb-0 lg:grid-cols-3 lg:text-left gap-5 mx-10">
+        <ModalBasic
+          title={modalData?.title}
+          description={modalData?.desc}
+          modalView={modalView}
+          setModalView={setModalView}
+        />
+        {nutritionCardData.map(
+          (
+            card: {
+              header: string;
+              desc: string;
+              info: string;
+            },
+            index: number
+          ) => {
+            return (
+              <div
+                key={index}
+                className={`${
+                  card.header === 'Diet' ? 'md:col-span-2' : ''
+                } rounded-lg cursor-pointer border px-5 py-4 border-neutral-800 bg-neutral-900 hover:border-metaSecondary transition-all`}
+                rel="noopener noreferrer"
+                onClick={() => {
+                  setModalData({
+                    title: card.header,
+                    desc: card.info,
+                  });
+                  setModalView(true);
+                }}
               >
-                {card.desc}
-              </p>
-            </div>
-          );
-        }
-      )}
-    </div>
+                <h2 className={`mb-3 text-2xl font-semibold`}>{card.header}</h2>
+                <p
+                  className={`m-0 ${
+                    card.header === 'Diet' ? 'md:max-w-[70ch]' : 'md:max-w-[30ch]'
+                  } text-sm opacity-50`}
+                >
+                  {card.desc}
+                </p>
+              </div>
+            );
+          }
+        )}
+      </div>
+    </>
   );
 };
 const nutritionCardData: {
