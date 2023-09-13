@@ -11,7 +11,7 @@ const lottieStyle = {
 
 const HeroNutrition = () => {
   return (
-    <div className="w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-600 via-gray-900 to-black">
+    <div className="w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-700 via-black to-green-800">
       <div className="flex max-w-screen-xl px-4 py-8 mx-auto flex-col sm:flex-row">
         <div className="mr-auto place-self-center text-center sm:text-left">
           <h1 className="max-w-2xl mb-4 text-xl sm:text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white m-5 sm:m-0">
@@ -36,7 +36,7 @@ const HeroNutrition = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-6 hidden sm:block">
+        <div className="col-span-6 hidden sm:block grayscale">
           <Lottie animationData={Health} loop={false} style={lottieStyle} />
         </div>
       </div>

@@ -32,7 +32,7 @@ const NutritionCards = () => {
               key={index}
               className={`${
                 card.header === 'Diet' ? 'md:col-span-2' : ''
-              } rounded-lg cursor-pointer border px-5 py-4 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all`}
+              } rounded-lg cursor-pointer border px-5 py-4 border-neutral-800 bg-neutral-900 hover:border-metaSecondary transition-all`}
               rel="noopener noreferrer"
               onClick={() => {
                 setModalData({
