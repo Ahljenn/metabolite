@@ -36,7 +36,7 @@ const HeroNutrition = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-6 hidden sm:block grayscale">
+        <div className="col-span-6 hidden sm:block">
           <Lottie animationData={Health} loop={false} style={lottieStyle} />
         </div>
       </div>

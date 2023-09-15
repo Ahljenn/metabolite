@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="w-full max-w-7xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <a href="/" className="flex flex-col items-center mb-4 sm:mb-0">
-            <p className="text-sm mb-2 text-gray-400 text-center">Powered by</p>
+            <p className="text-sm mb-2 text-gray-400 text-right">Powered By</p>
             <Image
               className="relative "
               src="/metabolite-full.png"
@@ -40,8 +40,9 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <hr className="my-6 sm:mx-auto border-gray-700 lg:my-8" />
-        <span className="block text-sm  sm:text-center text-gray-400 text-center">
+        <hr className="my-6 sm:mx-auto border-gray-700" />
+        <p className="block text-sm text-gray-400 text-center">Ignite Vitality.</p>
+        <span className="block text-sm text-gray-400 text-center my-2">
           © 2023{' '}
           <a href="https://Metabolite.com/" className="hover:underline">
             Metabolite™

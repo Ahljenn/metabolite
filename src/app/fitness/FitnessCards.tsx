@@ -1,16 +1,4 @@
-'use client';
-import { useState } from 'react';
-import ModalBasic from '@/app/components/ui/Modals/ModalBasic';
-
-interface ModalDataType {
-  title?: string;
-  desc?: string;
-}
-
 const FitnessCards = () => {
-  const [modalView, setModalView] = useState<boolean>(false);
-  const [modalData, setModalData] = useState<ModalDataType>({ title: 'None', desc: 'None' });
-
   return (
     <>
       <h2 className="text-2xl font-semibold">Featured Strength Tools</h2>
@@ -20,12 +8,6 @@ const FitnessCards = () => {
         individual goals while also providing better insights to your progress.
       </p>
       <div className="mt-10 grid text-center lg:mb-0 sm:grid-cols-2 lg:grid-cols-4 lg:text-left gap-5 mx-10">
-        <ModalBasic
-          title={modalData?.title}
-          description={modalData?.desc}
-          modalView={modalView}
-          setModalView={setModalView}
-        />
         {fitnessCardData.map(
           (
             card: {
