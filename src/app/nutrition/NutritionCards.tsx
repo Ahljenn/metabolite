@@ -18,7 +18,7 @@ const NutritionCards = () => {
           <a
             key={idx}
             href={card.route}
-            className="flex flex-col items-center rounded-lg md:flex-row md:max-w-3xl border border-neutral-800 bg-neutral-900 hover:border-metaSecondary transition-all mb-5"
+            className="flex flex-col items-center rounded-lg md:flex-row md:max-w-3xl border border-neutral-800 bg-neutral-900 hover:border-metaSecondary transition-all mb-20 md:mb-10"
           >
             <Image
               className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-52 md:rounded-none md:rounded-l-lg"

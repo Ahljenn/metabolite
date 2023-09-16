@@ -44,7 +44,7 @@ const Footer = () => {
         <p className="block text-sm text-gray-400 text-center">Ignite Vitality.</p>
         <span className="block text-sm text-gray-400 text-center my-2">
           © 2023{' '}
-          <a href="https://Metabolite.com/" className="hover:underline">
+          <a href="https://metabolite.vercel.app/" className="hover:underline">
             Metabolite™
           </a>
           . All Rights Reserved.
