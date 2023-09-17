@@ -28,18 +28,18 @@ const HeroRoot = () => {
           <div className="flex flex-col-reverse sm:flex-row gap-8 justify-center sm:justify-start items-center">
             <div>
               <a
-                href="/nutrition"
-                className="mt-5 border-green-300 bg-emerald-700 hover:border-green-200 hover:bg-emerald-600 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
-              >
-                Metabolite
-              </a>
-            </div>
-            <div>
-              <a
                 href="/about"
                 className="mt-5 border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:bg-neutral-800 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
               >
                 About
+              </a>
+            </div>
+            <div>
+              <a
+                href="/nutrition/screening"
+                className="mt-5 border-green-300 bg-emerald-700 hover:border-green-200 hover:bg-emerald-600 transition-all border rounded-lg py-2 px-4 whitespace-nowrap"
+              >
+                Quick Start
               </a>
             </div>
           </div>
