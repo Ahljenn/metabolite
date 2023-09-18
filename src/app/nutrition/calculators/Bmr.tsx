@@ -6,6 +6,7 @@ interface bmrStateProps {
   gender: string;
   height: number[];
   weight: number;
+  unit: string;
 }
 
 const Bmr = () => {
@@ -14,6 +15,7 @@ const Bmr = () => {
     gender: 'None',
     height: [0, 0],
     weight: 0,
+    unit: 'metric',
   });
 
   return (
