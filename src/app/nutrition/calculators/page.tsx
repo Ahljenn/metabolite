@@ -1,4 +1,4 @@
-import UnderConstruction from '@/app/components/ui/UnderConstruction';
+import Bmr from './Bmr';
 import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Calculators',
@@ -6,12 +6,36 @@ export const metadata: Metadata = {
 
 const Calculators = () => {
   return (
-    <section
-      className={`flex flex-col items-center  justify-between 
+    <main
+      className={`flex flex-col items-center justify-between 
 p-12`}
     >
-      <UnderConstruction />
-    </section>
+      <Bmr />
+
+      <section>
+        <div className="py-8 flex flex-col sm:items-left gap-5 justify-center">
+          <div>
+            <h2 className="text-3xl font-bold">Body Mass Index</h2>
+          </div>
+          <div className="lead-xl font-light opacity-75 max-w-4xl text-lg">
+            The numerical measurement derived from an individual&apos;s height and weight, providing
+            an <b>estimation</b> of body fat and overall health status.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="py-8 flex flex-col sm:items-left gap-5 justify-center">
+          <div>
+            <h2 className="text-3xl font-bold">Body Fat</h2>
+          </div>
+          <div className="lead-xl font-light opacity-75 max-w-4xl text-lg">
+            Body fat percentage represents the proportion of fat tissue in relation to total body
+            weight, serving as a key indicator of overall fitness and health.
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 
