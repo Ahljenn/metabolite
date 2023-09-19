@@ -21,7 +21,7 @@ const NutritionCards = () => {
             className="flex flex-col items-center rounded-lg md:flex-row md:max-w-3xl border border-neutral-800 bg-neutral-900 hover:border-metaSecondary transition-all mb-20 md:mb-10"
           >
             <Image
-              className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-52 md:rounded-none md:rounded-l-lg"
+              className="object-cover w-full rounded-t-lg h-96 md:h-52 md:w-52 md:rounded-none md:rounded-l-lg"
               src={card.img}
               alt="calculate"
               width={500}
@@ -61,7 +61,7 @@ const nutritionCardData: {
     header: 'Metabolite Score',
     desc: 'Assess the foods you eat. Utilizing sentiment analysis, we generate a distinctive Metabolite Score for each item, offering valuable insights into its nutritional value and potential impact on yourself',
     route: '/nutrient/nutrients',
-    img: '/vitamins.jpg',
+    img: '/food.webp',
   },
 ];
 
