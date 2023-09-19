@@ -60,7 +60,7 @@ const nutritionCardData: {
   {
     header: 'Metabolite Score',
     desc: 'Assess the foods you eat. Utilizing sentiment analysis, we generate a distinctive Metabolite Score for each item, offering valuable insights into its nutritional value and potential impact on yourself',
-    route: '/nutrient/nutrients',
+    route: '/nutrition/score',
     img: '/food.webp',
   },
 ];
