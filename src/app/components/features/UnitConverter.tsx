@@ -18,6 +18,42 @@ const UnitConverter: React.FC<DialogInfo> = ({
   const [inches, setInches] = useState<string>('0');
   const [pounds, setPounds] = useState<string>('0');
 
+  const [centimeters, setCentimeters] = useState<string>('0');
+  const [kilograms, setKilograms] = useState<string>('0');
+
+  // Imperical System
+  const onFeetChangeImperial = (value: any) => {
+    const feetValue = parseInt(value, 10);
+    if (!isNaN(feetValue)) {
+      setFeet(String(feetValue));
+    }
+    if (feet && inches) {
+      onHeightChangeImperial(feet, inches);
+    }
+  };
+
+  const onInchesChangeImperial = (value: any) => {
+    const inchesValue = parseInt(value, 10);
+    if (!isNaN(inchesValue)) {
+      setInches(String(inchesValue));
+    }
+    if (feet && inches) {
+      onHeightChangeImperial(feet, inches);
+    }
+  };
+
+  const onHeightChangeImperial = (feet: string, inches: string): void => {
+    const cm = parseInt(feet, 10) * 30.48 + parseInt(inches, 10) * 2.54;
+    setCentimeters(String(Math.round(cm)));
+  };
+
+  const onWeightChangeImperial = (pounds: number): void => {
+    const kilo = pounds / 2.2046;
+    setKilograms(String(Math.round(kilo)));
+  };
+
+  // American System
+
   const onHeightChange = (cm: number): void => {
     const inches = cm / 2.54;
     setFeet(String(Math.floor(inches / 12)));
@@ -61,8 +97,8 @@ const UnitConverter: React.FC<DialogInfo> = ({
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm opacity-75">
-                      Metabolite utilizes pounds, feet, and inches to calculate your basal metabolic
-                      rate.
+                      Metabolite utilizes kilogram, and centimeters to calculate your basal
+                      metabolic rate.
                     </p>
                   </div>
 
@@ -71,31 +107,30 @@ const UnitConverter: React.FC<DialogInfo> = ({
                       <p className="mb-1">Height</p>
                       <span className="flex">
                         <input
-                          className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
+                          className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline opacity-50"
                           type="number"
-                          placeholder="Centimeters"
+                          placeholder={feet !== '0' ? `${feet} ft.` : 'Feet'}
                           onChange={(e: any) => {
-                            onHeightChange(e.target.value);
+                            onFeetChangeImperial(e.target.value);
                           }}
-                        ></input>
+                        />
+
                         <input
                           className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline opacity-50"
                           type="number"
-                          placeholder={
-                            feet !== '0' || inches !== '0'
-                              ? `${feet} ft. ${inches} in.`
-                              : 'Feet and inches'
-                          }
-                          disabled
-                        ></input>
-                        <button
-                          className="border border-metaPrimary py-2 px-4 rounded active:border-red-500 hover:border-metaAccent"
-                          onClick={() => {
-                            navigator.clipboard.writeText(feet);
+                          placeholder={inches !== '0' ? `${inches} in.` : 'Inches'}
+                          onChange={(e: any) => {
+                            onInchesChangeImperial(e.target.value);
                           }}
-                        >
-                          Copy
-                        </button>
+                        />
+                        <input
+                          className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
+                          type="number"
+                          placeholder={centimeters !== '0' ? `${centimeters} cm.` : 'Centimeters'}
+                          onChange={(e: any) => {
+                            onHeightChange(e.target.value);
+                          }}
+                        />
                       </span>
                     </div>
 
@@ -103,27 +138,21 @@ const UnitConverter: React.FC<DialogInfo> = ({
                       <p className="mb-1 mt-2 ">Weight</p>
                       <span className="flex">
                         <input
-                          className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
-                          type="number"
-                          placeholder="Kilograms"
-                          onChange={(e: any) => {
-                            onWeightChange(e.target.value);
-                          }}
-                        ></input>
-                        <input
                           className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline opacity-50"
                           type="number"
                           placeholder={pounds !== '0' ? `${pounds} lbs.` : 'Pounds'}
-                          disabled
-                        ></input>
-                        <button
-                          className="border border-metaPrimary py-2 px-4 rounded active:border-red-500 hover:border-metaAccent"
-                          onClick={() => {
-                            navigator.clipboard.writeText(pounds);
+                          onChange={(e: any) => {
+                            onWeightChangeImperial(e.target.value);
                           }}
-                        >
-                          Copy
-                        </button>
+                        />
+                        <input
+                          className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
+                          type="number"
+                          placeholder={kilograms !== '0' ? `${kilograms} kgs.` : 'Kilogram'}
+                          onChange={(e: any) => {
+                            onWeightChange(e.target.value);
+                          }}
+                        />
                       </span>
                     </div>
                   </section>
