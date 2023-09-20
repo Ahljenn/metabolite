@@ -93,7 +93,7 @@ const Bmr = () => {
         </div>
       </div>
       <button
-        className="mt-5 transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent cursor-pointer"
+        className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent cursor-pointer"
         onClick={() => {
           setConverterView(true);
         }}

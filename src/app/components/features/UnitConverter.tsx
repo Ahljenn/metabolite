@@ -89,7 +89,7 @@ const UnitConverter: React.FC<DialogInfo> = ({
                           disabled
                         ></input>
                         <button
-                          className="border border-metaPrimary py-2 px-4 rounded"
+                          className="border border-metaPrimary py-2 px-4 rounded active:border-red-500 hover:border-metaAccent"
                           onClick={() => {
                             navigator.clipboard.writeText(feet);
                           }}
@@ -117,7 +117,7 @@ const UnitConverter: React.FC<DialogInfo> = ({
                           disabled
                         ></input>
                         <button
-                          className="border border-metaPrimary py-2 px-4 rounded"
+                          className="border border-metaPrimary py-2 px-4 rounded active:border-red-500 hover:border-metaAccent"
                           onClick={() => {
                             navigator.clipboard.writeText(pounds);
                           }}
@@ -131,7 +131,7 @@ const UnitConverter: React.FC<DialogInfo> = ({
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="mt-5 w-[8rem] py-2 text-sm rounded-xl shadow-xl opacity-50 border-metaSecondary hover:opacity-100 transition duration-300 border"
+                      className="mt-5 w-[8rem] py-2 text-sm rounded-xl shadow-xl border-metaSecondary hover:opacity-50 transition duration-300 border"
                       onClick={handleModalClick}
                     >
                       All done
