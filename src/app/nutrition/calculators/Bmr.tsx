@@ -1,6 +1,8 @@
 'use client';
+import Radio, { RadioBasic } from '@/app/components/features/Radio';
 import UnitConverter from '@/app/components/features/UnitConverter';
 import { useState } from 'react';
+import { genders } from '../screening/screening.utils';
 
 interface BmrType {
   label: string;
@@ -78,6 +80,7 @@ const Bmr = () => {
     weight: 0,
     unit: 'metric',
   });
+  const [gender, setGender] = useState<RadioBasic>({ name: 'None', desc: 'None' });
   const [converterView, setConverterView] = useState<boolean>(false);
 
   return (
@@ -92,15 +95,97 @@ const Bmr = () => {
           breathing, circulation, and cell production.
         </div>
       </div>
-      <button
-        className="mt-5 transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent cursor-pointer"
-        onClick={() => {
-          setConverterView(true);
-        }}
-      >
-        Unit Converter
-      </button>
+      <div className="flex justify-center">
+        <button
+          className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-neutral-900 bg-neutral-900 hover:border-metaAccent cursor-pointer"
+          onClick={() => {
+            setConverterView(true);
+          }}
+        >
+          Unit Converter
+        </button>
+      </div>
       <UnitConverter modalView={converterView} setModalView={setConverterView} />
+
+      <div className="w-full px-4 mb-10">
+        <div className="mx-auto w-full max-w-md lg:max-w-2xl">
+          <Radio
+            items={genders}
+            setSelection={setGender}
+            label={'Gender'}
+            existingSelection={gender}
+            isRow={true}
+          />
+          <div className="flex flex-col sm:flex-row items-center gap-5">
+            <div className="w-1/2">
+              <label htmlFor="height">
+                <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
+                  <p className="">Height</p>
+                  <p className="text-gray-400">cm.</p>
+                </div>
+              </label>
+              <input
+                className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
+                id="height"
+                type="number"
+                min={1}
+                max={400}
+                // value={height != null ? height.toString() : ''}
+                // onChange={(e) => {
+                //   let value = Number(e.target.valueAsNumber);
+                //   if (value <= 1000) setHeight(value);
+                // }}
+                placeholder="Height"
+              />
+            </div>
+
+            <div className="w-1/2">
+              <label htmlFor="weight">
+                <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
+                  <p className="">Weight</p>
+                  <p className="text-gray-400">kg.</p>
+                </div>
+              </label>
+              <input
+                className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
+                id="weight"
+                type="number"
+                min={1}
+                max={600}
+                // value={weight != null ? weight.toString() : ''}
+                // onChange={(e) => {
+                //   let value = Number(e.target.valueAsNumber);
+                //   if (value <= 2000) setWeight(value);
+                // }}
+                placeholder="Weight"
+              />
+            </div>
+
+            <div className="w-1/2">
+              <label htmlFor="age">
+                <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
+                  <p className="">Age</p>
+                  <p className="text-gray-400">yrs</p>
+                </div>
+              </label>
+              <input
+                className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
+                id="age"
+                type="number"
+                min={1}
+                max={150}
+                // value={age != null ? age.toString() : ''}
+                // onChange={(e) => {
+                //   let value = Number(e.target.valueAsNumber);
+                //   if (value <= 150) setAge(value);
+                // }}
+                placeholder="Age"
+              />
+            </div>
+          </div>
+        </div>
+        {/* <p>Estimation Formula</p> */}
+      </div>
     </section>
   );
 };
