@@ -95,7 +95,8 @@ const Bmr = () => {
           breathing, circulation, and cell production.
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center flex-col sm:flex-row items-center gap-5">
+        Need to convert units?
         <button
           className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-neutral-900 bg-neutral-900 hover:border-metaAccent cursor-pointer"
           onClick={() => {
@@ -108,7 +109,7 @@ const Bmr = () => {
       <UnitConverter modalView={converterView} setModalView={setConverterView} />
 
       <div className="w-full px-4 mb-10">
-        <div className="mx-auto w-full max-w-md lg:max-w-2xl">
+        <div className="mx-auto w-full max-w-md lg:max-w-xl">
           <Radio
             items={genders}
             setSelection={setGender}
@@ -117,7 +118,7 @@ const Bmr = () => {
             isRow={true}
           />
           <div className="flex flex-col sm:flex-row items-center gap-5">
-            <div className="w-1/2">
+            <div className="w-full sm:w-1/2 px-5 sm:px-1">
               <label htmlFor="height">
                 <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
                   <p className="">Height</p>
@@ -139,7 +140,7 @@ const Bmr = () => {
               />
             </div>
 
-            <div className="w-1/2">
+            <div className="w-full sm:w-1/2 px-5 sm:px-1">
               <label htmlFor="weight">
                 <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
                   <p className="">Weight</p>
@@ -160,8 +161,7 @@ const Bmr = () => {
                 placeholder="Weight"
               />
             </div>
-
-            <div className="w-1/2">
+            <div className="w-full sm:w-1/2 px-5 sm:px-1">
               <label htmlFor="age">
                 <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
                   <p className="">Age</p>
@@ -184,7 +184,14 @@ const Bmr = () => {
             </div>
           </div>
         </div>
-        {/* <p>Estimation Formula</p> */}
+      </div>
+      <div className="flex justify-center">
+        <button
+          className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaPrimary bg-neutral-900 hover:border-metaAccent cursor-not-allowed opacity-50"
+          disabled
+        >
+          Calculate Now
+        </button>
       </div>
     </section>
   );
