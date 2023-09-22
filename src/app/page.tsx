@@ -15,7 +15,7 @@ const rootCardData: { header: string; desc: string; route: string }[] = [
   {
     header: 'Updates',
     desc: 'Summary of the most significant changes in the latest updates and developer notes.',
-    route: '/dev',
+    route: '/updates',
   },
   // {
   //   header: 'User Guide',
