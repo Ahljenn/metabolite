@@ -1,3 +1,4 @@
+import Bmi from './Bmi';
 import Bmr from './Bmr';
 import { Metadata } from 'next';
 export const metadata: Metadata = {
@@ -11,18 +12,7 @@ const Calculators = () => {
 p-12`}
     >
       <Bmr />
-
-      <section>
-        <div className="py-8 flex flex-col sm:items-left gap-5 justify-center">
-          <div>
-            <h2 className="text-3xl font-bold">Body Mass Index</h2>
-          </div>
-          <div className="lead-xl font-light opacity-75 max-w-4xl text-lg">
-            The numerical measurement derived from an individual&apos;s height and weight, providing
-            an <b>estimation</b> of body fat and overall health status.
-          </div>
-        </div>
-      </section>
+      <Bmi />
 
       <section>
         <div className="py-8 flex flex-col sm:items-left gap-5 justify-center">
