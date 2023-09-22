@@ -23,6 +23,17 @@ const Nutrition: React.FC = (): JSX.Element => {
       <section className={`mt-10 flex flex-col items-center justify-between p-12`}>
         <QuickFacts />
       </section>
+
+      <p className="text-center text-sm opacity-75">
+        (This web application is an iteration of the old system{' '}
+        <a
+          className="underline text-metaSecondary italic"
+          href="https://metabolite-903ykfx3o-ahljenn.vercel.app/"
+        >
+          here.
+        </a>
+        )
+      </p>
     </>
   );
 };

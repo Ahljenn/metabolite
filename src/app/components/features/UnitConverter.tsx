@@ -130,6 +130,7 @@ const UnitConverter: React.FC<DialogInfo> = ({
                           onChange={(e: any) => {
                             onHeightChange(e.target.value);
                           }}
+                          disabled
                         />
                       </span>
                     </div>
@@ -152,6 +153,7 @@ const UnitConverter: React.FC<DialogInfo> = ({
                           onChange={(e: any) => {
                             onWeightChange(e.target.value);
                           }}
+                          disabled
                         />
                       </span>
                     </div>

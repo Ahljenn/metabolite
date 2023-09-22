@@ -27,6 +27,7 @@ import { rank } from '@/tools/diet-rank/rank';
 import SelectDiet from '@/app/components/features/SelectDiet';
 import FadeWrapper from '@/app/components/ui/FadeWrapper';
 import ModalAdvanced from '@/app/components/ui/Modals/ModalAdvanced';
+import UnitConverter from '@/app/components/features/UnitConverter';
 
 const Screening: React.FC = () => {
   const router = useRouter();
@@ -426,9 +427,22 @@ p-12`}
 const BodyMetrics = ({ metricSetters, metricValues }: BodyMetricsProps) => {
   const { setHeight, setWeight, setAge } = metricSetters;
   const { height, weight, age } = metricValues;
+  const [converterView, setConverterView] = useState<boolean>(false);
   return (
     <div className="w-full px-4">
+      <UnitConverter modalView={converterView} setModalView={setConverterView} />
       <div className="mx-auto w-full max-w-md lg:max-w-xl">
+        <div className="mt-10 flex justify-center flex-col sm:flex-row items-center gap-5">
+          Need to convert units?
+          <button
+            className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-neutral-900 bg-neutral-900 hover:border-metaAccent cursor-pointer"
+            onClick={() => {
+              setConverterView(true);
+            }}
+          >
+            Unit Converter
+          </button>
+        </div>
         <div className="flex justify-between mt-5 gap-5 flex-col items-center md:flex-row">
           <div className="w-1/2">
             <label htmlFor="height">

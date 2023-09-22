@@ -3,85 +3,23 @@ import Radio, { RadioBasic } from '@/app/components/features/Radio';
 import UnitConverter from '@/app/components/features/UnitConverter';
 import { useState } from 'react';
 import { genders } from '../screening/screening.utils';
-
-interface BmrType {
-  label: string;
-  value: string;
-}
-
-const genderChoices = ['male', 'female', 'other'];
-const bmrTypes: BmrType[] = [
-  { label: 'Mifflin St Jeor (Common)', value: 'mifflin' },
-  { label: 'Revised Harris-Benedict', value: 'revised-hb' },
-];
-
-interface BmrData_T {
-  age: number;
-  gender: string;
-  feet: number;
-  inches: number;
-  pounds: number;
-  estimationFormula: string;
-}
-
-const toCm = (feet: number, inches: number): number => {
-  return feet * 30.48 + inches * 2.54;
-};
-
-const toKg = (pound: number): number => {
-  return pound / 2.2046;
-};
-
-const Calculate = (
-  age: number,
-  gender: string,
-  feet: number,
-  inches: number,
-  pounds: number,
-  estimationFormula: string
-): string => {
-  let val: string;
-  switch (estimationFormula) {
-    case 'mifflin':
-      if (gender === 'male') {
-        val = (10 * toKg(pounds) + (6.25 * toCm(feet, inches) - 5 * age) - 5).toFixed(1);
-      } else {
-        val = (10 * toKg(pounds) + (6.25 * toCm(feet, inches) - 5 * age) - 161).toFixed(1);
-      }
-      break;
-    case 'revised-hb':
-      if (gender === 'male') {
-        val = (88.4 + (13.4 * toKg(pounds) + (4.8 * toCm(feet, inches) - 5.68 * age))).toFixed(1);
-      } else {
-        val = (447.6 + (9.25 * toKg(pounds) + (3.1 * toCm(feet, inches) - 4.33 * age))).toFixed(1);
-      }
-      break;
-    case 'katch':
-      return '0';
-    default:
-      return `(${(1799).toLocaleString()})`;
-  }
-  return `(${val.toLocaleString()})`;
-};
-
-interface bmrStateProps {
-  age: number;
-  gender: string;
-  height: number[];
-  weight: number;
-  unit: string;
-}
+import { calculateBmr } from '@/tools/diet-rank/rank.utils';
 
 const Bmr = () => {
-  const [bmrMetrics, setBmrMetrics] = useState<bmrStateProps>({
-    age: 0,
-    gender: 'None',
-    height: [0, 0],
-    weight: 0,
-    unit: 'metric',
-  });
   const [gender, setGender] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+  const [height, setHeight] = useState<number | null>(null);
+  const [weight, setWeight] = useState<number | null>(null);
+  const [age, setAge] = useState<number | null>(null);
+
   const [converterView, setConverterView] = useState<boolean>(false);
+  const [bmrValue, setBmrValue] = useState<string>('0,000');
+
+  const disabledEval = !(
+    gender.name !== 'None' &&
+    height !== null &&
+    weight !== null &&
+    age !== null
+  );
 
   return (
     <section>
@@ -95,7 +33,8 @@ const Bmr = () => {
           breathing, circulation, and cell production.
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center flex-col sm:flex-row items-center gap-5">
+        Need to convert units?
         <button
           className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-neutral-900 bg-neutral-900 hover:border-metaAccent cursor-pointer"
           onClick={() => {
@@ -108,7 +47,7 @@ const Bmr = () => {
       <UnitConverter modalView={converterView} setModalView={setConverterView} />
 
       <div className="w-full px-4 mb-10">
-        <div className="mx-auto w-full max-w-md lg:max-w-2xl">
+        <div className="mx-auto w-full max-w-md lg:max-w-xl">
           <Radio
             items={genders}
             setSelection={setGender}
@@ -117,7 +56,7 @@ const Bmr = () => {
             isRow={true}
           />
           <div className="flex flex-col sm:flex-row items-center gap-5">
-            <div className="w-1/2">
+            <div className="w-full sm:w-1/2 px-5 sm:px-1">
               <label htmlFor="height">
                 <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
                   <p className="">Height</p>
@@ -130,16 +69,16 @@ const Bmr = () => {
                 type="number"
                 min={1}
                 max={400}
-                // value={height != null ? height.toString() : ''}
-                // onChange={(e) => {
-                //   let value = Number(e.target.valueAsNumber);
-                //   if (value <= 1000) setHeight(value);
-                // }}
+                value={height != null ? height.toString() : ''}
+                onChange={(e) => {
+                  let value = Number(e.target.valueAsNumber);
+                  if (value <= 1000) setHeight(value);
+                }}
                 placeholder="Height"
               />
             </div>
 
-            <div className="w-1/2">
+            <div className="w-full sm:w-1/2 px-5 sm:px-1">
               <label htmlFor="weight">
                 <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
                   <p className="">Weight</p>
@@ -152,16 +91,15 @@ const Bmr = () => {
                 type="number"
                 min={1}
                 max={600}
-                // value={weight != null ? weight.toString() : ''}
-                // onChange={(e) => {
-                //   let value = Number(e.target.valueAsNumber);
-                //   if (value <= 2000) setWeight(value);
-                // }}
+                value={weight != null ? weight.toString() : ''}
+                onChange={(e) => {
+                  let value = Number(e.target.valueAsNumber);
+                  if (value <= 2000) setWeight(value);
+                }}
                 placeholder="Weight"
               />
             </div>
-
-            <div className="w-1/2">
+            <div className="w-full sm:w-1/2 px-5 sm:px-1">
               <label htmlFor="age">
                 <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
                   <p className="">Age</p>
@@ -174,17 +112,37 @@ const Bmr = () => {
                 type="number"
                 min={1}
                 max={150}
-                // value={age != null ? age.toString() : ''}
-                // onChange={(e) => {
-                //   let value = Number(e.target.valueAsNumber);
-                //   if (value <= 150) setAge(value);
-                // }}
+                value={age != null ? age.toString() : ''}
+                onChange={(e) => {
+                  let value = Number(e.target.valueAsNumber);
+                  if (value <= 150) setAge(value);
+                }}
                 placeholder="Age"
               />
             </div>
           </div>
         </div>
-        {/* <p>Estimation Formula</p> */}
+      </div>
+      <div className="flex justify-center items-center gap-10">
+        <button
+          className={`transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaPrimary bg-neutral-900 ${
+            disabledEval ? 'hover:border-metaAccent cursor-not-allowed opacity-50' : ''
+          }`}
+          disabled={disabledEval}
+          onClick={() =>
+            setBmrValue(calculateBmr(weight, height, age, gender.name).toLocaleString())
+          }
+        >
+          Calculate BMR
+        </button>
+        <span className={`${bmrValue === '0,000' ? 'opacity-50' : ''}`}>
+          <p>
+            Cal:
+            <span className="border rounded-lg border-metaSecondary mx-2 px-2 py-1 font-semibold text-secondary">
+              {bmrValue}
+            </span>
+          </p>
+        </span>
       </div>
     </section>
   );
