@@ -73,15 +73,20 @@ interface bmrStateProps {
 }
 
 const Bmr = () => {
-  const [bmrMetrics, setBmrMetrics] = useState<bmrStateProps>({
-    age: 0,
-    gender: 'None',
-    height: [0, 0],
-    weight: 0,
-    unit: 'metric',
-  });
   const [gender, setGender] = useState<RadioBasic>({ name: 'None', desc: 'None' });
+  const [height, setHeight] = useState<number | null>(null);
+  const [weight, setWeight] = useState<number | null>(null);
+  const [age, setAge] = useState<number | null>(null);
+
   const [converterView, setConverterView] = useState<boolean>(false);
+  const [bmrValue, setBmrValue] = useState<number>(99);
+
+  const disabledEval = !(
+    gender.name !== 'None' &&
+    height !== null &&
+    weight !== null &&
+    age !== null
+  );
 
   return (
     <section>
@@ -131,11 +136,11 @@ const Bmr = () => {
                 type="number"
                 min={1}
                 max={400}
-                // value={height != null ? height.toString() : ''}
-                // onChange={(e) => {
-                //   let value = Number(e.target.valueAsNumber);
-                //   if (value <= 1000) setHeight(value);
-                // }}
+                value={height != null ? height.toString() : ''}
+                onChange={(e) => {
+                  let value = Number(e.target.valueAsNumber);
+                  if (value <= 1000) setHeight(value);
+                }}
                 placeholder="Height"
               />
             </div>
@@ -153,11 +158,11 @@ const Bmr = () => {
                 type="number"
                 min={1}
                 max={600}
-                // value={weight != null ? weight.toString() : ''}
-                // onChange={(e) => {
-                //   let value = Number(e.target.valueAsNumber);
-                //   if (value <= 2000) setWeight(value);
-                // }}
+                value={weight != null ? weight.toString() : ''}
+                onChange={(e) => {
+                  let value = Number(e.target.valueAsNumber);
+                  if (value <= 2000) setWeight(value);
+                }}
                 placeholder="Weight"
               />
             </div>
@@ -174,24 +179,36 @@ const Bmr = () => {
                 type="number"
                 min={1}
                 max={150}
-                // value={age != null ? age.toString() : ''}
-                // onChange={(e) => {
-                //   let value = Number(e.target.valueAsNumber);
-                //   if (value <= 150) setAge(value);
-                // }}
+                value={age != null ? age.toString() : ''}
+                onChange={(e) => {
+                  let value = Number(e.target.valueAsNumber);
+                  if (value <= 150) setAge(value);
+                }}
                 placeholder="Age"
               />
             </div>
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center items-center gap-10">
         <button
-          className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaPrimary bg-neutral-900 hover:border-metaAccent cursor-not-allowed opacity-50"
-          disabled
+          className={`transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaPrimary bg-neutral-900 ${
+            disabledEval ? 'hover:border-metaAccent cursor-not-allowed opacity-50' : ''
+          }`}
+          disabled={disabledEval}
         >
           Calculate Now
         </button>
+        {bmrValue > 0 && (
+          <span>
+            <p>
+              <span className="border rounded-lg border-metaSecondary mx-2 px-2 py-1 font-semibold text-secondary">
+                {bmrValue}
+              </span>
+              Calories per-day
+            </p>
+          </span>
+        )}
       </div>
     </section>
   );
