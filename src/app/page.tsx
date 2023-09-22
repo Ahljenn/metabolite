@@ -13,14 +13,14 @@ const rootCardData: { header: string; desc: string; route: string }[] = [
     route: '/nutrition',
   },
   {
-    header: 'User Guide',
-    desc: 'Empower yourself with the knowledge and tools to make the most out of your experience.',
-    route: '/user-guide',
+    header: 'Updates',
+    desc: 'Summary of the most significant changes in the latest updates and developer notes.',
+    route: '/dev',
   },
   // {
-  //   header: 'About',
-  //   desc: 'Learn more about our commitment to empower you on your wellness journey.',
-  //   route: '/about',
+  //   header: 'User Guide',
+  //   desc: 'Empower yourself with the knowledge and tools to make the most out of your experience.',
+  //   route: '/user-guide',
   // },
 ];
 
