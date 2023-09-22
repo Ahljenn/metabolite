@@ -12,7 +12,7 @@ const Bmr = () => {
   const [age, setAge] = useState<number | null>(null);
 
   const [converterView, setConverterView] = useState<boolean>(false);
-  const [bmrValue, setBmrValue] = useState<number>(0);
+  const [bmrValue, setBmrValue] = useState<string>('0,000');
 
   const disabledEval = !(
     gender.name !== 'None' &&
@@ -129,20 +129,20 @@ const Bmr = () => {
             disabledEval ? 'hover:border-metaAccent cursor-not-allowed opacity-50' : ''
           }`}
           disabled={disabledEval}
-          onClick={() => setBmrValue(calculateBmr(weight, height, age, gender.name))}
+          onClick={() =>
+            setBmrValue(calculateBmr(weight, height, age, gender.name).toLocaleString())
+          }
         >
           Calculate Now
         </button>
-        {bmrValue > 0 && (
-          <span>
-            <p>
-              <span className="border rounded-lg border-metaSecondary mx-2 px-2 py-1 font-semibold text-secondary">
-                {bmrValue}
-              </span>
-              Calories per-day
-            </p>
-          </span>
-        )}
+        <span className={`${bmrValue === '0,000' ? 'opacity-50' : ''}`}>
+          <p>
+            <span className="border rounded-lg border-metaSecondary mx-2 px-2 py-1 font-semibold text-secondary">
+              {bmrValue}
+            </span>
+            Calories per-day
+          </p>
+        </span>
       </div>
     </section>
   );
