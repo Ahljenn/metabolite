@@ -64,16 +64,17 @@ export const workMultiplier: { [key: string]: number } = {
   'Very active labor': 3.0,
 };
 
-export const calculateBmr = (metrics: UserScreeningType): number => {
-  if (metrics.weight !== null && metrics.height !== null && metrics.age !== null) {
-    if (metrics.gender === 'Male') {
-      return Math.round(
-        88.362 + 13.397 * metrics.weight + 4.799 * metrics.height - 5.677 * metrics.age
-      );
+export const calculateBmr = (
+  weight: number | null,
+  height: number | null,
+  age: number | null,
+  gender: string
+): number => {
+  if (weight !== null && height !== null && age !== null) {
+    if (gender === 'Male') {
+      return Math.round(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
     } else {
-      return Math.round(
-        447.593 + 9.247 * metrics.weight + 3.098 * metrics.height - 4.33 * metrics.age
-      );
+      return Math.round(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
     }
   } else {
     return 0;

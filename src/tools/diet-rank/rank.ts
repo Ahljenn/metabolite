@@ -22,7 +22,7 @@ export const rank = (
   metrics: UserScreeningType,
   normalizeScore: boolean = false
 ): [number, string[]] => {
-  const bmr = calculateBmr(metrics);
+  const bmr = calculateBmr(metrics.weight, metrics.height, metrics.age, metrics.gender);
   const normalizedBmr = bmr / 1000;
 
   // Diminishing factor based on BMR value for KTO, VEG, FLX

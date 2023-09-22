@@ -3,74 +3,7 @@ import Radio, { RadioBasic } from '@/app/components/features/Radio';
 import UnitConverter from '@/app/components/features/UnitConverter';
 import { useState } from 'react';
 import { genders } from '../screening/screening.utils';
-
-interface BmrType {
-  label: string;
-  value: string;
-}
-
-const genderChoices = ['male', 'female', 'other'];
-const bmrTypes: BmrType[] = [
-  { label: 'Mifflin St Jeor (Common)', value: 'mifflin' },
-  { label: 'Revised Harris-Benedict', value: 'revised-hb' },
-];
-
-interface BmrData_T {
-  age: number;
-  gender: string;
-  feet: number;
-  inches: number;
-  pounds: number;
-  estimationFormula: string;
-}
-
-const toCm = (feet: number, inches: number): number => {
-  return feet * 30.48 + inches * 2.54;
-};
-
-const toKg = (pound: number): number => {
-  return pound / 2.2046;
-};
-
-const Calculate = (
-  age: number,
-  gender: string,
-  feet: number,
-  inches: number,
-  pounds: number,
-  estimationFormula: string
-): string => {
-  let val: string;
-  switch (estimationFormula) {
-    case 'mifflin':
-      if (gender === 'male') {
-        val = (10 * toKg(pounds) + (6.25 * toCm(feet, inches) - 5 * age) - 5).toFixed(1);
-      } else {
-        val = (10 * toKg(pounds) + (6.25 * toCm(feet, inches) - 5 * age) - 161).toFixed(1);
-      }
-      break;
-    case 'revised-hb':
-      if (gender === 'male') {
-        val = (88.4 + (13.4 * toKg(pounds) + (4.8 * toCm(feet, inches) - 5.68 * age))).toFixed(1);
-      } else {
-        val = (447.6 + (9.25 * toKg(pounds) + (3.1 * toCm(feet, inches) - 4.33 * age))).toFixed(1);
-      }
-      break;
-    case 'katch':
-      return '0';
-    default:
-      return `(${(1799).toLocaleString()})`;
-  }
-  return `(${val.toLocaleString()})`;
-};
-
-interface bmrStateProps {
-  age: number;
-  gender: string;
-  height: number[];
-  weight: number;
-  unit: string;
-}
+import { calculateBmr } from '@/tools/diet-rank/rank.utils';
 
 const Bmr = () => {
   const [gender, setGender] = useState<RadioBasic>({ name: 'None', desc: 'None' });
@@ -79,7 +12,7 @@ const Bmr = () => {
   const [age, setAge] = useState<number | null>(null);
 
   const [converterView, setConverterView] = useState<boolean>(false);
-  const [bmrValue, setBmrValue] = useState<number>(99);
+  const [bmrValue, setBmrValue] = useState<number>(0);
 
   const disabledEval = !(
     gender.name !== 'None' &&
@@ -196,6 +129,7 @@ const Bmr = () => {
             disabledEval ? 'hover:border-metaAccent cursor-not-allowed opacity-50' : ''
           }`}
           disabled={disabledEval}
+          onClick={() => setBmrValue(calculateBmr(weight, height, age, gender.name))}
         >
           Calculate Now
         </button>
