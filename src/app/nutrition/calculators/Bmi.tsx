@@ -69,7 +69,7 @@ const Bmi = () => {
             placeholder="Weight"
           />
         </div>
-        <div className="mt-5 flex justify-end items-center gap-10">
+        <div className="mt-5 flex justify-end flex-col sm:flex-row items-center gap-10">
           <button
             className={`transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaPrimary bg-neutral-900 ${
               disabledEval ? 'hover:border-metaAccent cursor-not-allowed opacity-50' : ''

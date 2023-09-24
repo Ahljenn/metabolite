@@ -23,7 +23,7 @@ const Bmr = () => {
 
   return (
     <section>
-      <div className="py-8 flex flex-col sm:items-left gap-5 justify-center">
+      <div className="mt-10 py-8 flex flex-col sm:items-left gap-5 justify-center">
         <div>
           <h2 className="text-3xl font-bold">Basal Metabolic Rate</h2>
         </div>
@@ -123,7 +123,7 @@ const Bmr = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center gap-10">
+      <div className="flex justify-center flex-col sm:flex-row  items-center gap-10">
         <button
           className={`transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaPrimary bg-neutral-900 ${
             disabledEval ? 'hover:border-metaAccent cursor-not-allowed opacity-50' : ''
