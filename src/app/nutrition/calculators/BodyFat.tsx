@@ -7,14 +7,22 @@ const BodyFat = () => {
   const [gender, setGender] = useState<RadioBasic>({ name: 'None', desc: 'None' });
   const [height, setHeight] = useState<number | null>(null);
   const [waist, setWaist] = useState<number | null>(null);
+  const [hip, setHip] = useState<number | null>(null);
   const [neck, setNeck] = useState<number | null>(null);
   const [bodyFat, setBodyFat] = useState<string>('00.0');
 
-  const disabledEval = !(height !== null && neck !== null && waist !== null);
+  const disabledEval = !(
+    height !== null &&
+    hip !== null &&
+    neck !== null &&
+    waist !== null &&
+    gender.name !== 'None'
+  );
 
   const calculateBodyFat = (
     height: number,
     waist: number,
+    hip: number,
     neck: number,
     gender: string
   ): number => {
@@ -25,7 +33,8 @@ const BodyFat = () => {
         495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
     } else {
       bodyFatP =
-        495 / (1.29579 - 0.35004 * Math.log10(waist - neck) + 0.221 * Math.log10(height)) - 450;
+        495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.221 * Math.log10(height)) -
+        450;
     }
     if (Number.isNaN(bodyFatP)) {
       return 0;
@@ -101,6 +110,28 @@ const BodyFat = () => {
         </div>
 
         <div className="w-full sm:w-1/2 px-5 sm:px-1">
+          <label htmlFor="Hip">
+            <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
+              <p className="">Hip</p>
+              <p className="text-gray-400">cm.</p>
+            </div>
+          </label>
+          <input
+            className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
+            id="Waist"
+            type="number"
+            min={1}
+            max={400}
+            value={hip != null ? hip.toString() : ''}
+            onChange={(e) => {
+              let value = Number(e.target.valueAsNumber);
+              if (value <= 1000) setHip(value);
+            }}
+            placeholder="Hip"
+          />
+        </div>
+
+        <div className="w-full sm:w-1/2 px-5 sm:px-1">
           <label htmlFor="neck">
             <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
               <p className="">Neck</p>
@@ -131,7 +162,7 @@ const BodyFat = () => {
           disabled={disabledEval}
           onClick={() => {
             if (!disabledEval) {
-              let fat = calculateBodyFat(height, waist, neck, gender.name).toFixed(2);
+              let fat = calculateBodyFat(height, waist, hip, neck, gender.name).toFixed(2);
               if (Number(fat) === 0) {
                 setBodyFat('00.0');
               } else {
