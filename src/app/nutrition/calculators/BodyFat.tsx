@@ -5,15 +5,15 @@ import Radio, { RadioBasic } from '@/app/components/features/Radio';
 
 const BodyFat = () => {
   const [gender, setGender] = useState<RadioBasic>({ name: 'None', desc: 'None' });
-  const [weight, setWeight] = useState<number | null>(null);
+  const [height, setHeight] = useState<number | null>(null);
   const [waist, setWaist] = useState<number | null>(null);
   const [neck, setNeck] = useState<number | null>(null);
   const [bodyFat, setBodyFat] = useState<string>('00.0');
 
-  const disabledEval = !(weight !== null && neck !== null && waist !== null);
+  const disabledEval = !(height !== null && neck !== null && waist !== null);
 
   const calculateBodyFat = (
-    weight: number,
+    height: number,
     waist: number,
     neck: number,
     gender: string
@@ -22,14 +22,15 @@ const BodyFat = () => {
     let bodyFatP;
     if (gender === 'Male') {
       bodyFatP =
-        495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(weight)) - 450;
+        495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
     } else {
       bodyFatP =
-        495 / (1.29579 - 0.35004 * Math.log10(waist + neck) + 0.221 * Math.log10(weight)) - 450;
+        495 / (1.29579 - 0.35004 * Math.log10(waist - neck) + 0.221 * Math.log10(height)) - 450;
     }
     if (Number.isNaN(bodyFatP)) {
       return 0;
     } else {
+      console.log(bodyFatP);
       return bodyFatP;
     }
   };
@@ -56,24 +57,24 @@ const BodyFat = () => {
 
       <div className="mt-5 flex flex-col sm:flex-row items-center gap-5">
         <div className="w-full sm:w-1/2 px-5 sm:px-1">
-          <label htmlFor="weight">
+          <label htmlFor="height">
             <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
-              <p className="">Weight</p>
+              <p className="">Height</p>
               <p className="text-gray-400">kg.</p>
             </div>
           </label>
           <input
             className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
-            id="weight"
+            id="height"
             type="number"
             min={1}
             max={600}
-            value={weight != null ? weight.toString() : ''}
+            value={height != null ? height.toString() : ''}
             onChange={(e) => {
               let value = Number(e.target.valueAsNumber);
-              if (value <= 2000) setWeight(value);
+              if (value <= 2000) setHeight(value);
             }}
-            placeholder="Weight"
+            placeholder="Height"
           />
         </div>
 
@@ -122,7 +123,7 @@ const BodyFat = () => {
         </div>
       </div>
 
-      <div className="mt-5 flex flex-col sm:flex-row justify-end items-center gap-10">
+      <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-10">
         <button
           className={`transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaPrimary bg-neutral-900 ${
             disabledEval ? 'hover:border-metaAccent cursor-not-allowed opacity-50' : ''
@@ -130,7 +131,7 @@ const BodyFat = () => {
           disabled={disabledEval}
           onClick={() => {
             if (!disabledEval) {
-              let fat = calculateBodyFat(weight, waist, neck, gender.name).toFixed(2);
+              let fat = calculateBodyFat(height, waist, neck, gender.name).toFixed(2);
               if (Number(fat) === 0) {
                 setBodyFat('00.0');
               } else {
@@ -139,7 +140,7 @@ const BodyFat = () => {
             }
           }}
         >
-          Calculate BMI
+          Calculate Body Fat
         </button>
         <span className={`${bodyFat === '00.0' ? 'opacity-50' : ''}`}>
           <p>
