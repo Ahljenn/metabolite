@@ -26,7 +26,6 @@ const BodyFat = () => {
     neck: number,
     gender: string
   ): number => {
-    console.log(gender);
     let bodyFatP;
     if (gender === 'Male') {
       bodyFatP =
@@ -36,7 +35,7 @@ const BodyFat = () => {
         495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.221 * Math.log10(height)) -
         450;
     }
-    if (Number.isNaN(bodyFatP)) {
+    if (Number.isNaN(bodyFatP) || bodyFatP <= 0) {
       return 0;
     } else {
       console.log(bodyFatP);
