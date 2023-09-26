@@ -47,7 +47,7 @@ const BodyFat = () => {
   // Reset field on gender change
   useEffect(() => {
     setHip(null);
-    setBodyFat('0.00');
+    setBodyFat('00.0');
   }, [gender]);
 
   return (
