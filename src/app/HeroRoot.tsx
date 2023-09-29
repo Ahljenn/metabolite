@@ -14,7 +14,7 @@ const HeroRoot = () => {
       }}
     >
       <div className="flex max-w-screen-xl px-4 py-8 mx-auto flex-col sm:flex-row">
-        <div className="col-span-6 hidden sm:block">
+        <div className="col-span-6 hidden sm:block w-1/2">
           <Lottie animationData={Health} loop={true} style={lottieStyle} />
         </div>
         <div className="mr-auto place-self-center text-center sm:text-left">
