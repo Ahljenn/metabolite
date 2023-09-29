@@ -7,14 +7,9 @@ const lottieStyle = {
 
 const HeroRoot = () => {
   return (
-    <div
-      className="w-full bg-center bg-cover"
-      style={{
-        backgroundImage: `url('/hero-bg2.jpeg')`,
-      }}
-    >
+    <div className="w-full bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-emerald-700 via-black to-emerald-800">
       <div className="flex max-w-screen-xl px-4 py-8 mx-auto flex-col sm:flex-row">
-        <div className="col-span-6 hidden sm:block w-1/2">
+        <div className="col-span-6 hidden sm:block w-1/2 h-full">
           <Lottie animationData={Health} loop={true} style={lottieStyle} />
         </div>
         <div className="mr-auto place-self-center text-center sm:text-left">

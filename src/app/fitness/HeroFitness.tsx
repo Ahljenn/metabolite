@@ -10,12 +10,7 @@ const lottieStyle = {
 
 const HeroFitness = () => {
   return (
-    <div
-      className="w-full bg-center bg-cover"
-      style={{
-        backgroundImage: `url('/hero-bg.jpeg')`,
-      }}
-    >
+    <div className="bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-blue-100 via-cyan-800 to-gray-900">
       <div className="flex max-w-screen-xl px-4 py-8 mx-auto flex-col sm:flex-row">
         <div className="mr-auto place-self-center text-center sm:text-left">
           <h1 className="max-w-2xl mb-4 text-xl sm:text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white m-5 sm:m-0">
