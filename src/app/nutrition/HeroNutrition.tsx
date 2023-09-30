@@ -13,7 +13,7 @@ const HeroNutrition = () => {
   return (
     <div className="w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-700 via-black to-green-800">
       <div className="flex max-w-screen-xl px-4 py-8 mx-auto flex-col sm:flex-row">
-        <div className="mr-auto place-self-center text-center sm:text-left w-1/2">
+        <div className="mr-auto place-self-center text-center sm:text-left sm:w-1/2">
           <h1 className="max-w-2xl mb-4 text-xl sm:text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white m-5 sm:m-0">
             Nourish Your Body
           </h1>
@@ -28,7 +28,7 @@ const HeroNutrition = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-6 hidden sm:block w-1/2">
+        <div className="col-span-6 hidden sm:block sm:w-1/2">
           <Lottie animationData={Health} loop={false} style={lottieStyle} />
         </div>
       </div>
