@@ -97,7 +97,7 @@ const NDashboard = () => {
               <span className="text-metaPrimary"> {totalExpenditure}</span>
             </p>
           </div>
-          <div className="py-8 flex flex-col sm:flex-row sm:items-end gap-5 justify-center">
+          <div className="py-8 flex flex-col sm:flex-row sm:items-end gap-5 justify-center mx-10">
             <div>
               <h2 className="text-lg lg:text-xl font-bold">How is this calculated?</h2>
             </div>
