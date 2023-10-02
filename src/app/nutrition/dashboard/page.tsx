@@ -85,11 +85,12 @@ const NDashboard = () => {
 
         <main className="p-12 container mx-auto px-4 py-8 max-w-screen-xl">
           <p className="opacity-75 mx-10">{extendDietDescriptions[userData?.dietChoice ?? '']}</p>
-          <div className="mt-10 text-center">
-            <p>Recommended calories per day: {totalExpenditure}</p>
-            <p className="mt-5 font-semibold text-lg lg:text-2xl">
-              Recommended Macronutrient Ratios
+          <div className="mt-10 text-center font-semibold text-lg lg:text-xl">
+            <p>
+              Recommended Calories Daily:
+              <span className="text-metaPrimary"> {totalExpenditure}</span>
             </p>
+            <p className="mt-5">Recommended Macronutrient Ratios</p>
           </div>
 
           <div className="flex flex-col items-center lg:flex-row justify-center">
