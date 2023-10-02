@@ -85,12 +85,27 @@ const NDashboard = () => {
 
         <main className="p-12 container mx-auto px-4 py-8 max-w-screen-xl">
           <p className="opacity-75 mx-10">{extendDietDescriptions[userData?.dietChoice ?? '']}</p>
-          <div className="mt-10 text-center font-semibold text-lg lg:text-xl">
-            <p>
+
+          <div className="mt-10 text-center">
+            <p className="text-center text-lg lg:text-xl">
+              {' '}
               Recommended Calories Daily:
               <span className="text-metaPrimary"> {totalExpenditure}</span>
             </p>
-            <p className="mt-5">Recommended Macronutrient Ratios</p>
+          </div>
+          <div className="py-8 flex flex-col sm:flex-row sm:items-end gap-5 justify-center">
+            <div>
+              <h2 className="text-lg lg:text-xl font-bold">How is this calculated?</h2>
+            </div>
+            <div className="opacity-75 max-w-2xl">
+              Total Energy Expenditure (TEE). TEE is the total amount of energy (calories) that a
+              person expends in a day. It encompasses all the energy used for various bodily
+              functions, physical activity, and even the energy needed for digestion and metabolism.
+            </div>
+          </div>
+
+          <div className="text-center text-lg lg:text-xl">
+            <p>Recommended Macronutrient Ratios</p>
           </div>
 
           <div className="flex flex-col items-center lg:flex-row justify-center">
