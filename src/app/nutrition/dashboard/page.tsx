@@ -8,7 +8,6 @@ import MealTabs from './MealTabs';
 import fetchUserData from '@/app/services/fetchUserData';
 import ModalAdvanced, { ModalInfo } from '@/app/components/ui/Modals/ModalAdvanced';
 import Macros from './Macros';
-import IntakeChart from './IntakeChart';
 
 const NDashboard = () => {
   const { data: session, status } = useSession();
