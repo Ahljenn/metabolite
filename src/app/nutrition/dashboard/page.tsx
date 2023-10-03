@@ -6,6 +6,7 @@ import { UserScreeningType, dietRatios, activityFactor } from '@/tools/diet-rank
 import Image from 'next/image';
 import fetchUserData from '@/app/services/fetchUserData';
 import ModalAdvanced, { ModalInfo } from '@/app/components/ui/Modals/ModalAdvanced';
+import Divider from '@/app/components/ui/Divider';
 
 const NDashboard = () => {
   const { data: session, status } = useSession();
@@ -75,7 +76,7 @@ const NDashboard = () => {
           }}
         />
         <section className="flex justify-center">
-          <div className="flex flex-col items-center lg:flex-row justify-between w-full gap-5 mt-10 max-w-5xl">
+          <div className="flex flex-col items-center justify-between w-full gap-5 mt-10 max-w-5xl">
             <h2 className="whitespace-nowrap text-2xl lg:text-4xl font-bold text-center mt-5 ">
               {userData.dietChoice}
             </h2>
@@ -83,9 +84,12 @@ const NDashboard = () => {
           </div>
         </section>
 
+        <div className="px-12">
+          <Divider />
+        </div>
+
         <main className="p-12 container mx-auto px-4 py-8 max-w-screen-xl">
           <p className="opacity-75 mx-10">{extendDietDescriptions[userData?.dietChoice ?? '']}</p>
-
           <div className="mt-10 text-center">
             <p className="text-center text-lg lg:text-xl">
               {' '}
@@ -93,7 +97,7 @@ const NDashboard = () => {
               <span className="text-metaPrimary"> {totalExpenditure}</span>
             </p>
           </div>
-          <div className="py-8 flex flex-col sm:flex-row sm:items-end gap-5 justify-center">
+          <div className="py-8 flex flex-col sm:flex-row sm:items-end gap-5 justify-center mx-10">
             <div>
               <h2 className="text-lg lg:text-xl font-bold">How is this calculated?</h2>
             </div>
@@ -150,12 +154,3 @@ const NDashboard = () => {
 };
 
 export default NDashboard;
-
-const Divider = () => {
-  return (
-    <>
-      <div className={`w-full h-[5rem] bg-gradient-to-b from-black to-gray-700 opacity-30 -z-50`} />
-      <div className="border w-full border-slate-700 border-y-[0.01px]" />
-    </>
-  );
-};
