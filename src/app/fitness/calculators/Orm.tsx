@@ -19,7 +19,7 @@ const Orm = () => {
           for designing effective workout routines and tracking progress over time.
         </div>
         <a
-          className="text-sm opacity-75 italic text-metaPrimary hover:text-metaAccent hover:underline "
+          className="text-sm opacity-75 italic text-metaPrimary hover:text-metaAccent hover:underline"
           href="https://www.jimwendler.com/blogs/jimwendler-com/from-average-to-athlete"
           target="_blank"
         >
@@ -87,6 +87,33 @@ const Orm = () => {
             Calculate ORM
           </button>
         </div>
+      </div>
+
+      <div className="relative overflow-x-auto mt-10 rounded-lg">
+        <table className="w-full text-sm text-left  text-white">
+          <thead className="bg-neutral-800 text-white">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Percent of Max
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Repetitions
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Weight
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className=" border-b bg-neutral-900 border-neutral-800">
+              <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-white">
+                100%
+              </th>
+              <td className="px-6 py-4">1</td>
+              <td className="px-6 py-4">-</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   );
