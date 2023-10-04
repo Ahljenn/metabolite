@@ -136,10 +136,10 @@ const NDashboard = () => {
                     <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
                     <p>
                       {dietRatio
-                        ? `0 of ${Math.round(
+                        ? `${Math.round(
                             (dietRatio[macro as keyof typeof dietRatio] * totalExpenditure) /
                               calPerGram
-                          )}g`
+                          )}g per day`
                         : 'Diet ratio not found'}
                     </p>
                   </div>
