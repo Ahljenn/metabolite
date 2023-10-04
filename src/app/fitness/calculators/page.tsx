@@ -1,17 +1,18 @@
 import UnderConstruction from '@/app/components/ui/UnderConstruction';
 import { Metadata } from 'next';
+import Orm from './Orm';
 export const metadata: Metadata = {
-  title: 'ORM',
+  title: 'Calculators',
 };
 
 const OneRepMax = () => {
   return (
-    <section
+    <main
       className={`flex flex-col items-center  justify-between 
 p-12`}
     >
-      <UnderConstruction />
-    </section>
+      <Orm />
+    </main>
   );
 };
 
