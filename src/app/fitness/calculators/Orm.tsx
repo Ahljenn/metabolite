@@ -18,6 +18,13 @@ const Orm = () => {
           weight you can lift for a single repetition of a given exercise. It&apos;s a valuable tool
           for designing effective workout routines and tracking progress over time.
         </div>
+        <a
+          className="text-sm opacity-75 italic text-metaPrimary hover:text-metaAccent hover:underline "
+          href="https://www.jimwendler.com/blogs/jimwendler-com/from-average-to-athlete"
+          target="_blank"
+        >
+          Jim Wendler and the one rep max formula
+        </a>
       </div>
 
       <div className="flex flex-col sm:flex-row items-center gap-5">
