@@ -16,7 +16,7 @@ const Orm = () => {
 
   return (
     <section>
-      <div className="mt-10 py-8 flex flex-col sm:items-left gap-5 justify-center">
+      <div className=" py-8 flex flex-col sm:items-left gap-5 justify-center">
         <div>
           <h2 className="text-3xl font-bold">One Rep Max</h2>
         </div>
