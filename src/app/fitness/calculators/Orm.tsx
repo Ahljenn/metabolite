@@ -4,8 +4,15 @@ import { useState } from 'react';
 const Orm = () => {
   const [weight, setWeight] = useState<number | null>(null);
   const [reps, setReps] = useState<number | null>(null);
+  const [omrEstimation, setOmrEstimation] = useState<number | null>(null);
 
   const disabledEval = !(weight !== null && reps !== null);
+
+  const onOmrCalculate = () => {
+    // TODO: Will add support for other algorithms in the future
+    // Jim Wendler:
+    if (weight && reps) setOmrEstimation(Math.floor(weight * reps * 0.0333 + weight));
+  };
 
   return (
     <section>
@@ -40,18 +47,18 @@ const Orm = () => {
             id="weight"
             type="number"
             min={1}
-            max={600}
+            max={3000}
             value={weight != null ? weight.toString() : ''}
             onChange={(e) => {
               if (e.target.value === '') setWeight(null);
               let value = Number(e.target.valueAsNumber);
-              if (value <= 2000) setWeight(value);
+              if (value <= 3000) setWeight(value);
             }}
             placeholder="Weight"
           />
         </div>
         <div className="w-full sm:w-1/2 px-5 sm:px-1">
-          <label htmlFor="weight">
+          <label htmlFor="reps">
             <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
               <p className="">Reps</p>
               <p className="text-gray-400">count</p>
@@ -59,10 +66,10 @@ const Orm = () => {
           </label>
           <input
             className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
-            id="weight"
+            id="reps"
             type="number"
             min={1}
-            max={400}
+            max={1000}
             value={reps != null ? reps.toString() : ''}
             onChange={(e) => {
               if (e.target.value === '') setReps(null);
@@ -80,7 +87,7 @@ const Orm = () => {
             disabled={disabledEval}
             onClick={() => {
               if (weight && reps) {
-                // setBmiValue(calculateBmi(weight, weight).toFixed(2));
+                onOmrCalculate();
               }
             }}
           >
@@ -110,7 +117,7 @@ const Orm = () => {
                 100%
               </th>
               <td className="px-6 py-4">1</td>
-              <td className="px-6 py-4">-</td>
+              <td className="px-6 py-4">{omrEstimation ?? '-'}</td>
             </tr>
           </tbody>
         </table>
