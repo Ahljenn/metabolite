@@ -136,16 +136,33 @@ const NDashboard = () => {
                     <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>{card.desc}</p>
                     <p>
                       {dietRatio
-                        ? `0 of ${Math.round(
+                        ? `${Math.round(
                             (dietRatio[macro as keyof typeof dietRatio] * totalExpenditure) /
                               calPerGram
-                          )}g`
+                          )}g per day`
                         : 'Diet ratio not found'}
                     </p>
                   </div>
                 );
               }
             )}
+          </div>
+
+          <div className="mt-20 text-center text-sm font-italic opacity-75">
+            <p>
+              If you have updated health metrics or would like to re-select your diet, you can
+              refill the screening form here:
+            </p>
+            <a
+              rel="noopener noreferrer"
+              href="/nutrition/screening"
+              className="text-metaPrimary hover:text-metaSecondary transition-all"
+            >
+              Screening{' '}
+              <span className="inline-block transition-transform group-hover:translate-x-2 motion-reduce:transform-none">
+                -&gt;
+              </span>
+            </a>
           </div>
         </main>
       </div>

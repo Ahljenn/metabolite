@@ -30,15 +30,15 @@ interface MacroInterfaceProps {
 export const macroCards: MacroInterfaceProps[] = [
   {
     header: 'Protein',
-    desc: 'Your remaining protein for today.',
+    desc: 'Your recommended protein per day.',
   },
   {
     header: 'Carbohydrate',
-    desc: 'Your remaining carbs for today.',
+    desc: 'Your recommended carbs per day.',
   },
   {
     header: 'Fat',
-    desc: 'Your remaining fats for today.',
+    desc: 'Your recommended fats per day.',
   },
 ];
 

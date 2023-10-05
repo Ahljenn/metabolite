@@ -60,7 +60,7 @@ const fitnessCardData: {
     header: 'One Rep Max Calculator',
     desc: 'Calculate your one-rep maximum (1RM) for various exercises. Determine your peak strength for optimal training intensity.',
     info: 'Simply enter your lifting data, and let our calculator do the rest. Use this valuable tool to fine-tune your workout routine and achieve peak performance.',
-    route: '/fitness/orm',
+    route: '/fitness/calculators',
   },
   {
     header: 'Strength Level Standards',
