@@ -86,6 +86,7 @@ const BodyFat = () => {
             max={600}
             value={height != null ? height.toString() : ''}
             onChange={(e) => {
+              if (e.target.value === '') setHeight(null);
               let value = Number(e.target.valueAsNumber);
               if (value <= 2000) setHeight(value);
             }}
@@ -108,6 +109,7 @@ const BodyFat = () => {
             max={400}
             value={waist != null ? waist.toString() : ''}
             onChange={(e) => {
+              if (e.target.value === '') setWaist(null);
               let value = Number(e.target.valueAsNumber);
               if (value <= 1000) setWaist(value);
             }}
@@ -130,6 +132,7 @@ const BodyFat = () => {
             max={600}
             value={neck != null ? neck.toString() : ''}
             onChange={(e) => {
+              if (e.target.value === '') setNeck(null);
               let value = Number(e.target.valueAsNumber);
               if (value <= 2000) setNeck(value);
             }}
@@ -155,6 +158,7 @@ const BodyFat = () => {
             value={hip != null ? hip.toString() : ''}
             onChange={(e) => {
               if (gender.name === 'Female') {
+                if (e.target.value === '') setHip(null);
                 let value = Number(e.target.valueAsNumber);
                 if (value <= 1000) setHip(value);
               }
