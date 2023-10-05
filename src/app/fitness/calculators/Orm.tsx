@@ -1,11 +1,24 @@
 'use client';
 import { useState } from 'react';
 
+const ormPercents: { percent: number; rep: number }[] = [
+  { percent: 100, rep: 1 },
+  { percent: 95, rep: 2 },
+  { percent: 90, rep: 4 },
+  { percent: 85, rep: 6 },
+  { percent: 80, rep: 8 },
+  { percent: 75, rep: 10 },
+  { percent: 70, rep: 12 },
+  { percent: 65, rep: 16 },
+  { percent: 60, rep: 20 },
+  { percent: 55, rep: 24 },
+  { percent: 50, rep: 30 },
+];
+
 const Orm = () => {
   const [weight, setWeight] = useState<number | null>(null);
   const [reps, setReps] = useState<number | null>(null);
   const [omrEstimation, setOmrEstimation] = useState<number | null>(null);
-
   const disabledEval = !(weight !== null && reps !== null);
 
   const onOmrCalculate = () => {
@@ -69,12 +82,12 @@ const Orm = () => {
             id="reps"
             type="number"
             min={1}
-            max={1000}
+            max={500}
             value={reps != null ? reps.toString() : ''}
             onChange={(e) => {
               if (e.target.value === '') setReps(null);
               let value = Number(e.target.valueAsNumber);
-              if (value <= 1000) setReps(value);
+              if (value <= 500) setReps(value);
             }}
             placeholder="Reps"
           />
@@ -104,7 +117,7 @@ const Orm = () => {
                 Percent of Max
               </th>
               <th scope="col" className="px-6 py-3">
-                Repetitions
+                Repetitions of Max
               </th>
               <th scope="col" className="px-6 py-3">
                 Weight
@@ -112,13 +125,21 @@ const Orm = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className=" border-b bg-neutral-900 border-neutral-800">
-              <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-white">
-                100%
-              </th>
-              <td className="px-6 py-4">1</td>
-              <td className="px-6 py-4">{omrEstimation ?? '-'}</td>
-            </tr>
+            {ormPercents.map((item: { percent: number; rep: number }, idx: number) => {
+              return (
+                <tr className=" border-b bg-neutral-900 border-neutral-800" key={idx}>
+                  <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-white">
+                    {item.percent}%
+                  </th>
+                  <td className="px-6 py-4">{item.rep}</td>
+                  <td className="px-6 py-4">
+                    {omrEstimation === null
+                      ? '-'
+                      : Math.round(omrEstimation * (item.percent / 100))}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
