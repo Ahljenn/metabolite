@@ -41,6 +41,7 @@ const Bmi = () => {
             max={400}
             value={height != null ? height.toString() : ''}
             onChange={(e) => {
+              if (e.target.value === '') setHeight(null);
               let value = Number(e.target.valueAsNumber);
               if (value <= 1000) setHeight(value);
             }}
@@ -63,6 +64,7 @@ const Bmi = () => {
             max={600}
             value={weight != null ? weight.toString() : ''}
             onChange={(e) => {
+              if (e.target.value === '') setWeight(null);
               let value = Number(e.target.valueAsNumber);
               if (value <= 2000) setWeight(value);
             }}
