@@ -110,36 +110,48 @@ const Orm = () => {
       </div>
 
       <div className="relative overflow-x-auto mt-10 rounded-lg">
-        <table className="w-full text-sm text-left  text-white">
+        <table className="w-full text-sm text-left text-white">
           <thead className="bg-neutral-800 text-white">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Percent of Max
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Repetitions of Max
-              </th>
-              <th scope="col" className="px-6 py-3">
                 Weight
               </th>
+              {ormPercents.map((item: { percent: number; rep: number }, idx: number) => {
+                return (
+                  <th scope="col" className="px-6 py-3" key={idx}>
+                    {item.percent}%
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
-            {ormPercents.map((item: { percent: number; rep: number }, idx: number) => {
-              return (
-                <tr className=" border-b bg-neutral-900 border-neutral-800" key={idx}>
-                  <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-white">
-                    {item.percent}%
-                  </th>
-                  <td className="px-6 py-4">{item.rep}</td>
-                  <td className="px-6 py-4">
+            <tr className="border-b bg-neutral-900 border-neutral-800">
+              <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-white">
+                Repetitions of Max
+              </th>
+              {ormPercents.map((item: { percent: number; rep: number }, idx: number) => {
+                return (
+                  <td className="px-6 py-4" key={idx}>
+                    {item.rep}
+                  </td>
+                );
+              })}
+            </tr>
+            <tr className="border-b bg-neutral-900 border-neutral-800">
+              <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-white">
+                Weight
+              </th>
+              {ormPercents.map((item: { percent: number; rep: number }, idx: number) => {
+                return (
+                  <td className="px-6 py-4" key={idx}>
                     {omrEstimation === null
                       ? '-'
                       : Math.round(omrEstimation * (item.percent / 100))}
                   </td>
-                </tr>
-              );
-            })}
+                );
+              })}
+            </tr>
           </tbody>
         </table>
       </div>
