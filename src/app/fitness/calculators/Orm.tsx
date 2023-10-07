@@ -110,7 +110,42 @@ const Orm = () => {
       </div>
 
       <div className="relative overflow-x-auto mt-10 rounded-lg">
-        <table className="w-full text-sm text-left text-white">
+        <table className="block md:hidden w-full text-sm text-left  text-white">
+          <thead className="bg-neutral-800 text-white">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Percent of Max
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Repetitions of Max
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Weight
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {ormPercents.map((item: { percent: number; rep: number }, idx: number) => {
+              return (
+                <tr className=" border-b bg-neutral-900 border-neutral-800" key={idx}>
+                  <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-white">
+                    {item.percent}%
+                  </th>
+                  <td className="px-6 py-4">{item.rep}</td>
+                  <td className="px-6 py-4">
+                    {omrEstimation === null
+                      ? '-'
+                      : Math.round(omrEstimation * (item.percent / 100))}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="relative overflow-x-auto mt-10 rounded-lg">
+        <table className="hidden md:block w-full text-sm text-left text-white">
           <thead className="bg-neutral-800 text-white">
             <tr>
               <th scope="col" className="px-6 py-3">
