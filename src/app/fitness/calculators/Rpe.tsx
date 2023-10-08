@@ -23,11 +23,21 @@ const rpeScale: { rpe: string; title: string; description: string }[] = [
 ];
 
 const Rpe = () => {
-  const [weight, setWeight] = useState<number | null>(null);
+  const [load, setLoad] = useState<number | null>(null);
   const [reps, setReps] = useState<number | null>(null);
   const [rpe, setRpe] = useState<number | null>(null);
+  const [estimate, setEstimate] = useState<number | null>(null);
 
-  const disabledEval = !(weight !== null && reps !== null && rpe !== null);
+  const disabledEval = !(load !== null && reps !== null && rpe !== null);
+
+  const calculateRPE = () => {
+    if (load && rpe && reps) {
+      const onePlus0333Reps = 1 + 0.0333 * reps;
+      const oneMinus0278RPE = 1.0278 - 0.0278 * rpe;
+      const est = (load * onePlus0333Reps) / oneMinus0278RPE;
+      setEstimate(Math.round(est));
+    }
+  };
 
   return (
     <section>
@@ -86,25 +96,25 @@ const Rpe = () => {
 
       <div className="flex flex-col sm:flex-row items-center gap-5">
         <div className="w-full px-5 sm:px-1">
-          <label htmlFor="weight">
+          <label htmlFor="load">
             <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
-              <p className="">Weight</p>
+              <p className="">Load</p>
               <p className="text-gray-400">kg./lb.</p>
             </div>
           </label>
           <input
             className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
-            id="weight"
+            id="load"
             type="number"
             min={1}
             max={600}
-            value={weight != null ? weight.toString() : ''}
+            value={load != null ? load.toString() : ''}
             onChange={(e) => {
-              if (e.target.value === '') setWeight(null);
+              if (e.target.value === '') setLoad(null);
               let value = Number(e.target.valueAsNumber);
-              if (value <= 2000) setWeight(value);
+              if (value <= 2000) setLoad(value);
             }}
-            placeholder="Weight"
+            placeholder="Load"
           />
         </div>
         <div className="w-full px-5 sm:px-1">
@@ -154,17 +164,26 @@ const Rpe = () => {
       </div>
 
       <div className="mt-5 flex justify-end flex-col sm:flex-row items-center gap-10">
+        <span className={`${estimate === null ? 'opacity-50' : ''}`}>
+          <p>
+            Potential ORM at RPE-10
+            <span className="border rounded-lg border-metaSecondary mx-2 px-2 py-1 font-semibold text-secondary">
+              {estimate ?? '000'}
+            </span>
+          </p>
+        </span>
         <button
           className={`transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaPrimary bg-neutral-900 ${
             disabledEval ? 'hover:border-metaAccent cursor-not-allowed opacity-50' : ''
           }`}
           disabled={disabledEval}
           onClick={() => {
-            if (weight && reps && rpe) {
+            if (load && reps && rpe) {
+              calculateRPE();
             }
           }}
         >
-          Calculate ERPM
+          Calculate RPE
         </button>
       </div>
     </section>
