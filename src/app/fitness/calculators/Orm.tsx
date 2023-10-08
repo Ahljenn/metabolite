@@ -16,15 +16,15 @@ const ormPercents: { percent: number; rep: number }[] = [
 ];
 
 const Orm = () => {
-  const [weight, setWeight] = useState<number | null>(null);
+  const [load, setLoad] = useState<number | null>(null);
   const [reps, setReps] = useState<number | null>(null);
   const [omrEstimation, setOmrEstimation] = useState<number | null>(null);
-  const disabledEval = !(weight !== null && reps !== null);
+  const disabledEval = !(load !== null && reps !== null);
 
   const onOmrCalculate = () => {
     // TODO: Will add support for other algorithms in the future
     // Jim Wendler:
-    if (weight && reps) setOmrEstimation(Math.floor(weight * reps * 0.0333 + weight));
+    if (load && reps) setOmrEstimation(Math.floor(load * reps * 0.0333 + load));
   };
 
   return (
@@ -34,9 +34,9 @@ const Orm = () => {
           <h2 className="text-3xl font-bold">One Rep Max</h2>
         </div>
         <div className="lead-xl font-light opacity-75 max-w-4xl text-lg">
-          One Rep Max (1RM) is a crucial metric in strength training. It represents the maximum
-          weight you can lift for a single repetition of a given exercise. It&apos;s a valuable tool
-          for designing effective workout routines and tracking progress over time.
+          One Rep Max (1RM) is a crucial metric in strength training. It represents the maximum load
+          you can lift for a single repetition of a given exercise. It&apos;s a valuable tool for
+          designing effective workout routines and tracking progress over time.
         </div>
         <a
           className="text-sm opacity-75 italic text-metaPrimary hover:text-metaAccent hover:underline"
@@ -49,25 +49,25 @@ const Orm = () => {
 
       <div className="flex flex-col sm:flex-row items-center gap-5">
         <div className="w-full sm:w-1/2 px-5 sm:px-1">
-          <label htmlFor="weight">
+          <label htmlFor="load">
             <div className="flex flex-row justify-between mb-2 items-baseline text-sm">
-              <p className="">Weight</p>
+              <p className="">Load</p>
               <p className="text-gray-400">kg./lb.</p>
             </div>
           </label>
           <input
             className="shadow appearance-none border w-full py-2 px-3 text-white text-opacity-50 border-neutral-800 rounded-lg bg-neutral-900 leading-tight focus:outline-none focus:shadow-outline"
-            id="weight"
+            id="load"
             type="number"
             min={1}
             max={3000}
-            value={weight != null ? weight.toString() : ''}
+            value={load != null ? load.toString() : ''}
             onChange={(e) => {
-              if (e.target.value === '') setWeight(null);
+              if (e.target.value === '') setLoad(null);
               let value = Number(e.target.valueAsNumber);
-              if (value <= 3000) setWeight(value);
+              if (value <= 3000) setLoad(value);
             }}
-            placeholder="Weight"
+            placeholder="Load"
           />
         </div>
         <div className="w-full sm:w-1/2 px-5 sm:px-1">
@@ -99,7 +99,7 @@ const Orm = () => {
             }`}
             disabled={disabledEval}
             onClick={() => {
-              if (weight && reps) {
+              if (load && reps) {
                 onOmrCalculate();
               }
             }}
@@ -120,7 +120,7 @@ const Orm = () => {
                 Repetitions of Max
               </th>
               <th scope="col" className="px-6 py-3">
-                Weight
+                load
               </th>
             </tr>
           </thead>
@@ -149,7 +149,7 @@ const Orm = () => {
           <thead className="bg-neutral-800 text-white">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Weight
+                load
               </th>
               {ormPercents.map((item: { percent: number; rep: number }, idx: number) => {
                 return (
@@ -175,7 +175,7 @@ const Orm = () => {
             </tr>
             <tr className="border-b bg-neutral-900 border-neutral-800">
               <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap text-white">
-                Weight
+                Load
               </th>
               {ormPercents.map((item: { percent: number; rep: number }, idx: number) => {
                 return (
