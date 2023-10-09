@@ -31,7 +31,7 @@ const ImageUploader = ({ callback }: CallbackProps) => {
           onChange={onImageUpload}
         />
       </div>
-      <div className="w-full">
+      <div className="w-full mt-10">
         {image && (
           <Image width="500" height="500" className="w-full" src={image} alt="Selected Image" />
         )}
