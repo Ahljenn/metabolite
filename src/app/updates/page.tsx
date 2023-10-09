@@ -11,6 +11,35 @@ const notes: {
   author: string;
 }[] = [
   {
+    title: 'Developer Update - October 7, 2023',
+    details: [
+      'Implemented an RPE (Rate of Perceived Exertion) calculator, acknowledging potential accuracy limitations.',
+      'Enhanced table responsiveness to ensure optimal user experience.',
+      'Optimized the One Rep Max calculator by swapping rows and columns for improved usability.',
+      'Added an RPE scale and corresponding inputs for precise assessments.',
+      'Introduced backspace functionality and revalidation for BMR metrics on the screening page.',
+      'Resolved backspace behavior on input fields for the calculators page.',
+      'Reintegrated a previously omitted image for comprehensive visual context.',
+      'Implemented a functional One Rep Max calculator, accommodating up to 50% of ORM for accurate strength assessments.',
+      'Removed top margin for a streamlined and visually polished layout.',
+      'Incorporated single rep max calculations and a structured table for easy reference.',
+      'Provided source information for One Rep Max calculations, ensuring transparency in methodology.',
+      'Initiated an One Rep Max beginning page with necessary input refinements.',
+      'Added an option to redo screening assessments for thorough evaluation.',
+      'Adjusted terminology for clearer understanding and user-friendly interaction.',
+      'Resolved text display on mobile view for improved legibility and accessibility.',
+      'Introduced a divider component for more organized content presentation.',
+      'Added comprehensive information on Total Energy Expenditure (TEE) for enhanced nutritional tracking.',
+      'Styled daily calorie display for a clear and intuitive representation of nutritional data.',
+      'Conducted a refactor of the dashboard, resulting in a more efficient and user-centric nutrition management system.',
+      'Removed extraneous component imports in dash for a cleaner codebase.',
+      'Streamlined the interface by eliminating the chart component for simplified navigation and data presentation.',
+      'Uninstalled superfluous dependencies and deprecated Redux integration for a leaner application stack.',
+      'Included an informative guide on vitamins and nutrients to empower users with essential knowledge for optimal health.',
+    ],
+    author: 'Ahljenn',
+  },
+  {
     title: 'Developer Update - September 30, 2023',
     details: [
       'Enhanced mobile view and adjusted hero section widths.',
