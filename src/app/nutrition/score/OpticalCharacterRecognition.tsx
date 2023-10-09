@@ -15,7 +15,7 @@ const OpticalCharacterRecognition = () => {
     <section>
       <div className="py-8 flex flex-col sm:items-left gap-5 justify-center">
         <ImageUploader callback={extractText} />
-        Text: {extractedText}
+        {extractedText && <>Text: {extractedText}</>}
       </div>
     </section>
   );

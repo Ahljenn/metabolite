@@ -27,6 +27,7 @@ const ImageUploader = ({ callback }: CallbackProps) => {
           className="block w-full text-sm  border rounded-lg cursor-pointer text-gray-400 focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400"
           id="file_input"
           type="file"
+          accept="image/*"
           onChange={onImageUpload}
         />
       </div>
