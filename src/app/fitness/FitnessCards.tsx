@@ -51,16 +51,16 @@ const fitnessCardData: {
   route: string;
 }[] = [
   {
+    header: 'Fitness Calculators',
+    desc: 'Access a variety of fitness calculators including One Rep Max (1RM) and Rate of Perceived Exertion (RPE). Fine-tune your workout routine for optimal performance.',
+    info: 'Explore a range of calculators to enhance your fitness journey. From tracking your 1RM to gauging your training intensity with RPE, this is all you need to excel.',
+    route: '/fitness/calculators',
+  },
+  {
     header: 'Workout Generator',
     desc: 'Access a dynamic workout generator that creates customized exercise routines tailored to your fitness goals and preferences targeting strength, hypertrophy, or endurance.',
     info: 'Specify your workout preferences, including target muscle groups, available equipment, and desired intensity. The generator will provide you with a detailed plan, complete with exercise selections, sets, reps, and rest intervals.',
     route: '/fitness/new-workout',
-  },
-  {
-    header: 'One Rep Max Calculator',
-    desc: 'Calculate your one-rep maximum (1RM) for various exercises. Determine your peak strength for optimal training intensity.',
-    info: 'Simply enter your lifting data, and let our calculator do the rest. Use this valuable tool to fine-tune your workout routine and achieve peak performance.',
-    route: '/fitness/calculators',
   },
   {
     header: 'Strength Level Standards',
