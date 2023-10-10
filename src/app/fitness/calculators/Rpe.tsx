@@ -33,7 +33,7 @@ const Rpe = () => {
   const calculateRPE = () => {
     if (load && rpe && reps) {
       const onePlus0333Reps = 1 + 0.0333 * reps;
-      const oneMinus0278RPE = 1.0278 - 0.0278 * rpe;
+      const oneMinus0278RPE = 1.0278 - 0.0278 * Math.abs(rpe - 9);
       const est = (load * onePlus0333Reps) / oneMinus0278RPE;
       setEstimate(Math.round(est));
     }
