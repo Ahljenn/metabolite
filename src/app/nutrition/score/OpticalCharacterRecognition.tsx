@@ -25,7 +25,7 @@ const OpticalCharacterRecognition = () => {
       }
 
       const data = await response.json();
-      console.log(data);
+      console.log('test', data);
       // Handle the response data, which will include the health scores
     } catch (error) {
       console.error('Error:', error);

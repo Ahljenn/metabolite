@@ -44,6 +44,8 @@ export const POST = async (request: Request) => {
     const content = await request.json();
     const extractedText = content.extractedText;
 
+    console.log(extractedText);
+
     const extractedFeatures = extractFeatures(extractedText);
     const preprocessedData = preprocessData(extractedFeatures);
     const numericData = convertToNumeric(preprocessedData);
