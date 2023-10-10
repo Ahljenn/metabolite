@@ -9,6 +9,27 @@ const OpticalCharacterRecognition = () => {
   const extractText = async (file: File) => {
     const res = await Tesseract.recognize(file, 'eng', { logger: (info) => console.log(info) });
     setExtractedText(res.data.text);
+
+    // Call the API
+    try {
+      const response = await fetch('/api/ml-service', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ extractedText: res.data.text }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log(data);
+      // Handle the response data, which will include the health scores
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (

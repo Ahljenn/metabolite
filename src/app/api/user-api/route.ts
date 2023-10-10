@@ -19,18 +19,6 @@ export const POST = async (request: Request) => {
   }
 };
 
-// export const GET = async (request: Request, response: Response) => {
-//   try {
-//     console.log('GET request');
-//     return NextResponse.json({ message: 'GET user data success!!!' }, { status: 200 });
-//   } catch {
-//     return NextResponse.json(
-//       { error: 'Internal Server Error - Unable to retrieve user data' },
-//       { status: 400 }
-//     );
-//   }
-// };
-
 export const GET = async (request: Request) => {
   try {
     const userEmail = request.headers.get('user-email'); // Extract user's email from headers

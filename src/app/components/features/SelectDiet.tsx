@@ -16,7 +16,7 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
     let userCopy = user;
     userCopy.dietChoice = selection;
     userCopy.bmr = bmrValue;
-    const response = await fetch('/api/user_api', {
+    const response = await fetch('/api/user-api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
