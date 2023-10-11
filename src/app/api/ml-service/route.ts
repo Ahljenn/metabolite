@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
 const extractFeatures = (text: string) => {
-  const redLabel = [
-    'TRANS FAT',
+  // Food Additives to Avoid
+  const foodAdditives = [
     'SODIUM NITRATE',
     'SULFITES',
     'AZODICARBONAMIDE',
@@ -16,7 +16,7 @@ const extractFeatures = (text: string) => {
     'DISODIUM INOSINATE',
     'DISODIUM GUANYLATE',
     'ENRICHED FLOUR',
-    'RBGH',
+    'RECOMBINANT BOVINE GROWTH HORMONE (RBGH)',
     'REFINED VEGETABLE OIL',
     'SODIUM BENZOATE',
     'BROMINATED VEGETABLE OIL',
@@ -30,11 +30,53 @@ const extractFeatures = (text: string) => {
     'SODIUM CARBOXYMETHYL CELLULOSE',
     'ALUMINUM',
   ];
-  text = text.toUpperCase(); // Convert to uppercase for case insensitivity
 
-  const extractFeatures = redLabel.filter((ingredient) => text.includes(ingredient));
+  // Artificial Sweeteners to Avoid
+  const artificialSweeteners = [
+    'SACCHARIN',
+    'ASPARTAME',
+    'HIGH FRUCTOSE CORN SYRUP',
+    'ACESULFAME POTASSIUM',
+    'SUCRALOSE',
+    'AGAVE NECTAR',
+    'BLEACHED STARCH',
+    'TERT BUTYLHYDROQUINONE',
+  ];
 
-  return extractFeatures;
+  // Artificial Food Colorings to Avoid
+  const artificialFoodColorings = [
+    'RED #40',
+    'BLUE #1',
+    'BLUE #2',
+    'CITRUS RED #1',
+    'CITRUS RED #2',
+    'GREEN #3',
+    'YELLOW #5',
+    'YELLOW #6',
+    'RED #2',
+    'RED #3',
+    'CARAMEL COLORING',
+    'BROWN HT',
+    'ORANGE B',
+    'BIXIN',
+    'NORBIXIN',
+    'ANNATTO',
+  ];
+
+  const foundFoodAdditives = foodAdditives.filter((additive) => text.includes(additive));
+  const foundArtificialSweeteners = artificialSweeteners.filter((sweetener) =>
+    text.includes(sweetener)
+  );
+  const foundArtificialFoodColorings = artificialFoodColorings.filter((coloring) =>
+    text.includes(coloring)
+  );
+
+  const features = {
+    foundFoodAdditives,
+    foundArtificialSweeteners,
+    foundArtificialFoodColorings,
+  };
+  return features;
 };
 
 const preprocessData = (features: any) => {
