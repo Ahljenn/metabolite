@@ -110,7 +110,7 @@ const assignHealthScores = (clusters: any) => {
 export const POST = async (request: Request) => {
   try {
     const content = await request.json();
-    const extractedText = content.extractedText;
+    const extractedText = content.extractedText.toUpperCase();
     const extractedFeatures = extractFeatures(extractedText);
 
     console.log('Found:', extractedFeatures);
