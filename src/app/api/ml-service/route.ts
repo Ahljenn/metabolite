@@ -93,12 +93,10 @@ const preprocessData = (features: any) => {
 
 const convertToNumeric = (features: any) => {
   const numericFeatures = {
-    containsSugar: features.containsSugar ? 1 : 0,
-    containsOil: features.containsOil ? 1 : 0,
-    containsVinegar: features.containsVinegar ? 1 : 0,
-    // Add more features as needed
+    foundFoodAdditives: features.foundFoodAdditives.length,
+    foundArtificialSweeteners: features.foundArtificialSweeteners.length,
+    foundArtificialFoodColorings: features.foundArtificialFoodColorings.length,
   };
-
   return numericFeatures;
 };
 
@@ -124,6 +122,9 @@ export const POST = async (request: Request) => {
 
     const preprocessedData = preprocessData(extractedFeatures);
     const numericData = convertToNumeric(preprocessedData);
+
+    console.log('Numeric', numericData);
+
     const clusters = applyKMeans(numericData); // Implement this function
     const healthScores = assignHealthScores(clusters); // Implement this function
 
