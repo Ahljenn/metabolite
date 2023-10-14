@@ -11,6 +11,26 @@ const notes: {
   author: string;
 }[] = [
   {
+    title: 'Developer Update - October 14, 2023',
+    details: [
+      'Implemented metabolite scoring as middleware.',
+      'Enhanced frontend API endpoint for feature extraction.',
+      'Added numeric conversion for ingredient analysis.',
+      'Improved extraction algorithm for better accuracy.',
+      'Enhanced detection of additives and ingredients.',
+      'Introduced red label feature for additives.',
+      'Optimized RPE computation for accuracy.',
+      'Improved OCR image processing.',
+      'Added ML service route and refactored API names.',
+      'Optimized styling for image and uploader components.',
+      'Enhanced mobile view styling for improved UI.',
+      'Added explanatory frontend component.',
+      'Implemented robust optical character recognition.',
+      'Integrated Tesseract for advanced OCR functionality.',
+    ],
+    author: 'Ahljenn',
+  },
+  {
     title: 'Developer Update - October 7, 2023',
     details: [
       'Implemented an RPE (Rate of Perceived Exertion) calculator, acknowledging potential accuracy limitations.',

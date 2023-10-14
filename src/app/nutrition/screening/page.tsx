@@ -336,16 +336,6 @@ const Screening: React.FC = () => {
     return () => clearTimeout(redirectTimeout);
   };
 
-  // const callback = async () => {
-  //   const response = await fetch('/api/user_api', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(userData, null, 2),
-  //   });
-  // };
-
   if (diets.length > 0) {
     return (
       <FadeWrapper>

@@ -18,7 +18,7 @@ const fetchUserData = async ({ userEmail, setUserData, setIsEffectRun }: FetchUs
   }
 
   (async () => {
-    const response = await fetch('/api/user_api', {
+    const response = await fetch('/api/user-api', {
       method: 'GET',
       headers: headers,
     });
