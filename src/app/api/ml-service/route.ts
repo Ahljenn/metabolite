@@ -128,7 +128,7 @@ export const POST = async (request: Request) => {
     const clusters = applyKMeans(numericData); // Implement this function
     const healthScores = assignHealthScores(clusters); // Implement this function
 
-    return NextResponse.json({ healthScores }, { status: 200 });
+    return NextResponse.json({ extractedFeatures }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
