@@ -36,8 +36,8 @@ const NDashboard = () => {
     return (
       <div className="mt-5 animate-pulse">
         <section className="flex justify-center">
-          <div className="flex flex-col items-center justify-between w-full gap-5 mt-10 max-w-5xl">
-            <div className="w-32 h-2 rounded-full bg-gray-700" />
+          <div className="flex flex-col items-center justify-between w-full gap-5 mt-[5rem] max-w-5xl">
+            <div className="w-32 h-4 rounded-full bg-gray-700" />
             <div className="w-[24rem] h-2 rounded-full bg-gray-700" />
           </div>
         </section>
@@ -87,7 +87,7 @@ const NDashboard = () => {
                     rel="noopener noreferrer"
                   >
                     <div className="w-[10rem] h-4 rounded-full bg-gray-700" />{' '}
-                    <div className="mt-2 w-[10rem] h-2 rounded-full bg-gray-700" />
+                    <div className="mt-2 w-[15rem] h-2 rounded-full bg-gray-700" />
                     <div className="w-[6rem] h-3 rounded-full bg-gray-700" />
                   </div>
                 );
