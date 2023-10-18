@@ -33,7 +33,73 @@ const NDashboard = () => {
 
   // Replace with loading animation
   if (!isEffectRun) {
-    return <>Loading...</>;
+    return (
+      <div className="mt-5 animate-pulse">
+        <section className="flex justify-center">
+          <div className="flex flex-col items-center justify-between w-full gap-5 mt-10 max-w-5xl">
+            <div className="w-32 h-2 rounded-full bg-gray-700" />
+            <div className="w-[24rem] h-2 rounded-full bg-gray-700" />
+          </div>
+        </section>
+
+        <div className="px-12">
+          <Divider />
+        </div>
+
+        <main className="p-12 container mx-auto px-4 py-8 max-w-screen-xl">
+          <div className="mt-10 text-center">
+            <div className="flex justify-center gap-5 flex-col">
+              <div className="w-full h-2 rounded-full bg-gray-700" />
+              <div className="w-full h-2 rounded-full bg-gray-700" />
+              <div className="w-full h-2 rounded-full bg-gray-700" />
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <div className="mt-10 w-[24rem] h-2 rounded-full bg-gray-700" />
+          </div>
+
+          <div className="py-8 flex flex-col sm:flex-row sm:items-end gap-5 justify-center mx-10">
+            <div>
+              <div className="w-[24rem] h-2 rounded-full bg-gray-700" />
+            </div>
+            <div className="flex justify-center gap-5 flex-col">
+              <div className="w-[48rem] h-2 rounded-full bg-gray-700" />
+              <div className="w-[48rem] h-2 rounded-full bg-gray-700" />
+              <div className="w-[48rem] h-2 rounded-full bg-gray-700" />
+            </div>
+          </div>
+          <div className="mt-10 text-center text-lg lg:text-xl flex justify-center">
+            <div className="w-[24rem] h-2 rounded-full bg-gray-700" />
+          </div>
+          <div className="mt-5 flex flex-col items-center lg:flex-row justify-center">
+            {macroCards.map(
+              (
+                card: {
+                  header: string;
+                  desc: string;
+                },
+                index: number
+              ) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex flex-col gap-5 rounded-lg border px-10 py-6 border-neutral-700 bg-neutral-800/50 mx-2 my-5 text-center sm:text-left"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="w-[10rem] h-4 rounded-full bg-gray-700" />{' '}
+                    <div className="mt-2 w-[10rem] h-2 rounded-full bg-gray-700" />
+                    <div className="w-[6rem] h-3 rounded-full bg-gray-700" />
+                  </div>
+                );
+              }
+            )}
+          </div>
+          <div className="mt-20 flex justify-center">
+            <div className="w-[24rem] h-2 rounded-full bg-gray-700" />
+          </div>
+        </main>
+      </div>
+    );
   }
 
   if (!userData) {
