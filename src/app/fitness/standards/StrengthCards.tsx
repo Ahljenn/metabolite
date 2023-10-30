@@ -36,16 +36,22 @@ const strengthCardData: {
   img: string;
 }[] = [
   {
-    header: 'BMI, BMR & Body Fat Calculator',
-    desc: 'Assess your body composition, energy expenditure, and overall health status with our combined calculator.',
-    route: '/nutrition/calculators',
-    img: '/calculate.jpg',
+    header: 'Squat Strength Level Standards',
+    desc: 'Discover strength level standards for the squat exercise. Compare your performance to others at your body weight.',
+    route: '/fitness/squat-standards',
+    img: '/metabolite-m.png',
   },
   {
-    header: 'Vitamins & Nutrients',
-    desc: 'Access a comprehensive guide for essential nutrients and vitamins along with their impact on your overall well-being.',
-    route: '/nutrition/nutrients',
-    img: '/vitamins.jpg',
+    header: 'Bench Press Strength Level Standards',
+    desc: 'Explore strength level standards for the bench press. Evaluate your performance relative to lifters of similar body weight.',
+    route: '/fitness/bench-standards',
+    img: '/metabolite-m.png',
+  },
+  {
+    header: 'Deadlift Strength Level Standards',
+    desc: 'Uncover strength level standards for the deadlift. See where your performance ranks compared to others in your weight class.',
+    route: '/fitness/deadlift-standards',
+    img: '/metabolite-m.png',
   },
 ];
 
