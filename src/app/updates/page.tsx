@@ -11,6 +11,22 @@ const notes: {
   author: string;
 }[] = [
   {
+    title: 'Developer Update - October 31, 2023',
+    details: [
+      'Added standards files.',
+      'Changed routing and added folders.',
+      'Adjusted card data for related strength standards.',
+      'Temporarily removed metabolite score link.',
+      'Refined skeleton loader to align items.',
+      'Implemented skeleton loading to dashboard.',
+      'Added custom 404 page.',
+      'Enhanced frontend image upload design.',
+      'Added developer notes for the week.',
+      'Integrated metabolite score as middleware route.',
+    ],
+    author: 'Ahljenn',
+  },
+  {
     title: 'Developer Update - October 14, 2023',
     details: [
       'Implemented metabolite scoring as middleware.',
