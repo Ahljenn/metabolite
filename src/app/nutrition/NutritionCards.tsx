@@ -57,12 +57,12 @@ const nutritionCardData: {
     route: '/nutrition/nutrients',
     img: '/vitamins.jpg',
   },
-  {
-    header: 'Metabolite Score',
-    desc: 'Assess the foods you eat. Utilizing sentiment analysis, we generate a distinctive Metabolite Score for each item, offering valuable insights into its nutritional value and potential impact on yourself',
-    route: '/nutrition/score',
-    img: '/food.webp',
-  },
+  // {
+  //   header: 'Metabolite Score',
+  //   desc: 'Assess the foods you eat. Utilizing sentiment analysis, we generate a distinctive Metabolite Score for each item, offering valuable insights into its nutritional value and potential impact on yourself',
+  //   route: '/nutrition/score',
+  //   img: '/food.webp',
+  // },
 ];
 
 export default NutritionCards;
