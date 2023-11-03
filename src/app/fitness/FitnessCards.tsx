@@ -57,16 +57,16 @@ const fitnessCardData: {
     route: '/fitness/calculators',
   },
   {
-    header: 'Workout Generator',
-    desc: 'Access a dynamic workout generator that creates customized exercise routines tailored to your fitness goals and preferences targeting strength, hypertrophy, or endurance.',
-    info: 'Specify your workout preferences, including target muscle groups, available equipment, and desired intensity. The generator will provide you with a detailed plan, complete with exercise selections, sets, reps, and rest intervals.',
-    route: '/fitness/new-workout',
-  },
-  {
     header: 'Strength Level Standards',
     desc: 'Discover where you stand on the strength spectrum for various exercises. Gauge your performance against established strength level standards.',
     info: 'Input your lifting stats and get an instant assessment of your strength level. Compare your progress over time and set new goals.',
     route: '/fitness/standards',
+  },
+  {
+    header: 'Workout Generator',
+    desc: 'Access a dynamic workout generator that creates customized exercise routines tailored to your fitness goals and preferences targeting strength, hypertrophy, or endurance.',
+    info: 'Specify your workout preferences, including target muscle groups, available equipment, and desired intensity. The generator will provide you with a detailed plan, complete with exercise selections, sets, reps, and rest intervals.',
+    route: '/fitness/new-workout',
   },
   {
     header: 'Fitness Rankings',
