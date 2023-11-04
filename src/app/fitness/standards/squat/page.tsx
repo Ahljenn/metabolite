@@ -4,22 +4,20 @@ export const metadata: Metadata = {
   title: 'Squat Standards',
 };
 
-const squatMultiplierData: { level: string; ratio: number }[] = [
-  { level: 'Beginner', ratio: 0.75 },
-  { level: 'Novice', ratio: 1.25 },
-  { level: 'Intermediate', ratio: 1.5 },
-  { level: 'Advanced', ratio: 2.25 },
-  { level: 'Elite', ratio: 2.75 },
-];
+const squatMultiplierData: Record<string, number> = {
+  Beginner: 0.75,
+  Novice: 1.25,
+  Intermediate: 1.5,
+  Advanced: 2.25,
+  Elite: 2.75,
+};
 
 const Squat = () => {
-  const strengthStandards = [
-    { level: 'Beginner', bodyweight: 70, totalLifted: 100 },
-    { level: 'Novice', bodyweight: 80, totalLifted: 150 },
-    { level: 'Intermediate', bodyweight: 90, totalLifted: 200 },
-    { level: 'Advanced', bodyweight: 100, totalLifted: 250 },
-    { level: 'Elite', bodyweight: 110, totalLifted: 300 },
-  ];
+  const strengthStandards: number[] = [];
+
+  for (let weight = 100; weight <= 350; weight += 10) {
+    strengthStandards.push(weight);
+  }
 
   return (
     <section
@@ -63,12 +61,14 @@ p-12`}
           <tbody>
             {strengthStandards.map((item, idx) => (
               <tr className="border-b bg-neutral-900 border-neutral-800" key={idx}>
-                <td className="px-6 py-4">item</td>
-                <td className="px-6 py-4">item</td>
-                <td className="px-6 py-4">item</td>
-                <td className="px-6 py-4">item</td>
-                <td className="px-6 py-4">item</td>
-                <td className="px-6 py-4">item</td>
+                <td className="px-6 py-4">{item}</td>
+                <td className="px-6 py-4">{Math.floor(item * squatMultiplierData['Beginner'])}</td>
+                <td className="px-6 py-4">{Math.floor(item * squatMultiplierData['Novice'])}</td>
+                <td className="px-6 py-4">
+                  {Math.floor(item * squatMultiplierData['Intermediate'])}
+                </td>
+                <td className="px-6 py-4">{Math.floor(item * squatMultiplierData['Advanced'])}</td>
+                <td className="px-6 py-4">{Math.floor(item * squatMultiplierData['Elite'])}</td>
               </tr>
             ))}
           </tbody>
