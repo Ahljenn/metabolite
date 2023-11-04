@@ -4,21 +4,12 @@ export const metadata: Metadata = {
   title: 'Squat Standards',
 };
 
-const categories = [
-  { category: 'Beginner', minScore: 0.0, maxScore: 100.0 },
-  { category: 'Novice', minScore: 100.1, maxScore: 200.0 },
-  { category: 'Intermediate', minScore: 200.1, maxScore: 300.0 },
-  { category: 'Advanced', minScore: 300.1, maxScore: 400.0 },
-  { category: 'Elite', minScore: 400.1, maxScore: Infinity },
-];
-
-// Define the multipliers for each category
-const multipliers = [
-  { category: 'Beginner', minMultiplier: 0.8, maxMultiplier: 1.0 },
-  { category: 'Novice', minMultiplier: 1.1, maxMultiplier: 1.2 },
-  { category: 'Intermediate', minMultiplier: 1.3, maxMultiplier: 1.4 },
-  { category: 'Advanced', minMultiplier: 1.5, maxMultiplier: 1.6 },
-  { category: 'Elite', minMultiplier: 1.7, maxMultiplier: Infinity },
+const squatMultiplierData: { level: string; ratio: number }[] = [
+  { level: 'Beginner', ratio: 0.75 },
+  { level: 'Novice', ratio: 1.25 },
+  { level: 'Intermediate', ratio: 1.5 },
+  { level: 'Advanced', ratio: 2.25 },
+  { level: 'Elite', ratio: 2.75 },
 ];
 
 const Squat = () => {
