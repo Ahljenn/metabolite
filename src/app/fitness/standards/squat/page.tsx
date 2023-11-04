@@ -29,9 +29,19 @@ p-12`}
           <h2 className="text-3xl font-bold">Squat Standards</h2>
         </div>
         <div className="lead-xl font-light opacity-75 max-w-4xl text-lg">
-          The squat standards below are calculated based on bodyweight and experience level. The
-          multipliers used for each category are derived from established strength training ranking
-          systems.
+          <p>
+            The squat standards below are calculated based on bodyweight and experience level. The
+            multipliers used for each category are derived from established strength training
+            ranking systems.
+          </p>
+          <p className="mt-5">
+            The squat standards below are calculated based on bodyweight and experience level. The
+            multipliers used for each category indicate how much of your body weight is considered a
+            good standard for that level. For example, if you're a Beginner, lifting 75% of your
+            body weight in a squat is considered a good starting point. As you progress to higher
+            levels, the multiplier increases, reflecting the higher standards for strength at those
+            levels.
+          </p>
         </div>
       </div>
       <div className="mt-5">
