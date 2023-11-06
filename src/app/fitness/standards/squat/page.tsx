@@ -1,3 +1,4 @@
+import StandardsTable from './../StandardsTable';
 import UnderConstruction from '@/app/components/ui/UnderConstruction';
 import { Metadata } from 'next';
 export const metadata: Metadata = {
@@ -13,12 +14,10 @@ const squatMultiplierData: Record<string, number> = {
 };
 
 const Squat = () => {
-  const strengthStandards: number[] = [];
-
-  for (let weight = 100; weight <= 350; weight += 10) {
-    strengthStandards.push(weight);
-  }
-
+  const strengthStandards: number[] = [
+    100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280,
+    290, 300, 310, 320, 330, 340, 350,
+  ];
   return (
     <section
       className={`flex flex-col items-center  justify-between 
@@ -72,46 +71,7 @@ p-12`}
           </ul>
         </div>
       </div>
-      <div className="mt-5">
-        <table className="w-full text-sm text-left text-white">
-          <thead className="bg-neutral-800 text-white">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Body Weight
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Beginner
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Novice
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Intermediate
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Advanced
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Elite
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {strengthStandards.map((item, idx) => (
-              <tr className="border-b bg-neutral-900 border-neutral-800" key={idx}>
-                <td className="px-6 py-4">{item}</td>
-                <td className="px-6 py-4">{Math.floor(item * squatMultiplierData['Beginner'])}</td>
-                <td className="px-6 py-4">{Math.floor(item * squatMultiplierData['Novice'])}</td>
-                <td className="px-6 py-4">
-                  {Math.floor(item * squatMultiplierData['Intermediate'])}
-                </td>
-                <td className="px-6 py-4">{Math.floor(item * squatMultiplierData['Advanced'])}</td>
-                <td className="px-6 py-4">{Math.floor(item * squatMultiplierData['Elite'])}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <StandardsTable strengthStandards={strengthStandards} multiplier={squatMultiplierData} />
     </section>
   );
 };
