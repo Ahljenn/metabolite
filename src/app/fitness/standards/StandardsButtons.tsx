@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const classNames = (...classes: any[]): string => {
@@ -19,7 +20,7 @@ const StandardsButtons = () => {
       <div className="flex flex-col items-center sm:flex-row gap-10 sm:gap-5 justify-center w-full mt-10">
         {standardsNavigation.map((item, idx) => {
           return (
-            <a
+            <Link
               key={idx}
               rel="noopener noreferrer"
               href={item.url}
@@ -31,7 +32,7 @@ const StandardsButtons = () => {
               )}
             >
               {item.name}
-            </a>
+            </Link>
           );
         })}
       </div>
