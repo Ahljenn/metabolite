@@ -68,7 +68,8 @@ const Navbar = () => {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.href === currentRoute
+                          item.href === currentRoute ||
+                            (item.href !== '/' && currentRoute.includes(item.href))
                             ? 'bg-gray-800 text-white'
                             : 'text-gray-400 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
