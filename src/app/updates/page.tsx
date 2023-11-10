@@ -11,6 +11,29 @@ const notes: {
   author: string;
 }[] = [
   {
+    title: 'Developer Update - November 10, 2023',
+    details: [
+      'Refactored subroute indication logic in navigation.',
+      'Optimized link references with <Link> for improved performance.',
+      'Enhanced standards navigation with active route indication.',
+      'Disabled fitness navigation on the root layout.',
+      'Unified standards button color for consistent styling.',
+      'Added icons and color changes to standards buttons.',
+      'Improved mobile responsiveness for buttons.',
+      'Implemented root layout for standards buttons.',
+      'Created a reusable standard buttons component.',
+      'Introduced deadlift and bench standards.',
+      'Adjusted text content for squats.',
+      'Resolved build error for better development workflow.',
+      'Enhanced text multipliers information.',
+      'Added content for squat standards.',
+      'Updated multipliers data for squats.',
+      'Introduced a table for squat standards.',
+      'Reordered fitness cards for better user experience.',
+    ],
+    author: 'Ahljenn',
+  },
+  {
     title: 'Developer Update - October 31, 2023',
     details: [
       'Added standards files.',
