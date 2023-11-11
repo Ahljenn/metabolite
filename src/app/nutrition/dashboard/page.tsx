@@ -32,6 +32,7 @@ const NDashboard = () => {
   }, [session?.user?.email, isEffectRun]);
 
   // Replace with loading animation
+
   if (!isEffectRun) {
     return (
       <div className="mt-5 animate-pulse">
@@ -58,14 +59,14 @@ const NDashboard = () => {
             <div className="mt-10 w-[24rem] h-2 rounded-full bg-gray-700" />
           </div>
 
-          <div className="py-8 flex flex-col sm:flex-row sm:items-end gap-5 justify-center mx-10">
+          <div className="py-8 flex flex-col sm:flex-row sm:items-end gap-5 justify-center mx-10 items-center">
             <div>
               <div className="w-[24rem] h-2 rounded-full bg-gray-700" />
             </div>
             <div className="flex justify-center gap-5 flex-col">
-              <div className="w-[48rem] h-2 rounded-full bg-gray-700" />
-              <div className="w-[48rem] h-2 rounded-full bg-gray-700" />
-              <div className="w-[48rem] h-2 rounded-full bg-gray-700" />
+              <div className="w-[15rem] sm:w-[20rem] md:w-[40rem] h-2 rounded-full bg-gray-700" />
+              <div className="w-[15rem] sm:w-[20rem] md:w-[40rem] h-2 rounded-full bg-gray-700" />
+              <div className="w-[15rem] sm:w-[20rem] md:w-[40rem] h-2 rounded-full bg-gray-700" />
             </div>
           </div>
           <div className="mt-10 text-center text-lg lg:text-xl flex justify-center">
