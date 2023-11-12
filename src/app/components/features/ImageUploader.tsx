@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowUpTrayIcon } from '@heroicons/react/24/solid';
 
 interface CallbackProps {
   callback: (file: File) => void;
@@ -67,17 +66,14 @@ const ImageUploader = ({ callback }: CallbackProps) => {
       ) : (
         <div className="mt-4">
           <Image width="250" height="250" className="w-full" src={image} alt="Selected Image" />
+          <button
+            type="button"
+            className="group mt-5  transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-red-300 bg-rose-700/30 hover:border-red-200 hover:bg-rose-600/30"
+            onClick={() => setImage(null)}
+          >
+            Remove Image
+          </button>
         </div>
-      )}
-
-      {image && (
-        <button
-          type="button"
-          className="group mt-5  transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-red-300 bg-rose-700/30 hover:border-red-200 hover:bg-rose-600/30"
-          onClick={() => setImage(null)}
-        >
-          Remove Image
-        </button>
       )}
     </>
   );
