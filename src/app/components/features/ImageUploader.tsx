@@ -2,11 +2,12 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-interface CallbackProps {
+interface UploaderProps {
   callback: (file: File) => void;
+  setExtractedText: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ImageUploader = ({ callback }: CallbackProps) => {
+const ImageUploader = ({ callback, setExtractedText }: UploaderProps) => {
   const [image, setImage] = useState<string | null>(null);
 
   const onImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,7 +70,10 @@ const ImageUploader = ({ callback }: CallbackProps) => {
           <button
             type="button"
             className="group mt-5  transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-red-300 bg-rose-700/30 hover:border-red-200 hover:bg-rose-600/30"
-            onClick={() => setImage(null)}
+            onClick={() => {
+              setImage(null);
+              setExtractedText('');
+            }}
           >
             Remove Image
           </button>
