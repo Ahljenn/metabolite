@@ -22,11 +22,6 @@ p-12`}
           simply snap a picture of the label, and our system will effortlessly extract the relevant
           data.
         </p>
-        <p className="">
-          To get your personalized Metabolite Score, all you need to do is upload an image of the
-          ingredients. Our OCR system will process it in seconds, providing you with precise
-          information about the food&apos;s nutritional content.
-        </p>
       </div>
       <OpticalCharacterRecognition />
     </main>
