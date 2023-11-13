@@ -1,9 +1,8 @@
-('use client');
+'use client';
 
 import { UserScreeningType, dietDescriptions } from '@/tools/diet-rank/rank.utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Router } from 'next/router';
 import Disclaimer from './../ui/Disclaimer';
 interface SelectDietProps {
   diets: string[];
@@ -62,9 +61,9 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
               </p>
               <p>{dietDescriptions[diet]}</p>
               <div className="flex justify-between items-center">
-                <a className="italic text-metaSecondary cursor-pointer" href="#">
+                <Link className="italic text-metaSecondary cursor-pointer" href="#">
                   Learn more <b className="bold">&gt;</b>
-                </a>
+                </Link>
                 <button
                   className="transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-metaSecondary bg-neutral-900 hover:border-metaAccent"
                   onClick={() => {
@@ -81,12 +80,12 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
           ))}
           <p className="text-sm">
             Not satisfied with your results? Navigate{' '}
-            <a
-              href="/nutrition/screening"
+            <Link
+              href="/nutrition"
               className="cursor-pointer font-bold text-metaPrimary opacity-75"
             >
               here
-            </a>{' '}
+            </Link>{' '}
             or refresh to retry.
           </p>
           <Disclaimer />
