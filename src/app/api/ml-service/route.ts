@@ -125,8 +125,8 @@ export const POST = async (request: Request) => {
 
     console.log('Numeric', numericData);
 
-    const clusters = applyKMeans(numericData); // Implement this function
-    const healthScores = assignHealthScores(clusters); // Implement this function
+    // const clusters = applyKMeans(numericData); // Implement this function
+    // const healthScores = assignHealthScores(clusters); // Implement this function
 
     return NextResponse.json({ extractedFeatures }, { status: 200 });
   } catch (error) {

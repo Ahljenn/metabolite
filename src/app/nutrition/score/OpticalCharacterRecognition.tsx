@@ -3,8 +3,20 @@ import { useState } from 'react';
 import Tesseract from 'tesseract.js';
 import ImageUploader from '../../components/features/ImageUploader';
 
+interface FoodAdditive {
+  name: string;
+  score: string;
+}
+
+interface AdditiveProps {
+  foundFoodAdditives: FoodAdditive[];
+  foundArtificialSweeteners: FoodAdditive[];
+  foundArtificialFoodColorings: FoodAdditive[];
+}
+
 const OpticalCharacterRecognition = () => {
   const [extractedText, setExtractedText] = useState<string>('');
+  const [extractedFeatures, setExtractedFeatures] = useState<AdditiveProps | null>();
 
   const extractText = async (file: File) => {
     const res = await Tesseract.recognize(file, 'eng', { logger: (info) => console.log(info) });
@@ -25,7 +37,8 @@ const OpticalCharacterRecognition = () => {
       }
 
       const data = await response.json();
-      console.log('test', data);
+      console.log('test', data.extractedFeatures);
+      setExtractedFeatures(data.extractedFeatures);
       // Handle the response data, which will include the health scores
     } catch (error) {
       console.error('Error:', error);
