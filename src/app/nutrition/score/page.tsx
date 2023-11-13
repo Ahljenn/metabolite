@@ -1,6 +1,7 @@
 import UnderConstruction from '@/app/components/ui/UnderConstruction';
 import { Metadata } from 'next';
 import OpticalCharacterRecognition from './OpticalCharacterRecognition';
+import Disclaimer from '@/app/components/ui/Disclaimer';
 export const metadata: Metadata = {
   title: 'Metabolite Score',
 };
@@ -12,9 +13,10 @@ const Score = () => {
 p-12`}
     >
       <div className="py-8 flex flex-col sm:items-left gap-5 justify-center mx-5 sm:mx-10 max-w-screen-xl">
-        <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white">
+        <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white">
           Metabolite Score
         </h1>
+        <Disclaimer />
         <p className="font-bold">Optical Character Recognition</p>
         <p className="">
           Metabolite utilizes OCR technology that employs advanced machine learning algorithms to

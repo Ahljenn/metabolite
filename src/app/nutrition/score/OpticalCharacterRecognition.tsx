@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Tesseract from 'tesseract.js';
 import ImageUploader from '../../components/features/ImageUploader';
+import Disclaimer from '@/app/components/ui/Disclaimer';
 
 interface FoodAdditive {
   name: string;
