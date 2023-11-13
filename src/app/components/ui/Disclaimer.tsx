@@ -1,4 +1,3 @@
-import React from 'react';
 const Disclaimer = () => {
   return (
     <p className="text-sm opacity-50 tracking-tighter">
