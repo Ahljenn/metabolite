@@ -1,10 +1,10 @@
-'use client';
+('use client');
 
 import { UserScreeningType, dietDescriptions } from '@/tools/diet-rank/rank.utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Router } from 'next/router';
-
+import Disclaimer from './../ui/Disclaimer';
 interface SelectDietProps {
   diets: string[];
   user: UserScreeningType | undefined;
@@ -89,13 +89,7 @@ const SelectDiet = ({ user, diets, bmr }: SelectDietProps) => {
             </a>{' '}
             or refresh to retry.
           </p>
-          <p className="text-sm opacity-50 tracking-tighter">
-            Disclaimer: The nutrition recommendations provided by Metabolite are intended for
-            general informational purposes only and are not a substitute for professional medical
-            advice, diagnosis, or treatment. Always seek the advice of a qualified healthcare
-            provider or registered dietitian before making any significant changes to your diet,
-            exercise routine, or lifestyle.
-          </p>
+          <Disclaimer />
         </div>
       </div>
     </section>
