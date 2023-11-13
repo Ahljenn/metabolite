@@ -22,7 +22,6 @@ const OpticalCharacterRecognition = () => {
     const res = await Tesseract.recognize(file, 'eng', { logger: (info) => console.log(info) });
     setExtractedText(res.data.text);
 
-    // Call the API
     try {
       const response = await fetch('/api/ml-service', {
         method: 'POST',
@@ -39,7 +38,6 @@ const OpticalCharacterRecognition = () => {
       const data = await response.json();
       console.log('test', data.extractedFeatures);
       setExtractedFeatures(data.extractedFeatures);
-      // Handle the response data, which will include the health scores
     } catch (error) {
       console.error('Error:', error);
     }
@@ -53,7 +51,72 @@ const OpticalCharacterRecognition = () => {
           <div className="mt-10 max-w-2xl">
             {extractedText && (
               <>
-                <b>Food content</b>: {extractedText}
+                <b>Food content</b>
+                <p>{extractedText}</p>
+              </>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-5 mt-10 max-w-2xl w-full">
+            {extractedFeatures && (
+              <>
+                <h2 className="font-bold text-lg">Extracted Features</h2>
+                <div>
+                  {extractedFeatures.foundFoodAdditives?.length ? (
+                    <ul>
+                      <li>
+                        <b>Found Food Additives</b>:
+                        <ul>
+                          {extractedFeatures.foundFoodAdditives.map((additive, index) => (
+                            <li key={index}>{`${additive.name} - ${additive.score}`}</li>
+                          ))}
+                        </ul>
+                      </li>
+                    </ul>
+                  ) : (
+                    <p className="none-message">
+                      <i>No food additives found.</i>
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  {extractedFeatures.foundArtificialSweeteners?.length ? (
+                    <ul>
+                      <li>
+                        <b>Found Artificial Sweeteners</b>:
+                        <ul>
+                          {extractedFeatures.foundArtificialSweeteners.map((sweetener, index) => (
+                            <li key={index}>{`${sweetener.name} - ${sweetener.score}`}</li>
+                          ))}
+                        </ul>
+                      </li>
+                    </ul>
+                  ) : (
+                    <p className="none-message">
+                      <i>No artificial sweeteners found.</i>
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  {extractedFeatures.foundArtificialFoodColorings?.length ? (
+                    <ul>
+                      <li>
+                        <b>Found Artificial Food Colorings</b>:
+                        <ul>
+                          {extractedFeatures.foundArtificialFoodColorings.map((coloring, index) => (
+                            <li key={index}>{`${coloring.name} - ${coloring.score}`}</li>
+                          ))}
+                        </ul>
+                      </li>
+                    </ul>
+                  ) : (
+                    <p className="none-message">
+                      <i>No artificial food colorings found.</i>
+                    </p>
+                  )}
+                </div>
               </>
             )}
           </div>
