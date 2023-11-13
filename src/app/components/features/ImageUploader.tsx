@@ -1,13 +1,15 @@
 'use client';
+import { AdditiveProps } from '@/app/nutrition/score/OpticalCharacterRecognition';
 import Image from 'next/image';
 import { useState } from 'react';
 
 interface UploaderProps {
   callback: (file: File) => void;
   setExtractedText: React.Dispatch<React.SetStateAction<string>>;
+  setExtractedFeatures: React.Dispatch<React.SetStateAction<AdditiveProps>>;
 }
 
-const ImageUploader = ({ callback, setExtractedText }: UploaderProps) => {
+const ImageUploader = ({ callback, setExtractedText, setExtractedFeatures }: UploaderProps) => {
   const [image, setImage] = useState<string | null>(null);
 
   const onImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +67,7 @@ const ImageUploader = ({ callback, setExtractedText }: UploaderProps) => {
           </div>
         </div>
       ) : (
-        <div className="mt-4">
+        <div className="mt-4 flex justify-center flex-col items-center">
           <Image width="250" height="250" className="w-full" src={image} alt="Selected Image" />
           <button
             type="button"
@@ -73,6 +75,7 @@ const ImageUploader = ({ callback, setExtractedText }: UploaderProps) => {
             onClick={() => {
               setImage(null);
               setExtractedText('');
+              setExtractedFeatures({});
             }}
           >
             Remove Image

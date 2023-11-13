@@ -8,15 +8,15 @@ interface FoodAdditive {
   score: string;
 }
 
-interface AdditiveProps {
-  foundFoodAdditives: FoodAdditive[];
-  foundArtificialSweeteners: FoodAdditive[];
-  foundArtificialFoodColorings: FoodAdditive[];
+export interface AdditiveProps {
+  foundFoodAdditives?: FoodAdditive[];
+  foundArtificialSweeteners?: FoodAdditive[];
+  foundArtificialFoodColorings?: FoodAdditive[];
 }
 
 const OpticalCharacterRecognition = () => {
   const [extractedText, setExtractedText] = useState<string>('');
-  const [extractedFeatures, setExtractedFeatures] = useState<AdditiveProps | null>();
+  const [extractedFeatures, setExtractedFeatures] = useState<AdditiveProps>({});
 
   const extractText = async (file: File) => {
     const res = await Tesseract.recognize(file, 'eng', { logger: (info) => console.log(info) });
@@ -45,22 +45,26 @@ const OpticalCharacterRecognition = () => {
 
   return (
     <section>
-      <ImageUploader callback={extractText} setExtractedText={setExtractedText} />
+      <ImageUploader
+        callback={extractText}
+        setExtractedText={setExtractedText}
+        setExtractedFeatures={setExtractedFeatures}
+      />
       <div className="py-8 flex flex-col sm:items-left gap-5 justify-center">
         <div className="flex flex-col mx-10 items-center">
           <div className="mt-10 max-w-2xl">
             {extractedText && (
               <>
-                <b>Food content</b>
+                <h3 className="font-bold text-lg mb-5">Extracted Food Content</h3>
                 <p>{extractedText}</p>
               </>
             )}
           </div>
 
           <div className="flex flex-col gap-5 mt-10 max-w-2xl w-full">
-            {extractedFeatures && (
+            {extractedText && (
               <>
-                <h2 className="font-bold text-lg">Extracted Features</h2>
+                <h3 className="font-bold text-lg text-red-600">Potential Harmful Food Content</h3>
                 <div>
                   {extractedFeatures.foundFoodAdditives?.length ? (
                     <ul>
@@ -75,7 +79,7 @@ const OpticalCharacterRecognition = () => {
                     </ul>
                   ) : (
                     <p className="none-message">
-                      <i>No food additives found.</i>
+                      <i>No harmful food additives detected.</i>
                     </p>
                   )}
                 </div>
@@ -94,7 +98,7 @@ const OpticalCharacterRecognition = () => {
                     </ul>
                   ) : (
                     <p className="none-message">
-                      <i>No artificial sweeteners found.</i>
+                      <i>No harmful artificial sweeteners detected.</i>
                     </p>
                   )}
                 </div>
@@ -113,7 +117,7 @@ const OpticalCharacterRecognition = () => {
                     </ul>
                   ) : (
                     <p className="none-message">
-                      <i>No artificial food colorings found.</i>
+                      <i>No harmful artificial food colorings detected.</i>
                     </p>
                   )}
                 </div>
