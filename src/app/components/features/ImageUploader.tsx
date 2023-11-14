@@ -1,13 +1,15 @@
 'use client';
+import { AdditiveProps } from '@/app/nutrition/score/OpticalCharacterRecognition';
 import Image from 'next/image';
 import { useState } from 'react';
 
 interface UploaderProps {
   callback: (file: File) => void;
   setExtractedText: React.Dispatch<React.SetStateAction<string>>;
+  setExtractedFeatures: React.Dispatch<React.SetStateAction<AdditiveProps>>;
 }
 
-const ImageUploader = ({ callback, setExtractedText }: UploaderProps) => {
+const ImageUploader = ({ callback, setExtractedText, setExtractedFeatures }: UploaderProps) => {
   const [image, setImage] = useState<string | null>(null);
 
   const onImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,10 +26,10 @@ const ImageUploader = ({ callback, setExtractedText }: UploaderProps) => {
         <div className="col-span-full mx-5 sm:mx-10 max-w-screen-xl">
           <p className="mb-5">
             To get your personalized Metabolite Score, all you need to do is upload an image of the
-            ingredients. Our OCR system will process it in seconds, providing you with precise
-            information about the food&apos;s nutritional content.
+            ingredients. Our OCR system will process it in seconds, providing you with information
+            about the food&apos;s nutritional content and potential harmful ingredients.
           </p>
-          <label htmlFor="cover-photo" className="block leading-6 text-white text-lg font-semibold">
+          <label htmlFor="cover-photo" className="block leading-6 text-white text-lg">
             Image of nutrition information
           </label>
           <div className="mt-2 flex justify-center rounded-lg border border-dashed border-white/25 px-6 py-10">
@@ -65,7 +67,7 @@ const ImageUploader = ({ callback, setExtractedText }: UploaderProps) => {
           </div>
         </div>
       ) : (
-        <div className="mt-4">
+        <div className="mt-4 flex justify-center flex-col items-center">
           <Image width="250" height="250" className="w-full" src={image} alt="Selected Image" />
           <button
             type="button"
@@ -73,6 +75,7 @@ const ImageUploader = ({ callback, setExtractedText }: UploaderProps) => {
             onClick={() => {
               setImage(null);
               setExtractedText('');
+              setExtractedFeatures({});
             }}
           >
             Remove Image

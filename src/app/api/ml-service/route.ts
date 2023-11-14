@@ -86,31 +86,31 @@ const extractFeatures = (text: string) => {
   return features;
 };
 
-const preprocessData = (features: any) => {
-  // Perform any necessary data cleaning and conversion here
-  return features;
-};
+// const preprocessData = (features: any) => {
+//   // Perform any necessary data cleaning and conversion here
+//   return features;
+// };
 
-const convertToNumeric = (features: any) => {
-  const numericFeatures = {
-    foundFoodAdditives: features.foundFoodAdditives.length,
-    foundArtificialSweeteners: features.foundArtificialSweeteners.length,
-    foundArtificialFoodColorings: features.foundArtificialFoodColorings.length,
-  };
-  return numericFeatures;
-};
+// const convertToNumeric = (features: any) => {
+//   const numericFeatures = {
+//     foundFoodAdditives: features.foundFoodAdditives.length,
+//     foundArtificialSweeteners: features.foundArtificialSweeteners.length,
+//     foundArtificialFoodColorings: features.foundArtificialFoodColorings.length,
+//   };
+//   return numericFeatures;
+// };
 
-// Placeholder function for applying k-means clustering (replace with actual k-means logic)
-const applyKMeans = (numericFeatures: any) => {
-  // Apply k-means clustering using a library like ml-kmeans
-  // Return the cluster information
-};
+// // Placeholder function for applying k-means clustering (replace with actual k-means logic)
+// const applyKMeans = (numericFeatures: any) => {
+//   // Apply k-means clustering using a library like ml-kmeans
+//   // Return the cluster information
+// };
 
-// Placeholder function for assigning health scores (replace with actual logic)
-const assignHealthScores = (clusters: any) => {
-  // Analyze clusters and assign health scores
-  // Return a mapping of cluster IDs to health scores
-};
+// // Placeholder function for assigning health scores (replace with actual logic)
+// const assignHealthScores = (clusters: any) => {
+//   // Analyze clusters and assign health scores
+//   // Return a mapping of cluster IDs to health scores
+// };
 
 export const POST = async (request: Request) => {
   try {
@@ -120,13 +120,12 @@ export const POST = async (request: Request) => {
 
     console.log('Found:', extractedFeatures);
 
-    const preprocessedData = preprocessData(extractedFeatures);
-    const numericData = convertToNumeric(preprocessedData);
+    // const preprocessedData = preprocessData(extractedFeatures);
+    // const numericData = convertToNumeric(preprocessedData);
+    // console.log('Numeric', numericData);
 
-    console.log('Numeric', numericData);
-
-    const clusters = applyKMeans(numericData); // Implement this function
-    const healthScores = assignHealthScores(clusters); // Implement this function
+    // const clusters = applyKMeans(numericData); // Implement this function
+    // const healthScores = assignHealthScores(clusters); // Implement this function
 
     return NextResponse.json({ extractedFeatures }, { status: 200 });
   } catch (error) {
