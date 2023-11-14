@@ -23,7 +23,7 @@ const ImageUploader = ({ callback, setExtractedText, setExtractedFeatures }: Upl
   return (
     <>
       {!image ? (
-        <div className="col-span-full mx-5 sm:mx-10 max-w-screen-xl">
+        <div className="col-span-full">
           <p className="mb-5">
             To get your personalized Metabolite Score, all you need to do is upload an image of the
             ingredients. Our OCR system will process it in seconds, providing you with information
