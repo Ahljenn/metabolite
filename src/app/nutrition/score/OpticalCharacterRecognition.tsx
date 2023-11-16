@@ -46,14 +46,14 @@ const OpticalCharacterRecognition = () => {
 
   return (
     <section>
-      <ImageUploader
-        callback={extractText}
-        setExtractedText={setExtractedText}
-        setExtractedFeatures={setExtractedFeatures}
-      />
-      <div className="py-8 flex flex-col sm:items-left gap-5 justify-center">
+      <div className="py-8 flex flex-col sm:flex-row sm:items-left gap-5 justify-center max-w-screen-xl">
+        <ImageUploader
+          callback={extractText}
+          setExtractedText={setExtractedText}
+          setExtractedFeatures={setExtractedFeatures}
+        />
         <div className="flex flex-col mx-10 items-center">
-          <div className="mt-10 max-w-2xl">
+          <div className="max-w-2xl">
             {extractedText && (
               <>
                 <h3 className="font-bold text-lg mb-5">Extracted Food Content</h3>
