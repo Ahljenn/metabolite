@@ -25,7 +25,11 @@ p-12`}
           data.
         </p>
       </div>
-      <OpticalCharacterRecognition />
+      <section>
+        <div className="py-8 flex flex-col sm:flex-row sm:items-left gap-5 justify-center max-w-screen-xl">
+          <OpticalCharacterRecognition />
+        </div>
+      </section>
     </main>
   );
 };

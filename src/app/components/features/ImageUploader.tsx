@@ -1,5 +1,5 @@
 'use client';
-import { AdditiveProps } from '@/app/nutrition/score/OpticalCharacterRecognition';
+import { AdditiveProps, UploadState } from '@/app/nutrition/score/OpticalCharacterRecognition';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -7,12 +7,19 @@ interface UploaderProps {
   callback: (file: File) => void;
   setExtractedText: React.Dispatch<React.SetStateAction<string>>;
   setExtractedFeatures: React.Dispatch<React.SetStateAction<AdditiveProps>>;
+  setUploadState: React.Dispatch<React.SetStateAction<UploadState>>;
 }
 
-const ImageUploader = ({ callback, setExtractedText, setExtractedFeatures }: UploaderProps) => {
+const ImageUploader = ({
+  callback,
+  setExtractedText,
+  setExtractedFeatures,
+  setUploadState,
+}: UploaderProps) => {
   const [image, setImage] = useState<string | null>(null);
 
   const onImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUploadState('Uploading');
     const file = e?.target.files?.[0];
     if (file) {
       setImage(URL.createObjectURL(file));

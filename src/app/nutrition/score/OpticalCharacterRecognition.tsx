@@ -15,9 +15,12 @@ export interface AdditiveProps {
   foundArtificialFoodColorings?: FoodAdditive[];
 }
 
+export type UploadState = 'Not Uploaded' | 'Uploading' | 'Complete';
+
 const OpticalCharacterRecognition = () => {
   const [extractedText, setExtractedText] = useState<string>('');
   const [extractedFeatures, setExtractedFeatures] = useState<AdditiveProps>({});
+  const [uploadState, setUploadState] = useState<UploadState>('Not Uploaded');
 
   const extractText = async (file: File) => {
     const res = await Tesseract.recognize(file, 'eng', { logger: (info) => console.log(info) });
@@ -39,20 +42,40 @@ const OpticalCharacterRecognition = () => {
       const data = await response.json();
       console.log('test', data.extractedFeatures);
       setExtractedFeatures(data.extractedFeatures);
+      setUploadState('Complete');
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
-  return (
-    <section>
-      <div className="py-8 flex flex-col sm:flex-row sm:items-left gap-5 justify-center max-w-screen-xl">
+  switch (uploadState) {
+    case 'Not Uploaded':
+      return (
         <ImageUploader
           callback={extractText}
           setExtractedText={setExtractedText}
           setExtractedFeatures={setExtractedFeatures}
+          setUploadState={setUploadState}
         />
+      );
+
+    case 'Uploading':
+      return <p>Analyzing image...</p>;
+
+    case 'Complete':
+      return (
         <div className="flex flex-col mx-10 items-center">
+          <button
+            type="button"
+            className="group mt-5  transition-all border rounded-lg py-2 px-4 whitespace-nowrap border-red-300 bg-rose-700/30 hover:border-red-200 hover:bg-rose-600/30"
+            onClick={() => {
+              setExtractedText('');
+              setExtractedFeatures({});
+              setUploadState('Not Uploaded');
+            }}
+          >
+            Reset
+          </button>
           <div className="max-w-2xl">
             {extractedText && (
               <>
@@ -126,9 +149,8 @@ const OpticalCharacterRecognition = () => {
             )}
           </div>
         </div>
-      </div>
-    </section>
-  );
+      );
+  }
 };
 
 export default OpticalCharacterRecognition;
